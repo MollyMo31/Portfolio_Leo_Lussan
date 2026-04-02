@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNJUDGED — Lussan Léo Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--surface:#111111;--surface2:#191919;--border:#2a2a2a;--accent:#c8a96e;--accent2:#4a7fa5;--text:#e8e0d5;--muted:#666;--grid:#1a1a1a;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+html.no-scroll{scroll-behavior:auto;}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--accent);border-radius:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+.blueprint-bg{position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:60px 60px,60px 60px;pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);background:rgba(10,10,10,.92);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:var(--accent);cursor:pointer;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;cursor:pointer;}
+.nav-back:hover{color:var(--text);}
+main{position:relative;z-index:1;padding:140px 48px 80px;}
+.proj-header{margin-bottom:64px;max-width:900px;}
+.proj-num{font-family:'Bebas Neue',sans-serif;font-size:96px;color:rgba(200,169,110,.08);line-height:1;margin-bottom:-20px;}
+.proj-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,96px);letter-spacing:2px;line-height:1;margin-bottom:24px;color:var(--text);}
+.proj-title span{color:var(--accent);}
+.proj-badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
+.badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);color:var(--muted);}
+.badge.primary{border-color:var(--accent);color:var(--accent);}
+.badge.secondary{border-color:var(--accent2);color:var(--accent2);}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:48px 0;}
+.section{margin-bottom:64px;max-width:900px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:20px;color:var(--accent);}
+.section-body{font-size:13px;line-height:2;color:#888;display:flex;flex-direction:column;gap:16px;}
+.section-body p strong{color:var(--text);font-weight:500;}
+.tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;}
+.tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--muted);transition:all .2s;}
+.tag:hover{border-color:rgba(200,169,110,.3);color:var(--accent);}
+.cta-btn{display:inline-block;margin-top:24px;color:var(--accent);border:1px solid var(--accent);padding:12px 24px;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;}
+.cta-btn:hover{background:var(--accent);color:var(--bg);}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:32px;margin-bottom:48px;}
+.gallery-item{background:var(--surface);border:1px solid var(--border);aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;cursor:zoom-in;transition:all .3s;}
+.gallery-item:hover{border-color:var(--accent);transform:translateY(-4px);}
+.gallery-item.placeholder{color:var(--muted);font-size:12px;flex-direction:column;gap:12px;}
+.gallery-item.placeholder::before{content:'📷';font-size:48px;}
+footer{position:relative;z-index:1;padding:50px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:4px;color:var(--accent);}
+.footer-copy{font-size:10px;color:var(--muted);letter-spacing:2px;}
+.modal-zoom{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;}
+.modal-zoom.open{display:flex;}
+.modal-zoom img{max-width:90vw;max-height:90vh;object-fit:contain;}
+.modal-close{position:absolute;top:20px;right:30px;color:var(--text);cursor:pointer;font-size:32px;transition:color .2s;font-weight:300;}
+.modal-close:hover{color:var(--accent);}
+.fade-in{opacity:0;transform:translateY(20px);animation:slideIn .6s ease forwards;}
+@keyframes slideIn{to{opacity:1;transform:translateY(0)}}
+.fade-in:nth-child(1){animation-delay:.1s}
+.fade-in:nth-child(2){animation-delay:.2s}
+.fade-in:nth-child(3){animation-delay:.3s}
+@keyframes scrollVeil{0%{height:100vh;opacity:1}100%{height:0;opacity:0}}
+.scroll-veil{position:fixed;top:0;left:0;right:0;width:100%;background:linear-gradient(to bottom,rgba(10,10,10,.95),rgba(10,10,10,.5),transparent);z-index:9995;pointer-events:none;animation:scrollVeil .4s cubic-bezier(.4,0,.2,1) forwards}
+</style>
+</head>
+<body>
+<div class="blueprint-bg"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo" onclick="history.back()">LL</div>
+  <div class="nav-back" onclick="history.back()">← RETOUR</div>
+</nav>
+
+<main>
+  <div class="proj-header fade-in">
+    <div class="proj-num">01</div>
+    <h1 class="proj-title"><span>UNJUDGED</span></h1>
+    <div class="proj-badges">
+      <span class="badge">2024 — Présent</span>
+      <span class="badge primary">En cours · 3ème Année</span>
+      <span class="badge">Level Design</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section fade-in">
+    <h2 class="section-title">Concept</h2>
+    <div class="section-body">
+      <p><strong>UNJUDGED</strong> est un environnement conçu autour de l'ambiguïté et du jugement — chaque espace joue avec la perception du joueur entre zones ouvertes et corridors oppressants.</p>
+      <p>Le level design est pensé pour provoquer une tension constante entre deux états : être observé ou être libre. Les espaces alternent entre des architectures larges et écrasantes et des passages étroits qui forcent le joueur à avancer sans visibilité.</p>
+      <p>Le projet explore comment le design d'un espace peut suffire à raconter une histoire sans texte ni dialogue explicite.</p>
+      <div class="tags-row">
+        <span class="tag">Level Design</span>
+        <span class="tag">Narration spatiale</span>
+        <span class="tag">Ambiguïté</span>
+        <span class="tag">En cours</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section fade-in">
+    <h2 class="section-title">Galerie</h2>
+    <div class="gallery">
+      <div class="gallery-item placeholder" onclick="zoomImage(this)">
+        IMAGE 1
+      </div>
+      <div class="gallery-item placeholder" onclick="zoomImage(this)">
+        IMAGE 2
+      </div>
+      <div class="gallery-item placeholder" onclick="zoomImage(this)">
+        IMAGE 3
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--muted);letter-spacing:1px;">Les images seront à ajouter. Cliquez pour zoomer.</p>
+  </div>
+
+  <div class="section fade-in">
+    <h2 class="section-title">Détails du projet</h2>
+    <div class="section-body">
+      <p><strong>Moteur :</strong> Unity</p>
+      <p><strong>Durée :</strong> 2024 — Présent</p>
+      <p><strong>Équipe :</strong> Solo (école)</p>
+      <p><strong>Rôle :</strong> Level Designer, Game Designer</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div style="max-width:900px;">
+    <a href="https://lussanleondesign.itch.io/unjudged" target="_blank" class="cta-btn">🎮 JOUER SUR ITCH.IO</a>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <div class="footer-name">UNJUDGED</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px;letter-spacing:2px;">LUSSAN LÉO · LEVEL DESIGN</div>
+  </div>
+  <div class="footer-copy">© 2024 — <a href="portfolio-lussan-leo-optimized.html" style="color:var(--accent);text-decoration:none;">Retour au portfolio</a></div>
+</footer>
+
+<div class="modal-zoom" id="zoomModal" onclick="if(event.target===this) closeZoom()">
+  <span class="modal-close" onclick="closeZoom()">&times;</span>
+  <img id="zoomImg" src="" alt="">
+</div>
+
+<script>
+const c=document.getElementById('cursor'),r=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,.cta-btn,.nav-back,.nav-logo,.gallery-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{c.style.width='20px';c.style.height='20px';r.style.width='60px';r.style.height='60px';});
+  el.addEventListener('mouseleave',()=>{c.style.width='12px';c.style.height='12px';r.style.width='36px';r.style.height='36px';});
+});
+function zoomImage(el){const img=el.querySelector('img');if(img){document.getElementById('zoomImg').src=img.src;document.getElementById('zoomModal').classList.add('open');}}
+function closeZoom(){document.getElementById('zoomModal').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeZoom();});
+// Restaurer la position de scroll quand on revient via history.back()
+window.addEventListener('pageshow', (event) => {
+  if(event.persisted) {
+    const savedPosition = sessionStorage.getItem('scrollPosition');
+    if(savedPosition !== null) {
+      const veil = document.createElement('div');
+      veil.className = 'scroll-veil';
+      document.body.appendChild(veil);
+      setTimeout(() => window.scrollTo(0, parseInt(savedPosition)), 0);
+      setTimeout(() => veil.remove(), 400);
+    }
+  }
+});
+</script>
+</body>
+</html>

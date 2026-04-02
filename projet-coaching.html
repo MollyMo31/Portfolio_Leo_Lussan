@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COACHING — Lussan Léo Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--surface:#111111;--surface2:#191919;--border:#2a2a2a;--accent:#c8a96e;--accent2:#4a7fa5;--text:#e8e0d5;--muted:#666;--grid:#1a1a1a;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+html.no-scroll{scroll-behavior:auto;}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--accent);border-radius:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+.blueprint-bg{position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:60px 60px,60px 60px;pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);background:rgba(10,10,10,.92);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:var(--accent);cursor:pointer;}
+.nav-back{color:var(--muted);text-decoration:none;font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;cursor:pointer;}
+.nav-back:hover{color:var(--text);}
+main{position:relative;z-index:1;padding:140px 48px 80px;}
+.proj-header{margin-bottom:64px;max-width:900px;}
+.proj-num{font-family:'Bebas Neue',sans-serif;font-size:96px;color:rgba(200,169,110,.08);line-height:1;margin-bottom:-20px;}
+.proj-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,96px);letter-spacing:2px;line-height:1;margin-bottom:24px;color:var(--text);}
+.proj-title span{color:var(--accent);}
+.proj-badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;}
+.badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);color:var(--muted);}
+.badge.primary{border-color:var(--accent);color:var(--accent);}
+.badge.secondary{border-color:var(--accent2);color:var(--accent2);}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:48px 0;}
+.section{margin-bottom:64px;max-width:900px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:20px;color:var(--accent);}
+.section-body{font-size:13px;line-height:2;color:#888;display:flex;flex-direction:column;gap:16px;}
+.section-body p strong{color:var(--text);font-weight:500;}
+.tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;}
+.tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--muted);transition:all .2s;}
+.tag:hover{border-color:rgba(200,169,110,.3);color:var(--accent);}
+.cta-btn{display:inline-block;margin-top:24px;color:var(--accent);border:1px solid var(--accent);padding:12px 24px;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;}
+.cta-btn:hover{background:var(--accent);color:var(--bg);}
+footer{position:relative;z-index:1;padding:50px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:4px;color:var(--accent);}
+.footer-copy{font-size:10px;color:var(--muted);letter-spacing:2px;}
+.modal-zoom{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;}
+.modal-zoom.open{display:flex;}
+.fade-in{opacity:0;transform:translateY(20px);animation:slideIn .6s ease forwards;}
+@keyframes slideIn{to{opacity:1;transform:translateY(0)}}
+.fade-in:nth-child(1){animation-delay:.1s}
+.fade-in:nth-child(2){animation-delay:.2s}
+.fade-in:nth-child(3){animation-delay:.3s}
+</style>
+</head>
+<body>
+<div class="blueprint-bg"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo" onclick="history.back()">LL</div>
+  <div class="nav-back" onclick="history.back()">← RETOUR</div>
+</nav>
+
+<main>
+  <div class="proj-header fade-in">
+    <div class="proj-num">02</div>
+    <h1 class="proj-title">COACHING</h1>
+    <div class="proj-badges">
+      <span class="badge">Personnel</span>
+      <span class="badge primary">E-Sport · Coaching</span>
+      <span class="badge">Valorant · DBD · LoL</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section fade-in">
+    <h2 class="section-title">Présentation générale</h2>
+    <div class="section-body">
+      <p>Le coaching est pour moi une suite logique de mon parcours de joueur compétitif et de créateur. Avec le temps, j'ai réalisé que ce que j'aimais le plus, au-delà de la performance, c'était <strong>aider les autres à comprendre, progresser et prendre confiance</strong>.</p>
+      <p>Chaque joueur est différent : objectifs, niveau, rythme d'apprentissage. C'est pour cela que je propose un <strong>coaching humain, personnalisé et sans jugement</strong>, basé sur l'échange et la compréhension plutôt que sur des recettes toutes faites.</p>
+    </div>
+  </div>
+
+  <div class="section fade-in">
+    <h2 class="section-title">Jeux proposés</h2>
+    <div class="section-body">
+      <p><strong>⚔️ League of Legends</strong><br>Compréhension macro, prise de décision & vision, gestion des objectifs, régularité et mental</p>
+      <p><strong>🎯 Valorant</strong><br>Positionnement, lecture des rounds, communication d'équipe, discipline & structure</p>
+      <p><strong>🔪 Dead by Daylight</strong><br>Survie & tueur, gestion des loops, lecture de map, mind games & builds</p>
+    </div>
+  </div>
+
+  <div class="section fade-in">
+    <h2 class="section-title">Comment ça marche</h2>
+    <div class="section-body">
+      <p><strong>1. ÉCHANGE INITIAL</strong><br>On discute de vos objectifs, votre niveau actuel et ce sur quoi vous voulez progresser.</p>
+      <p><strong>2. ANALYSE</strong><br>Analyse de parties (VOD ou live), identification des points forts et axes d'amélioration.</p>
+      <p><strong>3. PLAN D'ACTION</strong><br>Définition d'objectifs clairs et réalistes. Des exercices spécifiques et adaptés.</p>
+      <p><strong>4. SUIVI</strong><br>Sessions régulières, retours constants, adaptabilité selon vos progrès et besoins.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div style="max-width:900px;">
+    <a href="mailto:leo.lussan.design@gmail.com" class="cta-btn">📧 ME CONTACTER</a>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <div class="footer-name">COACHING</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px;letter-spacing:2px;">LUSSAN LÉO · E-SPORT</div>
+  </div>
+  <div class="footer-copy">© 2024 — <a href="portfolio-lussan-leo-optimized.html" style="color:var(--accent);text-decoration:none;">Retour au portfolio</a></div>
+</footer>
+
+<script>
+const c=document.getElementById('cursor'),r=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,.cta-btn,.nav-back,.nav-logo').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{c.style.width='20px';c.style.height='20px';r.style.width='60px';r.style.height='60px';});
+  el.addEventListener('mouseleave',()=>{c.style.width='12px';c.style.height='12px';r.style.width='36px';r.style.height='36px';});
+});
+// Restaurer la position de scroll quand on revient via history.back()
+window.addEventListener('pageshow', (event) => {
+  if(event.persisted) {
+    const savedPosition = sessionStorage.getItem('scrollPosition');
+    if(savedPosition !== null) {
+      const veil = document.createElement('div');
+      veil.className = 'scroll-veil';
+      document.body.appendChild(veil);
+      setTimeout(() => window.scrollTo(0, parseInt(savedPosition)), 0);
+      setTimeout(() => veil.remove(), 400);
+    }
+  }
+});
+</script>
+</body>
+</html>
