@@ -27,7 +27,6 @@
   .nav-links a:hover::after{width:100%;}
   .nav-links a:hover{color:var(--text);}
   .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:0 48px;z-index:1;background:linear-gradient(135deg, rgba(200,169,110,.05) 0%, transparent 50%, rgba(74,127,165,.05) 100%);transition:all .6s;}
-  .hero:hover{background:linear-gradient(135deg, rgba(200,169,110,.08) 0%, transparent 50%, rgba(74,127,165,.08) 100%);}
   .hero-tag{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:22px;display:flex;align-items:center;gap:12px;animation:slideInLeft .7s ease-out;}
   .hero-tag::before{content:'';width:40px;height:2px;background:linear-gradient(90deg,transparent,var(--accent));animation:slideInLeft .7s ease-out .2s both;}
   .hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(70px,12vw,155px);line-height:.9;letter-spacing:-2px;animation:slideInUp .8s ease-out .2s both;}
@@ -136,7 +135,7 @@
   .category-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;padding-bottom:16px;border-bottom:2px solid transparent;background:linear-gradient(90deg, var(--accent) 0%, transparent 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:12px;transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;}
   .category-title::before{content:'';width:24px;height:2px;background:var(--accent);transition:all .4s cubic-bezier(.16,1,.3,1);}
   .category-title:hover::before{width:48px;box-shadow:0 0 10px rgba(200,169,110,0.4);}
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);}
+  .skills-grid{display:grid;grid-template-columns:repeat(2, 1fr);gap:1px;background:var(--border);}
   .skills-grid>*{animation:tilt-enter .6s cubic-bezier(.16,1,.3,1) forwards;}
   .skills-grid>*:nth-child(1){animation-delay:0s}
   .skills-grid>*:nth-child(2){animation-delay:0.1s}
@@ -145,7 +144,7 @@
   .skills-grid>*:nth-child(5){animation-delay:0.4s}
   .skills-grid>*:nth-child(6){animation-delay:0.5s}
   .skills-grid>*:nth-child(n+7){animation-delay:0.6s}
-  .skill-card{background:linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);background-size:200% 200%;padding:32px;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;border-radius:2px;box-shadow:0 4px 12px rgba(0,0,0,.2);}
+  .skill-card{background:linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);background-size:200% 200%;padding:16px;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;border-radius:2px;box-shadow:0 4px 12px rgba(0,0,0,.2);cursor:pointer;}
   .skill-card::before{content:'';position:absolute;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .5s cubic-bezier(.16,1,.3,1);}
   .skill-card:hover{background:linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);box-shadow:0 16px 40px rgba(200,169,110,0.25),0 0 50px rgba(74,127,165,0.12);transform:translateY(-10px) scale(1.04);animation:glow-pulse 2s infinite;}
   .skill-card:hover::before{width:100%;}
@@ -327,7 +326,7 @@
     background:var(--border);border:2px solid rgba(200,169,110,.1);margin-top:12px;border-radius:2px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.2);}
   .proj-img-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:all .5s cubic-bezier(.16,1,.3,1);border:1px solid rgba(200,169,110,.1);cursor:pointer;position:relative;}
   .proj-img-grid img::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,169,110,.1) 0%, transparent 100%);opacity:0;transition:opacity .3s;}
-  .proj-img-grid img:hover{transform:scale(1.12) rotateZ(-1deg);filter:brightness(1.15) saturate(1.2);box-shadow:0 12px 40px rgba(200,169,110,0.3);}
+  .proj-img-grid img:hover{transform:scale(1.12) rotateZ(-1deg);box-shadow:0 12px 40px rgba(200,169,110,0.3);}
   .proj-img-full{width:100%;border:2px solid rgba(200,169,110,.1);margin-top:12px;display:block;border-radius:2px;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:all .4s cubic-bezier(.16,1,.3,1);cursor:pointer;}
   .proj-img-full:hover{border-color:rgba(200,169,110,.3);box-shadow:0 16px 48px rgba(200,169,110,0.15);transform:scale(1.02);}
   .project-card{cursor:pointer;}
@@ -337,11 +336,59 @@
   .project-card:hover::after{opacity:1;transform:translateX(0);color:var(--accent);}
   @media(max-width:700px){.proj-overlay-inner{padding:80px 20px 60px;}.proj-back{left:20px;}
     .proj-img-grid{grid-template-columns:1fr 1fr;}}
+  
+  /* -- SKILLS SIDEBAR -- */
+  .skill-sidebar{position:fixed;right:-450px;top:0;width:420px;height:100vh;background:linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);border-left:2px solid var(--border);z-index:999;overflow-y:auto;transition:right .5s cubic-bezier(.16,1,.3,1);box-shadow:-12px 0 40px rgba(0,0,0,.5);padding:0;}
+  .skill-sidebar.active{right:0;}
+  .skill-sidebar-close{position:sticky;top:0;padding:20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--surface);z-index:10;}
+  .skill-sidebar-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--accent);}
+  .skill-sidebar-close-btn{background:none;border:none;color:var(--muted);font-size:28px;cursor:pointer;transition:all .3s;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
+  .skill-sidebar-close-btn:hover{color:var(--accent);transform:rotate(90deg);}
+  .skill-sidebar-content{padding:32px 24px;}
+  .sidebar-skill-name{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:var(--accent);margin-bottom:8px;}
+  .sidebar-skill-cat{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent2);margin-bottom:24px;display:block;}
+  .sidebar-skill-desc{font-size:13px;line-height:2;color:#888;margin-bottom:20px;}
+  .sidebar-skill-desc strong{color:var(--text);font-weight:500;}
+  .sidebar-skill-details{background:rgba(200,169,110,.05);border-left:3px solid var(--accent);padding:16px;border-radius:2px;margin-top:24px;}
+  .sidebar-detail-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);display:block;margin-bottom:8px;}
+  .sidebar-detail-value{font-size:12px;color:var(--text);line-height:1.6;}
+  @media(max-width:900px){.skill-sidebar{width:100%;right:-100%;}}
+  
+  /* -- PROFILE IMAGE -- */
+  .hero-image-container{position:relative;width:220px;height:280px;margin-left:auto;margin-right:0;}
+  .hero-image-frame{position:relative;width:100%;height:100%;border:2px solid rgba(200,169,110,.3);border-radius:4px;overflow:hidden;box-shadow:0 12px 40px rgba(200,169,110,.2),inset 0 0 30px rgba(200,169,110,.05);transition:all .4s cubic-bezier(.16,1,.3,1);}
+  .hero-image-frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1);}
+  .hero:hover .hero-image-frame img{transform:scale(1.05);}
+  .hero-image-glow{position:absolute;inset:-20px;border:1px solid rgba(200,169,110,.1);border-radius:4px;pointer-events:none;animation:pulse-border 3s infinite;}
+  .image-accent-dot{position:absolute;width:8px;height:8px;background:var(--accent);border-radius:50%;opacity:0;animation:float 3s ease-in-out infinite;box-shadow:0 0 12px rgba(200,169,110,.6);}
+  .image-accent-dot.dot-1{top:-15px;left:20px;animation-delay:0s;}
+  .image-accent-dot.dot-2{top:-10px;right:30px;animation-delay:.5s;}
+  .image-accent-dot.dot-3{bottom:-12px;right:15px;animation-delay:1s;}
+  .image-accent-dot.dot-4{bottom:-8px;left:25px;animation-delay:1.5s;}
+  @media(max-width:1000px){.hero-image-container{width:180px;height:230px;margin-top:40px;}}
+  @media(max-width:700px){.hero{flex-direction:column;align-items:flex-start;} .hero-image-container{width:160px;height:210px;margin-left:0;margin-top:32px;}}
 
 </style>
 </head>
 <body>
 <div class="blueprint-bg"></div>
+
+<!-- Bannière latérale des compétences -->
+<div class="skill-sidebar" id="skillSidebar">
+  <div class="skill-sidebar-close">
+    <span class="skill-sidebar-title">Détails</span>
+    <button class="skill-sidebar-close-btn" onclick="closeSkillSidebar()">×</button>
+  </div>
+  <div class="skill-sidebar-content">
+    <div class="sidebar-skill-name" id="sidebarSkillName"></div>
+    <span class="sidebar-skill-cat" id="sidebarSkillCat"></span>
+    <p class="sidebar-skill-desc" id="sidebarSkillDesc"></p>
+    <div class="sidebar-skill-details">
+      <span class="sidebar-detail-label">Ma pratique</span>
+      <div class="sidebar-detail-value" id="sidebarSkillExp"></div>
+    </div>
+  </div>
+</div>
 
 <!-- Éléments flottants spectaculaires -->
 <div class="floating-elements" id="floatingElements"></div>
@@ -372,6 +419,18 @@
     <p class="hero-subtitle">Level Designer</p>
     <p class="hero-desc">Passionné par le level design depuis 2016, je conçois des niveaux comme on dessine des plans — avec rigueur, intention narrative et ambition créative constante.</p>
   </div>
+  
+  <div class="hero-image-container">
+    <div class="hero-image-glow"></div>
+    <div class="hero-image-frame">
+      <img src="images/profil.jpg" alt="Léo Lussan">
+    </div>
+    <div class="image-accent-dot dot-1"></div>
+    <div class="image-accent-dot dot-2"></div>
+    <div class="image-accent-dot dot-3"></div>
+    <div class="image-accent-dot dot-4"></div>
+  </div>
+  
   <div class="arch-deco">
     <div class="corner-mark tl"></div><div class="corner-mark tr"></div>
     <div class="corner-mark bl"></div><div class="corner-mark br"></div>
@@ -445,32 +504,32 @@
     <div class="skill-category fade-in">
       <div class="category-title">Moteurs de jeu</div>
       <div class="skills-grid">
-        <div class="skill-card"><div class="skill-icon">🎮</div><div class="skill-name">Unity</div><div class="skill-cat">Moteur C#<br>Conception HUD (UI/UX)</div></div>
-        <div class="skill-card"><div class="skill-icon">🏔</div><div class="skill-name">Unreal Engine</div><div class="skill-cat">Level design cube grid<br>Nodale · HUD (UI/UX)</div></div>
+        <div class="skill-card" data-skill="unity" data-name="Unity" data-category="Moteur C#" data-desc="J'utilise <strong>Unity</strong> pour créer des environnements interactifs et des interfaces utilisateur. C# me permet de scripter des mécaniques de gameplay et de concevoir des HUD intuitifs. J'ai travaillé sur plusieurs projets incluant City Rider et divers prototypes." data-exp="Conception HUD · Scripting gameplay · Éditeur de levels · Intégration d'assets"><div class="skill-icon">🎮</div><div class="skill-name">Unity</div><div class="skill-cat">Moteur C#<br>Conception HUD (UI/UX)</div></div>
+        <div class="skill-card" data-skill="unreal" data-name="Unreal Engine" data-category="Moteur C++" data-desc="<strong>Unreal Engine</strong> est ma plateforme pour le level design avancé. J'utilise son système de grille de cubes, la programmation nodale et les outils HUD/UI. L'éditeur puissant d'UE5 facilite la création d'environnements complexes et immersifs." data-exp="Level design cube grid · Blueprints (programmation nodale) · HUD/UI · Asset management"><div class="skill-icon">🏔</div><div class="skill-name">Unreal Engine</div><div class="skill-cat">Level design cube grid<br>Nodale · HUD (UI/UX)</div></div>
       </div>
     </div>
 
     <div class="skill-category fade-in">
       <div class="category-title">Narration &amp; Jeux narratifs</div>
       <div class="skills-grid">
-        <div class="skill-card"><div class="skill-icon">✍️</div><div class="skill-name">Inky</div><div class="skill-cat">Narration<br>interactive</div></div>
-        <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">Twine</div><div class="skill-cat">Jeux narratifs<br>Hypertext</div></div>
+        <div class="skill-card" data-skill="inky" data-name="Inky" data-category="Narration interactive" data-desc="<strong>Inky</strong> me permet de créer des systèmes de narration interactive complexes. Cet outil de scripting narratif est parfait pour concevoir des branches d'histoires, des dialogues et des systèmes de choix non-linéaires." data-exp="Scripting narratif · Gestion des branches · Système de dialogues · Intégration dans Unity"><div class="skill-icon">✍️</div><div class="skill-name">Inky</div><div class="skill-cat">Narration<br>interactive</div></div>
+        <div class="skill-card" data-skill="twine" data-name="Twine" data-category="Jeux narratifs" data-desc="<strong>Twine</strong> est ma solution pour créer des expériences narratives basées sur le web. Je conçois des jeux textuels interactifs avec des éléments hypertext, parfait pour explorer des concepts narratifs et des mécaniques de choix." data-exp="Création de jeux textuels · Système de passages · Stylisation CSS · Debug d'histoires complexes"><div class="skill-icon">🌐</div><div class="skill-name">Twine</div><div class="skill-cat">Jeux narratifs<br>Hypertext</div></div>
       </div>
     </div>
 
     <div class="skill-category fade-in">
       <div class="category-title">Design &amp; Conception</div>
       <div class="skills-grid">
-        <div class="skill-card"><div class="skill-icon">🗺</div><div class="skill-name">Miro</div><div class="skill-cat">Conception<br>Wireframing</div></div>
-        <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">Suite Adobe</div><div class="skill-cat">Photoshop<br>Illustrator</div></div>
+        <div class="skill-card" data-skill="miro" data-name="Miro" data-category="Conception" data-desc="<strong>Miro</strong> est mon outil collaboratif préféré pour le brainstorming et la conception. Je l'utilise pour créer des wireframes, des diagrammes de flux et organiser les idées en équipe de manière visuelle et intuitive." data-exp="Wireframing · Diagrammes de flux · Brainstorming collaboratif · Design thinking · Prototypage"><div class="skill-icon">🗺</div><div class="skill-name">Miro</div><div class="skill-cat">Conception<br>Wireframing</div></div>
+        <div class="skill-card" data-skill="adobe" data-name="Suite Adobe" data-category="Design graphique" data-desc="La <strong>Suite Adobe</strong> (Photoshop, Illustrator) me permet de créer des assets visuels et des maquettes polies. Je maîtrise le retouche d'image, la création d'illustrations et la préparation d'assets pour les moteurs de jeu." data-exp="Retouche d'images · Création d'illustrations · Design de UI/UX · Préparation d'assets · Niveaux de détails"><div class="skill-icon">🎨</div><div class="skill-name">Suite Adobe</div><div class="skill-cat">Photoshop<br>Illustrator</div></div>
       </div>
     </div>
 
     <div class="skill-category fade-in">
       <div class="category-title">Outils &amp; Gestion</div>
       <div class="skills-grid">
-        <div class="skill-card"><div class="skill-icon">📋</div><div class="skill-name">Hack'n'Plan</div><div class="skill-cat">Gestion<br>de projet</div></div>
-        <div class="skill-card"><div class="skill-icon">🔀</div><div class="skill-name">Git / SVN</div><div class="skill-cat">GitHub<br>Tortoise SVN</div></div>
+        <div class="skill-card" data-skill="hacknplan" data-name="Hack'n'Plan" data-category="Gestion de projet" data-desc="<strong>Hack'n'Plan</strong> est mon outil de gestion de projet privilégié. Il me permet d'organiser les tâches, de tracker les bugs, de gérer les sprints et de maintenir une vision claire de la progression du projet avec mon équipe." data-exp="Planning des sprints · Tracking des tâches · Gestion des bugs · Suivi de progression · Communication d'équipe"><div class="skill-icon">📋</div><div class="skill-name">Hack'n'Plan</div><div class="skill-cat">Gestion<br>de projet</div></div>
+        <div class="skill-card" data-skill="git" data-name="Git / SVN" data-category="Contrôle de version" data-desc="<strong>Git</strong> et <strong>SVN</strong> sont essentiels pour gérer nos projets en équipe. J'utilise GitHub pour le versioning, les branches et les pull requests, ainsi que Tortoise SVN pour les projets utilisant Subversion." data-exp="Gestion de branches · Commits structurés · Résolution de conflits · Pull requests · Repository management"><div class="skill-icon">🔀</div><div class="skill-name">Git / SVN</div><div class="skill-cat">GitHub<br>Tortoise SVN</div></div>
       </div>
     </div>
   </div>
@@ -1265,6 +1324,37 @@ document.querySelectorAll('.proj-overlay').forEach(overlay => {
   };
   overlay.addEventListener('scroll', updateBackBtn);
   updateBackBtn();
+});
+
+// ── SKILLS SIDEBAR ──
+const skillCards = document.querySelectorAll('.skill-card');
+const skillSidebar = document.getElementById('skillSidebar');
+
+skillCards.forEach(card => {
+  card.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const name = this.dataset.name;
+    const category = this.dataset.category;
+    const desc = this.dataset.desc;
+    const exp = this.dataset.exp;
+    
+    document.getElementById('sidebarSkillName').textContent = name;
+    document.getElementById('sidebarSkillCat').textContent = category;
+    document.getElementById('sidebarSkillDesc').innerHTML = desc;
+    document.getElementById('sidebarSkillExp').innerHTML = exp.split(' · ').map(item => `• ${item}`).join('<br>');
+    
+    skillSidebar.classList.add('active');
+  });
+});
+
+function closeSkillSidebar() {
+  skillSidebar.classList.remove('active');
+}
+
+document.addEventListener('click', function(e) {
+  if (!skillSidebar.contains(e.target) && !e.target.closest('.skill-card')) {
+    closeSkillSidebar();
+  }
 });
 </script>
 </body>
