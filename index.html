@@ -256,7 +256,7 @@ nav{
 /* project modal themes */
 .proj-modal-overlay{display:none;position:fixed;inset:0;z-index:200;align-items:flex-start;justify-content:center;overflow-y:auto;padding:2rem 1rem}
 .proj-modal-overlay.open{display:flex}
-.proj-modal-backdrop{position:fixed;inset:0;z-index:-1;backdrop-filter:blur(8px);background:rgba(0,0,0,.75)}
+.proj-modal-backdrop{position:fixed;inset:0;z-index:-1;backdrop-filter:blur(6px);background:rgba(0,0,0,.55)}
 
 /* ── THÈMES PROJETS ENRICHIS ── */
 .theme-unjudged{--th-bg:#060d0a;--th-acc:#4ade80;--th-acc2:#86efac;--th-glow:rgba(74,222,128,.18)}
@@ -281,6 +281,7 @@ nav{
   max-width:1100px;
   width:100%;
   position:relative;
+  z-index:202;
   box-shadow:0 0 120px var(--th-glow,transparent);
   margin:auto;
 }
@@ -1658,7 +1659,7 @@ const FX_CONFIGS = {
 };
 
 var _fxCanvas = document.createElement('canvas');
-_fxCanvas.style.cssText = 'position:fixed;inset:0;z-index:195;pointer-events:none;display:none;opacity:0.45;';
+_fxCanvas.style.cssText = 'position:fixed;inset:0;z-index:199;pointer-events:none;display:none;opacity:0.65;mix-blend-mode:screen;';
 document.body.appendChild(_fxCanvas);
 var _fxRaf = null;
 
@@ -2388,22 +2389,35 @@ var _AMBIENCES = {
   },
 
   draconium: function() {
-    // Musique originale — fichier MP3 en loop
-    var a = new Audio('medieval_01.mp3');
+    // Essaie d'abord le chemin relatif (local/GitHub), puis l'URL absolue
+    var sources = [
+      'medieval_01.mp3',
+      'https://mollymo31.github.io/Portfolio_Leo_Lussan/medieval_01.mp3'
+    ];
+    var a = new Audio();
     a.loop = true;
     a.volume = 0;
-    a.play().catch(function(){});
+    // Tente chaque source
+    var tried = 0;
+    function tryNext() {
+      if (tried >= sources.length) return;
+      a.src = sources[tried++];
+      a.load();
+      a.play().then(function() {
+        // Fade in au succès
+        var v = 0;
+        var fi = setInterval(function() {
+          if (_ambCurrentId !== 'draconium') { clearInterval(fi); return; }
+          v = Math.min(v + 0.025, 0.55);
+          a.volume = v;
+          if (v >= 0.55) clearInterval(fi);
+        }, 80);
+      }).catch(function() {
+        tryNext();
+      });
+    }
+    tryNext();
     _ambNodes._draconiumAudio = a;
-    // Fade in
-    var v = 0;
-    var fi = setInterval(function() {
-      if (_ambCurrentId !== 'draconium') { clearInterval(fi); return; }
-      v = Math.min(v + 0.025, 0.55);
-      a.volume = v;
-      if (v >= 0.55) clearInterval(fi);
-    }, 80);
-    // Patch stopAmbient pour aussi stopper l'audio
-    var _origStop = _ambStop;
   },
 
   musiques: function() {
@@ -2561,22 +2575,11 @@ var _audio = {
   document.body.appendChild(btn);
 })();
 
-// Déclenche ambiance à l'ouverture / fermeture projet
-var _origOpenProj  = window.openProj  || function(){};
-var _origCloseProj = window.closeProj || function(){};
-
-window.openProj = function(id) {
-  _origOpenProj(id);
+// Bouton mute visible uniquement quand un projet est ouvert
+(function(){
   var btn=document.getElementById('audio-btn');
-  if(btn) btn.style.display='flex';
-  setTimeout(function(){ _audio.startAmbient(id); }, 250);
-};
-window.closeProj = function(id) {
-  _origCloseProj(id);
-  _audio.stopAmbient();
-  var btn=document.getElementById('audio-btn');
-  if(btn) btn.style.display='none';
-};
+  if(btn){ btn.style.display='none'; }
+})();
 
 // Sons UI au clic / hover
 document.addEventListener('click', function(e){
@@ -2637,6 +2640,8 @@ function openProj(id){
   initCar(id);
   _audio.init();
   _audio.playModalOpen();
+  var btn=document.getElementById('audio-btn');
+  if(btn) btn.style.display='flex';
   setTimeout(function(){ drawIso(id); startFx(id); _audio.startAmbient(id); }, 80);
 }
 function closeProj(id){
@@ -2645,6 +2650,8 @@ function closeProj(id){
   stopFx();
   _audio.playModalClose();
   _audio.stopAmbient();
+  var btn=document.getElementById('audio-btn');
+  if(btn) btn.style.display='none';
 }
 
 document.addEventListener('keydown',e=>{
@@ -2653,6 +2660,9 @@ document.addEventListener('keydown',e=>{
       o.classList.remove('open'); document.body.style.overflow='';
     });
     stopFx();
+    _audio.stopAmbient();
+    var btn=document.getElementById('audio-btn');
+    if(btn) btn.style.display='none';
   }
 });
 
@@ -2769,21 +2779,21 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   const ring = document.getElementById('crosshair-ring');
   if(!dot||!ring)return;
   let mouseX=window.innerWidth/2, mouseY=window.innerHeight/2;
-  let dotX=mouseX, dotY=mouseY;
+  let ringX=mouseX, ringY=mouseY;
 
-  // L'anneau extérieur suit directement la souris
+  // Le petit carré (dot) suit directement la souris — il DIRIGE
   document.addEventListener('mousemove',e=>{
     mouseX=e.clientX; mouseY=e.clientY;
-    ring.style.left=mouseX+'px'; ring.style.top=mouseY+'px';
+    dot.style.left=mouseX+'px'; dot.style.top=mouseY+'px';
   });
 
-  // Le carré intérieur suit avec un léger décalage — il "glisse" à l'intérieur de l'anneau
-  function animateDot(){
-    dotX+=(mouseX-dotX)*.10; dotY+=(mouseY-dotY)*.10;
-    dot.style.left=dotX+'px'; dot.style.top=dotY+'px';
-    requestAnimationFrame(animateDot);
+  // Le grand carré (ring) suit avec lag — il SUIT le petit
+  function animateRing(){
+    ringX+=(mouseX-ringX)*.12; ringY+=(mouseY-ringY)*.12;
+    ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
+    requestAnimationFrame(animateRing);
   }
-  animateDot();
+  animateRing();
 
   const sel='a,button,[onclick],.skill-card,.project-row,.sm-project-row,.carousel-btn,.nav-cta,.proj-modal-close,.skill-modal-close,.acc-header,.music-nav-btn,.flip-card-wrapper,.contact-row';
   document.addEventListener('mouseover',e=>{if(e.target.closest(sel))document.body.classList.add('ch-hover')});
