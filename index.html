@@ -96,6 +96,7 @@ nav{
 .nav-links a:hover::after{width:100%}
 .nav-cta{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;background:var(--red);color:#fff;padding:.5rem 1.2rem;border:none;cursor:pointer;transition:opacity .2s}
 .nav-cta:hover{opacity:.85}
+.lang-btn:hover{opacity:1 !important;transform:scale(1.2)}
 
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 3rem;padding-top:80px;position:relative;overflow:hidden;z-index:1}
 .hero-bg-text{position:absolute;top:50%;right:-2rem;transform:translateY(-50%);font-family:var(--font-title);font-size:clamp(10rem,22vw,22rem);color:rgba(255,255,255,.022);pointer-events:none;user-select:none;white-space:nowrap}
@@ -259,16 +260,16 @@ nav{
 .proj-modal-backdrop{position:fixed;inset:0;z-index:-1;backdrop-filter:blur(6px);background:rgba(0,0,0,.55)}
 
 /* -- THÈMES PROJETS ENRICHIS -- */
-.theme-unjudged{--th-bg:#060d0a;--th-acc:#4ade80;--th-acc2:#86efac;--th-glow:rgba(74,222,128,.18)}
-.theme-priest  {--th-bg:#0a0006;--th-acc:#7c0010;--th-acc2:#ef4444;--th-glow:rgba(124,0,16,.25)}
-.theme-city    {--th-bg:#04040f;--th-acc:#818cf8;--th-acc2:#a78bfa;--th-glow:rgba(129,140,248,.2)}
-.theme-tower   {--th-bg:#060a04;--th-acc:#65a30d;--th-acc2:#a3e635;--th-glow:rgba(101,163,13,.18)}
-.theme-silence {--th-bg:#040404;--th-acc:#374151;--th-acc2:#9ca3af;--th-glow:rgba(55,65,81,.15)}
-.theme-mira    {--th-bg:#030f07;--th-acc:#059669;--th-acc2:#34d399;--th-glow:rgba(5,150,105,.2)}
-.theme-draconium{--th-bg:#100603;--th-acc:#c2400c;--th-acc2:#ff8c38;--th-glow:rgba(255,106,0,.25)}
-.theme-draconium{--th-bg:#0f0800;--th-acc:#c2500a;--th-acc2:#ff8c38;--th-glow:rgba(194,80,10,.25)}
-.theme-stream  {--th-bg:#0b080f;--th-acc:#6441a5;--th-acc2:#9b72d0;--th-glow:rgba(100,65,165,.18)}
-.theme-musiques{--th-bg:#0a080f;--th-acc:#9b3fb5;--th-acc2:#d070f0;--th-glow:rgba(155,63,181,.18)}
+.theme-unjudged{--th-bg:#0d1f12;--th-acc:#4ade80;--th-acc2:#86efac;--th-glow:rgba(74,222,128,.18)}
+.theme-priest  {--th-bg:#150008;--th-acc:#7c0010;--th-acc2:#ef4444;--th-glow:rgba(124,0,16,.25)}
+.theme-city    {--th-bg:#0a0a1e;--th-acc:#818cf8;--th-acc2:#a78bfa;--th-glow:rgba(129,140,248,.2)}
+.theme-tower   {--th-bg:#0e1a08;--th-acc:#65a30d;--th-acc2:#a3e635;--th-glow:rgba(101,163,13,.18)}
+.theme-silence {--th-bg:#0d0d0d;--th-acc:#374151;--th-acc2:#9ca3af;--th-glow:rgba(55,65,81,.15)}
+.theme-mira    {--th-bg:#071a0e;--th-acc:#059669;--th-acc2:#34d399;--th-glow:rgba(5,150,105,.2)}
+.theme-draconium{--th-bg:#1a0a05;--th-acc:#c2400c;--th-acc2:#ff8c38;--th-glow:rgba(255,106,0,.25)}
+.theme-draconium{--th-bg:#1a0e00;--th-acc:#c2500a;--th-acc2:#ff8c38;--th-glow:rgba(194,80,10,.25)}
+.theme-stream  {--th-bg:#140e1e;--th-acc:#6441a5;--th-acc2:#9b72d0;--th-glow:rgba(100,65,165,.18)}
+.theme-musiques{--th-bg:#130e1e;--th-acc:#9b3fb5;--th-acc2:#d070f0;--th-glow:rgba(155,63,181,.18)}
 
 /* -- EFFETS CANVAS PAR THÈME -- */
 .proj-modal-fx{position:absolute;top:0;left:0;width:100%;height:200px;pointer-events:none;overflow:hidden;z-index:0}
@@ -318,7 +319,7 @@ nav{
 .proj-modal-tags .tag{font-size:.62rem;padding:.3rem .8rem}
 .proj-modal-tags .tag.accent{border-color:var(--th-acc2,var(--red));color:var(--th-acc2,var(--red))}
 .proj-modal-body{padding:3.5rem 5rem 5rem}
-.proj-modal-body p{color:var(--grey-light);font-size:.98rem;line-height:2;margin-bottom:1.4rem}
+.proj-modal-body p{color:#d0c8bf;font-size:.98rem;line-height:2;margin-bottom:1.4rem}
 .proj-modal-body strong{color:var(--white)}
 .pm-section-title{font-family:var(--font-title);font-size:2.2rem;color:var(--white);margin:3.5rem 0 1.2rem;letter-spacing:.02em}
 .pm-label{font-family:var(--font-mono);font-size:.62rem;color:var(--th-acc2,var(--red));letter-spacing:.2em;text-transform:uppercase;margin:2.5rem 0 1.2rem}
@@ -344,7 +345,7 @@ nav{
 /* iso map */
 .iso-map-container{border:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.5);padding:1rem;margin:1.5rem 0;position:relative;overflow:hidden}
 .iso-map-container canvas{display:block;max-width:100%}
-.iso-map-label{position:absolute;bottom:.7rem;left:.8rem;font-family:var(--font-mono);font-size:.52rem;color:rgba(255,255,255,.18);letter-spacing:.12em;text-transform:uppercase}
+.iso-map-label{position:absolute;bottom:.7rem;left:.8rem;font-family:var(--font-mono);font-size:.52rem;color:rgba(255,255,255,.55);letter-spacing:.12em;text-transform:uppercase}
 .iso-map-badge{position:absolute;top:.7rem;right:.7rem;font-family:var(--font-mono);font-size:.52rem;color:var(--th-acc2,var(--red));border:1px solid var(--th-acc2,var(--red));padding:.18rem .45rem;letter-spacing:.1em;text-transform:uppercase;opacity:.55}
 
 .mira-steps{display:flex;flex-direction:column}
@@ -587,12 +588,12 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
     <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:1rem">
-    <!-- Sélecteur de langue -->
-    <div id="lang-selector" style="display:flex;align-items:center;gap:.3rem">
-      <button onclick="setLang('fr')" id="lang-fr" title="Français" style="background:none;border:none;cursor:pointer;font-size:1.1rem;opacity:1;transition:opacity .2s;padding:.15rem" class="lang-btn">🇫🇷</button>
-      <button onclick="setLang('en')" id="lang-en" title="English" style="background:none;border:none;cursor:pointer;font-size:1.1rem;opacity:.45;transition:opacity .2s;padding:.15rem" class="lang-btn">🇬🇧</button>
-      <button onclick="setLang('es')" id="lang-es" title="Español" style="background:none;border:none;cursor:pointer;font-size:1.1rem;opacity:.45;transition:opacity .2s;padding:.15rem" class="lang-btn">🇪🇸</button>
-      <button onclick="setLang('de')" id="lang-de" title="Deutsch" style="background:none;border:none;cursor:pointer;font-size:1.1rem;opacity:.45;transition:opacity .2s;padding:.15rem" class="lang-btn">🇩🇪</button>
+    <!-- Selecteur de langue -->
+    <div id="lang-selector" style="display:flex;align-items:center;gap:.2rem;border:1px solid var(--border);padding:.2rem .4rem;background:rgba(255,255,255,.03)">
+      <button onclick="setLang('fr')" id="lang-fr" title="Français" style="background:none;border:none;cursor:pointer;font-size:1.35rem;opacity:1;transition:all .2s;padding:.1rem .2rem;line-height:1" class="lang-btn">🇫🇷</button>
+      <button onclick="setLang('en')" id="lang-en" title="English" style="background:none;border:none;cursor:pointer;font-size:1.35rem;opacity:.35;transition:all .2s;padding:.1rem .2rem;line-height:1" class="lang-btn">🇬🇧</button>
+      <button onclick="setLang('es')" id="lang-es" title="Español" style="background:none;border:none;cursor:pointer;font-size:1.35rem;opacity:.35;transition:all .2s;padding:.1rem .2rem;line-height:1" class="lang-btn">🇪🇸</button>
+      <button onclick="setLang('de')" id="lang-de" title="Deutsch" style="background:none;border:none;cursor:pointer;font-size:1.35rem;opacity:.35;transition:all .2s;padding:.1rem .2rem;line-height:1" class="lang-btn">🇩🇪</button>
     </div>
     <a href="mailto:leo.lussan@gmail.com" class="nav-cta" data-i18n="nav_cta">Me contacter</a>
     <button id="nav-burger" onclick="toggleMenu()" style="display:none;background:none;border:1px solid var(--border);color:var(--white);padding:.4rem .6rem;cursor:pointer;font-size:1rem;line-height:1">☰</button>
@@ -615,12 +616,12 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
     <div>
       <div class="hero-tag fade-in" data-i18n="hero_tag">//&nbsp;Level Designer · Game Designer · Brassart Toulouse</div>
       <h1 class="hero-name fade-in">LÉO<br/><span class="red">LUSSAN</span></h1>
-      <p class="hero-role fade-in">Level Design · Game Design · Unity · Unreal Engine</p>
-      <p class="hero-desc fade-in">Passionné par le level design depuis 2016, je conçois des niveaux comme on dessine des plans — avec rigueur, intention narrative et ambition créative constante.</p>
+      <p class="hero-role fade-in" data-i18n="hero_role">Level Design · Game Design · Unity · Unreal Engine</p>
+      <p class="hero-desc fade-in" data-i18n="hero_desc">Passionné par le level design depuis 2016, je conçois des niveaux comme on dessine des plans — avec rigueur, intention narrative et ambition créative constante.</p>
       <div class="hero-stats fade-in" style="position:relative;bottom:auto;left:auto;margin-top:3rem">
-        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Ans à Brassart</div></div>
-        <div class="stat"><div class="stat-num">6<span class="red">+</span></div><div class="stat-label">Projets réalisés</div></div>
-        <div class="stat"><div class="stat-num">2016</div><div class="stat-label">Début de l'aventure</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label" data-i18n="stat_brassart">Ans à Brassart</div></div>
+        <div class="stat"><div class="stat-num">6<span class="red">+</span></div><div class="stat-label" data-i18n="stat_projects">Projets réalisés</div></div>
+        <div class="stat"><div class="stat-num">2016</div><div class="stat-label" data-i18n="stat_start">Début de l'aventure</div></div>
       </div>
     </div>
     <!-- PHOTO PROFIL — DROITE -->
@@ -832,56 +833,56 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
   <div>
     <div class="project-row fade-in" onclick="openProj('unjudged')">
       <div class="project-num">01</div>
-      <div><div class="project-name">UNJUDGED</div><div class="project-tags"><span class="tag red">En cours</span><span class="tag">Level Design</span><span class="tag">Narratif</span><span class="tag">3ème Année</span></div></div>
+      <div><div class="project-name" data-i18n="proj_unjudged">UNJUDGED</div><div class="project-tags"><span class="tag red">En cours</span><span class="tag">Level Design</span><span class="tag">Narratif</span><span class="tag">3ème Année</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2024 — Présent</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('priest')">
       <div class="project-num">02</div>
-      <div><div class="project-name">DEVOURING PRIEST</div><div class="project-tags"><span class="tag">Level Design</span><span class="tag">Dark Fantasy</span><span class="tag">2ème Année</span></div></div>
+      <div><div class="project-name" data-i18n="proj_priest">DEVOURING PRIEST</div><div class="project-tags"><span class="tag">Level Design</span><span class="tag">Dark Fantasy</span><span class="tag">2ème Année</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2ème Année</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('city')">
       <div class="project-num">03</div>
-      <div><div class="project-name">CITY RIDER</div><div class="project-tags"><span class="tag">Urban Design</span><span class="tag">Unity</span><span class="tag">2ème Année</span></div></div>
+      <div><div class="project-name" data-i18n="proj_city">CITY RIDER</div><div class="project-tags"><span class="tag">Urban Design</span><span class="tag">Unity</span><span class="tag">2ème Année</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2ème Année</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('tower')">
       <div class="project-num">04</div>
-      <div><div class="project-name">TOWER DEFENSE</div><div class="project-tags"><span class="tag">Map Design</span><span class="tag">Game Balance</span><span class="tag">1ère Année</span></div></div>
+      <div><div class="project-name" data-i18n="proj_tower">TOWER DEFENSE</div><div class="project-tags"><span class="tag">Map Design</span><span class="tag">Game Balance</span><span class="tag">1ère Année</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">1ère Année</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('silence')">
       <div class="project-num">05</div>
-      <div><div class="project-name">THE SILENCE</div><div class="project-tags"><span class="tag">Game Design</span><span class="tag">Narrative</span><span class="tag">Atmosphère</span></div></div>
+      <div><div class="project-name" data-i18n="proj_silence">THE SILENCE</div><div class="project-tags"><span class="tag">Game Design</span><span class="tag">Narrative</span><span class="tag">Atmosphère</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">École + Personnel</span><span class="project-arrow">→</span></div>
     </div>
   </div>
 
-  <div class="proj-cat-label fade-in" style="margin-top:4rem">Projets personnels</div>
+  <div class="proj-cat-label fade-in" data-i18n="cat_personal" style="margin-top:4rem">Projets personnels</div>
   <div>
     <div class="project-row fade-in" onclick="openProj('draconium')">
       <div class="project-num">06</div>
-      <div><div class="project-name">DRACONIUM</div><div class="project-tags"><span class="tag red">En développement</span><span class="tag">Platformer 2D</span><span class="tag">Medieval Fantasy</span><span class="tag">Dragon</span></div></div>
+      <div><div class="project-name" data-i18n="proj_draconium">DRACONIUM</div><div class="project-tags"><span class="tag red">En développement</span><span class="tag">Platformer 2D</span><span class="tag">Medieval Fantasy</span><span class="tag">Dragon</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">Personnel</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('mira')">
       <div class="project-num">07</div>
-      <div><div class="project-name">PROJET MIRA</div><div class="project-tags"><span class="tag">Minecraft</span><span class="tag">Level Design</span><span class="tag">Builder</span></div></div>
+      <div><div class="project-name" data-i18n="proj_mira">PROJET MIRA</div><div class="project-tags"><span class="tag">Minecraft</span><span class="tag">Level Design</span><span class="tag">Builder</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2020 — Présent</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('coaching')">
       <div class="project-num">08</div>
-      <div><div class="project-name">COACHING E-SPORT</div><div class="project-tags"><span class="tag">E-Sport</span><span class="tag">Valorant</span><span class="tag">LoL</span><span class="tag">Dead by Daylight</span></div></div>
+      <div><div class="project-name" data-i18n="proj_coaching">COACHING E-SPORT</div><div class="project-tags"><span class="tag">E-Sport</span><span class="tag">Valorant</span><span class="tag">LoL</span><span class="tag">Dead by Daylight</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2022 — Présent</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('streaming')">
       <div class="project-num">09</div>
-      <div><div class="project-name">STREAMING TWITCH</div><div class="project-tags"><span class="tag">Twitch</span><span class="tag">Community</span><span class="tag">Gaming</span></div></div>
+      <div><div class="project-name" data-i18n="proj_streaming">STREAMING TWITCH</div><div class="project-tags"><span class="tag">Twitch</span><span class="tag">Community</span><span class="tag">Gaming</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2025 — Présent</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('musiques')">
       <div class="project-num">10</div>
-      <div><div class="project-name">MUSIQUES</div><div class="project-tags"><span class="tag">Production</span><span class="tag">Soundtrap</span><span class="tag">Ambiances</span></div></div>
+      <div><div class="project-name" data-i18n="proj_musiques">MUSIQUES</div><div class="project-tags"><span class="tag">Production</span><span class="tag">Soundtrap</span><span class="tag">Ambiances</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">Personnel</span><span class="project-arrow">→</span></div>
     </div>
   </div>
@@ -1720,7 +1721,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
         <!-- Boutons CV -->
         <div style="margin-top:1rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap">
-          <a href="cv.html" target="_blank" style="display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--red);padding:.7rem 1.5rem;transition:opacity .2s;text-decoration:none" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">→ Voir le CV stylisé</a>
+          <a href="cv.html" target="_blank" style="display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--red);padding:.7rem 1.5rem;transition:opacity .2s;text-decoration:none" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" data-i18n="cv_btn" data-i18n="cv_btn">→ Voir le CV stylisé</a>
         </div>
 
       </div>
@@ -1776,41 +1777,77 @@ var _LANGS = {
     nav_about:'Profil', nav_skills:'Comp\u00E9tences', nav_projects:'Projets',
     nav_cv:'CV', nav_contact:'Contact', nav_cta:'Me contacter',
     hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
+    hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
+    hero_desc:'Passionn\u00E9 par le level design depuis 2016, je con\u00E7ois des niveaux comme on dessine des plans \u2014 avec rigueur, intention narrative et ambition cr\u00E9ative constante.',
+    stat_brassart:'Ans \u00E0 Brassart', stat_projects:'Projets r\u00E9alis\u00E9s', stat_start:"D\u00E9but de l'aventure",
     label_about:'// 001 \u2014 Profil', label_skills:'// 002 \u2014 Outils & Moteurs',
     label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Curriculum Vitae',
     label_contact:'// 006 \u2014 Contact', label_personal:'// 004 \u2014 Projets personnels',
     title_about:'\u00C0 PROPOS', title_skills:'COMP\u00C9TENCES', title_projects:'PROJETS',
-    title_cv:'MON CV', title_contact:'CONTACT', title_personal:'PROJETS PERSO',
+    title_cv:'MON CV', title_contact:'CONTACT',
+    cat_personal:'Projets personnels',
+    proj_unjudged:'UNJUDGED', proj_priest:'DEVOURING PRIEST', proj_city:'CITY RIDER',
+    proj_tower:'TOWER DEFENSE', proj_silence:'THE SILENCE', proj_draconium:'DRACONIUM',
+    proj_mira:'PROJET MIRA', proj_coaching:'COACHING E-SPORT',
+    proj_streaming:'STREAMING TWITCH', proj_musiques:'MUSIQUES',
+    cv_btn:'\u2192 Voir le CV styli\u00E9',
   },
   en: {
     nav_about:'Profile', nav_skills:'Skills', nav_projects:'Projects',
-    nav_cv:'CV', nav_contact:'Contact', nav_cta:'Contact me',
+    nav_cv:'Resume', nav_contact:'Contact', nav_cta:'Contact me',
     hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
+    hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
+    hero_desc:'Passionate about level design since 2016, I craft levels like blueprints \u2014 with precision, narrative intent and constant creative ambition.',
+    stat_brassart:'Years at Brassart', stat_projects:'Projects done', stat_start:'Adventure start',
     label_about:'// 001 \u2014 Profile', label_skills:'// 002 \u2014 Tools & Engines',
-    label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Curriculum Vitae',
+    label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Resume',
     label_contact:'// 006 \u2014 Contact', label_personal:'// 004 \u2014 Personal projects',
     title_about:'ABOUT', title_skills:'SKILLS', title_projects:'PROJECTS',
-    title_cv:'MY CV', title_contact:'CONTACT', title_personal:'PERSONAL PROJECTS',
+    title_cv:'MY RESUME', title_contact:'CONTACT',
+    cat_personal:'Personal projects',
+    proj_unjudged:'UNJUDGED', proj_priest:'DEVOURING PRIEST', proj_city:'CITY RIDER',
+    proj_tower:'TOWER DEFENSE', proj_silence:'THE SILENCE', proj_draconium:'DRACONIUM',
+    proj_mira:'PROJECT MIRA', proj_coaching:'ESPORT COACHING',
+    proj_streaming:'TWITCH STREAMING', proj_musiques:'MUSIC',
+    cv_btn:'\u2192 View styled resume',
   },
   es: {
     nav_about:'Perfil', nav_skills:'Habilidades', nav_projects:'Proyectos',
     nav_cv:'CV', nav_contact:'Contacto', nav_cta:'Cont\u00E1ctame',
     hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
+    hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
+    hero_desc:'Apasionado por el dise\u00F1o de niveles desde 2016, creo niveles como se dibujan planos \u2014 con rigor, intenci\u00F3n narrativa y ambici\u00F3n creativa constante.',
+    stat_brassart:'A\u00F1os en Brassart', stat_projects:'Proyectos', stat_start:'Inicio',
     label_about:'// 001 \u2014 Perfil', label_skills:'// 002 \u2014 Herramientas',
-    label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Curr\u00EDculum Vitae',
+    label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Curr\u00EDculum',
     label_contact:'// 006 \u2014 Contacto', label_personal:'// 004 \u2014 Proyectos personales',
     title_about:'SOBRE M\u00CD', title_skills:'HABILIDADES', title_projects:'PROYECTOS',
-    title_cv:'MI CV', title_contact:'CONTACTO', title_personal:'PROYECTOS PERSONALES',
+    title_cv:'MI CV', title_contact:'CONTACTO',
+    cat_personal:'Proyectos personales',
+    proj_unjudged:'UNJUDGED', proj_priest:'DEVOURING PRIEST', proj_city:'CITY RIDER',
+    proj_tower:'TOWER DEFENSE', proj_silence:'THE SILENCE', proj_draconium:'DRACONIUM',
+    proj_mira:'PROYECTO MIRA', proj_coaching:'COACHING ESPORT',
+    proj_streaming:'STREAMING TWITCH', proj_musiques:'M\u00DASICAS',
+    cv_btn:'\u2192 Ver CV estilizado',
   },
   de: {
     nav_about:'Profil', nav_skills:'F\u00E4higkeiten', nav_projects:'Projekte',
     nav_cv:'Lebenslauf', nav_contact:'Kontakt', nav_cta:'Kontaktieren',
     hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
-    label_about:'// 001 \u2014 Profil', label_skills:'// 002 \u2014 Tools & Engines',
+    hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
+    hero_desc:'Seit 2016 leidenschaftlich f\u00FCr Level Design \u2014 ich entwerfe Levels wie Baupl\u00E4ne: mit Pr\u00E4zision, narrativer Absicht und st\u00E4ndigem Ehrgeiz.',
+    stat_brassart:'Jahre in Brassart', stat_projects:'Projekte', stat_start:'Beginn',
+    label_about:'// 001 \u2014 Profil', label_skills:'// 002 \u2014 Werkzeuge',
     label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Lebenslauf',
     label_contact:'// 006 \u2014 Kontakt', label_personal:'// 004 \u2014 Eigene Projekte',
     title_about:'\u00DCBER MICH', title_skills:'F\u00C4HIGKEITEN', title_projects:'PROJEKTE',
-    title_cv:'MEIN LEBENSLAUF', title_contact:'KONTAKT', title_personal:'EIGENE PROJEKTE',
+    title_cv:'MEIN LEBENSLAUF', title_contact:'KONTAKT',
+    cat_personal:'Eigene Projekte',
+    proj_unjudged:'UNJUDGED', proj_priest:'DEVOURING PRIEST', proj_city:'CITY RIDER',
+    proj_tower:'TOWER DEFENSE', proj_silence:'THE SILENCE', proj_draconium:'DRACONIUM',
+    proj_mira:'PROJEKT MIRA', proj_coaching:'ESPORT-COACHING',
+    proj_streaming:'TWITCH-STREAMING', proj_musiques:'MUSIK',
+    cv_btn:'\u2192 Lebenslauf ansehen',
   },
 };
 var _currentLang = 'fr';
@@ -2741,10 +2778,9 @@ var _AMBIENCES = {
     [[65.4,0.018],[98,0.012],[130.8,0.008]].forEach(function(p){
       var o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
       f.type='lowpass'; f.frequency.value=400;
-      o.type='sine'; o.frequency.value=p[0]; g.gain.value=p[1];
-      var lfo=ctx.createOscillator(),lg=ctx.createGain();
-      lfo.frequency.value=0.05+Math.random()*0.03; lg.gain.value=Math.min(p[1]*0.5, 0.008);
-      lfo.connect(lg); lg.connect(g.gain); lfo.start(); _ambNodes.push(lfo);
+      o.type='sine'; o.frequency.value=p[0];
+      // Gain fixe - pas de LFO sur le gain (evite les NaN)
+      g.gain.value=p[1];
       o.connect(f); f.connect(g); g.connect(out); o.start(); _ambNodes.push(o);
     });
 
@@ -3577,14 +3613,16 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
     renderer.setSize(W, H);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.setClearColor(0x87ceeb, 1); // ciel bleu
+    renderer.setClearColor(0x0a1a04, 1); // fond sombre portfolio
     renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
     container.appendChild(renderer.domElement);
 
     // -- Scene --
     var scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x87ceeb, 40, 120);
-    scene.background = new THREE.Color(0x87ceeb);
+    scene.fog = new THREE.FogExp2(0x0a1a04, 0.018);
+    scene.background = new THREE.Color(0x0a1a04);
 
     // -- Camera --
     var camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 500);
@@ -3592,23 +3630,26 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
     camera.lookAt(0, 0, 0);
 
     // -- Lumieres --
-    var amb = new THREE.AmbientLight(0xffffff, 0.8);
+    var amb = new THREE.AmbientLight(0xffffff, 1.2);
     scene.add(amb);
-    var sun = new THREE.DirectionalLight(0xfff5dd, 1.4);
-    sun.position.set(20, 40, 20);
+    var sun = new THREE.DirectionalLight(0xfff8e8, 2.0);
+    sun.position.set(15, 30, 15);
     sun.castShadow = true;
     sun.shadow.mapSize.width = 2048;
     sun.shadow.mapSize.height = 2048;
     sun.shadow.camera.near = 0.5;
     sun.shadow.camera.far = 200;
-    sun.shadow.camera.left = -30;
-    sun.shadow.camera.right = 30;
-    sun.shadow.camera.top = 30;
-    sun.shadow.camera.bottom = -30;
+    sun.shadow.camera.left = -25;
+    sun.shadow.camera.right = 25;
+    sun.shadow.camera.top = 25;
+    sun.shadow.camera.bottom = -25;
     scene.add(sun);
-    var fill = new THREE.DirectionalLight(0xaadaff, 0.4);
-    fill.position.set(-20, 10, -20);
+    var fill = new THREE.DirectionalLight(0x8ed43a, 0.5);
+    fill.position.set(-15, 10, -15);
     scene.add(fill);
+    // Lumiere de rebond depuis le sol
+    var bounce = new THREE.HemisphereLight(0x4a9e22, 0x0a1a04, 0.6);
+    scene.add(bounce);
 
     // -- Loading overlay --
     var overlay = document.createElement('div');
@@ -3642,37 +3683,41 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
       gltfLoader.load(
         modelUrls[tried],
         function(gltf) {
-          // Succes !
           var model = gltf.scene;
 
-          // Active les ombres sur tous les meshes
-          model.traverse(function(child) {
-            if (child.isMesh) {
-              child.castShadow = true;
-              child.receiveShadow = true;
-              // Ameliore le rendu des materiaux
-              if (child.material) {
-                child.material.envMapIntensity = 0.5;
-              }
-            }
-          });
+          // Unreal Engine exporte en Z-up - rotation pour Y-up Three.js
+          model.rotation.x = -Math.PI / 2;
 
-          // Centre et scale le modele automatiquement
+          // Calcul bounding box APRES rotation
           var box = new THREE.Box3().setFromObject(model);
           var center = box.getCenter(new THREE.Vector3());
           var size = box.getSize(new THREE.Vector3());
           var maxDim = Math.max(size.x, size.y, size.z);
-          var scale = 20 / maxDim; // normalise a 20 unites
+          var scale = 18 / maxDim;
           model.scale.setScalar(scale);
-          model.position.sub(center.multiplyScalar(scale));
-          model.position.y = -size.y * scale * 0.5;
+
+          // Recentre apres scale
+          box.setFromObject(model);
+          center = box.getCenter(new THREE.Vector3());
+          model.position.set(-center.x, -box.min.y, -center.z);
+
+          // Ombres
+          model.traverse(function(child) {
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+            }
+          });
+
           scene.add(model);
 
-          // Ajuste camera selon la taille du modele
-          var scaledSize = size.clone().multiplyScalar(scale);
-          var dist = Math.max(scaledSize.x, scaledSize.z) * 1.4;
-          spherical.radius = dist;
-          spherical.phi = 0.75;
+          // Camera : vue 3/4 isometrique ideale
+          box.setFromObject(model);
+          size = box.getSize(new THREE.Vector3());
+          var camDist = Math.max(size.x, size.z) * 1.6;
+          spherical.radius = camDist;
+          spherical.phi = 0.85;   // angle vertical ~49deg
+          spherical.theta = 0.6;
           updateCamera();
 
           // Retire l'overlay
