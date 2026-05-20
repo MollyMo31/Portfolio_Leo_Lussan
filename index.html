@@ -983,75 +983,140 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="pm-label">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-tower">
 
-        <!-- ── MENU ── -->
+        <!-- ── SLIDE 1 : MENU ── -->
         <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%">
-            <img src="projet_towerdefense/tower-menu-2.png" alt="Panique Végétale — Menu principal" style="width:100%;height:100%;object-fit:cover"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// Menu principal</div>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%">
-            <img src="projet_towerdefense/tower-menu.png" alt="Panique Végétale — Interface" style="width:100%;height:100%;object-fit:cover"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// Interface / Game over</div>
-          </div>
-        </div>
-
-        <!-- ── IN-GAME ── -->
-        <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%">
-            <img src="projet_towerdefense/tower-game-01.png" alt="Tour de défense — Gameplay" style="width:100%;height:100%;object-fit:cover"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// In-game — phase de défense</div>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%">
-            <img src="projet_towerdefense/tower-game-02.png" alt="Tour de défense — Vague ennemie" style="width:100%;height:100%;object-fit:cover"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// In-game — vague ennemie</div>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%">
-            <img src="projet_towerdefense/tower-map.png" alt="Tour de défense — Vue de la map" style="width:100%;height:100%;object-fit:cover"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// In-game — vue de la map</div>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%">
-            <img src="projet_towerdefense/tower-overview.png" alt="Tour de défense — Vue d'ensemble" style="width:100%;height:100%;object-fit:cover"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// Vue d'ensemble du niveau</div>
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
+            <img src="projet_towerdefense/tower-menu-2.png" alt="Menu principal" style="width:100%;height:100%;object-fit:cover;opacity:.85"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.85) 100%)"></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.4rem">01 — Menu</div>
+              <div style="font-family:var(--font-title);font-size:2rem;color:#fff;letter-spacing:.05em;line-height:1">PANIQUE VÉGÉTALE</div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);margin-top:.3rem">Menu principal — Tower Defense</div>
+            </div>
           </div>
         </div>
 
-        <!-- ── MÉCANIQUES / MODÈLES 3D ── -->
+        <!-- ── SLIDE 2 : INTERFACE ── -->
         <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%;background:#111;display:flex;align-items:center;justify-content:center">
-            <img src="projet_towerdefense/tower-model-01.png" alt="Gnome — Modèle 3D" style="max-width:80%;max-height:90%;object-fit:contain"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// Mécanique — Gnome (défenseur)</div>
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
+            <img src="projet_towerdefense/tower-menu.png" alt="Interface de jeu" style="width:100%;height:100%;object-fit:cover;opacity:.85"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.85) 100%)"></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.4rem">02 — Interface</div>
+              <div style="font-family:var(--font-title);font-size:2rem;color:#fff;letter-spacing:.05em;line-height:1">INTERFACE / GAME OVER</div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);margin-top:.3rem">Écran de fin de partie</div>
+            </div>
           </div>
         </div>
+
+        <!-- ── SLIDE 3 : GAMEPLAY 1 ── -->
         <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%;background:#111;display:flex;align-items:center;justify-content:center">
-            <img src="projet_towerdefense/tower-model-02.png" alt="Ver — Modèle 3D" style="max-width:80%;max-height:90%;object-fit:contain"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// Mécanique — Ver de terre (ennemi)</div>
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
+            <img src="projet_towerdefense/tower-game-01.png" alt="Gameplay phase défense" style="width:100%;height:100%;object-fit:cover;opacity:.9"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.88) 100%)"></div>
+            <div style="position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-mono);font-size:.55rem;color:#a3e635;background:rgba(0,0,0,.6);padding:.3rem .7rem;border:1px solid rgba(163,230,53,.3)">IN-GAME</div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.4rem">03 — Gameplay</div>
+              <div style="font-family:var(--font-title);font-size:2rem;color:#fff;letter-spacing:.05em;line-height:1">PHASE DE DÉFENSE</div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);margin-top:.3rem">Placement des tours — Canon · Archer · Baliste</div>
+            </div>
           </div>
         </div>
+
+        <!-- ── SLIDE 4 : GAMEPLAY 2 ── -->
         <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%;background:#111;display:flex;align-items:center;justify-content:center">
-            <img src="projet_towerdefense/tower-model-03.png" alt="Cafard — Modèle 3D" style="max-width:80%;max-height:90%;object-fit:contain"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// Mécanique — Cafard (ennemi rapide)</div>
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
+            <img src="projet_towerdefense/tower-game-02.png" alt="Vague ennemie" style="width:100%;height:100%;object-fit:cover;opacity:.9"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.88) 100%)"></div>
+            <div style="position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-mono);font-size:.55rem;color:#f87171;background:rgba(0,0,0,.6);padding:.3rem .7rem;border:1px solid rgba(248,113,113,.3)">VAGUE ENNEMIE</div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.4rem">04 — Combat</div>
+              <div style="font-family:var(--font-title);font-size:2rem;color:#fff;letter-spacing:.05em;line-height:1">VAGUE ENNEMIE</div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);margin-top:.3rem">Ennemis en approche — gestion des ressources</div>
+            </div>
           </div>
         </div>
+
+        <!-- ── SLIDE 5 : MAP ÉDITEUR ── -->
         <div class="carousel-slide">
-          <div style="position:relative;width:100%;height:100%;background:#111;display:flex;align-items:center;justify-content:center">
-            <img src="projet_towerdefense/tower-model-04.png" alt="Boss — Modèle 3D" style="max-width:80%;max-height:90%;object-fit:contain"/>
-            <div style="position:absolute;top:1rem;left:1rem;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#a3e635;background:rgba(0,0,0,.55);padding:.3rem .7rem;border-left:2px solid #a3e635">// Mécanique — Patron (boss)</div>
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
+            <img src="projet_towerdefense/tower-map.png" alt="Vue éditeur de la map" style="width:100%;height:100%;object-fit:cover;opacity:.9"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.88) 100%)"></div>
+            <div style="position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-mono);font-size:.55rem;color:#67e8f9;background:rgba(0,0,0,.6);padding:.3rem .7rem;border:1px solid rgba(103,232,249,.3)">LEVEL DESIGN</div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.4rem">05 — Map</div>
+              <div style="font-family:var(--font-title);font-size:2rem;color:#fff;letter-spacing:.05em;line-height:1">VUE ÉDITEUR</div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);margin-top:.3rem">Conception du niveau — chemin des ennemis</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SLIDE 6 : VUE D'ENSEMBLE ── -->
+        <div class="carousel-slide">
+          <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
+            <img src="projet_towerdefense/tower-overview.png" alt="Vue d'ensemble du niveau" style="width:100%;height:100%;object-fit:cover;opacity:.9"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.88) 100%)"></div>
+            <div style="position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-mono);font-size:.55rem;color:#fbbf24;background:rgba(0,0,0,.6);padding:.3rem .7rem;border:1px solid rgba(251,191,36,.3)">OVERVIEW</div>
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.4rem">06 — Niveau</div>
+              <div style="font-family:var(--font-title);font-size:2rem;color:#fff;letter-spacing:.05em;line-height:1">VUE D'ENSEMBLE</div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);margin-top:.3rem">Jardin clôturé — Panique Végétale</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SLIDES 7-10 : MÉCANIQUES / MODÈLES ── -->
+        <div class="carousel-slide">
+          <div style="position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0a1a04,#1a3008);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
+            <img src="projet_towerdefense/tower-model-01.png" alt="Gnome" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/>
+            <div style="flex:1;max-width:280px">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;margin-bottom:.8rem">07 — Mécanique</div>
+              <div style="font-family:var(--font-title);font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.8rem">GNOME<br/><span style="color:#a3e635;font-size:1.4rem">DÉFENSEUR</span></div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);line-height:1.7">Tour de base. Placement au sol. Portée moyenne, cadence rapide. Coût : 100 Fleurs.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div style="position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0a1a04,#1a3008);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
+            <img src="projet_towerdefense/tower-model-02.png" alt="Ver de terre" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/>
+            <div style="flex:1;max-width:280px">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;margin-bottom:.8rem">08 — Ennemi</div>
+              <div style="font-family:var(--font-title);font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.8rem">VER DE TERRE<br/><span style="color:#f87171;font-size:1.4rem">ENNEMI LENT</span></div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);line-height:1.7">Ennemi de base. Points de vie élevés. Avance lentement sur le chemin.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div style="position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0a1a04,#1a3008);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
+            <img src="projet_towerdefense/tower-model-03.png" alt="Cafard" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/>
+            <div style="flex:1;max-width:280px">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;margin-bottom:.8rem">09 — Ennemi</div>
+              <div style="font-family:var(--font-title);font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.8rem">CAFARD<br/><span style="color:#f87171;font-size:1.4rem">ENNEMI RAPIDE</span></div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);line-height:1.7">Ennemi agile. Peu de vie mais très rapide. Dangereux en groupe.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div style="position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0a1a04,#1a3008);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
+            <img src="projet_towerdefense/tower-model-04.png" alt="Boss" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/>
+            <div style="flex:1;max-width:280px">
+              <div style="font-family:var(--font-mono);font-size:.55rem;color:#fbbf24;letter-spacing:.25em;margin-bottom:.8rem">10 — Boss</div>
+              <div style="font-family:var(--font-title);font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.8rem">LE PATRON<br/><span style="color:#fbbf24;font-size:1.4rem">BOSS FINAL</span></div>
+              <div style="font-family:var(--font-mono);font-size:.65rem;color:rgba(255,255,255,.5);line-height:1.7">Boss de fin de vague. Résistance extrême. Requiert une coordination totale des tours.</div>
+            </div>
           </div>
         </div>
 
       </div><div class="car-controls"><div class="carousel-dots" id="cd-tower"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('tower',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('tower',1)">Suiv →</button></div></div></div>
       <div class="pm-label">Visualisation 3D isométrique</div>
-      <div class="iso-map-container"><canvas id="iso-tower" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Jardin stratégique</div><div class="iso-map-badge">Placeholder</div></div>
+      <div class="iso-map-container" style="position:relative;height:300px;overflow:hidden">
+        <div id="tower-3d-viewer" style="width:100%;height:100%;background:#0a1a04;cursor:grab"></div>
+        <div class="iso-map-label">Map 3D interactive · Panique Végétale</div>
+        <div style="position:absolute;top:.6rem;right:.8rem;font-family:var(--font-mono);font-size:.52rem;color:rgba(163,230,53,.7);letter-spacing:.1em">⟳ Tourner · Scroll zoom</div>
+      </div>
       <div class="pm-section-title">Design des terrains de bataille</div>
       <p>Chaque map est <strong>un puzzle de placement tactique</strong>. Les chemins ennemis sont pensés pour créer des dilemmes de stratégie dans un environnement bucolique et coloré. L'équilibrage est crucial — ni trop facile, ni impossible. Le contraste entre l'esthétique douce du jardin et la rigueur stratégique est au cœur du jeu.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
@@ -3170,9 +3235,21 @@ const ISO={
   // City Rider — béton, néon, asphalte
   city:{p:['#080818','#0f1030','#1a1860','#2a2a8c','#5050cc','#050510'],
     m:[[2,2,1,2,2,1,2,2,1,2],[2,3,1,3,3,1,3,3,1,2],[1,1,1,1,1,1,1,1,1,1],[2,3,1,3,4,1,3,3,1,2],[2,3,1,3,3,1,3,3,1,2],[1,1,1,1,1,1,1,1,1,1]]},
-  // Tower Defense — herbe, jardin, chemins
-  tower:{p:['#0d1a06','#1e3d0a','#3a6e12','#5a9e1e','#8ed43a','#090f04'],
-    m:[[1,1,1,0,0,0,0,1,1,1],[1,3,1,0,2,2,0,1,3,1],[1,1,1,0,0,0,0,1,1,1],[0,0,0,0,0,4,0,0,0,0],[1,1,1,0,0,0,0,1,1,1],[1,3,1,0,2,2,0,1,3,1]]},
+  // Tower Defense — Panique Végétale : clôture, étang, champignon, chemin pierres
+  // Palette : herbe verte, pierre grise, eau, bois, champignon rouge
+  // Types: 0=vide, 1=herbe, 2=herbe haute, 3=pierre/rocher, 4=eau, 5=clôture bois
+  tower:{p:['#1a3a08','#2e6b14','#4a9e22','#7ec850','#c8f080','#0d1f04'],
+    m:[
+      [5,5,5,5,5,5,5,5,5,5,5,5],
+      [5,1,1,2,1,1,1,2,1,4,4,5],
+      [5,1,1,1,1,3,1,1,1,4,4,5],
+      [5,2,3,1,1,1,1,1,2,1,1,5],
+      [5,1,1,1,3,1,3,1,1,1,2,5],
+      [5,1,3,1,1,2,1,1,3,1,1,5],
+      [5,2,1,1,2,1,2,1,1,1,3,5],
+      [5,1,1,3,1,1,1,2,1,1,1,5],
+      [5,5,5,5,5,5,5,5,5,5,5,5],
+    ]},
   // Mira — blocs Minecraft, herbe, hub
   mira:{p:['#0a1f0c','#154020','#206030','#2e8f48','#4dbf66','#061008'],
     m:[[0,0,1,1,1,1,1,0,0],[0,1,2,2,2,2,2,1,0],[1,2,3,3,4,3,3,2,1],[1,2,3,4,3,4,3,2,1],[1,2,3,3,4,3,3,2,1],[0,1,2,2,2,2,2,1,0],[0,0,1,1,1,1,1,0,0]]},
@@ -3187,30 +3264,60 @@ function drawIso(projId){
   ctx.clearRect(0,0,W,H);
   const map=cfg.m,pal=cfg.p;
   const rows=map.length,cols=map[0].length;
-  const TW=Math.min(56,Math.floor(W/(cols+3)));
+  const TW=Math.min(52,Math.floor(W/(cols+3)));
   const TH=TW*.5;
-  const offX=W/2,offY=H*.3;
-  const hs=[0,TH*1.1,TH*2,TH*.5,TH*3];
+  const offX=W/2,offY=H*.25;
+  // Heights per type: 0=empty,1=grass,2=tall grass,3=rock,4=water,5=fence
+  const hs=[0,TH*.4,TH*1.2,TH*1.8,TH*.1,TH*2.8];
+  // Special palettes per type
+  const palettes={
+    1:{top:pal[2],right:pal[1],left:pal[0]},
+    2:{top:pal[3],right:pal[2],left:pal[1]},
+    3:{top:'#8a8a7a',right:'#5a5a50',left:'#3a3a30'},
+    4:{top:'#3ab8c8',right:'#1a7888',left:'#0e5060'},
+    5:{top:'#8b5e2a',right:'#5a3a16',left:'#3a2508'},
+  };
   function iso(r,c){return{x:offX+(c-r)*TW/2,y:offY+(c+r)*TH/2}}
   for(let r=0;r<rows;r++){
     for(let c=0;c<cols;c++){
       const t=map[r][c];if(!t)continue;
       const{x,y}=iso(r,c);
-      const h=hs[t]||TH;
-      const top  =t===4?pal[4]:t===3?pal[3]:t===2?pal[2]:pal[1];
-      const right =t===4?pal[3]:t===3?pal[2]:t===2?pal[1]:pal[0];
-      const left  =t===4?pal[2]:t===3?pal[1]:t===2?pal[0]:pal[5];
-      // top
+      const h=hs[t]||TH*.4;
+      const p2=palettes[t]||palettes[1];
+      // top face
       ctx.beginPath();ctx.moveTo(x,y-h);ctx.lineTo(x+TW/2,y-h+TH/2);ctx.lineTo(x,y-h+TH);ctx.lineTo(x-TW/2,y-h+TH/2);ctx.closePath();
-      ctx.fillStyle=top;ctx.fill();ctx.strokeStyle='rgba(0,0,0,.25)';ctx.lineWidth=.5;ctx.stroke();
-      // right
+      ctx.fillStyle=p2.top;ctx.fill();ctx.strokeStyle='rgba(0,0,0,.2)';ctx.lineWidth=.5;ctx.stroke();
+      // right face
       ctx.beginPath();ctx.moveTo(x+TW/2,y-h+TH/2);ctx.lineTo(x+TW/2,y+TH/2);ctx.lineTo(x,y+TH);ctx.lineTo(x,y-h+TH);ctx.closePath();
-      ctx.fillStyle=right;ctx.fill();ctx.stroke();
-      // left
+      ctx.fillStyle=p2.right;ctx.fill();ctx.stroke();
+      // left face
       ctx.beginPath();ctx.moveTo(x-TW/2,y-h+TH/2);ctx.lineTo(x-TW/2,y+TH/2);ctx.lineTo(x,y+TH);ctx.lineTo(x,y-h+TH);ctx.closePath();
-      ctx.fillStyle=left;ctx.fill();ctx.stroke();
+      ctx.fillStyle=p2.left;ctx.fill();ctx.stroke();
+      // Détails pour la clôture (ligne verticale)
+      if(t===5){
+        ctx.strokeStyle='rgba(0,0,0,.35)';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(x,y-h);ctx.lineTo(x,y-h-TH*.8);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(x+TW/2,y-h+TH/2);ctx.lineTo(x+TW/2,y-h+TH/2-TH*.8);ctx.stroke();
+      }
+      // Détails eau (reflet)
+      if(t===4){
+        ctx.strokeStyle='rgba(255,255,255,.25)';ctx.lineWidth=.8;
+        ctx.beginPath();ctx.moveTo(x-TW*.15,y-h+TH*.55);ctx.lineTo(x+TW*.15,y-h+TH*.55);ctx.stroke();
+      }
     }
   }
+  // Champignon au centre-gauche (3D simple)
+  const mushr=iso(3,3);
+  ctx.beginPath();ctx.ellipse(mushr.x,mushr.y-TH*3.5,TW*.65,TH*.8,0,0,Math.PI*2);
+  ctx.fillStyle='#d42020';ctx.fill();ctx.strokeStyle='rgba(0,0,0,.3)';ctx.lineWidth=.8;ctx.stroke();
+  // Taches blanches
+  ctx.fillStyle='rgba(255,255,255,.75)';
+  [[-.3,-.15,.18],[.2,-.25,.14],[-.05,-.05,.12]].forEach(([dx,dy,r])=>{
+    ctx.beginPath();ctx.ellipse(mushr.x+dx*TW,mushr.y-TH*3.5+dy*TH,r*TW,r*.6*TH,0,0,Math.PI*2);ctx.fill();
+  });
+  // Pied champignon
+  ctx.fillStyle='#f0e0c0';
+  ctx.beginPath();ctx.ellipse(mushr.x,mushr.y-TH*2.2,TW*.18,TH*.55,0,0,Math.PI*2);ctx.fill();
 }
 
 /* ══ BURGER MENU ══ */
@@ -3364,6 +3471,249 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   }
   animate();
 })();
+</script>
+
+<!-- TOWER DEFENSE 3D INTERACTIVE MAP VIEWER -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+<script>
+(function(){
+  var _t3d = null;
+
+  function initTower3D() {
+    var container = document.getElementById('tower-3d-viewer');
+    if (!container || container.dataset.init) return;
+    container.dataset.init = '1';
+
+    var W = container.clientWidth, H = container.clientHeight || 300;
+
+    // ── Renderer ──
+    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(W, H);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setClearColor(0x87ceeb, 1); // ciel bleu
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    container.appendChild(renderer.domElement);
+
+    // ── Scene ──
+    var scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x87ceeb, 40, 120);
+    scene.background = new THREE.Color(0x87ceeb);
+
+    // ── Camera ──
+    var camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 500);
+    camera.position.set(0, 15, 25);
+    camera.lookAt(0, 0, 0);
+
+    // ── Lumières ──
+    var amb = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(amb);
+    var sun = new THREE.DirectionalLight(0xfff5dd, 1.4);
+    sun.position.set(20, 40, 20);
+    sun.castShadow = true;
+    sun.shadow.mapSize.width = 2048;
+    sun.shadow.mapSize.height = 2048;
+    sun.shadow.camera.near = 0.5;
+    sun.shadow.camera.far = 200;
+    sun.shadow.camera.left = -30;
+    sun.shadow.camera.right = 30;
+    sun.shadow.camera.top = 30;
+    sun.shadow.camera.bottom = -30;
+    scene.add(sun);
+    var fill = new THREE.DirectionalLight(0xaadaff, 0.4);
+    fill.position.set(-20, 10, -20);
+    scene.add(fill);
+
+    // ── Loading overlay ──
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:absolute;inset:0;background:#0a1a04;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10';
+    overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.7rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.8rem">// Chargement de la map...</div>'
+      + '<div id="t3d-bar" style="width:180px;height:3px;background:rgba(163,230,53,.2);border-radius:2px"><div id="t3d-prog" style="height:100%;background:#a3e635;width:0%;transition:width .3s;border-radius:2px"></div></div>';
+    container.appendChild(overlay);
+
+    // ── DracoLoader ──
+    var dracoLoader = new THREE.DRACOLoader();
+    dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
+
+    // ── GLTFLoader ──
+    var gltfLoader = new THREE.GLTFLoader();
+    gltfLoader.setDRACOLoader(dracoLoader);
+
+    // URLs à essayer
+    var modelUrls = [
+      'garden.glb',
+      'https://mollymo31.github.io/Portfolio_Leo_Lussan/garden.glb'
+    ];
+    var tried = 0;
+
+    function tryLoad() {
+      if (tried >= modelUrls.length) {
+        // Fallback : map procédurale basique
+        overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#a3e635;text-align:center;padding:1rem">// Upload garden.glb sur GitHub<br/>pour voir la map 3D !</div>';
+        buildFallback();
+        return;
+      }
+      gltfLoader.load(
+        modelUrls[tried],
+        function(gltf) {
+          // Succès !
+          var model = gltf.scene;
+
+          // Active les ombres sur tous les meshes
+          model.traverse(function(child) {
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+              // Améliore le rendu des matériaux
+              if (child.material) {
+                child.material.envMapIntensity = 0.5;
+              }
+            }
+          });
+
+          // Centre et scale le modèle automatiquement
+          var box = new THREE.Box3().setFromObject(model);
+          var center = box.getCenter(new THREE.Vector3());
+          var size = box.getSize(new THREE.Vector3());
+          var maxDim = Math.max(size.x, size.y, size.z);
+          var scale = 20 / maxDim; // normalise à 20 unités
+          model.scale.setScalar(scale);
+          model.position.sub(center.multiplyScalar(scale));
+          model.position.y = -size.y * scale * 0.5;
+          scene.add(model);
+
+          // Ajuste camera selon la taille du modèle
+          var scaledSize = size.clone().multiplyScalar(scale);
+          var dist = Math.max(scaledSize.x, scaledSize.z) * 1.4;
+          spherical.radius = dist;
+          spherical.phi = 0.75;
+          updateCamera();
+
+          // Retire l'overlay
+          container.removeChild(overlay);
+
+          // Lance l'animation
+          animate();
+        },
+        function(xhr) {
+          // Progression
+          if (xhr.total > 0) {
+            var pct = (xhr.loaded / xhr.total * 100).toFixed(0);
+            var prog = document.getElementById('t3d-prog');
+            if (prog) prog.style.width = pct + '%';
+          }
+        },
+        function(err) {
+          tried++;
+          setTimeout(tryLoad, 200);
+        }
+      );
+    }
+
+    // Fallback map procédurale si GLB non disponible
+    function buildFallback() {
+      var geo = new THREE.PlaneGeometry(20, 20);
+      var mat = new THREE.MeshLambertMaterial({ color: 0x4a9e22 });
+      var ground = new THREE.Mesh(geo, mat);
+      ground.rotation.x = -Math.PI / 2;
+      ground.receiveShadow = true;
+      scene.add(ground);
+      spherical.radius = 25;
+      updateCamera();
+      animate();
+    }
+
+    // ── OrbitControls maison ──
+    var isDragging = false;
+    var prevMouse = { x: 0, y: 0 };
+    var spherical = { theta: 0.5, phi: 0.75, radius: 25 };
+    var targetSpherical = { theta: 0.5, phi: 0.75, radius: 25 };
+
+    function updateCamera() {
+      camera.position.x = spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+      camera.position.y = spherical.radius * Math.cos(spherical.phi);
+      camera.position.z = spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+      camera.lookAt(0, 0, 0);
+    }
+    updateCamera();
+
+    var el = renderer.domElement;
+    el.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      prevMouse = { x: e.clientX, y: e.clientY };
+      el.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mouseup', function() { isDragging = false; el.style.cursor = 'grab'; });
+    window.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = (e.clientX - prevMouse.x) * 0.007;
+      var dy = (e.clientY - prevMouse.y) * 0.007;
+      spherical.theta -= dx;
+      spherical.phi = Math.max(0.15, Math.min(1.45, spherical.phi + dy));
+      prevMouse = { x: e.clientX, y: e.clientY };
+      updateCamera();
+    });
+    el.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      spherical.radius = Math.max(4, Math.min(60, spherical.radius + e.deltaY * 0.04));
+      updateCamera();
+    }, { passive: false });
+    // Touch
+    var lastTouch = null;
+    el.addEventListener('touchstart', function(e) { lastTouch = e.touches[0]; }, { passive: true });
+    el.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+      if (!lastTouch) return;
+      var t = e.touches[0];
+      spherical.theta -= (t.clientX - lastTouch.clientX) * 0.01;
+      spherical.phi = Math.max(0.15, Math.min(1.45, spherical.phi + (t.clientY - lastTouch.clientY) * 0.01));
+      lastTouch = t; updateCamera();
+    }, { passive: false });
+
+    // ── Animation ──
+    var raf = null;
+    function animate() {
+      raf = requestAnimationFrame(animate);
+      if (!isDragging) {
+        spherical.theta += 0.0015;
+        updateCamera();
+      }
+      renderer.render(scene, camera);
+    }
+
+    // Resize
+    window.addEventListener('resize', function() {
+      var w = container.clientWidth, h = container.clientHeight || 300;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    });
+
+    _t3d = { renderer, raf };
+    tryLoad();
+  }
+
+  // Lance au clic sur Tower
+  var _origOpenProj2 = window.openProj;
+  window.openProj = function(id) {
+    _origOpenProj2(id);
+    if (id === 'tower') setTimeout(initTower3D, 200);
+  };
+  var _origCloseProj2 = window.closeProj;
+  window.closeProj = function(id) {
+    _origCloseProj2(id);
+    if (id === 'tower' && _t3d) {
+      cancelAnimationFrame(_t3d.raf);
+      var c = document.getElementById('tower-3d-viewer');
+      if (c) { c.innerHTML = ''; delete c.dataset.init; }
+      _t3d = null;
+    }
+  };
+})();
+</script>
 </script>
 </body>
 </html>
