@@ -193,7 +193,6 @@ nav{
   border-bottom:1px solid var(--border);
 }
 
-#about{}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 .about-text p{color:var(--grey-light);font-size:.95rem;line-height:1.85;margin-bottom:1.2rem}
 .about-text strong{color:var(--white);font-weight:600}
@@ -204,7 +203,6 @@ nav{
 .about-quote{grid-column:1/-1;border-left:3px solid var(--red);padding-left:2rem;margin-top:1rem}
 .about-quote p{font-family:var(--font-title);font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--white);line-height:1.2}
 
-#competences{}
 .skills-category-label{font-family:var(--font-mono);font-size:.65rem;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem;margin-top:3rem}
 .skills-category-label:first-of-type{margin-top:0}
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;border:1px solid var(--border);margin-bottom:.5rem}
@@ -241,7 +239,6 @@ nav{
 .tag.red{border-color:var(--red);color:var(--red)}
 
 /* project categories */
-#projets{}
 .proj-cat-label{font-family:var(--font-mono);font-size:.65rem;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;margin-top:3.5rem;display:flex;align-items:center;gap:1rem}
 .proj-cat-label:first-of-type{margin-top:0}
 .proj-cat-label::after{content:'';flex:1;height:1px;background:var(--border)}
@@ -358,7 +355,6 @@ nav{
 .modal-link{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);border:1px solid var(--th-acc2,var(--red));padding:.55rem 1.1rem;margin-top:1rem;margin-right:.6rem;transition:all .2s}
 .modal-link:hover{background:var(--th-acc2,var(--red));border-color:transparent}
 
-#contact{}
 .contact-row{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--border)}
 .contact-row:first-child{border-top:1px solid var(--border)}
 .contact-key{font-family:var(--font-mono);font-size:.62rem;color:var(--grey);letter-spacing:.15em;text-transform:uppercase}
@@ -852,7 +848,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
     </div>
     <div class="project-row fade-in" onclick="openProj('tower')">
       <div class="project-num">04</div>
-      <div><div class="project-name" data-i18n="proj_tower">TOWER DEFENSE</div><div class="project-tags"><span class="tag">Map Design</span><span class="tag">Game Balance</span><span class="tag">1ère Année</span></div></div>
+      <div><div class="project-name" data-i18n="proj_tower">TOWER DEFENSE</div><div class="project-tags"><span class="tag">Tower Defense</span><span class="tag">Jardin</span><span class="tag">LDtk</span><span class="tag">Hack'n'Plan</span><span class="tag">Map Design</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">1ère Année</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row fade-in" onclick="openProj('silence')">
@@ -988,11 +984,10 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-num">// 04 — Projet d'école · 1ère Année</div>
       <div class="proj-modal-title">TOWER<br/><span>DEFENSE</span></div>
       <button class="proj-modal-close" onclick="closeProj('tower')">✕ Fermer</button>
-      <div class="proj-modal-tags"><span class="tag">Map Design</span><span class="tag">Jardin</span><span class="tag">Game Balance</span><span class="tag">LDtk</span><span class="tag">Hack'n'Plan</span></div>
+      <div class="proj-modal-tags"><span class="tag">Tower Defense</span><span class="tag">Jardin</span><span class="tag">LDtk</span><span class="tag">Hack'n'Plan</span><span class="tag">Map Design</span></div>
     </div>
     <div class="proj-modal-body">
       <p>Tower Defense se déroule dans un <strong>jardin enchanté</strong> — gnomes, champignons, haies taillées et allées fleuries. C'est un jeu de stratégie et d'équilibrage où la conception des maps est centrale. Les chemins ennemis serpentent entre les massifs, et les tours de défense s'intègrent dans l'environnement naturel et coloré.</p>
-      <div class="pm-label">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-tower">
 
         <!-- -- SLIDE 1 : MENU -- -->
@@ -2670,17 +2665,19 @@ function _ambInit() {
 function _ambStop() {
   clearTimeout(_ambLoop);
   _ambNodes.forEach(function(n){ try{ if(n && typeof n.stop==='function') n.stop(); }catch(e){} });
+  // Arrêt immédiat des elements audio HTML
   if (_ambNodes._dracEl) {
     var el = _ambNodes._dracEl;
-    try { el.pause(); el.src = ''; } catch(e){}
+    try { el.pause(); el.currentTime=0; el.src = ''; } catch(e){}
     try { if(el.parentNode) el.parentNode.removeChild(el); } catch(e){}
     _ambNodes._dracEl = null;
   }
   if (_ambNodes._towerEl) {
     var tel = _ambNodes._towerEl;
-    try { tel.pause(); tel.src = ''; } catch(e){}
+    try { tel.pause(); tel.currentTime=0; tel.src = ''; } catch(e){}
     try { if(tel.parentNode) tel.parentNode.removeChild(tel); } catch(e){}
     _ambNodes._towerEl = null;
+    _ambNodes._towerToken = null; // invalide tout tryPlay en cours
   }
   _ambNodes = [];
   _ambCurrentId = null;
@@ -2951,12 +2948,14 @@ var _AMBIENCES = {
   },
 
   tower: function() {
-    // Musique originale WAV - loop natif
+    // Stop net de tout audio en cours
     if (_ambNodes._towerEl) {
-      try { _ambNodes._towerEl.pause(); _ambNodes._towerEl.src=''; } catch(e){}
-      try { if(_ambNodes._towerEl.parentNode) _ambNodes._towerEl.parentNode.removeChild(_ambNodes._towerEl); } catch(e){}
+      var old = _ambNodes._towerEl;
+      try { old.pause(); old.currentTime=0; old.src=''; } catch(e){}
+      try { if(old.parentNode) old.parentNode.removeChild(old); } catch(e){}
       _ambNodes._towerEl = null;
     }
+
     var a = document.createElement('audio');
     a.loop = true;
     a.preload = 'auto';
@@ -2964,27 +2963,34 @@ var _AMBIENCES = {
     document.body.appendChild(a);
     _ambNodes._towerEl = a;
 
+    // Token de session - invalide les tryPlay anterieurs
+    var token = {};
+    _ambNodes._towerToken = token;
+
     var urls = [
       'projet_towerdefense/tower_music.wav',
-      'https://mollymo31.github.io/Portfolio_Leo_Lussan/tower_music.wav'
+      'https://mollymo31.github.io/Portfolio_Leo_Lussan/projet_towerdefense/tower_music.wav'
     ];
     var tried = 0;
     function tryPlay() {
+      // Si le token a change, cette session est annulee
+      if (_ambNodes._towerToken !== token) return;
       if (tried >= urls.length) return;
       a.src = urls[tried];
       a.load();
       var p = a.play();
       if (p && p.then) {
         p.then(function() {
+          if (_ambNodes._towerToken !== token) { a.pause(); return; }
           var v=0, fi=setInterval(function(){
-            if(_ambCurrentId!=='tower'||!_ambNodes._towerEl){clearInterval(fi);return;}
+            if(_ambNodes._towerToken!==token||!_ambNodes._towerEl){clearInterval(fi);return;}
             v=Math.min(v+0.018, 0.45); a.volume=v;
             if(v>=0.45) clearInterval(fi);
           },60);
         }).catch(function(){ tried++; setTimeout(tryPlay,200); });
       } else {
         var v=0, fi=setInterval(function(){
-          if(_ambCurrentId!=='tower'){clearInterval(fi);return;}
+          if(_ambNodes._towerToken!==token){clearInterval(fi);return;}
           v=Math.min(v+0.018,0.45); a.volume=v;
           if(v>=0.45) clearInterval(fi);
         },60);
@@ -3217,17 +3223,31 @@ var _audio = {
   btn.title = 'Couper / activer le son';
   btn.style.cssText = [
     'position:fixed','bottom:2rem','right:2rem','z-index:9999',
-    'background:rgba(10,10,10,.85)','backdrop-filter:blur(10px)',
-    'border:1px solid rgba(200,169,110,.3)','color:#e8e0d5',
-    'width:38px','height:38px','border-radius:0',
-    'font-size:.95rem','cursor:pointer','transition:all .2s',
+    'background:rgba(10,10,10,.95)','backdrop-filter:blur(10px)',
+    'border:2px solid rgba(200,169,110,.6)','color:#c8a96e',
+    'width:44px','height:44px','border-radius:0',
+    'font-size:1.1rem','cursor:pointer','transition:all .2s',
     'display:none','align-items:center','justify-content:center',
-    'box-shadow:0 0 14px rgba(200,169,110,.1)'
+    'box-shadow:0 0 18px rgba(200,169,110,.25)'
   ].join(';');
-  btn.addEventListener('mouseenter',function(){this.style.borderColor='#c8a96e';this.style.background='rgba(200,169,110,.1)';});
-  btn.addEventListener('mouseleave',function(){this.style.borderColor='rgba(200,169,110,.3)';this.style.background='rgba(10,10,10,.85)';});
+  btn.addEventListener('mouseenter',function(){this.style.borderColor='#c8a96e';this.style.background='rgba(200,169,110,.15)';});
+  btn.addEventListener('mouseleave',function(){this.style.borderColor='rgba(200,169,110,.6)';this.style.background='rgba(10,10,10,.95)';});
   btn.addEventListener('click',function(){ _ambInit(); _audio.toggle(); });
   document.body.appendChild(btn);
+
+  // Auto-demarrer le son au premier clic utilisateur sur la page
+  var _audioStarted = false;
+  document.addEventListener('click', function() {
+    if (_audioStarted) return;
+    _audioStarted = true;
+    // Si un modal est ouvert, demarrer l'ambiance
+    var openModal = document.querySelector('.proj-modal-overlay.open');
+    if (openModal) {
+      _ambInit();
+      var id = openModal.id.replace('pm-', '');
+      _audio.startAmbient(id);
+    }
+  }, { once: false });
 })();
 
 // Bouton mute visible uniquement quand un projet est ouvert
@@ -3312,12 +3332,13 @@ function closeProj(id){
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     document.querySelectorAll('.proj-modal-overlay.open,.skill-modal-overlay.open').forEach(o=>{
+      var id = o.id ? o.id.replace('pm-','').replace('sm-','') : null;
       o.classList.remove('open'); document.body.style.overflow='';
+      stopFx();
+      _audio.stopAmbient();
+      var btn=document.getElementById('audio-btn');
+      if(btn) btn.style.display='none';
     });
-    stopFx();
-    _audio.stopAmbient();
-    var btn=document.getElementById('audio-btn');
-    if(btn) btn.style.display='none';
   }
 });
 
@@ -3610,278 +3631,348 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
     var container = document.getElementById('tower-3d-viewer');
     if (!container || container.dataset.init) return;
     container.dataset.init = '1';
+    var W = container.clientWidth, H = container.clientHeight || 420;
 
-    var W = container.clientWidth, H = container.clientHeight || 300;
-
-    // -- Renderer --
-    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(W, H);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.setClearColor(0x0a1a04, 1);
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.setClearColor(0x87CEAA, 1);
     container.appendChild(renderer.domElement);
-    // Forcer la couleur de fond via le canvas aussi
-    renderer.domElement.style.background = '#0a1a04';
+    renderer.domElement.style.cursor = 'grab';
 
-    // -- Scene --
     var scene = new THREE.Scene();
-    // Pas de brouillard - on veut voir toute la map
-    // scene.fog = new THREE.FogExp2(0x0a1a04, 0.018);
-    scene.background = new THREE.Color(0x0a1a04);
+    scene.background = new THREE.Color(0x87CEAA);
+    scene.fog = new THREE.FogExp2(0x87CEAA, 0.015);
 
-    // -- Camera --
-    var camera = new THREE.PerspectiveCamera(70, W / H, 0.1, 500);
-    camera.position.set(0, 15, 25);
-    camera.lookAt(0, 0, 0);
+    var camera = new THREE.PerspectiveCamera(55, W/H, 0.1, 200);
 
-    // -- Lumieres --
-    var amb = new THREE.AmbientLight(0xffffff, 1.2);
-    scene.add(amb);
-    var sun = new THREE.DirectionalLight(0xfff8e8, 2.0);
-    sun.position.set(15, 30, 15);
+    // Eclairage Phong - lumiere ambiante moderee + directionnelle forte
+    scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+    var sun = new THREE.DirectionalLight(0xFFF8E0, 3.0);
+    sun.position.set(10, 20, 8);
     sun.castShadow = true;
-    sun.shadow.mapSize.width = 2048;
-    sun.shadow.mapSize.height = 2048;
-    sun.shadow.camera.near = 0.5;
-    sun.shadow.camera.far = 200;
-    sun.shadow.camera.left = -25;
-    sun.shadow.camera.right = 25;
-    sun.shadow.camera.top = 25;
-    sun.shadow.camera.bottom = -25;
+    sun.shadow.camera.left = sun.shadow.camera.bottom = -25;
+    sun.shadow.camera.right = sun.shadow.camera.top = 25;
     scene.add(sun);
-    var fill = new THREE.DirectionalLight(0x8ed43a, 0.5);
-    fill.position.set(-15, 10, -15);
+    var fill = new THREE.DirectionalLight(0xCCEEFF, 0.8);
+    fill.position.set(-8, 5, -10);
     scene.add(fill);
-    // Lumiere de rebond depuis le sol
-    var bounce = new THREE.HemisphereLight(0x4a9e22, 0x0a1a04, 0.6);
-    scene.add(bounce);
 
-    // -- Loading overlay --
+    // Couleurs par nom de materiau (fallback si texture absente)
+    var MAT_COLORS = {
+      'sol':           0x4DB860,
+      'herbe_M':       0x55CC70,
+      'herbe':         0x4DB860,
+      'eauarroisoir_M':0x3AB8C8,
+      'M_Water_Ocean': 0x3AB8C8,
+      'nenuphard_M':   0x2A7830,
+      'roseau4_M':     0x2D7A3A,
+      'dalles2_M':     0x8A8870,
+      'pot_M':         0xC06040,
+      'pneu_M':        0x222222,
+      'arrosoir4pot_M':0x888888,
+      'arrosoir4bec_M':0x999999,
+      'arrosoir4anse_M':0x777777,
+      'rateau_M':      0x8B5E2A,
+      'parapluie_M':   0xE84040,
+      'parapluie_M_2': 0xCC3030,
+      'fleur_sol':     0xFFEEAA,
+      'chardon_M':     0x8844AA,
+      'DefaultMaterial':0x88BB66,
+      'WorldGridMaterial':null,
+    };
+
+    function getColor(matName) {
+      if (!matName) return null;
+      var n = matName.toLowerCase();
+      for (var k in MAT_COLORS) {
+        if (n === k.toLowerCase()) return MAT_COLORS[k];
+      }
+      // Fallback par mot-cle
+      if (n.indexOf('herbe')!==-1) return 0x55CC70;
+      if (n.indexOf('eau')!==-1||n.indexOf('water')!==-1) return 0x3AB8C8;
+      if (n.indexOf('sol')!==-1||n.indexOf('floor')!==-1) return 0x4DB860;
+      if (n.indexOf('bois')!==-1||n.indexOf('wood')!==-1||n.indexOf('barriere')!==-1) return 0x8B5E2A;
+      if (n.indexOf('pierre')!==-1||n.indexOf('rock')!==-1||n.indexOf('dalle')!==-1) return 0x8A8870;
+      if (n.indexOf('pot')!==-1) return 0xC06040;
+      if (n.indexOf('champi')!==-1||n.indexOf('mush')!==-1) return 0xD42020;
+      if (n.indexOf('fleur')!==-1||n.indexOf('flower')!==-1) return 0xFFEEAA;
+      return null;
+    }
+
+    // Overlay chargement
     var overlay = document.createElement('div');
-    overlay.style.cssText = 'position:absolute;inset:0;background:#0a1a04;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10';
-    overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.7rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.8rem">// Chargement de la map...</div>'
-      + '<div id="t3d-bar" style="width:180px;height:3px;background:rgba(163,230,53,.2);border-radius:2px"><div id="t3d-prog" style="height:100%;background:#a3e635;width:0%;transition:width .3s;border-radius:2px"></div></div>';
+    overlay.style.cssText = 'position:absolute;inset:0;background:#0a1a04;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity .6s';
+    overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.7rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.8rem">// Chargement map...</div>'
+      + '<div style="width:180px;height:3px;background:rgba(163,230,53,.2)"><div id="t3d-prog" style="height:100%;background:#a3e635;width:0%;transition:width .3s"></div></div>';
     container.appendChild(overlay);
 
-    // -- DracoLoader --
     var dracoLoader = new THREE.DRACOLoader();
     dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/libs/draco/');
-
-    // -- GLTFLoader --
     var gltfLoader = new THREE.GLTFLoader();
     gltfLoader.setDRACOLoader(dracoLoader);
 
-    // URLs a essayer
-    var modelUrls = [
-      'garden.glb',
-      'https://mollymo31.github.io/Portfolio_Leo_Lussan/garden.glb'
-    ];
+    var urls = ['garden.glb','https://mollymo31.github.io/Portfolio_Leo_Lussan/garden.glb'];
     var tried = 0;
 
     function tryLoad() {
-      if (tried >= modelUrls.length) {
-        // Fallback : map procedurale basique
-        overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#a3e635;text-align:center;padding:1rem">// Upload garden.glb sur GitHub<br/>pour voir la map 3D !</div>';
-        buildFallback();
+      if (tried >= urls.length) {
+        overlay.innerHTML='<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">// garden.glb introuvable</div>';
         return;
       }
-      gltfLoader.load(
-        modelUrls[tried],
+      gltfLoader.load(urls[tried],
         function(gltf) {
           var model = gltf.scene;
 
-          // Unreal Engine exporte en Z-up - rotation pour Y-up Three.js
-          model.rotation.x = -Math.PI / 2;
+          // Rotation Unreal Z-up -> Three.js Y-up via pivot
+          // On tourne le modele dans un groupe pivot pour eviter le gimbal lock
+          var pivot = new THREE.Group();
+          pivot.rotation.x = -Math.PI / 2;
+          pivot.add(model);
 
-          // Calcul bounding box APRES rotation
+          // Normaliser taille
           var box = new THREE.Box3().setFromObject(model);
-          var center = box.getCenter(new THREE.Vector3());
-          var size = box.getSize(new THREE.Vector3());
-          var maxDim = Math.max(size.x, size.y, size.z);
-          var scale = 18 / maxDim;
-          model.scale.setScalar(scale);
+          var sz = box.getSize(new THREE.Vector3());
+          var sc = 18 / Math.max(sz.x, sz.y, sz.z);
+          model.scale.setScalar(sc);
 
-          // Recentre parfaitement sur l'origine
+          // Centrer
           box.setFromObject(model);
-          center = box.getCenter(new THREE.Vector3());
-          model.position.set(
-            model.position.x - center.x,
-            model.position.y - box.min.y,
-            model.position.z - center.z
-          );
+          var c = box.getCenter(new THREE.Vector3());
+          model.position.set(-c.x, -box.min.y, -c.z);
 
-          // Masquer uniquement les colliders UCX_ (invisibles dans Unreal)
-          // et le WorldGridMaterial (grille d'edition Unreal)
+          // Appliquer couleurs par NOM DE MESH - plus fiable que le materiau
+          var MESH_COLORS = {
+            'Floor':        0x4DB860, // herbe verte
+            'Herbe_Herbe':  0x55CC70,
+            'Herbe_01':     0x66DD80,
+            'herbe_random': 0x44BB60,
+            'mare2':        0x3AB8C8, // eau bleue
+            'nenuphar2_nenuphar_troue': 0x2A7830,
+            'lotus4_EVOLUTION5': 0x2A8830,
+            'roseau4_roseau4': 0x2D7A3A,
+            'dalles':       0x8A8870, // pierres grises
+            'Pave_01':      0x9A9880,
+            'Pave_03_Retopo2': 0x8A8870,
+            'Pierre_1':     0x7A7A6A,
+            'barriere':     0x8B5E2A, // bois brun
+            'planche__1_':  0x7A4E1A,
+            'planche__2_':  0x7A4E1A,
+            'Pot_POT_uv_ok':0xC06040, // terre cuite
+            'Rateau1_pCube2':0x8B5E2A,
+            'velo_velo1':   0x333333, // velo sombre
+            'Pneu':         0x222222,
+            'Plane':        0x4DB860,
+            'Champi_02':    0xD42020, // champignon rouge
+            'Champi_03':    0xE86020,
+            'arrosoir_pDisc2': 0x888888,
+            'Parapluie_Parapluie_tourelle': 0xE84040,
+            'caserneUV':    0xCC8844,
+            'SkeletalMeshComponent0': 0xC08840, // gnomes
+            'PlaqueDessous':0x8B5E2A,
+          };
+
           model.traverse(function(child) {
-            if (child.isMesh) {
-              var name = child.name || '';
-              var matName = '';
-              if (child.material) {
-                if (Array.isArray(child.material)) {
-                  matName = child.material.map(function(m){ return m.name||''; }).join(' ');
-                } else {
-                  matName = child.material.name || '';
-                }
-              }
-              // Cacher les colliders UCX et les materiaux de grille Unreal
-              var hide = name.indexOf('UCX_') === 0 ||
-                         matName.indexOf('WorldGridMaterial') !== -1 ||
-                         matName.indexOf('DefaultMaterial') !== -1;
-              if (hide) {
-                child.visible = false;
-              } else {
-                child.castShadow = true;
-                child.receiveShadow = true;
-              }
+            if (!child.isMesh) return;
+            var name = child.name || '';
+
+            // Masquer colliders UCX
+            if (name.indexOf('UCX_') === 0) { child.visible = false; return; }
+
+            child.castShadow = true;
+            child.receiveShadow = true;
+
+            // Chercher la couleur par nom de mesh
+            var col = null;
+            for (var k in MESH_COLORS) {
+              if (name === k || name.indexOf(k) === 0) { col = MESH_COLORS[k]; break; }
             }
+            // Fallback par mot-cle dans le nom
+            if (col === null) {
+              var n = name.toLowerCase();
+              if (n.indexOf('herbe')!==-1||n.indexOf('grass')!==-1) col=0x55CC70;
+              else if (n.indexOf('floor')!==-1||n.indexOf('sol')!==-1) col=0x4DB860;
+              else if (n.indexOf('eau')!==-1||n.indexOf('water')!==-1||n.indexOf('mare')!==-1) col=0x3AB8C8;
+              else if (n.indexOf('bois')!==-1||n.indexOf('planche')!==-1||n.indexOf('barriere')!==-1) col=0x8B5E2A;
+              else if (n.indexOf('pierre')!==-1||n.indexOf('rock')!==-1||n.indexOf('pave')!==-1) col=0x8A8870;
+              else if (n.indexOf('champi')!==-1||n.indexOf('mush')!==-1) col=0xD42020;
+              else if (n.indexOf('fleur')!==-1||n.indexOf('flower')!==-1) col=0xFFEEAA;
+              else if (n.indexOf('pot')!==-1) col=0xC06040;
+              else if (n.indexOf('velo')!==-1||n.indexOf('bike')!==-1) col=0x333333;
+              else col=0x88BB66; // vert par defaut
+            }
+
+            var isWater = (name.indexOf('mare')!==-1||name.indexOf('lotus')!==-1||name.indexOf('nenuphar')!==-1);
+            child.material = new THREE.MeshPhongMaterial({shininess:40,
+              color: col,
+              side: THREE.DoubleSide,
+              transparent: isWater,
+              opacity: isWater ? 0.82 : 1.0,
+            });
           });
 
-          scene.add(model);
+          scene.add(pivot);
 
-          // Centre sur le Floor (terrain principal)
-          var floorBox = new THREE.Box3();
-          model.traverse(function(child) {
-            if (child.isMesh && child.visible) {
-              floorBox.expandByObject(child);
-            }
-          });
-          var fc = floorBox.getCenter(new THREE.Vector3());
-          var fs = floorBox.getSize(new THREE.Vector3());
+          // Centre visible
+          var vb = new THREE.Box3();
+          pivot.traverse(function(ch) { if (ch.isMesh && ch.visible) vb.expandByObject(ch); });
+          var vc = vb.getCenter(new THREE.Vector3());
+          var vs = vb.getSize(new THREE.Vector3());
+          camTarget.copy(vc);
+          camRadius = Math.max(vs.x, vs.z) * 1.1;
+          updateCam();
 
-          modelCenter.copy(fc);
-          // Rayon calibre pour voir tout le jardin
-          spherical.radius = Math.max(fs.x, fs.z) * 0.85;
-          spherical.phi = 1.05;  // 60deg - vue isometrique
-          spherical.theta = 0.7;
-          updateCamera();
-
-
-
-
-          // Retire l'overlay
-          container.removeChild(overlay);
-
-          // Lance l'animation
+          // Cacher overlay
+          overlay.style.opacity = '0';
+          setTimeout(function(){ if(overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 700);
           animate();
         },
         function(xhr) {
-          // Progression
-          if (xhr.total > 0) {
-            var pct = (xhr.loaded / xhr.total * 100).toFixed(0);
-            var prog = document.getElementById('t3d-prog');
-            if (prog) prog.style.width = pct + '%';
-          }
+          var p = document.getElementById('t3d-prog');
+          if (p && xhr.total > 0) p.style.width = (xhr.loaded/xhr.total*100) + '%';
         },
-        function(err) {
-          tried++;
-          setTimeout(tryLoad, 200);
-        }
+        function() { tried++; setTimeout(tryLoad, 300); }
       );
     }
+    tryLoad();
 
-    // Fallback map procedurale si GLB non disponible
-    function buildFallback() {
-      var geo = new THREE.PlaneGeometry(20, 20);
-      var mat = new THREE.MeshLambertMaterial({ color: 0x4a9e22 });
-      var ground = new THREE.Mesh(geo, mat);
-      ground.rotation.x = -Math.PI / 2;
-      ground.receiveShadow = true;
-      scene.add(ground);
-      spherical.radius = 14;
-      updateCamera();
-      animate();
+    // === CAMERA - Quaternion orbit, liberte totale sans gimbal lock ===
+    var camRadius = 20;
+    var camTarget = new THREE.Vector3(0, 1, 0);
+
+    // Quaternion representant l'orientation de la camera
+    var quat = new THREE.Quaternion();
+    // Angle initial : vue 3/4 isometrique
+    var qX = new THREE.Quaternion(); qX.setFromAxisAngle(new THREE.Vector3(1,0,0), -0.75);
+    var qY = new THREE.Quaternion(); qY.setFromAxisAngle(new THREE.Vector3(0,1,0), Math.PI*1.25);
+    quat.multiplyQuaternions(qY, qX);
+
+    function updateCam() {
+      // Position camera depuis quaternion
+      var dir = new THREE.Vector3(0, 0, 1);
+      dir.applyQuaternion(quat);
+      camera.position.copy(camTarget).addScaledVector(dir, camRadius);
+      camera.lookAt(camTarget);
     }
+    updateCam();
 
-    // -- OrbitControls maison --
-    var isDragging = false;
-    var prevMouse = { x: 0, y: 0 };
-    var spherical = { theta: 0.5, phi: 0.75, radius: 25 };
-    var targetSpherical = { theta: 0.5, phi: 0.75, radius: 25 };
-    var modelCenter = new THREE.Vector3(0, 0, 0);
-
-    function updateCamera() {
-      camera.position.x = modelCenter.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
-      camera.position.y = modelCenter.y + spherical.radius * Math.cos(spherical.phi);
-      camera.position.z = modelCenter.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
-      camera.lookAt(modelCenter);
-    }
-    updateCamera();
-
+    // === CONTROLES SOURIS - quaternion drag ===
+    var drag = false, pm = {x:0, y:0}, autoRot = true;
     var el = renderer.domElement;
+
+    function rotateCamera(dx, dy) {
+      // Rotation autour de Y monde (gauche/droite)
+      var qy = new THREE.Quaternion();
+      qy.setFromAxisAngle(new THREE.Vector3(0,1,0), -dx);
+      // Rotation autour de X local (haut/bas)
+      var right = new THREE.Vector3(1,0,0).applyQuaternion(quat);
+      var qx = new THREE.Quaternion();
+      qx.setFromAxisAngle(right, -dy);
+      quat.premultiply(qy).premultiply(qx);
+      quat.normalize();
+      updateCam();
+    }
+
     el.addEventListener('mousedown', function(e) {
-      isDragging = true;
-      prevMouse = { x: e.clientX, y: e.clientY };
+      drag = true; autoRot = false;
+      pm = {x:e.clientX, y:e.clientY};
       el.style.cursor = 'grabbing';
     });
-    window.addEventListener('mouseup', function() { isDragging = false; el.style.cursor = 'grab'; });
+    window.addEventListener('mouseup', function() { drag=false; el.style.cursor='grab'; });
     window.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
-      var dx = (e.clientX - prevMouse.x) * 0.007;
-      var dy = (e.clientY - prevMouse.y) * 0.007;
-      spherical.theta -= dx;
-      spherical.phi = Math.max(0.15, Math.min(1.45, spherical.phi + dy));
-      prevMouse = { x: e.clientX, y: e.clientY };
-      updateCamera();
+      if (!drag) return;
+      rotateCamera((e.clientX-pm.x)*0.007, (e.clientY-pm.y)*0.007);
+      pm = {x:e.clientX, y:e.clientY};
     });
     el.addEventListener('wheel', function(e) {
       e.preventDefault();
-      spherical.radius = Math.max(3, Math.min(30, spherical.radius + e.deltaY * 0.03));
-      updateCamera();
-    }, { passive: false });
-    // Touch
-    var lastTouch = null;
-    el.addEventListener('touchstart', function(e) { lastTouch = e.touches[0]; }, { passive: true });
+      camRadius = Math.max(3, Math.min(50, camRadius + e.deltaY*0.04));
+      updateCam();
+    }, {passive:false});
+
+    // === CONTROLES TOUCH ===
+    var lt = null;
+    el.addEventListener('touchstart', function(e) { lt=e.touches[0]; autoRot=false; }, {passive:true});
     el.addEventListener('touchmove', function(e) {
       e.preventDefault();
-      if (!lastTouch) return;
+      if (!lt) return;
       var t = e.touches[0];
-      spherical.theta -= (t.clientX - lastTouch.clientX) * 0.01;
-      spherical.phi = Math.max(0.15, Math.min(1.45, spherical.phi + (t.clientY - lastTouch.clientY) * 0.01));
-      lastTouch = t; updateCamera();
-    }, { passive: false });
+      rotateCamera((t.clientX-lt.clientX)*0.01, (t.clientY-lt.clientY)*0.01);
+      lt = t;
+    }, {passive:false});
 
-    // -- Animation --
-    var raf = null;
-    function animate() {
-      raf = requestAnimationFrame(animate);
-      if (!isDragging) {
-        spherical.theta += 0.0015;
-        updateCamera();
-      }
-      renderer.render(scene, camera);
+    // === CONTROLES CLAVIER ZQSD ===
+    var keys = {};
+    window.addEventListener('keydown', function(e) { keys[e.key.toLowerCase()] = true; });
+    window.addEventListener('keyup',   function(e) { keys[e.key.toLowerCase()] = false; });
+    function doKeys() {
+      var sp = 0.04, any = false;
+      if (keys['z']||keys['w']||keys['arrowup'])    { rotateCamera(0,  sp); any=true; }
+      if (keys['s']||keys['arrowdown'])              { rotateCamera(0, -sp); any=true; }
+      if (keys['q']||keys['a']||keys['arrowleft'])  { rotateCamera( sp, 0); any=true; }
+      if (keys['d']||keys['arrowright'])             { rotateCamera(-sp, 0); any=true; }
+      if (keys['e']) { camRadius=Math.max(3,camRadius-0.35); updateCam(); any=true; }
+      if (keys['c']) { camRadius=Math.min(50,camRadius+0.35); updateCam(); any=true; }
+      if (any) autoRot = false;
     }
 
-    // Resize
-    window.addEventListener('resize', function() {
-      var w = container.clientWidth, h = container.clientHeight || 300;
-      renderer.setSize(w, h);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-    });
+    // Info
+    var info=document.createElement('div');
+    info.style.cssText='position:absolute;bottom:.7rem;left:.8rem;font-family:Space Mono,monospace;font-size:.5rem;color:rgba(10,30,10,.6);z-index:20;line-height:1.8;pointer-events:none';
+    info.innerHTML='Souris \u2014 Orbiter \u00b7 Molette \u2014 Zoom \u00b7 ZQSD \u2014 Rotation \u00b7 E/C \u2014 Zoom';
+    container.appendChild(info);
 
-    _t3d = { renderer, raf };
-    tryLoad();
+    // 4 boutons orientation
+    var rotDiv=document.createElement('div');
+    rotDiv.style.cssText='position:absolute;top:.6rem;right:.8rem;display:flex;gap:.3rem;z-index:20';
+    var rotAngles=[0, Math.PI/2, Math.PI, -Math.PI/2]; // orientation
+    var rotLabels=['\u2191N','\u2192E','\u2193S','\u2190W'];
+    var curRot=0;
+    rotAngles.forEach(function(angle,i){
+      var btn=document.createElement('button');
+      btn.style.cssText='font-family:Space Mono,monospace;font-size:.58rem;color:#c8a96e;background:rgba(0,0,0,.8);border:1px solid rgba(200,169,110,.3);padding:.25rem .5rem;cursor:pointer;min-width:2rem';
+      btn.textContent=rotLabels[i];
+      btn.onclick=function(){
+        pivot.rotation.z = angle;
+      };
+      rotDiv.appendChild(btn);
+    });
+    container.appendChild(rotDiv);
+
+    // === ANIMATION ===
+    var raf=null;
+    function animate(){
+      raf=requestAnimationFrame(animate);
+      doKeys();
+      if(autoRot){rotateCamera(0.0018,0);}
+      renderer.render(scene,camera);
+    }
+
+    window.addEventListener('resize',function(){
+      var w=container.clientWidth,h=container.clientHeight||420;
+      renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();
+    });
+    _t3d={renderer:renderer,raf:raf};
   }
 
-  // Lance au clic sur Tower
-  var _origOpenProj2 = window.openProj;
-  window.openProj = function(id) {
-    _origOpenProj2(id);
-    if (id === 'tower') setTimeout(initTower3D, 200);
+  var _o1=window.openProj;
+  window.openProj=function(id){
+    _o1(id);
+    if(id==='tower') setTimeout(initTower3D,200);
   };
-  var _origCloseProj2 = window.closeProj;
-  window.closeProj = function(id) {
-    _origCloseProj2(id);
-    if (id === 'tower' && _t3d) {
+  var _o2=window.closeProj;
+  window.closeProj=function(id){
+    _o2(id);
+    if(id==='tower'&&_t3d){
       cancelAnimationFrame(_t3d.raf);
-      var c = document.getElementById('tower-3d-viewer');
-      if (c) { c.innerHTML = ''; delete c.dataset.init; }
-      _t3d = null;
+      var c=document.getElementById('tower-3d-viewer');
+      if(c){c.innerHTML='';delete c.dataset.init;}
+      _t3d=null;
     }
   };
 })();
-</script>
 </script>
 </body>
 </html>
