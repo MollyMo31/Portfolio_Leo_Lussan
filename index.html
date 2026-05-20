@@ -1124,7 +1124,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
       </div><div class="car-controls"><div class="carousel-dots" id="cd-tower"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('tower',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('tower',1)">Suiv →</button></div></div></div>
       <div class="pm-label">Visualisation 3D isométrique</div>
-      <div class="iso-map-container" style="position:relative;height:300px;overflow:hidden">
+      <div class="iso-map-container" style="position:relative;height:420px;overflow:hidden">
         <div id="tower-3d-viewer" style="width:100%;height:100%;background:#0a1a04;cursor:grab"></div>
         <div class="iso-map-label">Map 3D interactive · Panique Végétale</div>
         <div style="position:absolute;top:.6rem;right:.8rem;font-family:var(--font-mono);font-size:.52rem;color:rgba(163,230,53,.7);letter-spacing:.1em">⟳ Tourner · Scroll zoom</div>
@@ -3619,19 +3619,19 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
     renderer.setSize(W, H);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.setClearColor(0x0a1a04, 1); // fond sombre portfolio
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.setClearColor(0x0a1a04, 1);
     container.appendChild(renderer.domElement);
+    // Forcer la couleur de fond via le canvas aussi
+    renderer.domElement.style.background = '#0a1a04';
 
     // -- Scene --
     var scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x0a1a04, 0.018);
+    // Pas de brouillard - on veut voir toute la map
+    // scene.fog = new THREE.FogExp2(0x0a1a04, 0.018);
     scene.background = new THREE.Color(0x0a1a04);
 
     // -- Camera --
-    var camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 500);
+    var camera = new THREE.PerspectiveCamera(70, W / H, 0.1, 500);
     camera.position.set(0, 15, 25);
     camera.lookAt(0, 0, 0);
 
@@ -3702,30 +3702,62 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
           var scale = 18 / maxDim;
           model.scale.setScalar(scale);
 
-          // Recentre apres scale
+          // Recentre parfaitement sur l'origine
           box.setFromObject(model);
           center = box.getCenter(new THREE.Vector3());
-          model.position.set(-center.x, -box.min.y, -center.z);
+          model.position.set(
+            model.position.x - center.x,
+            model.position.y - box.min.y,
+            model.position.z - center.z
+          );
 
-          // Ombres
+          // Masquer uniquement les colliders UCX_ (invisibles dans Unreal)
+          // et le WorldGridMaterial (grille d'edition Unreal)
           model.traverse(function(child) {
             if (child.isMesh) {
-              child.castShadow = true;
-              child.receiveShadow = true;
+              var name = child.name || '';
+              var matName = '';
+              if (child.material) {
+                if (Array.isArray(child.material)) {
+                  matName = child.material.map(function(m){ return m.name||''; }).join(' ');
+                } else {
+                  matName = child.material.name || '';
+                }
+              }
+              // Cacher les colliders UCX et les materiaux de grille Unreal
+              var hide = name.indexOf('UCX_') === 0 ||
+                         matName.indexOf('WorldGridMaterial') !== -1 ||
+                         matName.indexOf('DefaultMaterial') !== -1;
+              if (hide) {
+                child.visible = false;
+              } else {
+                child.castShadow = true;
+                child.receiveShadow = true;
+              }
             }
           });
 
           scene.add(model);
 
-          // Camera : tres proche, vue plongeante sur la map
-          box.setFromObject(model);
-          size = box.getSize(new THREE.Vector3());
-          // Rayon fixe = juste assez pour voir toute la map
-          var camDist = Math.max(size.x, size.z) * 0.75;
-          spherical.radius = camDist;
-          spherical.phi = 0.72;   // angle ~41deg - vue plongeante
-          spherical.theta = 0.6;
+          // Centre sur le Floor (terrain principal)
+          var floorBox = new THREE.Box3();
+          model.traverse(function(child) {
+            if (child.isMesh && child.visible) {
+              floorBox.expandByObject(child);
+            }
+          });
+          var fc = floorBox.getCenter(new THREE.Vector3());
+          var fs = floorBox.getSize(new THREE.Vector3());
+
+          modelCenter.copy(fc);
+          // Rayon calibre pour voir tout le jardin
+          spherical.radius = Math.max(fs.x, fs.z) * 0.85;
+          spherical.phi = 1.05;  // 60deg - vue isometrique
+          spherical.theta = 0.7;
           updateCamera();
+
+
+
 
           // Retire l'overlay
           container.removeChild(overlay);
@@ -3766,12 +3798,13 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
     var prevMouse = { x: 0, y: 0 };
     var spherical = { theta: 0.5, phi: 0.75, radius: 25 };
     var targetSpherical = { theta: 0.5, phi: 0.75, radius: 25 };
+    var modelCenter = new THREE.Vector3(0, 0, 0);
 
     function updateCamera() {
-      camera.position.x = spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
-      camera.position.y = spherical.radius * Math.cos(spherical.phi);
-      camera.position.z = spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
-      camera.lookAt(0, 0, 0);
+      camera.position.x = modelCenter.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+      camera.position.y = modelCenter.y + spherical.radius * Math.cos(spherical.phi);
+      camera.position.z = modelCenter.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+      camera.lookAt(modelCenter);
     }
     updateCamera();
 
@@ -3793,7 +3826,8 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
     });
     el.addEventListener('wheel', function(e) {
       e.preventDefault();
-      // Zoom desactive - rotation uniquement
+      spherical.radius = Math.max(3, Math.min(30, spherical.radius + e.deltaY * 0.03));
+      updateCamera();
     }, { passive: false });
     // Touch
     var lastTouch = null;
