@@ -9,7 +9,7 @@
 <meta name="description" content="Portfolio de Léo Lussan, Level Designer & Game Designer, étudiant en Bachelor Game Design à Brassart Toulouse."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -262,10 +262,24 @@ nav{
 .theme-priest  {--th-bg:#150008;--th-acc:#7c0010;--th-acc2:#ef4444;--th-glow:rgba(124,0,16,.25)}
 .theme-city    {--th-bg:#0a0a1e;--th-acc:#818cf8;--th-acc2:#a78bfa;--th-glow:rgba(129,140,248,.2)}
 .theme-tower   {--th-bg:#0e1a08;--th-acc:#65a30d;--th-acc2:#a3e635;--th-glow:rgba(101,163,13,.18)}
+/* Macondo pour les titres uniquement du modal Tower Defense */
+#pm-tower .proj-modal-title,
+#pm-tower .pm-section-title,
+#pm-tower .pm-label {
+  font-family:'Macondo',serif !important;
+  letter-spacing:.04em;
+}
 .theme-silence {--th-bg:#0d0d0d;--th-acc:#374151;--th-acc2:#9ca3af;--th-glow:rgba(55,65,81,.15)}
 .theme-mira    {--th-bg:#071a0e;--th-acc:#059669;--th-acc2:#34d399;--th-glow:rgba(5,150,105,.2)}
 .theme-draconium{--th-bg:#1a0a05;--th-acc:#c2400c;--th-acc2:#ff8c38;--th-glow:rgba(255,106,0,.25)}
 .theme-draconium{--th-bg:#1a0e00;--th-acc:#c2500a;--th-acc2:#ff8c38;--th-glow:rgba(194,80,10,.25)}
+/* Cinzel Decorative pour les titres uniquement du modal Draconium */
+#pm-draconium .proj-modal-title,
+#pm-draconium .pm-section-title,
+#pm-draconium .pm-label {
+  font-family:'Cinzel Decorative','Bebas Neue',serif !important;
+  letter-spacing:.04em;
+}
 .theme-stream  {--th-bg:#140e1e;--th-acc:#6441a5;--th-acc2:#9b72d0;--th-glow:rgba(100,65,165,.18)}
 .theme-musiques{--th-bg:#130e1e;--th-acc:#9b3fb5;--th-acc2:#d070f0;--th-glow:rgba(155,63,181,.18)}
 
@@ -312,6 +326,26 @@ nav{
   color:var(--white);
   background:rgba(10,10,11,.95);
 }
+/* Sélecteur de langue dans les modals */
+#modal-lang-bar{
+  position:fixed;
+  top:1.5rem;left:50%;transform:translateX(-50%);
+  z-index:300;
+  display:none;
+  align-items:center;gap:.2rem;
+  background:rgba(10,10,11,.9);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(200,169,110,.3);
+  padding:.25rem .5rem;
+}
+#modal-lang-bar button{
+  background:none;border:none;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:.58rem;
+  letter-spacing:.08em;color:#c8a96e;
+  padding:.2rem .35rem;transition:all .2s;
+}
+#modal-lang-bar button:hover{opacity:1 !important;}
+#modal-lang-bar .sep{color:rgba(200,169,110,.3);font-size:.7rem;}
 
 .proj-modal-tags{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:2rem}
 .proj-modal-tags .tag{font-size:.62rem;padding:.3rem .8rem}
@@ -608,7 +642,16 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
   <a href="#contact" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Contact</a>
 </div>
 
-<!-- HERO -->
+<!-- LANGUE SWITCHER DANS LES MODALS -->
+<div id="modal-lang-bar">
+  <button onclick="setLang('fr')" id="mlang-fr">FR</button>
+  <span class="sep">|</span>
+  <button onclick="setLang('en')" id="mlang-en">EN</button>
+  <span class="sep">|</span>
+  <button onclick="setLang('es')" id="mlang-es">ES</button>
+  <span class="sep">|</span>
+  <button onclick="setLang('de')" id="mlang-de">DE</button>
+</div>
 <section id="hero">
   <div class="hero-bg-text">LD</div>
   <div style="display:grid;grid-template-columns:1fr auto;align-items:start;gap:3rem;position:relative">
@@ -617,7 +660,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="hero-tag fade-in" data-i18n="hero_tag">//&nbsp;Level Designer · Game Designer · Brassart Toulouse</div>
       <h1 class="hero-name fade-in">LÉO<br/><span class="red">LUSSAN</span></h1>
       <p class="hero-role fade-in" data-i18n="hero_role">Level Design · Game Design · Unity · Unreal Engine</p>
-      <p class="hero-desc fade-in" data-i18n="hero_desc">Passionné par le level design depuis 2016, je conçois des niveaux comme on dessine des plans — avec rigueur, intention narrative et ambition créative constante.</p>
+      <p class="hero-desc fade-in" data-i18n="hero_desc" id="hero-desc">Passionné par le level design depuis 2016, je conçois des niveaux comme on dessine des plans — avec rigueur, intention narrative et ambition créative constante.</p>
       <div class="hero-stats fade-in" style="position:relative;bottom:auto;left:auto;margin-top:3rem">
         <div class="stat"><div class="stat-num">3</div><div class="stat-label" data-i18n="stat_brassart">Ans à Brassart</div></div>
         <div class="stat"><div class="stat-num">6<span class="red">+</span></div><div class="stat-label" data-i18n="stat_projects">Projets réalisés</div></div>
@@ -694,10 +737,10 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
   <h2 class="section-title fade-in" data-i18n="title_about">À PROPOS</h2>
   <div class="about-grid">
     <div class="about-text fade-in">
-      <p>Je m'appelle Léo Lussan, je suis étudiant à l'école <a href="https://www.brassart.fr/formations/bachelor-formation-animation-jeux-video-game-design" target="_blank" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">Brassart</a> à Toulouse en 3ème année de Bachelor Game Design.</p>
-      <p>J'ai pour la toute première fois en 2016 découvert les jeux vidéos sur le PC portable de mes parents, j'y ai découvert différents univers et différents gameplay comme du <a href="https://www.leagueoflegends.com/fr-fr/" target="_blank" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">League of Legends</a> ou du <a href="https://www.minecraft.net/fr-fr" target="_blank" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">Minecraft</a>. J'ai très rapidement accroché sur les mécaniques de League of Legends avec sa compétition et son lore, pour Minecraft ce qui m'a plu le plus, c'était de créer des Builds ou des <a href="https://minecraft.fr/categorie/maps/map-parkour/" target="_blank" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">Jumps</a> (parcours).</p>
-      <p>J'ai adoré créer des niveaux, explorer les univers et surtout faire des recherches sur leurs environnements. Je suis donc passionné de jeux vidéos et surtout de Level Design, j'ai aussi pour passion la musique, je joue du piano et de la trompette et j'aime bien intégrer mes créations ou morceaux préférés dans mes créations.</p>
-      <p>Cet espace vous permettra de découvrir certains de mes projets.</p>
+      <p id="about-p1">Je m'appelle Léo Lussan, je suis étudiant à l'école <a href="https://www.brassart.fr/formations/bachelor-formation-animation-jeux-video-game-design" target="_blank" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">Brassart</a> à Toulouse en 3ème année de Bachelor Game Design.</p>
+      <p id="about-p2">J'ai pour la toute première fois en 2016 découvert les jeux vidéos sur le PC portable de mes parents, j'y ai découvert différents univers et différents gameplay comme du <a href="https://www.leagueoflegends.com/fr-fr/" target="_blank" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">League of Legends</a> ou du <a href="https://www.minecraft.net/fr-fr" target="_blank" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">Minecraft</a>. J'ai très rapidement accroché sur les mécaniques de League of Legends avec sa compétition et son lore, pour Minecraft ce qui m'a plu le plus, c'était de créer des Builds ou des <a href="https://minecraft.fr/categorie/maps/map-parkour/" target="_blank" style="color:var(--red);text-decoration:underline;text-underline-offset:3px">Jumps</a> (parcours).</p>
+      <p id="about-p3">J'ai adoré créer des niveaux, explorer les univers et surtout faire des recherches sur leurs environnements. Je suis donc passionné de jeux vidéos et surtout de Level Design, j'ai aussi pour passion la musique, je joue du piano et de la trompette et j'aime bien intégrer mes créations ou morceaux préférés dans mes créations.</p>
+      <p id="about-p4">Cet espace vous permettra de découvrir certains de mes projets.</p>
     </div>
     <div class="fade-in">
       <div class="info-row"><span class="info-key">Formation</span><span class="info-val">Bachelor Game Design, Brassart Toulouse</span></div>
@@ -717,9 +760,9 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 <section id="competences">
   <div class="section-num fade-in"><span data-i18n="label_skills">// 002 — Outils & Moteurs</span></div>
   <h2 class="section-title fade-in" data-i18n="title_skills">COMPÉTENCES</h2>
-  <p class="fade-in" style="font-family:var(--font-mono);font-size:.65rem;color:var(--grey);letter-spacing:.1em;margin-top:-2.5rem;margin-bottom:2.5rem">Cliquez sur une compétence pour voir les projets associés →</p>
+  <p class="fade-in" style="font-family:var(--font-mono);font-size:.65rem;color:var(--grey);letter-spacing:.1em;margin-top:-2.5rem;margin-bottom:2.5rem" id="skills-hint">Cliquez sur une compétence pour voir les projets associés →</p>
 
-  <div class="skills-category-label fade-in">Moteurs de jeu</div>
+  <div class="skills-category-label fade-in" id="sk-cat-engines">Moteurs de jeu</div>
   <div class="skills-grid fade-in">
     <div class="skill-card" onclick="openSkill('unity')"><div class="skill-icon">🎮</div><div class="skill-name">Unity</div><div class="skill-desc">Moteur C# — Conception HUD, scripting, level design</div><div class="skill-arrow">→ Voir les projets</div></div>
     <div class="skill-card" onclick="openSkill('unreal')"><div class="skill-icon">🏔</div><div class="skill-name">Unreal Engine</div><div class="skill-desc">Level design cube grid — Nodale, HUD, blueprints</div><div class="skill-arrow">→ Voir les projets</div></div>
@@ -858,7 +901,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
     </div>
   </div>
 
-  <div class="proj-cat-label fade-in" data-i18n="cat_personal" style="margin-top:4rem">Projets personnels</div>
+  <div class="proj-cat-label fade-in" id="cat-school-label" data-i18n="cat_personal" style="margin-top:4rem">Projets personnels</div>
   <div>
     <div class="project-row fade-in" onclick="openProj('draconium')">
       <div class="project-num">06</div>
@@ -895,19 +938,19 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
   <div class="proj-modal-backdrop" onclick="closeProj('unjudged')"></div>
   <div class="proj-modal">
     <div class="proj-modal-hero" style="background:linear-gradient(160deg,rgba(6,13,10,.98) 0%,rgba(10,30,18,.95) 100%);overflow:hidden">
-      <div class="proj-modal-num">// 01 — Projet d'école · 3ème Année · En cours</div>
+      <div class="proj-modal-num" id="pm-num-unjudged">// 01 — Projet d'école · 3ème Année · En cours</div>
       <div class="proj-modal-title">UN<span>JUDGED</span></div>
       <button class="proj-modal-close" onclick="closeProj('unjudged')">✕ Fermer</button>
       <div class="proj-modal-tags"><span class="tag accent">En cours</span><span class="tag">Level Design</span><span class="tag">Narrative</span><span class="tag">Unreal Engine</span><span class="tag">Miro</span><span class="tag">Inky</span><span class="tag">Git</span></div>
     </div>
     <div class="proj-modal-body">
-      <p>Un jeu narratif où vous incarnez un juge dans une cour d'assises futuriste. Chaque décision affecte le destin des accusés. L'ambiance oscille entre le judiciaire oppressant et des espaces ouverts, <strong>presque paradisiaques</strong> — un contraste voulu entre la rigueur de la justice et la liberté de conscience. La lumière, les jardins suspendus et les espaces ouverts contrastent avec la froideur du tribunal.</p>
-      <div class="pm-label">Galerie du projet</div>
+      <p id="proj-unjudged-p1">Un jeu narratif où vous incarnez un juge dans une cour d'assises futuriste. Chaque décision affecte le destin des accusés. L'ambiance oscille entre le judiciaire oppressant et des espaces ouverts, <strong>presque paradisiaques</strong> — un contraste voulu entre la rigueur de la justice et la liberté de conscience. La lumière, les jardins suspendus et les espaces ouverts contrastent avec la froideur du tribunal.</p>
+      <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-unjudged"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🌿</div><div class="carousel-placeholder-text">Espaces paradisiaques — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🏛️</div><div class="carousel-placeholder-text">Le tribunal futuriste — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🗺️</div><div class="carousel-placeholder-text">Plan du niveau — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-unjudged"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('unjudged',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('unjudged',1)">Suiv →</button></div></div></div>
       <div class="pm-label">Visualisation 3D isométrique</div>
       <div class="iso-map-container"><canvas id="iso-unjudged" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Tribunal Futuriste</div><div class="iso-map-badge">Placeholder</div></div>
-      <div class="pm-section-title">Conception du niveau</div>
-      <p>Le tribunal futuriste est pensé comme un espace d'impact émotionnel maximal. <strong>Chaque salle, chaque colonne, chaque lumière</strong> crée une ambiance qui affecte le joueur subconscieusement. L'architecture influence les décisions : une salle oppressante favorise les jugements sévères, tandis qu'un espace lumineux encourage la clémence. C'est du <strong>level design narratif à l'état pur</strong>.</p>
+      <div class="pm-section-title" id="tw-unjudged-title">Conception du niveau</div>
+      <p id="proj-unjudged-p2">Le tribunal futuriste est pensé comme un espace d'impact émotionnel maximal. <strong>Chaque salle, chaque colonne, chaque lumière</strong> crée une ambiance qui affecte le joueur subconscieusement. L'architecture influence les décisions : une salle oppressante favorise les jugements sévères, tandis qu'un espace lumineux encourage la clémence. C'est du <strong>level design narratif à l'état pur</strong>.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine</div>
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
@@ -925,13 +968,13 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
   <div class="proj-modal-backdrop" onclick="closeProj('priest')"></div>
   <div class="proj-modal">
     <div class="proj-modal-hero" style="background:linear-gradient(160deg,rgba(10,0,6,.99) 0%,rgba(20,0,8,.96) 100%);overflow:hidden">
-      <div class="proj-modal-num">// 02 — Projet d'école · 2ème Année</div>
+      <div class="proj-modal-num" id="pm-num-priest">// 02 — Projet d'école · 2ème Année</div>
       <div class="proj-modal-title">DEVOURING<br/><span>PRIEST</span></div>
       <button class="proj-modal-close" onclick="closeProj('priest')">✕ Fermer</button>
       <div class="proj-modal-tags"><span class="tag">Level Design</span><span class="tag">Horreur</span><span class="tag">Course / Pression</span><span class="tag">Unreal Engine</span><span class="tag">Miro</span><span class="tag">SVN</span></div>
     </div>
     <div class="proj-modal-body">
-      <p>Devouring Priest est un jeu de course et de survie sous pression, avec une ambiance horreur dark fantasy sur thème religieux corrompu. <strong>Quelque chose vous poursuit.</strong> Chaque couloir est conçu pour amplifier la tension — le rythme cardiaque du joueur monte à mesure qu'il avance. Le level design est pensé pour la <strong>pression psychologique constante</strong>.</p>
+      <p id="proj-priest-p1">Devouring Priest est un jeu de course et de survie sous pression, avec une ambiance horreur dark fantasy sur thème religieux corrompu. <strong>Quelque chose vous poursuit.</strong> Chaque couloir est conçu pour amplifier la tension — le rythme cardiaque du joueur monte à mesure qu'il avance. Le level design est pensé pour la <strong>pression psychologique constante</strong>.</p>
       <div class="pm-label">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-priest"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">⛪</div><div class="carousel-placeholder-text">L'église en ruines — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🩸</div><div class="carousel-placeholder-text">Atmosphère horreur — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🗺️</div><div class="carousel-placeholder-text">Plan du niveau — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-priest"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('priest',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('priest',1)">Suiv →</button></div></div></div>
       <div class="pm-label">Visualisation 3D isométrique</div>
@@ -953,19 +996,19 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
   <div class="proj-modal-backdrop" onclick="closeProj('city')"></div>
   <div class="proj-modal">
     <div class="proj-modal-hero" style="background:linear-gradient(160deg,rgba(4,4,15,.99) 0%,rgba(8,8,30,.96) 100%);overflow:hidden">
-      <div class="proj-modal-num">// 03 — Projet d'école · 2ème Année</div>
+      <div class="proj-modal-num" id="pm-num-city">// 03 — Projet d'école · 2ème Année</div>
       <div class="proj-modal-title">CITY<br/><span>RIDER</span></div>
       <button class="proj-modal-close" onclick="closeProj('city')">✕ Fermer</button>
       <div class="proj-modal-tags"><span class="tag">Urban Design</span><span class="tag">Néon</span><span class="tag">Vitesse</span><span class="tag">Unity</span><span class="tag">LDtk</span><span class="tag">Miro</span></div>
     </div>
     <div class="proj-modal-body">
-      <p>City Rider est un jeu de course urbaine dans un environnement <strong>néon, vitesse et électrique</strong>. La ville est pensée comme un terrain de jeu rapide, fluide et lisible à haute vitesse. Chaque quartier a son propre rythme visuel, ses propres néons et sa propre densité — le level design est au service de la <strong>sensation de course</strong>.</p>
+      <p id="proj-city-p1">City Rider est un jeu de course urbaine dans un environnement <strong>néon, vitesse et électrique</strong>. La ville est pensée comme un terrain de jeu rapide, fluide et lisible à haute vitesse. Chaque quartier a son propre rythme visuel, ses propres néons et sa propre densité — le level design est au service de la <strong>sensation de course</strong>.</p>
       <div class="pm-label">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-city"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🏙️</div><div class="carousel-placeholder-text">Vue d'ensemble — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">⚡</div><div class="carousel-placeholder-text">Environnement néon — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🛣️</div><div class="carousel-placeholder-text">Réseau de routes — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-city"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('city',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('city',1)">Suiv →</button></div></div></div>
       <div class="pm-label">Visualisation 3D isométrique</div>
       <div class="iso-map-container"><canvas id="iso-city" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Carte urbaine</div><div class="iso-map-badge">Placeholder</div></div>
-      <div class="pm-section-title">Conception urbaine interactive</div>
-      <p>Routes stratégiquement placées, points d'intérêt bien positionnés, flux de trafic naturels. La lisibilité à grande vitesse est la contrainte principale : <strong>chaque virage, chaque carrefour doit être lisible en moins d'une seconde</strong>. L'espace urbain comme circuit de jeu.</p>
+      <div class="pm-section-title" id="tw-city-title">Conception urbaine interactive</div>
+      <p id="proj-city-p2">Routes stratégiquement placées, points d'intérêt bien positionnés, flux de trafic naturels. La lisibilité à grande vitesse est la contrainte principale : <strong>chaque virage, chaque carrefour doit être lisible en moins d'une seconde</strong>. L'espace urbain comme circuit de jeu.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unity</div>
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗂 LDtk</div>
@@ -981,7 +1024,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
   <div class="proj-modal-backdrop" onclick="closeProj('tower')"></div>
   <div class="proj-modal">
     <div class="proj-modal-hero" style="background:linear-gradient(160deg,rgba(6,10,4,.99) 0%,rgba(12,20,6,.96) 100%);overflow:hidden">
-      <div class="proj-modal-num">// 04 — Projet d'école · 1ère Année</div>
+      <div class="proj-modal-num" id="pm-num-tower">// 04 — Projet d'école · 1ère Année</div>
       <div class="proj-modal-title">TOWER<br/><span>DEFENSE</span></div>
       <button class="proj-modal-close" onclick="closeProj('tower')">✕ Fermer</button>
       <div class="proj-modal-tags"><span class="tag">Tower Defense</span><span class="tag">Jardin</span><span class="tag">LDtk</span><span class="tag">Hack'n'Plan</span><span class="tag">Map Design</span></div>
@@ -1124,11 +1167,159 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <div class="iso-map-label">Map 3D interactive · Panique Végétale</div>
         <div style="position:absolute;top:.6rem;right:.8rem;font-family:var(--font-mono);font-size:.52rem;color:rgba(163,230,53,.7);letter-spacing:.1em">⟳ Tourner · Scroll zoom</div>
       </div>
-      <div class="pm-section-title">Design des terrains de bataille</div>
-      <p>Chaque map est <strong>un puzzle de placement tactique</strong>. Les chemins ennemis sont pensés pour créer des dilemmes de stratégie dans un environnement bucolique et coloré. L'équilibrage est crucial — ni trop facile, ni impossible. Le contraste entre l'esthétique douce du jardin et la rigueur stratégique est au cœur du jeu.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗂 LDtk</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📋 Hack'n'Plan</div>
+
+      <!-- LORE -->
+      <div class="pm-section-title" id="tw-lore-title">Le Lore</div>
+      <p id="tw-lore-p1">Dans un monde magique où la météo règne, les gnomes étaient autrefois les gardiens des jardins enchantés. Mais un jour, un groupe de gnomes lassés d'obéir aux plantes décidèrent de devenir des envahisseurs — leur but : conquérir tous les jardins et prendre le pouvoir sur le monde magique.</p>
+      <p id="tw-lore-p2">Ils envahirent le jardin de la <strong>déesse du climat</strong>, où chardons, lotus et roseaux fleurissaient. Furieuse, la déesse appela ses plantes pour défendre son jardin. La bataille fit rage des jours durant — les plantes repoussèrent l'armée de gnomes, mais le sort final resta inconnu. <strong>Et vous, quel destin réservez-vous à ce monde ?</strong></p>
+
+      <!-- MECANIQUES -->
+      <div class="pm-section-title" id="tw-mec-title">Mécaniques de jeu</div>
+      <div class="pm-label" id="tw-base-label">Base Tower Defense</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Cheminement d'ennemis paramétrable</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">5 vagues par niveau</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Visibilité argent / dépenses du joueur</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Gestion des waves en temps réel</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Défendre un objectif central</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Upgrade des défenses · Vue de dessus</div>
+      </div>
+
+      <div class="pm-label" id="tw-orig-label">Mécaniques originales</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">↯</span> Modifier les chemins en cours de partie</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">☁</span> Météorologie qui affecte les ennemis</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">⚔</span> 5 mobs différents · 4 bâtiments défensifs</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">👁</span> Affichage des vagues à venir</div>
+      </div>
+
+      <!-- ENNEMIS -->
+      <div class="pm-section-title" id="tw-enemies-title">Les Ennemis</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(163,230,53,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.5rem">GNOME D'EAU</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Petit · Rapide · Peu de HP<br/>Ennemi terrestre standard</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(163,230,53,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.5rem">GNOME DE BOUE</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Stats équilibrées<br/>Tout moyen — polyvalent</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(163,230,53,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.5rem">GNOME MÉTALLEUX</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Gros · Lent · Mega tank<br/>Résistant aux dégâts</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(163,230,53,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.5rem">GNOME AVIATEUR</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Ennemi aérien<br/>Touchable : Caserne lv2, Tour archer, Baliste AA</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(255,191,36,.2);background:rgba(255,191,36,.04)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#fbbf24;letter-spacing:.15em;margin-bottom:.5rem">BOSS</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Fort partout · Résistant à certains éléments<br/>Apparaît tous les X niveaux / vagues</div>
+        </div>
+      </div>
+
+      <!-- BATIMENTS -->
+      <div class="pm-section-title" id="tw-build-title">Bâtiments défensifs</div>
+      <div style="overflow-x:auto;margin-bottom:1.5rem">
+        <table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:.65rem">
+          <thead>
+            <tr style="background:rgba(163,230,53,.1);color:#a3e635">
+              <th style="padding:.6rem 1rem;text-align:left;border:1px solid rgba(163,230,53,.15)">Bâtiment</th>
+              <th style="padding:.6rem 1rem;text-align:left;border:1px solid rgba(163,230,53,.15)">Type</th>
+              <th style="padding:.6rem 1rem;text-align:left;border:1px solid rgba(163,230,53,.15)">Amél. 1</th>
+              <th style="padding:.6rem 1rem;text-align:left;border:1px solid rgba(163,230,53,.15)">Amél. 2</th>
+              <th style="padding:.6rem 1rem;text-align:left;border:1px solid rgba(163,230,53,.15)">Amél. 3 (coût)</th>
+            </tr>
+          </thead>
+          <tbody style="color:#d0c8bf">
+            <tr>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05);color:#a3e635;font-weight:bold">Tour d'archer</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">Longue distance</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">+DMG +VA (150)</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">+DMG (350)</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">+DMG orage / +VA vent (800)</td>
+            </tr>
+            <tr style="background:rgba(255,255,255,.02)">
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05);color:#a3e635;font-weight:bold">Canon</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">Longue distance</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">+DMG +VA (350)</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">+DMG (550)</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">+DMG pluie / +VA orage (1000)</td>
+            </tr>
+            <tr>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05);color:#a3e635;font-weight:bold">Mortier</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">Zone</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">+DMG zone (450)</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">2 balles (650)</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">+tirs vent / +DMG pluie (1100)</td>
+            </tr>
+            <tr style="background:rgba(255,255,255,.02)">
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05);color:#a3e635;font-weight:bold">Baliste</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">Anti-aérien</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">Tir rafale x3 (600)</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">Rafale x6 +DMG (900)</td>
+              <td style="padding:.6rem 1rem;border:1px solid rgba(255,255,255,.05)">Attaque terrestre si Soleil / +portée vent (1300)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- METEO -->
+      <div class="pm-section-title" id="tw-weather-title">Système Météo</div>
+      <p id="tw-weather-p" style="margin-bottom:1rem">La météo est <strong>limitée à une utilisation toutes les deux vagues</strong>. Elle influence directement les stats des ennemis et des bâtiments.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(100,180,255,.2);background:rgba(100,180,255,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#67e8f9;letter-spacing:.15em;margin-bottom:.4rem">🌧 PLUIE</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">+20 dégâts sur les ennemis touchés</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(180,100,255,.2);background:rgba(180,100,255,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#c084fc;letter-spacing:.15em;margin-bottom:.4rem">⚡ ORAGE</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">La foudre paralyse les ennemis sur une durée définie</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(200,230,180,.2);background:rgba(200,230,180,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#bbf7d0;letter-spacing:.15em;margin-bottom:.4rem">💨 VENT</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Ralentit toutes sortes de monstres</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(255,220,100,.2);background:rgba(255,220,100,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#fde68a;letter-spacing:.15em;margin-bottom:.4rem">☀ SOLEIL</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Dégâts sur la durée sur toutes les unités</div>
+        </div>
+      </div>
+
+      <!-- ECONOMIE -->
+      <div class="pm-section-title" id="tw-eco-title">Économie</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:2rem">
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">💰 Argent par vague terminée</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏗 Prix des bâtiments</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">⬆ Prix des améliorations par branche</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">☁ Prix du contrôle météorologique</div>
+        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);grid-column:span 2">🛤 Prix des déplacements de chemin</div>
+      </div>
+
+      <!-- EQUIPE -->
+      <div class="pm-section-title" id="tw-team-title">Équipe & Répartition</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
+        <div style="padding:1.2rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.04)">
+          <div style="font-family:var(--font-title);font-size:1.1rem;color:#a3e635;margin-bottom:.6rem">LÉO LUSSAN</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:2">GDD<br/>Level Design<br/>Design des tourelles<br/>Caméra<br/>Slots tourelles<br/>HUD<br/>Système de monnaie</div>
+        </div>
+        <div style="padding:1.2rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.02)">
+          <div style="font-family:var(--font-title);font-size:1.1rem;color:#a3e635;margin-bottom:.6rem">HUGO PLOUZEAU</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:2">GDD<br/>IA & Navigation des IA<br/>Nodes tourelles<br/>Types d'ennemis<br/>Zoom caméra<br/>Météo</div>
+        </div>
+        <div style="padding:1.2rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.02)">
+          <div style="font-family:var(--font-title);font-size:1.1rem;color:#a3e635;margin-bottom:.6rem">BASTIEN LAMBERT</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:2">HUD<br/>Barre de vie<br/>Diaporama<br/>Répartition des tâches<br/>Expérimentations<br/>Gestion des vagues</div>
+        </div>
+      </div>
+
+      <!-- OUTILS -->
+      <div class="pm-label" id="tw-tools-label">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗂 LDtk — Level Design</div>
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📋 Hack'n'Plan — Gestion de projet</div>
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unreal Engine — Développement</div>
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📊 Google Sheets — Tableaux stats</div>
       </div>
     </div>
   </div>
@@ -1145,10 +1336,10 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-tags"><span class="tag">Horreur</span><span class="tag">Exploration</span><span class="tag">Son & Ambiance</span><span class="tag">Unity</span><span class="tag">Inky</span><span class="tag">Twine</span></div>
     </div>
     <div class="proj-modal-body">
-      <p><strong>The Silence</strong> est un jeu vidéo narratif d'horreur atmosphérique basé sur le son et l'exploration. L'absence de son est aussi terrifiante que sa présence. Chaque environnement est conçu pour créer un ressenti particulier — <strong>une tension qui monte sans jamais éclater</strong>. Le joueur explore seul, guidé uniquement par l'ambiance sonore et visuelle.</p>
+      <p id="proj-silence-p1"><strong>The Silence</strong> est un jeu vidéo narratif d'horreur atmosphérique basé sur le son et l'exploration. L'absence de son est aussi terrifiante que sa présence. Chaque environnement est conçu pour créer un ressenti particulier — <strong>une tension qui monte sans jamais éclater</strong>. Le joueur explore seul, guidé uniquement par l'ambiance sonore et visuelle.</p>
       <div class="pm-label">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-silence"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🌫️</div><div class="carousel-placeholder-text">Environnement principal — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🎧</div><div class="carousel-placeholder-text">Design sonore — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-silence"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('silence',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('silence',1)">Suiv →</button></div></div></div>
-      <p style="margin-top:1.5rem">Une expérience où le son (ou son absence) guide autant que le visuel. Le joueur est immergé dans une atmosphère qui parle d'elle-même. <strong>L'exploration est la mécanique centrale</strong> — il n'y a pas de carte, pas d'objectif affiché. Juste le silence, et ce qu'il cache.</p>
+      <p id="proj-silence-p2" style="margin-top:1.5rem">Une expérience où le son (ou son absence) guide autant que le visuel. Le joueur est immergé dans une atmosphère qui parle d'elle-même. <strong>L'exploration est la mécanique centrale</strong> — il n'y a pas de carte, pas d'objectif affiché. Juste le silence, et ce qu'il cache.</p>
       <a class="modal-link" href="https://docs.google.com/presentation/d/1y-RETF-h7BlPfYaFQRp0vxRHhGXSxbmkYq4S0671T8E/present" target="_blank">📊 Présentation détaillée</a>
       <a class="modal-link" href="https://yuseless.itch.io/the-silence" target="_blank">🎮 Jouer sur itch.io</a>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
@@ -1174,19 +1365,19 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
     <div class="proj-modal-body">
       <img src="https://mollymo31.github.io/Portfolio_Leo_Lussan/images/mira-01.jpg" alt="Hub principal Mira" style="width:100%;height:300px;object-fit:cover;margin-bottom:2rem;border:1px solid rgba(255,255,255,.06)"/>
 
-      <div class="pm-section-title">Introduction</div>
-      <p>Projet Mira est un projet collaboratif réalisé avec des amis travaillant chez Epitech. L'objectif est de créer un serveur entièrement personnalisé, aussi bien sur le plan technique que créatif.</p>
-      <p>De mon côté, ce projet me permet avant tout de développer mes compétences en level design, en imaginant et en construisant des environnements pensés pour le gameplay, l'immersion et l'expérience joueur. C'est un espace de création libre dans lequel je peux tester, expérimenter et concrétiser des concepts.</p>
+      <div class="pm-section-title" id="proj-mira-title1">Introduction</div>
+      <p id="proj-mira-p1">Projet Mira est un projet collaboratif réalisé avec des amis travaillant chez Epitech. L'objectif est de créer un serveur entièrement personnalisé, aussi bien sur le plan technique que créatif.</p>
+      <p id="proj-mira-p2">De mon côté, ce projet me permet avant tout de développer mes compétences en level design, en imaginant et en construisant des environnements pensés pour le gameplay, l'immersion et l'expérience joueur. C'est un espace de création libre dans lequel je peux tester, expérimenter et concrétiser des concepts.</p>
 
-      <div class="pm-section-title">Une de nos constructions</div>
-      <p>Nous avons passé environ 4 mois à réaliser ce projet avec des jours off car je me suis consacré à mes études en parallèle. J'avais 16 ans lorsque nous avons réalisé ce projet avec notre équipe constituée par ailleurs d'étudiants en programmation d'Epitech, âgés de 19 ans et plus.</p>
+      <div class="pm-section-title" id="proj-mira-title2">Une de nos constructions</div>
+      <p id="proj-mira-p3">Nous avons passé environ 4 mois à réaliser ce projet avec des jours off car je me suis consacré à mes études en parallèle. J'avais 16 ans lorsque nous avons réalisé ce projet avec notre équipe constituée par ailleurs d'étudiants en programmation d'Epitech, âgés de 19 ans et plus.</p>
 
       <div class="pm-section-title">Une partie du lobby</div>
       <p>Pour ce projet, nous étions 3 "Builders". Il y a <strong>32 références à différents jeux vidéos</strong> dans ce lobby — arriverez-vous à les retrouver ?</p>
       <img src="https://mollymo31.github.io/Portfolio_Leo_Lussan/images/mira-02.jpg" alt="Builds Mira" style="width:100%;height:280px;object-fit:cover;margin:1.5rem 0;border:1px solid rgba(255,255,255,.06)"/>
 
-      <div class="pm-section-title">Mon rôle — Level Designer / Builder</div>
-      <p>Sur le Projet Mira, j'interviens principalement en tant que Level Designer et Builder. Je suis en charge de la conception et de la réalisation des environnements du serveur, en lien direct avec les besoins du gameplay et les idées de l'équipe. Ce rôle me permet de travailler à la fois sur l'aspect artistique et sur la manière dont les joueurs vont évoluer et interagir dans les espaces.</p>
+      <div class="pm-section-title" id="proj-mira-title3">Mon rôle — Level Designer / Builder</div>
+      <p id='proj-mira-p4'>Sur le Projet Mira, j'interviens principalement en tant que Level Designer et Builder. Je suis en charge de la conception et de la réalisation des environnements du serveur, en lien direct avec les besoins du gameplay et les idées de l'équipe. Ce rôle me permet de travailler à la fois sur l'aspect artistique et sur la manière dont les joueurs vont évoluer et interagir dans les espaces.</p>
       <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);margin-top:1rem">Mes missions principales :</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-top:.6rem">
         <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Conception de maps et zones de jeu</div>
@@ -1257,11 +1448,11 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🗺️</div><div class="carousel-placeholder-text">Level design — à venir</div></div></div>
       </div><div class="car-controls"><div class="carousel-dots" id="cd-draconium"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('draconium',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('draconium',1)">Suiv →</button></div></div></div>
 
-      <div class="pm-section-title">Le Lore</div>
-      <p>Dans un royaume médiéval imprégné de magie, un <strong>alchimiste sans scrupules</strong> cherche à percer les secrets du dragon — la créature la plus puissante du monde. Il s'empare de tes parents, des dragons anciens, et te capture toi aussi. Tu te retrouves prisonnier de son laboratoire souterrain, transformé en <strong>cobaye malgré toi</strong>.</p>
-      <p>Tout au long de l'aventure, l'alchimiste t'injectera des substances, te plongera dans des épreuves et observera tes réactions. Mais il a oublié une chose : <strong>les dragons apprennent vite</strong>. Chaque expérience te rend plus fort. Chaque monstre affronté était autrefois une de ses créations ratées — des dragons corrompus, des chimères, des créatures hybrides nées de ses expériences.</p>
+      <div class="pm-section-title" id="proj-draco-title-lore">Le Lore</div>
+      <p id="proj-draco-p2">Dans un royaume médiéval imprégné de magie, un <strong>alchimiste sans scrupules</strong> cherche à percer les secrets du dragon — la créature la plus puissante du monde. Il s'empare de tes parents, des dragons anciens, et te capture toi aussi. Tu te retrouves prisonnier de son laboratoire souterrain, transformé en <strong>cobaye malgré toi</strong>.</p>
+      <p id='proj-draco-p3'>Tout au long de l'aventure, l'alchimiste t'injectera des substances, te plongera dans des épreuves et observera tes réactions. Mais il a oublié une chose : <strong>les dragons apprennent vite</strong>. Chaque expérience te rend plus fort. Chaque monstre affronté était autrefois une de ses créations ratées — des dragons corrompus, des chimères, des créatures hybrides nées de ses expériences.</p>
 
-      <div class="pm-section-title">Gameplay</div>
+      <div class="pm-section-title" id="proj-draco-title-gameplay">Gameplay</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">🔥 Cracher des flammes — attaque principale</div>
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">🐉 Évolution progressive au fil des niveaux</div>
@@ -1271,7 +1462,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">💀 Platformer exigeant — mort = recommencer</div>
       </div>
 
-      <div class="pm-section-title">Univers visuel</div>
+      <div class="pm-section-title" id="proj-draco-title-visual">Univers visuel</div>
       <p>L'esthétique mélange le <strong>pixel art medieval</strong> avec des touches alchimiques — flacons lumineux, runes gravées, donjons de pierre, forêts enchantées. Les flammes du dragon contrastent avec le vert acide des potions de l'alchimiste. Chaque zone a sa propre palette de couleurs et son atmosphère unique.</p>
       <div style="border-left:3px solid var(--th-acc2,#ff8c38);padding-left:1.2rem;margin-top:1.5rem">
         <p style="font-size:.88rem;color:var(--grey);font-style:italic">"Projet en cours de développement — concepts en phase de design. Les premières images arriveront prochainement."</p>
@@ -1291,16 +1482,16 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-tags"><span class="tag accent">Actif</span><span class="tag">E-Sport</span><span class="tag">Valorant</span><span class="tag">League of Legends</span><span class="tag">Dead by Daylight</span></div>
     </div>
     <div class="proj-modal-body">
-      <p>Suite logique de mon parcours compétitif. J'ai participé à plusieurs équipes e-sport avec des podiums en tournois. Ce que j'aime le plus : <strong>aider les autres à comprendre, progresser et prendre confiance.</strong></p>
+      <p id="proj-coaching-p1">Suite logique de mon parcours compétitif. J'ai participé à plusieurs équipes e-sport avec des podiums en tournois. Ce que j'aime le plus : <strong>aider les autres à comprendre, progresser et prendre confiance.</strong></p>
       <div class="pm-label">Photos</div>
       <div class="carousel"><div class="carousel-track" id="ct-coaching"><div class="carousel-slide"><img src="https://mollymo31.github.io/Portfolio_Leo_Lussan/images/coaching-01.jpg" alt="Coaching eSport" style="width:100%;height:280px;object-fit:cover"/></div><div class="carousel-slide"><img src="https://mollymo31.github.io/Portfolio_Leo_Lussan/images/coaching-02.jpg" alt="Coaching disponible" style="width:100%;height:280px;object-fit:cover"/></div><div class="carousel-slide"><img src="https://mollymo31.github.io/Portfolio_Leo_Lussan/images/coaching-03.jpg" alt="Tarifs coaching" style="width:100%;height:280px;object-fit:cover"/></div></div><div class="car-controls"><div class="carousel-dots" id="cd-coaching"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('coaching',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('coaching',1)">Suiv →</button></div></div></div>
-      <div class="pm-section-title">Jeux coachés</div>
+      <div class="pm-section-title" id="proj-coaching-title1">Jeux coachés</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2rem">
-        <div style="padding:1.2rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)"><div style="font-family:var(--font-title);font-size:1.2rem;color:var(--white);margin-bottom:.4rem">League of Legends</div><p style="font-size:.78rem;color:var(--grey);line-height:1.6">Macro, vision de jeu, objectifs, régularité et mental.</p></div>
+        <div style="padding:1.2rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)"><div style="font-family:var(--font-title);font-size:1.2rem;color:var(--white);margin-bottom:.4rem">League of Legends</div><p style="font-size:.78rem;color:var(--grey);line-height:1.6" id="proj-coaching-p2">Macro, vision de jeu, objectifs, régularité et mental.</p></div>
         <div style="padding:1.2rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)"><div style="font-family:var(--font-title);font-size:1.2rem;color:var(--white);margin-bottom:.4rem">Valorant</div><p style="font-size:.78rem;color:var(--grey);line-height:1.6">Positionnement, rounds, communication et discipline.</p></div>
-        <div style="padding:1.2rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)"><div style="font-family:var(--font-title);font-size:1.2rem;color:var(--white);margin-bottom:.4rem">Dead by Daylight</div><p style="font-size:.78rem;color:var(--grey);line-height:1.6">Loops, mind games, lecture de map et optimisation.</p></div>
+        <div style="padding:1.2rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)"><div style="font-family:var(--font-title);font-size:1.2rem;color:var(--white);margin-bottom:.4rem">Dead by Daylight</div><p style="font-size:.78rem;color:var(--grey);line-height:1.6" id="proj-coaching-p3">Loops, mind games, lecture de map et optimisation.</p></div>
       </div>
-      <div class="pm-section-title">Déroulé d'une séance</div>
+      <div class="pm-section-title" id="proj-coaching-title2">Déroulé d'une séance</div>
       <div class="mira-steps" style="margin-bottom:2rem">
         <div class="mira-step"><span class="step-num">→</span><span class="step-text">Analyse de parties (VOD ou live)</span></div>
         <div class="mira-step"><span class="step-num">→</span><span class="step-text">Discussion autour de tes habitudes de jeu</span></div>
@@ -1310,7 +1501,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       </div>
       <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
         <div style="background:var(--th-acc,#c4720a);padding:1.4rem 3rem"><div style="font-family:var(--font-title);font-size:3rem;color:#fff;line-height:1">15€</div><div style="font-family:var(--font-mono);font-size:.6rem;color:rgba(255,255,255,.7);letter-spacing:.15em;text-transform:uppercase">/ heure · Tarif accessible</div></div>
-        <p style="flex:1;font-size:.88rem;color:var(--grey-light);line-height:1.8">Séances ponctuelles ou suivi régulier selon tes objectifs. Un accompagnement sérieux, humain et sans jugement.</p>
+        <p style="flex:1;font-size:.88rem;color:var(--grey-light);line-height:1.8" id="proj-coaching-p4">Séances ponctuelles ou suivi régulier selon tes objectifs. Un accompagnement sérieux, humain et sans jugement.</p>
       </div>
       <a class="modal-link" href="mailto:leo.lussan@gmail.com" style="margin-top:1.5rem">→ Réserver une séance</a>
     </div>
@@ -1331,9 +1522,9 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
       <!-- Présentation générale -->
       <img src="https://mollymo31.github.io/Portfolio_Leo_Lussan/images/streaming-01.jpg" alt="Streaming Twitch" style="width:100%;height:260px;object-fit:cover;margin-bottom:1.8rem;border:1px solid rgba(255,255,255,.06)"/>
-      <p>Le streaming est pour moi bien plus qu'un simple moment de jeu en live. C'est un espace de partage, d'échange et de transmission, où je cherche à créer une ambiance à la fois conviviale, régulière et enrichissante.</p>
-      <p>Je stream de manière sérieuse et constante, avec l'envie de proposer un contenu qui me ressemble : du jeu compétitif lorsque je veux performer et transmettre mon expérience, mais aussi des moments plus chill et communautaires pour varier les ambiances.</p>
-      <p>Mon parcours en compétition à haut niveau sur plusieurs jeux m'a permis d'acquérir une vraie compréhension du gameplay, de la stratégie et de la prise de décision. Aujourd'hui, j'utilise le stream comme un moyen de partager ce savoir-faire, que ce soit en tant que joueur ou en tant que créateur.</p>
+      <p id="proj-streaming-p1">Le streaming est pour moi bien plus qu'un simple moment de jeu en live. C'est un espace de partage, d'échange et de transmission, où je cherche à créer une ambiance à la fois conviviale, régulière et enrichissante.</p>
+      <p id="proj-streaming-p2">Je stream de manière sérieuse et constante, avec l'envie de proposer un contenu qui me ressemble : du jeu compétitif lorsque je veux performer et transmettre mon expérience, mais aussi des moments plus chill et communautaires pour varier les ambiances.</p>
+      <p id="proj-streaming-p3">Mon parcours en compétition à haut niveau sur plusieurs jeux m'a permis d'acquérir une vraie compréhension du gameplay, de la stratégie et de la prise de décision. Aujourd'hui, j'utilise le stream comme un moyen de partager ce savoir-faire, que ce soit en tant que joueur ou en tant que créateur.</p>
 
       <!-- LEAGUE OF LEGENDS -->
       <div class="acc-item open">
@@ -1464,7 +1655,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-tags"><span class="tag">Production</span><span class="tag">Soundtrap</span><span class="tag">Ambiances</span><span class="tag">House</span><span class="tag">Piano</span><span class="tag">Trompette</span></div>
     </div>
     <div class="proj-modal-body">
-      <p>La musique fait partie de mon processus créatif. Produire des morceaux me permet d'explorer des <strong>ambiances, des émotions et des rythmes</strong> — des éléments essentiels dans la création d'univers immersifs.</p>
+      <p id="proj-musiques-p1">La musique fait partie de mon processus créatif. Produire des morceaux me permet d'explorer des <strong>ambiances, des émotions et des rythmes</strong> — des éléments essentiels dans la création d'univers immersifs.</p>
 
       <!-- CAROUSEL DE MUSIQUES -->
       <div class="pm-label">Sélection de morceaux</div>
@@ -1541,7 +1732,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       </div>
 
       <div class="pm-section-title" style="margin-top:2.5rem">Ma démarche musicale</div>
-      <p>La production musicale me permet d'aborder la création sous un autre angle. À travers ces morceaux, je m'attache à travailler la <strong>dimension sensible du son</strong>, en construisant des textures, des dynamiques et des espaces sonores qui participent pleinement à l'expérience joueur. Ce travail m'amène à réfléchir à la manière dont le son peut accompagner l'exploration et renforcer une atmosphère.</p>
+      <p id="proj-musiques-p2">La production musicale me permet d'aborder la création sous un autre angle. À travers ces morceaux, je m'attache à travailler la <strong>dimension sensible du son</strong>, en construisant des textures, des dynamiques et des espaces sonores qui participent pleinement à l'expérience joueur. Ce travail m'amène à réfléchir à la manière dont le son peut accompagner l'exploration et renforcer une atmosphère.</p>
     </div>
   </div>
 </div>
@@ -1556,14 +1747,14 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
     <!-- En-tête CV -->
     <div style="border:1px solid rgba(200,169,110,.2);background:rgba(230,48,48,.04);padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red)"></div>
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center">
-        <div style="width:100px;height:100px;border-radius:50%;overflow:hidden;border:2px solid var(--red);box-shadow:0 0 0 4px rgba(200,169,110,.1)">
-          <img src="https://mollymo31.github.io/Portfolio_Leo_Lussan/images/profil.jpg" alt="Léo Lussan" style="width:100%;height:100%;object-fit:cover;object-position:top"/>
-        </div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center">
         <div>
           <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem">Game Designer / Level Designer</div>
           <div style="font-family:var(--font-title);font-size:3.2rem;color:var(--white);line-height:1;margin-bottom:.6rem">LÉO LUSSAN</div>
-          <p style="font-size:.88rem;color:var(--grey-light);line-height:1.75;max-width:560px">Game Designer spécialisé en Level Design, avec expérience en gestion de projet et coordination d'équipes pluridisciplinaires. Approche centrée sur l'expérience joueur, l'itération et l'optimisation des mécaniques. Leadership naturel, communication claire et esprit d'équipe développé à travers des projets académiques et compétitifs.</p>
+          <p id="cv-desc" style="font-size:.88rem;color:var(--grey-light);line-height:1.75;max-width:560px">Game Designer spécialisé en Level Design, avec expérience en gestion de projet et coordination d'équipes pluridisciplinaires.</p>
+        </div>
+        <div style="width:100px;height:100px;border-radius:50%;overflow:hidden;border:2px solid var(--red);box-shadow:0 0 0 4px rgba(200,169,110,.1);flex-shrink:0">
+          <img src="https://mollymo31.github.io/Portfolio_Leo_Lussan/images/profil.jpg" alt="Léo Lussan" style="width:100%;height:100%;object-fit:cover;object-position:top"/>
         </div>
       </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
@@ -1733,7 +1924,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 <section id="contact" style="background:rgba(17,17,19,.55);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start">
   <div>
     <div class="section-num fade-in" data-i18n="label_contact">//&nbsp;006 — Contact</div>
-    <h2 class="section-title fade-in">TRAVAILLONS<br/>ENSEMBLE</h2>
+    <h2 class="section-title fade-in" id="contact-heading">TRAVAILLONS<br/>ENSEMBLE</h2>
     <p class="fade-in" style="color:var(--grey-light);font-size:.92rem;line-height:1.85;max-width:400px">Disponible pour des opportunités de stage, des collaborations créatives ou des échanges autour du game design et du level design.</p>
   </div>
   <div class="fade-in">
@@ -1751,11 +1942,11 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
   <div class="section-num fade-in">// Mentions légales</div>
   <h2 class="section-title fade-in" style="font-size:2.5rem">MENTIONS<br/>LÉGALES</h2>
   <div class="fade-in">
-    <h3>Éditeur</h3><p>Portfolio personnel de Léo Lussan, étudiant Bachelor Game Design, Brassart Toulouse.</p>
+    <h3>Éditeur</h3><p id="mentions-p1">Portfolio personnel de Léo Lussan, étudiant Bachelor Game Design, Brassart Toulouse.</p>
     <h3>Contact</h3><p>leo.lussan@gmail.com · LinkedIn : léo-lussan</p>
     <h3>Hébergement</h3><p>GitHub Pages — GitHub Inc., 88 Colin P. Kelly Jr Street, San Francisco, CA 94107, USA.</p>
-    <h3>Propriété intellectuelle</h3><p>Tout le contenu est la propriété de Léo Lussan sauf mention contraire. Reproduction interdite sans autorisation.</p>
-    <h3>Données personnelles</h3><p>Ce site ne collecte aucune donnée personnelle. Aucun cookie de suivi.</p>
+    <h3>Propriété intellectuelle</h3><p id="mentions-p2">Tout le contenu est la propriété de Léo Lussan sauf mention contraire. Reproduction interdite sans autorisation.</p>
+    <h3>Données personnelles</h3><p id="mentions-p3">Ce site ne collecte aucune donnée personnelle. Aucun cookie de suivi.</p>
   </div>
 </section>
 
@@ -1779,7 +1970,7 @@ var _LANGS = {
     hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
     hero_desc:'Passionn\u00E9 par le level design depuis 2016, je con\u00E7ois des niveaux comme on dessine des plans \u2014 avec rigueur, intention narrative et ambition cr\u00E9ative constante.',
     stat_brassart:'Ans \u00E0 Brassart', stat_projects:'Projets r\u00E9alis\u00E9s', stat_start:"D\u00E9but de l'aventure",
-    label_about:'// 001 \u2014 Profil', label_skills:'// 002 \u2014 Outils & Moteurs',
+    label_gallery:'Galerie du projet', label_about:'// 001 \u2014 Profil', label_skills:'// 002 \u2014 Outils & Moteurs',
     label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Curriculum Vitae',
     label_contact:'// 006 \u2014 Contact', label_personal:'// 004 \u2014 Projets personnels',
     title_about:'\u00C0 PROPOS', title_skills:'COMP\u00C9TENCES', title_projects:'PROJETS',
@@ -1798,7 +1989,7 @@ var _LANGS = {
     hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
     hero_desc:'Passionate about level design since 2016, I craft levels like blueprints \u2014 with precision, narrative intent and constant creative ambition.',
     stat_brassart:'Years at Brassart', stat_projects:'Projects done', stat_start:'Adventure start',
-    label_about:'// 001 \u2014 Profile', label_skills:'// 002 \u2014 Tools & Engines',
+    label_gallery:'Galerie du projet', label_about:'// 001 \u2014 Profile', label_skills:'// 002 \u2014 Tools & Engines',
     label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Resume',
     label_contact:'// 006 \u2014 Contact', label_personal:'// 004 \u2014 Personal projects',
     title_about:'ABOUT', title_skills:'SKILLS', title_projects:'PROJECTS',
@@ -1817,7 +2008,7 @@ var _LANGS = {
     hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
     hero_desc:'Apasionado por el dise\u00F1o de niveles desde 2016, creo niveles como se dibujan planos \u2014 con rigor, intenci\u00F3n narrativa y ambici\u00F3n creativa constante.',
     stat_brassart:'A\u00F1os en Brassart', stat_projects:'Proyectos', stat_start:'Inicio',
-    label_about:'// 001 \u2014 Perfil', label_skills:'// 002 \u2014 Herramientas',
+    label_gallery:'Galerie du projet', label_about:'// 001 \u2014 Perfil', label_skills:'// 002 \u2014 Herramientas',
     label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Curr\u00EDculum',
     label_contact:'// 006 \u2014 Contacto', label_personal:'// 004 \u2014 Proyectos personales',
     title_about:'SOBRE M\u00CD', title_skills:'HABILIDADES', title_projects:'PROYECTOS',
@@ -1836,7 +2027,7 @@ var _LANGS = {
     hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
     hero_desc:'Seit 2016 leidenschaftlich f\u00FCr Level Design \u2014 ich entwerfe Levels wie Baupl\u00E4ne: mit Pr\u00E4zision, narrativer Absicht und st\u00E4ndigem Ehrgeiz.',
     stat_brassart:'Jahre in Brassart', stat_projects:'Projekte', stat_start:'Beginn',
-    label_about:'// 001 \u2014 Profil', label_skills:'// 002 \u2014 Werkzeuge',
+    label_gallery:'Galerie du projet', label_about:'// 001 \u2014 Profil', label_skills:'// 002 \u2014 Werkzeuge',
     label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Lebenslauf',
     label_contact:'// 006 \u2014 Kontakt', label_personal:'// 004 \u2014 Eigene Projekte',
     title_about:'\u00DCBER MICH', title_skills:'F\u00C4HIGKEITEN', title_projects:'PROJEKTE',
@@ -1854,11 +2045,314 @@ var _currentLang = 'fr';
 function setLang(lang) {
   if (!_LANGS[lang]) return;
   _currentLang = lang;
+  try { localStorage.setItem('portfolio_lang', lang); } catch(e) {}
   var dict = _LANGS[lang];
   // Update all data-i18n elements
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
     if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  // Traductions du modal Tower Defense
+  var tw = {
+    fr: {
+      'tw-lore-title': 'Le Lore',
+      'tw-lore-p1': "Dans un monde magique o\u00f9 la m\u00e9t\u00e9o r\u00e8gne, les gnomes \u00e9taient autrefois les gardiens des jardins enchant\u00e9s. Mais un jour, un groupe de gnomes lass\u00e9s d\u2019ob\u00e9ir aux plantes d\u00e9cid\u00e8rent de devenir des envahisseurs \u2014 leur but\u00a0: conqu\u00e9rir tous les jardins et prendre le pouvoir sur le monde magique.",
+      'tw-lore-p2': "Ils envahirent le jardin de la <strong>d\u00e9esse du climat</strong>, o\u00f9 chardons, lotus et roseaux fleurissaient. F\u00e9rieuse, la d\u00e9esse appela ses plantes pour d\u00e9fendre son jardin. La bataille fit rage des jours durant \u2014 les plantes repouss\u00e8rent l\u2019arm\u00e9e de gnomes, mais le sort final resta inconnu. <strong>Et vous, quel destin r\u00e9servez-vous \u00e0 ce monde\u00a0?</strong>",
+      'tw-mec-title': 'M\u00e9caniques de jeu',
+      'tw-base-label': 'Base Tower Defense',
+      'tw-orig-label': 'M\u00e9caniques originales',
+      'tw-enemies-title': 'Les Ennemis',
+      'tw-build-title': 'B\u00e2timents d\u00e9fensifs',
+      'tw-weather-title': 'Syst\u00e8me M\u00e9t\u00e9o',
+      'tw-weather-p': 'La m\u00e9t\u00e9o est <strong>limit\u00e9e \u00e0 une utilisation toutes les deux vagues</strong>. Elle influence directement les stats des ennemis et des b\u00e2timents.',
+      'tw-eco-title': '\u00c9conomie',
+      'tw-team-title': '\u00c9quipe & R\u00e9partition',
+      'tw-tools-label': 'Outils utilis\u00e9s',
+    },
+    en: {
+      'tw-lore-title': 'Lore',
+      'tw-lore-p1': "In a magical world where weather reigns supreme, gnomes were once the guardians of enchanted gardens. But one day, a group of gnomes, tired of obeying the plants, decided to become invaders \u2014 their goal: conquer all gardens and seize power over the magical world.",
+      'tw-lore-p2': "They invaded the garden of the <strong>climate goddess</strong>, where thistles, lotuses and reeds were blooming. Furious, the goddess called her plants to defend her garden. The battle raged for days \u2014 the plants repelled the gnome army, but the final outcome remained unknown. <strong>And you, what fate do you have in store for this world?</strong>",
+      'tw-mec-title': 'Game Mechanics',
+      'tw-base-label': 'Tower Defense Core',
+      'tw-orig-label': 'Original Mechanics',
+      'tw-enemies-title': 'Enemies',
+      'tw-build-title': 'Defensive Buildings',
+      'tw-weather-title': 'Weather System',
+      'tw-weather-p': 'Weather is <strong>limited to once every two waves</strong>. It directly influences enemy and building stats.',
+      'tw-eco-title': 'Economy',
+      'tw-team-title': 'Team & Tasks',
+      'tw-tools-label': 'Tools Used',
+    },
+    es: {
+      'tw-lore-title': 'Historia',
+      'tw-lore-p1': "En un mundo m\u00e1gico donde el clima reina, los gnomos eran los guardianes de los jardines encantados. Pero un d\u00eda, un grupo de gnomos cansados de obedecer a las plantas decidi\u00f3 convertirse en invasores \u2014 su objetivo: conquistar todos los jardines y tomar el poder del mundo m\u00e1gico.",
+      'tw-lore-p2': "Invadieron el jard\u00edn de la <strong>diosa del clima</strong>, donde cardos, lotos y juncos florecian. Furiosa, la diosa llam\u00f3 a sus plantas para defender su jard\u00edn. La batalla arri\u00f3 durante d\u00edas \u2014 las plantas rechazaron al ej\u00e9rcito de gnomos, pero el desenlace final qued\u00f3 desconocido. <strong>\u00bfY t\u00fa, qu\u00e9 destino reservas para este mundo?</strong>",
+      'tw-mec-title': 'Mec\u00e1nicas de juego',
+      'tw-base-label': 'Base Tower Defense',
+      'tw-orig-label': 'Mec\u00e1nicas originales',
+      'tw-enemies-title': 'Los Enemigos',
+      'tw-build-title': 'Edificios defensivos',
+      'tw-weather-title': 'Sistema Meteorol\u00f3gico',
+      'tw-weather-p': 'El clima est\u00e1 <strong>limitado a una vez cada dos oleadas</strong>. Influye directamente en las estad\u00edsticas de enemigos y edificios.',
+      'tw-eco-title': 'Econom\u00eda',
+      'tw-team-title': 'Equipo & Reparto',
+      'tw-tools-label': 'Herramientas usadas',
+    },
+    de: {
+      'tw-lore-title': 'Hintergrundgeschichte',
+      'tw-lore-p1': "In einer magischen Welt, in der das Wetter regiert, waren die Gnome einst die H\u00fcter der verzauberten G\u00e4rten. Doch eines Tages beschloss eine Gruppe von Gnomen, die des Gehorchens m\u00fcde war, Eindringlinge zu werden \u2014 ihr Ziel: alle G\u00e4rten zu erobern und die Macht \u00fcber die magische Welt zu \u00fcbernehmen.",
+      'tw-lore-p2': "Sie \u00fcberfielen den Garten der <strong>Klimag\u00f6ttin</strong>, wo Disteln, Lotusblumen und Schilf bl\u00fchten. Die w\u00fctende G\u00f6ttin rief ihre Pflanzen zur Verteidigung. Die Schlacht tobte tagelang \u2014 die Pflanzen schlugen die Gnomarmee zur\u00fcck, doch das endg\u00fcltige Schicksal blieb unbekannt. <strong>Und Sie \u2014 welches Schicksal bereiten Sie dieser Welt?</strong>",
+      'tw-mec-title': 'Spielmechaniken',
+      'tw-base-label': 'Tower Defense Grundlage',
+      'tw-orig-label': 'Originale Mechaniken',
+      'tw-enemies-title': 'Feinde',
+      'tw-build-title': 'Verteidigungsgeb\u00e4ude',
+      'tw-weather-title': 'Wettersystem',
+      'tw-weather-p': 'Das Wetter ist <strong>auf einmal alle zwei Wellen begrenzt</strong>. Es beeinflusst direkt die Werte von Feinden und Geb\u00e4uden.',
+      'tw-eco-title': 'Wirtschaft',
+      'tw-team-title': 'Team & Aufgaben',
+      'tw-tools-label': 'Verwendete Tools',
+    },
+  };
+
+  var twDict = tw[lang] || tw.fr;
+  Object.keys(twDict).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = twDict[id];
+  });
+
+  // === TRADUCTIONS GLOBALES DU PORTFOLIO ===
+  var TRANSLATIONS = {
+    fr: {
+      'about-p1': "Mein Name ist L\u00E9o Lussan, ich studiere im 3. Jahr des Game Design Bachelors an der <a href=\"https://www.brassart.fr/formations/bachelor-formation-animation-jeux-video-game-design\" target=\"_blank\" style=\"color:var(--red);text-decoration:underline;text-underline-offset:3px\">Brassart</a> Schule in Toulouse.",
+      'about-p2': "Ich entdeckte Videospiele 2016 zum ersten Mal auf dem Laptop meiner Eltern und erkunde Universen wie <a href=\"https://www.leagueoflegends.com/en-us/\" target=\"_blank\" style=\"color:var(--red);text-decoration:underline;text-underline-offset:3px\">League of Legends</a> und <a href=\"https://www.minecraft.net/en-us\" target=\"_blank\" style=\"color:var(--red);text-decoration:underline;text-underline-offset:3px\">Minecraft</a>. Ich begeisterte mich schnell f\u00FCr League of Legends \u2014 Mechaniken, Wettkampf und Lore \u2014 und f\u00FCr Minecraft durch das Bauen und Erstellen von <a href=\"https://minecraft.fr/categorie/maps/map-parkour/\" target=\"_blank\" style=\"color:var(--red);text-decoration:underline;text-underline-offset:3px\">Parkour-Karten</a>.",
+      'about-p3': "Ich liebte es, Levels zu erstellen, Universen zu erkunden und ihre Umgebungen zu erforschen. Ich bin leidenschaftlich f\u00FCr Videospiele und besonders f\u00FCr Level Design. Musik ist ebenfalls meine Leidenschaft \u2014 ich spiele Klavier und Trompete.",
+      'about-p4': "Dieser Bereich erm\u00F6glicht es Ihnen, einige meiner Projekte zu entdecken.",
+      'skills-hint': 'Cliquez sur une comp\u00e9tence pour voir les projets associ\u00e9s \u2192',
+      'sk-cat-engines': 'Moteurs de jeu',
+      'contact-heading': 'TRAVAILLONS<br/>ENSEMBLE',
+      'contact-desc': "Disponible pour des opportunit\u00e9s de stage, des collaborations cr\u00e9atives ou des \u00e9changes autour du jeu vid\u00e9o.",
+      'cv-desc': "Game Designer sp\u00e9cialis\u00e9 en Level Design, avec exp\u00e9rience en gestion de projet et cr\u00e9ation d\u2019univers.",
+      'pm-num-unjudged': '// 01 \u2014 Projet d\u2019\u00e9cole \u00b7 3\u00e8me Ann\u00e9e \u00b7 En cours',
+      'pm-num-priest':   '// 02 \u2014 Projet d\u2019\u00e9cole \u00b7 2\u00e8me Ann\u00e9e',
+      'pm-num-city':     '// 03 \u2014 Projet d\u2019\u00e9cole \u00b7 2\u00e8me Ann\u00e9e',
+      'pm-num-tower':    '// 04 \u2014 Projet d\u2019\u00e9cole \u00b7 1\u00e8re Ann\u00e9e',
+      'tw-unjudged-title': 'Conception du niveau',
+      'tw-priest-title': "L\u2019atmosph\u00e8re de chasse",
+      'tw-city-title': 'Conception urbaine interactive',
+      'tw-musiques-title': 'Ma d\u00e9marche musicale',
+      'proj-draco-title-lore': 'Le Lore',
+      'proj-draco-title-gameplay': 'Gameplay',
+      'proj-draco-title-visual': 'Univers visuel',
+      'proj-coaching-title1': 'Jeux coach\u00e9s',
+      'proj-coaching-title2': "D\u00e9roul\u00e9 d\u2019une s\u00e9ance",
+      'proj-mira-title1': 'Introduction',
+      'proj-mira-title2': 'Une de nos constructions',
+      'proj-mira-title3': 'Mon r\u00f4le \u2014 Level Designer / Builder',
+      'proj-unjudged-p1': "Un jeu narratif o\u00f9 vous incarnez un juge dans une cour d\u2019assises futuriste.",
+      'proj-unjudged-p2': "Le tribunal futuriste est pens\u00e9 comme un espace d\u2019impact \u00e9motionnel maximal.",
+      'proj-priest-p1': "Devouring Priest est un jeu de course et de survie sous pression, avec une ambiance horrifique.",
+      'proj-priest-p2': "Le joueur avance dans l\u2019obscurit\u00e9, opprim\u00e9 par la pr\u00e9sence invisible du pr\u00eatre.",
+      'proj-city-p1': "City Rider est un jeu de course urbaine dans un environnement n\u00e9on, vitesse et \u00e9vasion.",
+      'proj-city-p2': "Routes strat\u00e9giquement plac\u00e9es, points d\u2019int\u00e9r\u00eat bien positionn\u00e9s, flux de trafic \u00e9quilibr\u00e9.",
+      'proj-silence-p1': "<strong>The Silence</strong> est un jeu vid\u00e9o narratif d\u2019horreur atmosph\u00e9rique bas\u00e9 sur le son et l\u2019exploration.",
+      'proj-silence-p2': "Une exp\u00e9rience o\u00f9 le son (ou son absence) guide autant que le visuel.",
+      'proj-draco-p1': "Un platformer 2D medieval fantasy o\u00f9 tu incarnes un jeune dragon, seul rescap\u00e9, en qu\u00eate de vengeance.",
+      'proj-draco-p2': "Dans un royaume m\u00e9di\u00e9val impregn\u00e9 de magie, un alchimiste cherche \u00e0 percer les secrets du sang des dragons.",
+      'proj-draco-p3': "Tout au long de l\u2019aventure, l\u2019alchimiste t\u2019injectera des substances et t\u2019utilisera comme cobaye.",
+      'proj-coaching-p1': "Suite logique de mon parcours comp\u00e9titif. J\u2019ai particip\u00e9 \u00e0 plusieurs \u00e9quipes e-sport.",
+      'proj-coaching-p2': "Macro, vision de jeu, objectifs, r\u00e9gularit\u00e9 et mental.",
+      'proj-coaching-p3': "Loops, mind games, lecture de map et optimisation.",
+      'proj-coaching-p4': "S\u00e9ances ponctuelles ou suivi r\u00e9gulier selon tes objectifs.",
+      'proj-streaming-p1': "Le streaming est pour moi bien plus qu\u2019un simple moment de jeu en live.",
+      'proj-streaming-p2': "Je stream de mani\u00e8re s\u00e9rieuse et constante, avec l\u2019envie de proposer un contenu de qualit\u00e9.",
+      'proj-streaming-p3': "Mon parcours en comp\u00e9tition \u00e0 haut niveau m\u2019a permis d\u2019acqu\u00e9rir une lecture analytique du jeu.",
+      'proj-mira-p1': "Projet Mira est un projet collaboratif r\u00e9alis\u00e9 avec des amis travaillant chez Epic Games.",
+      'proj-mira-p2': "De mon c\u00f4t\u00e9, ce projet me permet avant tout de d\u00e9velopper mes comp\u00e9tences en level design.",
+      'proj-mira-p3': "Nous avons pass\u00e9 environ 4 mois \u00e0 r\u00e9aliser ce projet ensemble.",
+      'proj-mira-p4': "Sur le Projet Mira, j\u2019interviens principalement en tant que Level Designer et Builder.",
+      'proj-musiques-p1': "La musique fait partie de mon processus cr\u00e9atif. Produire des morceaux me permet d\u2019explorer des ambiances uniques.",
+      'proj-musiques-p2': "La production musicale me permet d\u2019aborder la cr\u00e9ation sous un autre angle.",
+      'mentions-p1': "Portfolio personnel de L\u00e9o Lussan, \u00e9tudiant Bachelor Game Design, Brassart Toulouse.",
+      'mentions-p2': "Tout le contenu est la propri\u00e9t\u00e9 de L\u00e9o Lussan sauf mention contraire.",
+      'mentions-p3': "Ce site ne collecte aucune donn\u00e9e personnelle. Aucun cookie de suivi.",
+    },
+    en: {
+      'about-p1': "My name is L\u00e9o Lussan, I am a student at <a href='https://www.brassart.fr' target='_blank' style='color:var(--red)'>Brassart</a> school in Toulouse, 3rd year Game Design Bachelor.",
+      'about-p2': "I first discovered video games in 2016 and never stopped. Passionate about level design, game design and world-building.",
+      'about-p3': "I loved creating levels, exploring universes and researching environments to craft coherent, immersive experiences.",
+      'about-p4': "This space will let you discover some of my projects.",
+      'skills-hint': 'Click on a skill to see associated projects \u2192',
+      'sk-cat-engines': 'Game Engines',
+      'contact-heading': "LET'S WORK<br/>TOGETHER",
+      'contact-desc': "Available for internship opportunities, creative collaborations or exchanges around video games.",
+      'cv-desc': "Game Designer specialized in Level Design, with experience in project management and world creation.",
+      'pm-num-unjudged': '// 01 \u2014 School Project \u00b7 3rd Year \u00b7 In Progress',
+      'pm-num-priest':   '// 02 \u2014 School Project \u00b7 2nd Year',
+      'pm-num-city':     '// 03 \u2014 School Project \u00b7 2nd Year',
+      'pm-num-tower':    '// 04 \u2014 School Project \u00b7 1st Year',
+      'tw-unjudged-title': 'Level Design',
+      'tw-priest-title': 'The Hunt Atmosphere',
+      'tw-city-title': 'Interactive Urban Design',
+      'tw-musiques-title': 'My Musical Approach',
+      'proj-draco-title-lore': 'Lore',
+      'proj-draco-title-gameplay': 'Gameplay',
+      'proj-draco-title-visual': 'Visual Universe',
+      'proj-coaching-title1': 'Games Coached',
+      'proj-coaching-title2': 'Session Breakdown',
+      'proj-mira-title1': 'Introduction',
+      'proj-mira-title2': 'One of Our Builds',
+      'proj-mira-title3': 'My Role \u2014 Level Designer / Builder',
+      'proj-unjudged-p1': "A narrative game where you play a judge in a futuristic courtroom. Every decision influences the verdict.",
+      'proj-unjudged-p2': "The futuristic courtroom is designed for maximum emotional impact. Every color and light is a narrative tool.",
+      'proj-priest-p1': "Devouring Priest is a pressure-driven survival runner with a horrific atmosphere.",
+      'proj-priest-p2': "The player moves through darkness, oppressed by the invisible presence of the priest.",
+      'proj-city-p1': "City Rider is an urban racing game in a neon environment. Level design targets flow, readability and speed.",
+      'proj-city-p2': "Strategically placed roads, well-positioned points of interest, balanced traffic flow.",
+      'proj-silence-p1': "<strong>The Silence</strong> is a narrative atmospheric horror game based on sound and exploration.",
+      'proj-silence-p2': "An experience where sound (or its absence) guides as much as visuals.",
+      'proj-draco-p1': "A 2D medieval fantasy platformer where you play a young dragon on a quest for revenge.",
+      'proj-draco-p2': "In a medieval kingdom steeped in magic, an alchemist seeks to unlock the secrets of dragon blood.",
+      'proj-draco-p3': "Throughout the adventure, the alchemist injects you with substances and uses you as a test subject.",
+      'proj-coaching-p1': "A natural extension of my competitive journey. I participated in several esports teams.",
+      'proj-coaching-p2': "Macro, game vision, objectives, consistency and mindset.",
+      'proj-coaching-p3': "Loops, mind games, map reading and optimization.",
+      'proj-coaching-p4': "One-off sessions or regular follow-up depending on your goals.",
+      'proj-streaming-p1': "Streaming is much more than just live gaming for me. It is a space for creation and community.",
+      'proj-streaming-p2': "I stream seriously and consistently, wanting to provide quality content.",
+      'proj-streaming-p3': "My high-level competitive background has given me a very analytical reading of the game.",
+      'proj-mira-p1': "Project Mira is a collaborative project created with friends at Epic Games.",
+      'proj-mira-p2': "For my part, this project is primarily a way to develop my level design skills.",
+      'proj-mira-p3': "We spent about 4 months working together on this project.",
+      'proj-mira-p4': "On Project Mira, I work primarily as a Level Designer and Builder.",
+      'proj-musiques-p1': "Music is part of my creative process. Producing tracks lets me explore unique atmospheres.",
+      'proj-musiques-p2': "Music production lets me approach creation from a different angle.",
+      'mentions-p1': "Personal portfolio of L\u00e9o Lussan, Game Design Bachelor student, Brassart Toulouse.",
+      'mentions-p2': "All content is the property of L\u00e9o Lussan unless otherwise stated.",
+      'mentions-p3': "This site collects no personal data. No tracking cookies.",
+    },
+    es: {
+      'about-p1': "Me llamo L\u00e9o Lussan, soy estudiante en la escuela <a href='https://www.brassart.fr' target='_blank' style='color:var(--red)'>Brassart</a> de Toulouse, 3er a\u00f1o Bachelor Game Design.",
+      'about-p2': "Descubr\u00ed los videojuegos en 2016 y no he parado desde entonces. Apasionado del level design y la creaci\u00f3n de mundos.",
+      'about-p3': "Me encant\u00f3 crear niveles, explorar universos e investigar entornos para crear experiencias inmersivas.",
+      'about-p4': "Este espacio te permitir\u00e1 descubrir algunos de mis proyectos.",
+      'skills-hint': 'Haz clic en una habilidad para ver los proyectos asociados \u2192',
+      'sk-cat-engines': 'Motores de juego',
+      'contact-heading': 'TRABAJEMOS<br/>JUNTOS',
+      'contact-desc': "Disponible para pr\u00e1cticas, colaboraciones creativas o intercambios sobre videojuegos.",
+      'cv-desc': "Game Designer especializado en Level Design, con experiencia en gesti\u00f3n de proyectos.",
+      'pm-num-unjudged': '// 01 \u2014 Proyecto escolar \u00b7 3er A\u00f1o \u00b7 En curso',
+      'pm-num-priest':   '// 02 \u2014 Proyecto escolar \u00b7 2\u00ba A\u00f1o',
+      'pm-num-city':     '// 03 \u2014 Proyecto escolar \u00b7 2\u00ba A\u00f1o',
+      'pm-num-tower':    '// 04 \u2014 Proyecto escolar \u00b7 1er A\u00f1o',
+      'tw-unjudged-title': 'Dise\u00f1o del nivel',
+      'tw-priest-title': 'La atm\u00f3sfera de caza',
+      'tw-city-title': 'Dise\u00f1o urbano interactivo',
+      'tw-musiques-title': 'Mi enfoque musical',
+      'proj-draco-title-lore': 'Historia',
+      'proj-draco-title-gameplay': 'Gameplay',
+      'proj-draco-title-visual': 'Universo visual',
+      'proj-coaching-title1': 'Juegos entrenados',
+      'proj-coaching-title2': 'Desarrollo de una sesi\u00f3n',
+      'proj-mira-title1': 'Introducci\u00f3n',
+      'proj-mira-title2': 'Una de nuestras construcciones',
+      'proj-mira-title3': 'Mi rol \u2014 Level Designer / Builder',
+      'proj-unjudged-p1': "Un juego narrativo donde encarnas a un juez en un tribunal futurista.",
+      'proj-unjudged-p2': "El tribunal futurista est\u00e1 dise\u00f1ado para el m\u00e1ximo impacto emocional.",
+      'proj-priest-p1': "Devouring Priest es un juego de carrera y supervivencia con atm\u00f3sfera de terror.",
+      'proj-priest-p2': "El jugador avanza en la oscuridad, oprimido por la presencia invisible del sacerdote.",
+      'proj-city-p1': "City Rider es un juego de carreras urbanas en entorno de ne\u00f3n.",
+      'proj-city-p2': "Rutas estrat\u00e9gicamente colocadas, puntos de inter\u00e9s bien posicionados.",
+      'proj-silence-p1': "<strong>The Silence</strong> es un videojuego narrativo de terror atmosf\u00e9rico basado en el sonido.",
+      'proj-silence-p2': "Una experiencia donde el sonido (o su ausencia) gu\u00eda tanto como el visual.",
+      'proj-draco-p1': "Un plataformas 2D de fantas\u00eda medieval donde encarnas a un joven drag\u00f3n en busca de venganza.",
+      'proj-draco-p2': "En un reino medieval m\u00e1gico, un alquimista busca los secretos de la sangre de drag\u00f3n.",
+      'proj-draco-p3': "El alquimista te inyectar\u00e1 sustancias y te usar\u00e1 como cobaya.",
+      'proj-coaching-p1': "Extensi\u00f3n natural de mi trayectoria competitiva en esports.",
+      'proj-coaching-p2': "Macro, visi\u00f3n de juego, objetivos, regularidad y mentalidad.",
+      'proj-coaching-p3': "Loops, mind games, lectura de mapa y optimizaci\u00f3n.",
+      'proj-coaching-p4': "Sesiones puntuales o seguimiento regular seg\u00fan tus objetivos.",
+      'proj-streaming-p1': "El streaming es mucho m\u00e1s que juego en directo. Es un espacio de creaci\u00f3n e intercambio.",
+      'proj-streaming-p2': "Hago streaming de manera seria y constante.",
+      'proj-streaming-p3': "Mi trayectoria competitiva me ha dado una lectura muy anal\u00edtica del juego.",
+      'proj-mira-p1': "Proyecto Mira es un proyecto colaborativo con amigos en Epic Games.",
+      'proj-mira-p2': "Este proyecto me permite desarrollar mis habilidades de level design.",
+      'proj-mira-p3': "Pasamos unos 4 meses trabajando juntos en este proyecto.",
+      'proj-mira-p4': "En Proyecto Mira trabajo principalmente como Level Designer y Builder.",
+      'proj-musiques-p1': "La m\u00fasica es parte de mi proceso creativo. Producir temas me permite explorar ambientes \u00fanicos.",
+      'proj-musiques-p2': "La producci\u00f3n musical me permite abordar la creaci\u00f3n desde otro \u00e1ngulo.",
+      'mentions-p1': "Portfolio personal de L\u00e9o Lussan, estudiante Bachelor Game Design, Brassart Toulouse.",
+      'mentions-p2': "Todo el contenido es propiedad de L\u00e9o Lussan salvo indicaci\u00f3n contraria.",
+      'mentions-p3': "Este sitio no recopila ning\u00fan dato personal. Sin cookies de seguimiento.",
+    },
+    de: {
+      'about-p1': "Mein Name ist L\u00e9o Lussan, ich studiere an der <a href='https://www.brassart.fr' target='_blank' style='color:var(--red)'>Brassart</a> Schule in Toulouse, 3. Jahr Game Design Bachelor.",
+      'about-p2': "Ich entdeckte Videospiele 2016 und h\u00f6rte seitdem nie auf. Leidenschaftlich f\u00fcr Level Design und Weltenbau.",
+      'about-p3': "Ich liebte es, Levels zu erstellen und Umgebungen zu erforschen, um immersive Erlebnisse zu schaffen.",
+      'about-p4': "Dieser Bereich erm\u00f6glicht Ihnen, einige meiner Projekte zu entdecken.",
+      'skills-hint': 'Klicken Sie auf eine F\u00e4higkeit, um Projekte zu sehen \u2192',
+      'sk-cat-engines': 'Spiel-Engines',
+      'contact-heading': 'LASS UNS<br/>ZUSAMMENARBEITEN',
+      'contact-desc': "Verf\u00fcgbar f\u00fcr Praktika, kreative Zusammenarbeit oder Austausch rund um Videospiele.",
+      'cv-desc': "Game Designer spezialisiert auf Level Design, mit Erfahrung in Projektmanagement.",
+      'pm-num-unjudged': '// 01 \u2014 Schulprojekt \u00b7 3. Jahr \u00b7 In Arbeit',
+      'pm-num-priest':   '// 02 \u2014 Schulprojekt \u00b7 2. Jahr',
+      'pm-num-city':     '// 03 \u2014 Schulprojekt \u00b7 2. Jahr',
+      'pm-num-tower':    '// 04 \u2014 Schulprojekt \u00b7 1. Jahr',
+      'tw-unjudged-title': 'Level-Design',
+      'tw-priest-title': 'Die Jagdatmosph\u00e4re',
+      'tw-city-title': 'Interaktives Stadtdesign',
+      'tw-musiques-title': 'Mein musikalischer Ansatz',
+      'proj-draco-title-lore': 'Hintergrundgeschichte',
+      'proj-draco-title-gameplay': 'Gameplay',
+      'proj-draco-title-visual': 'Visuelles Universum',
+      'proj-coaching-title1': 'Trainierte Spiele',
+      'proj-coaching-title2': 'Sitzungsablauf',
+      'proj-mira-title1': 'Einf\u00fchrung',
+      'proj-mira-title2': 'Eines unserer Builds',
+      'proj-mira-title3': 'Meine Rolle \u2014 Level Designer / Builder',
+      'proj-unjudged-p1': "Ein narratives Spiel, in dem Sie einen Richter in einem futuristischen Gerichtssaal spielen.",
+      'proj-unjudged-p2': "Das futuristische Gericht ist als Raum f\u00fcr maximale emotionale Wirkung konzipiert.",
+      'proj-priest-p1': "Devouring Priest ist ein Survival-Runner mit horror\u00f6ser Atmosph\u00e4re.",
+      'proj-priest-p2': "Der Spieler bewegt sich durch die Dunkelheit, beklommen von der unsichtbaren Gegenwart des Priesters.",
+      'proj-city-p1': "City Rider ist ein urbanes Rennspiel in einer Neon-Umgebung.",
+      'proj-city-p2': "Strategisch platzierte Stra\u00dfen, gut positionierte Interessenpunkte.",
+      'proj-silence-p1': "<strong>The Silence</strong> ist ein atmosph\u00e4risches Horrorspiel basierend auf Klang und Erkundung.",
+      'proj-silence-p2': "Eine Erfahrung, bei der Klang (oder seine Abwesenheit) genauso leitet wie Visuals.",
+      'proj-draco-p1': "Ein 2D-Fantasy-Plattformer, in dem Sie einen jungen Drachen auf Rachefeldzug spielen.",
+      'proj-draco-p2': "In einem mittelalterlichen K\u00f6nigreich sucht ein Alchemist die Geheimnisse des Drachenbluts.",
+      'proj-draco-p3': "Der Alchemist injiziert Ihnen Substanzen und benutzt Sie als Versuchsobjekt.",
+      'proj-coaching-p1': "Eine nat\u00fcrliche Erweiterung meines Wettkampfwegs in Esports.",
+      'proj-coaching-p2': "Makro, Spielvision, Ziele, Best\u00e4ndigkeit und Mentalit\u00e4t.",
+      'proj-coaching-p3': "Loops, Mind Games, Kartenlesing und Optimierung.",
+      'proj-coaching-p4': "Einzelne Sitzungen oder regelm\u00e4\u00dfige Begleitung je nach Ihren Zielen.",
+      'proj-streaming-p1': "Streaming ist f\u00fcr mich viel mehr als nur live spielen.",
+      'proj-streaming-p2': "Ich streame ernsthaft und konsequent.",
+      'proj-streaming-p3': "Meine Wettkampferfahrung hat mir eine sehr analytische Spiellesung gegeben.",
+      'proj-mira-p1': "Projekt Mira ist ein kollaboratives Projekt mit Freunden bei Epic Games.",
+      'proj-mira-p2': "Dieses Projekt erm\u00f6glicht mir, meine Level-Design-F\u00e4higkeiten zu entwickeln.",
+      'proj-mira-p3': "Wir haben etwa 4 Monate zusammen an diesem Projekt gearbeitet.",
+      'proj-mira-p4': "Bei Projekt Mira arbeite ich haupts\u00e4chlich als Level Designer und Builder.",
+      'proj-musiques-p1': "Musik ist Teil meines kreativen Prozesses. Tracks produzieren erm\u00f6glicht mir, einzigartige Atmosph\u00e4ren zu erkunden.",
+      'proj-musiques-p2': "Die Musikproduktion erm\u00f6glicht mir einen anderen kreativen Zugang.",
+      'mentions-p1': "Pers\u00f6nliches Portfolio von L\u00e9o Lussan, Game Design Bachelor, Brassart Toulouse.",
+      'mentions-p2': "Alle Inhalte sind Eigentum von L\u00e9o Lussan, sofern nicht anders angegeben.",
+      'mentions-p3': "Diese Website sammelt keine personenbezogenen Daten. Keine Tracking-Cookies.",
+    },
+  };
+
+  var globalDict = TRANSLATIONS[lang] || TRANSLATIONS.fr;
+  Object.keys(globalDict).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = globalDict[id];
+  });
+
+  // Galerie labels (multiple elements with data-i18n)
+  document.querySelectorAll('[data-i18n="label_gallery"]').forEach(function(el) {
+    var galleries = {fr:'Galerie du projet', en:'Project Gallery', es:'Galer\u00eda del proyecto', de:'Projektgalerie'};
+    el.textContent = galleries[lang] || galleries.fr;
   });
   // Update flag buttons opacity
   document.querySelectorAll('.lang-btn').forEach(function(btn) {
@@ -1866,9 +2360,29 @@ function setLang(lang) {
     btn.style.opacity = isActive ? '1' : '.35';
     btn.classList.toggle('active', isActive);
   });
+  // Sync modal lang bar too
+  ['fr','en','es','de'].forEach(function(l){
+    var b=document.getElementById('mlang-'+l);
+    if(b) b.style.opacity=(l===lang)?'1':'.35';
+  });
   // Update html lang attribute
   document.documentElement.lang = lang;
 }
+
+// Restaurer la langue sauvegardee au chargement
+(function() {
+  try {
+    var saved = localStorage.getItem('portfolio_lang');
+    if (saved && _LANGS[saved] && saved !== 'fr') {
+      // Attendre que le DOM soit pret
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() { setLang(saved); });
+      } else {
+        setLang(saved);
+      }
+    }
+  } catch(e) {}
+})();
 </script>
 
 <script>
@@ -1928,12 +2442,56 @@ function startFx(projId) {
   var W = cv.width, H = cv.height;
   var t = 0;
 
-  // Zones de bord - large pour etre bien visibles
-  // Gauche/droite : 22% de la largeur | Haut/bas : 18% de la hauteur
-  var BL = W * 0.28;  // bord gauche (0 -> BL)
-  var BR = W * 0.72;  // bord droit  (BR -> W)
-  var BT = H * 0.22;  // bord haut   (0 -> BT)
-  var BB = H * 0.78;  // bord bas    (BB -> H)
+  // Zones de bord elargies pour plus de visibilite
+  var BL = W * 0.32;  // bord gauche (0 -> BL)
+  var BR = W * 0.68;  // bord droit  (BR -> W)
+  var BT = H * 0.28;  // bord haut   (0 -> BT)
+  var BB = H * 0.72;  // bord bas    (BB -> H)
+
+  // Cadre lumineux permanent sur les bords de la fenetre modale
+  function drawBorderFrame(ctx, W, H, color, alpha) {
+    var thickness = 2;
+    var cornerSize = 60;
+    var grad = ctx.createLinearGradient(0,0,W,0);
+    grad.addColorStop(0, 'transparent');
+    grad.addColorStop(0.15, color.replace(')',','+alpha+')').replace('rgb','rgba'));
+    grad.addColorStop(0.5, color.replace(')',','+(alpha*1.6)+')').replace('rgb','rgba'));
+    grad.addColorStop(0.85, color.replace(')',','+alpha+')').replace('rgb','rgba'));
+    grad.addColorStop(1, 'transparent');
+
+    // Lignes de bord
+    ctx.save();
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = thickness;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = color;
+    ctx.beginPath();
+    ctx.rect(4, 4, W-8, H-8);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Coins lumineux
+    var corners = [[4,4],[W-4,4],[W-4,H-4],[4,H-4]];
+    var angles  = [[0,1],[Math.PI/2,Math.PI/2+1],[Math.PI,Math.PI+1],[Math.PI*1.5,Math.PI*1.5+1]];
+    ctx.lineWidth = 3;
+    ctx.shadowBlur = 18;
+    ctx.shadowColor = color;
+    corners.forEach(function(c,i) {
+      ctx.beginPath();
+      ctx.arc(c[0], c[1], cornerSize, angles[i][0], angles[i][1]);
+      ctx.stroke();
+    });
+
+    // Petits carres aux coins
+    ctx.shadowBlur = 8;
+    corners.forEach(function(c) {
+      ctx.strokeRect(c[0]-6, c[1]-6, 12, 12);
+    });
+
+    // Scan lines horizontales animees
+    ctx.shadowBlur = 0;
+    ctx.restore();
+  }
 
   // Position aleatoire sur les bords UNIQUEMENT
   function bp() {
@@ -1951,12 +2509,20 @@ function startFx(projId) {
     if(z<0.8) return {x:Math.random()*W,          y:Math.random()*BT};
     return           {x:Math.random()*W,          y:BB+Math.random()*(H-BB)};
   }
+  // Position strictement sur le bord (tres proche des bords)
+  function bpEdge() {
+    var z = Math.floor(Math.random()*4);
+    if(z===0) return {x:Math.random()*BL*0.4,           y:Math.random()*H};
+    if(z===1) return {x:BR+(Math.random()*(W-BR)*0.6),  y:Math.random()*H};
+    if(z===2) return {x:Math.random()*W,                y:Math.random()*BT*0.4};
+    return           {x:Math.random()*W,                y:BB+(Math.random()*(H-BB)*0.6)};
+  }
 
   // -- PARADISE / UNJUDGED -------------------------------------
   if (cfg.type === 'paradise') {
     var particles = [];
     // Lucioles - concentrees sur les bords
-    for(var i=0;i<55;i++){
+    for(var i=0;i<85;i++){
       var p0=bpSide();
       particles.push({kind:'fly',x:p0.x,y:p0.y,r:4+Math.random()*7,
         ph:Math.random()*Math.PI*2, vx:(Math.random()-.5)*.6, vy:(Math.random()-.5)*.6,
@@ -2002,14 +2568,14 @@ function startFx(projId) {
       {x:W-BL*.5,y:H*.70,e:'\uD83C\uDFAF',s:52,al:.32,ph:3.5,sp:.011},
     ];
     var draw=function(){
-      ctx.clearRect(0,0,W,H); t+=.012;
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.28); t+=.012;
       // Icones de coins fixes
       cornerIcons.forEach(function(ic){
         ic.ph+=ic.sp;
         var ial=ic.al*(Math.sin(ic.ph)*.25+.75);
         ctx.save(); ctx.globalAlpha=ial;
         ctx.font=ic.s+'px serif';
-        ctx.shadowBlur=4; ctx.shadowColor=cfg.color;
+        ctx.shadowBlur=14; ctx.shadowColor=cfg.color;
         ctx.fillText(ic.e,ic.x,ic.y); ctx.shadowBlur=0;
         ctx.globalAlpha=1; ctx.restore();
       });
@@ -2052,7 +2618,7 @@ function startFx(projId) {
   else if (cfg.type === 'horror') {
     var particles = [];
     // Gouttes de sang - surtout sur les cotes et haut
-    for(var i=0;i<30;i++){
+    for(var i=0;i<50;i++){
       var px=Math.random()<.5?Math.random()*BL:BR+Math.random()*(W-BR);
       particles.push({kind:'drip',x:px,y:-80-Math.random()*H,
         vy:1.2+Math.random()*3, r:3+Math.random()*6,
@@ -2071,7 +2637,7 @@ function startFx(projId) {
       {x:BL*.5,y:H*.65,e:'\uD83E\uDE78',s:50,al:.3,ph:1.5,sp:.006},
       {x:W-BL*.5,y:H*.65,e:'\uD83E\uDE78',s:50,al:.3,ph:2.5,sp:.006},
     ];
-    for(var i=0;i<10;i++){
+    for(var i=0;i<25;i++){
       var ps=bpSide();
       particles.push({kind:'sym',x:ps.x,y:ps.y,
         s:48+Math.random()*72, al:.12+Math.random()*.25,
@@ -2080,7 +2646,7 @@ function startFx(projId) {
     }
     // Vignette rouge sur les bords
     var draw=function(){
-      ctx.clearRect(0,0,W,H); t++;
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.28); t++;
 
       cornerIcons.forEach(function(ic){
         ic.ph+=ic.sp;
@@ -2088,7 +2654,7 @@ function startFx(projId) {
         ctx.save(); ctx.globalAlpha=ial;
         ctx.font='bold '+ic.s+'px serif';
         ctx.fillStyle=cfg.color;
-        ctx.shadowBlur=35; ctx.shadowColor=cfg.color;
+        ctx.shadowBlur=40; ctx.shadowColor=cfg.color;
         ctx.fillText(ic.e,ic.x,ic.y); ctx.shadowBlur=0;
         ctx.globalAlpha=1; ctx.restore();
       });
@@ -2167,7 +2733,7 @@ function startFx(projId) {
     }
     // Grille perspective au bas de l'ecran
     var draw=function(){
-      ctx.clearRect(0,0,W,H); t+=.01;
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.28); t+=.01;
 
       cornerIcons.forEach(function(ic){
         ic.ph+=ic.sp;
@@ -2226,71 +2792,73 @@ function startFx(projId) {
     var particles = [];
     var gc=['\u273F','\u2740','\u2741','\u273E','\uD83C\uDF38','\uD83C\uDF3A','\uD83C\uDF43','\uD83C\uDF3F','\u2698','\u2726','\uD83C\uDF40'];
     var cornerIcons=[
-      {x:BL*.35,y:BT*.6,e:'\uD83C\uDF44',s:58,al:.42,ph:0,sp:.005},
-      {x:W-BL*.35,y:BT*.6,e:'\uD83C\uDF3B',s:58,al:.42,ph:1,sp:.006},
-      {x:BL*.35,y:H-BT*.6,e:'\uD83D\uDC1B',s:55,al:.40,ph:2,sp:.005},
-      {x:W-BL*.35,y:H-BT*.6,e:'\uD83E\uDD8B',s:55,al:.40,ph:3,sp:.006},
-      {x:BL*.55,y:H*.4,e:'\uD83C\uDF31',s:52,al:.34,ph:.5,sp:.007},
-      {x:W-BL*.55,y:H*.4,e:'\u2698',s:52,al:.34,ph:1.8,sp:.007},
-      {x:BL*.55,y:H*.7,e:'\uD83C\uDF40',s:50,al:.32,ph:1.2,sp:.008},
-      {x:W-BL*.55,y:H*.7,e:'\u273E',s:50,al:.32,ph:2.8,sp:.007},
+      {x:BL*.25,y:BT*.5,e:'\uD83C\uDF44',s:72,al:.75,ph:0,sp:.005},
+      {x:W-BL*.25,y:BT*.5,e:'\uD83C\uDF3B',s:72,al:.75,ph:1,sp:.006},
+      {x:BL*.25,y:H-BT*.5,e:'\uD83D\uDC1B',s:68,al:.70,ph:2,sp:.005},
+      {x:W-BL*.25,y:H-BT*.5,e:'\uD83E\uDD8B',s:68,al:.70,ph:3,sp:.006},
+      {x:BL*.45,y:H*.35,e:'\uD83C\uDF31',s:62,al:.60,ph:.5,sp:.007},
+      {x:W-BL*.45,y:H*.35,e:'\u2698',s:62,al:.60,ph:1.8,sp:.007},
+      {x:BL*.45,y:H*.65,e:'\uD83C\uDF40',s:60,al:.58,ph:1.2,sp:.008},
+      {x:W-BL*.45,y:H*.65,e:'\u273E',s:60,al:.58,ph:2.8,sp:.007},
+      {x:W*.25,y:BT*.35,e:'\uD83C\uDF38',s:55,al:.50,ph:.8,sp:.006},
+      {x:W*.75,y:BT*.35,e:'\uD83C\uDF3F',s:55,al:.50,ph:2.2,sp:.006},
+      {x:W*.25,y:H-BT*.35,e:'\u2740',s:52,al:.48,ph:1.5,sp:.007},
+      {x:W*.75,y:H-BT*.35,e:'\uD83C\uDF43',s:52,al:.48,ph:3.2,sp:.007},
     ];
-    for(var i=0;i<16;i++){
+    // Petales tombants
+    for(var i=0;i<35;i++){
       particles.push({kind:'petal',x:Math.random()*W,y:-70-Math.random()*H,
         vy:.35+Math.random()*1.1, vx:(Math.random()-.5)*.8,
         rot:Math.random()*Math.PI*2, vr:(Math.random()-.5)*.04,
-        s:20+Math.random()*34, al:.65+Math.random()*.45,
+        s:24+Math.random()*38, al:.75+Math.random()*.35,
         e:gc[Math.floor(Math.random()*gc.length)],
         sw:Math.random()*Math.PI*2, sws:.007+Math.random()*.015});
     }
     // Points lumineux sur les bords
-    for(var i=0;i<28;i++){
-      var pd=bpSide();
-      particles.push({kind:'dot',x:pd.x,y:pd.y,r:2+Math.random()*4,
+    for(var i=0;i<80;i++){
+      var pd=bpEdge();
+      particles.push({kind:'dot',x:pd.x,y:pd.y,r:2.5+Math.random()*5,
         ph:Math.random()*Math.PI*2, sp:.012+Math.random()*.025,
-        col:Math.random()>.5?cfg.glow:'rgba(200,255,150,'});
+        col:Math.random()>.5?cfg.glow:'rgba(180,255,120,'});
     }
     var draw=function(){
-      ctx.clearRect(0,0,W,H); t+=.008;
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.45); t+=.008;
 
-      cornerIcons.forEach(function(ic){
-        ic.ph+=ic.sp;
-        var ial=ic.al*(Math.sin(ic.ph)*.2+.8);
-        ctx.save(); ctx.globalAlpha=ial;
-        ctx.font=ic.s+'px serif';
-        ctx.shadowBlur=10; ctx.shadowColor=cfg.color;
-        ctx.fillText(ic.e,ic.x,ic.y); ctx.shadowBlur=0;
-        ctx.globalAlpha=1; ctx.restore();
-      });
-      // Halo verdoyant sur les cotes
-      ['left','right'].forEach(function(side){
-        var sg=ctx.createLinearGradient(side==='left'?0:W,0,side==='left'?BL:W-BL,0);
-        sg.addColorStop(0,cfg.glow+'0.20)'); sg.addColorStop(1,'transparent');
+      // Halo verdoyant fort sur les cotes
+      ['left','right','top','bottom'].forEach(function(side){
+        var sg;
+        if(side==='left'){sg=ctx.createLinearGradient(0,0,BL,0);}
+        else if(side==='right'){sg=ctx.createLinearGradient(W,0,BR,0);}
+        else if(side==='top'){sg=ctx.createLinearGradient(0,0,0,BT);}
+        else{sg=ctx.createLinearGradient(0,H,0,BB);}
+        sg.addColorStop(0,cfg.glow+'0.35)'); sg.addColorStop(1,'transparent');
         ctx.fillStyle=sg; ctx.fillRect(0,0,W,H);
       });
-      // Icones de coins
+
+      // Icones de coins (une seule fois)
       cornerIcons.forEach(function(ic){
         ic.ph+=ic.sp;
         var ial=ic.al*(Math.sin(ic.ph)*.2+.8);
         ctx.save(); ctx.globalAlpha=ial;
         ctx.font=ic.s+'px serif';
-        ctx.shadowBlur=10; ctx.shadowColor=cfg.color;
+        ctx.shadowBlur=18; ctx.shadowColor=cfg.color;
         ctx.fillText(ic.e,ic.x,ic.y); ctx.shadowBlur=0;
         ctx.globalAlpha=1; ctx.restore();
       });
+
       particles.forEach(function(p){
         if(p.kind==='dot'){
           p.ph+=p.sp;
-          var al=(Math.sin(p.ph)*.4+.55)*.7;
+          var al=(Math.sin(p.ph)*.45+.55)*.85;
           ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
           ctx.fillStyle=p.col+al+')';
-          ctx.shadowBlur=5; ctx.shadowColor=cfg.color; ctx.fill(); ctx.shadowBlur=0;
+          ctx.shadowBlur=8; ctx.shadowColor=cfg.color; ctx.fill(); ctx.shadowBlur=0;
         } else {
           p.sw+=p.sws; p.y+=p.vy; p.x+=p.vx+Math.sin(p.sw)*1.5; p.rot+=p.vr;
           if(p.y>H+70){p.y=-70; p.x=Math.random()*W;}
           ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
           ctx.globalAlpha=p.al; ctx.font='bold '+p.s+'px serif'; ctx.fillStyle=cfg.color;
-          ctx.shadowBlur=6; ctx.shadowColor=cfg.color;
+          ctx.shadowBlur=10; ctx.shadowColor=cfg.color;
           ctx.fillText(p.e,-p.s/2,-p.s/2); ctx.shadowBlur=0;
           ctx.globalAlpha=1; ctx.restore();
         }
@@ -2304,7 +2872,7 @@ function startFx(projId) {
     // Ondes sonores depuis les 4 coins + bords
     var phrases=['...','shhh','?','listen','...','silence','\u25C9','\u2205'];
     var textPs=[];
-    for(var i=0;i<10;i++){
+    for(var i=0;i<16;i++){
       var pt=bpSide();
       textPs.push({x:pt.x,y:pt.y,text:phrases[i%phrases.length],
         al:0,maxAl:.28+Math.random()*.32,s:16+Math.random()*34,
@@ -2320,7 +2888,7 @@ function startFx(projId) {
       {x:W-BL*.5,y:H*.5,e:'\uD83D\uDC41',s:50,al:.25,ph:2.3,sp:.0015},
     ];
     var draw=function(){
-      ctx.clearRect(0,0,W,H); t+=.006;
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.28); t+=.006;
       // Ondes depuis les coins
       [[0,0],[W,0],[0,H],[W,H],[W/2,0],[W/2,H],[0,H/2],[W,H/2]].forEach(function(pt,idx){
         var r=(t*35+idx*55)%(Math.max(W,H)*.7);
@@ -2371,7 +2939,7 @@ function startFx(projId) {
     }
     // Barres d'egaliseur sur les bords gauche et droit
     var bars=[];
-    for(var i=0;i<16;i++) bars.push({h:20+Math.random()*80,th:Math.random()*Math.PI*2,sp:.05+Math.random()*.09,side:i<10?'left':'right'});
+    for(var i=0;i<24;i++) bars.push({h:20+Math.random()*80,th:Math.random()*Math.PI*2,sp:.05+Math.random()*.09,side:i<10?'left':'right'});
 
     var cornerIcons=[
       {x:BL*.3,y:BT*.5,e:'\uD834\uDD1E',s:65,al:.4,ph:0,sp:.01},
@@ -2385,7 +2953,7 @@ function startFx(projId) {
     ];
     var staffY=H*.08;
     var draw=function(){
-      ctx.clearRect(0,0,W,H); t+=.018;
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.28); t+=.018;
 
       cornerIcons.forEach(function(ic){
         ic.ph+=ic.sp;
@@ -2441,7 +3009,7 @@ function startFx(projId) {
         col:Math.random()>.5?'rgba(255,140,56,':'rgba(255,60,10,'});
     }
     // Symboles medievaux - bords gauche et droit
-    for(var i=0;i<9;i++){
+    for(var i=0;i<14;i++){
       var ps3=bpSide();
       particles.push({kind:'sym',x:ps3.x,y:ps3.y,
         s:30+Math.random()*55, al:.1+Math.random()*.25,
@@ -2450,7 +3018,7 @@ function startFx(projId) {
     }
     // Colonnes de flammes - exclusivement sur les bords gauche/droit
     var cols=[];
-    for(var i=0;i<7;i++) cols.push({
+    for(var i=0;i<12;i++) cols.push({
       x:i<5?Math.random()*BL:(BR+Math.random()*(W-BR)),
       phase:Math.random()*Math.PI*2, sp:.025+Math.random()*.035
     });
@@ -2466,7 +3034,7 @@ function startFx(projId) {
       {x:W-BL*.5,y:H*.72,e:'\uD83D\uDC80',s:52,al:.32,ph:3.2,sp:.007},
     ];
     var draw=function(){
-      ctx.clearRect(0,0,W,H); t+=.02;
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.28); t+=.02;
 
       cornerIcons.forEach(function(ic){
         ic.ph+=ic.sp;
@@ -2561,7 +3129,7 @@ function startFx(projId) {
       {x:W-BL*.5,y:H*.70,e:'\uD83C\uDFAF',s:52,al:.32,ph:3.5,sp:.011},
     ];
     var draw=function(){
-      ctx.clearRect(0,0,W,H); t+=.012;
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.28); t+=.012;
 
       cornerIcons.forEach(function(ic){
         ic.ph+=ic.sp;
@@ -2569,7 +3137,7 @@ function startFx(projId) {
         ctx.save(); ctx.globalAlpha=ial;
         ctx.font=ic.s+'px serif';
         ctx.fillStyle=cfg.color;
-        ctx.shadowBlur=4; ctx.shadowColor=cfg.color;
+        ctx.shadowBlur=14; ctx.shadowColor=cfg.color;
         ctx.fillText(ic.e,ic.x,ic.y); ctx.shadowBlur=0;
         ctx.globalAlpha=1; ctx.restore();
       });
@@ -2665,7 +3233,7 @@ function _ambInit() {
 function _ambStop() {
   clearTimeout(_ambLoop);
   _ambNodes.forEach(function(n){ try{ if(n && typeof n.stop==='function') n.stop(); }catch(e){} });
-  // Arrêt immédiat des elements audio HTML
+  // Arret immediat des elements audio HTML
   if (_ambNodes._dracEl) {
     var el = _ambNodes._dracEl;
     try { el.pause(); el.currentTime=0; el.src = ''; } catch(e){}
@@ -3317,6 +3885,16 @@ function openProj(id){
   _audio.playModalOpen();
   var btn=document.getElementById('audio-btn');
   if(btn) btn.style.display='flex';
+  // Afficher le selecteur de langue dans le modal
+  var mlb=document.getElementById('modal-lang-bar');
+  if(mlb){
+    mlb.style.display='flex';
+    // Sync etat actif avec la langue courante
+    ['fr','en','es','de'].forEach(function(l){
+      var b=document.getElementById('mlang-'+l);
+      if(b) b.style.opacity=(_currentLang===l)?'1':'.35';
+    });
+  }
   setTimeout(function(){ drawIso(id); startFx(id); _audio.startAmbient(id); }, 80);
 }
 function closeProj(id){
@@ -3327,6 +3905,8 @@ function closeProj(id){
   _audio.stopAmbient();
   var btn=document.getElementById('audio-btn');
   if(btn) btn.style.display='none';
+  var mlb=document.getElementById('modal-lang-bar');
+  if(mlb) mlb.style.display='none';
 }
 
 document.addEventListener('keydown',e=>{
