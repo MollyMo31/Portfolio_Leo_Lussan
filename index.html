@@ -9,7 +9,7 @@
 <meta name="description" content="Portfolio de Léo Lussan, Level Designer & Game Designer, étudiant en Bachelor Game Design à Brassart Toulouse."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&family=Nosifer&family=Creepster&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -259,7 +259,37 @@ nav{
 
 /* -- THÈMES PROJETS ENRICHIS -- */
 .theme-unjudged{--th-bg:#0d1f12;--th-acc:#4ade80;--th-acc2:#86efac;--th-glow:rgba(74,222,128,.18)}
+#pm-unjudged .proj-modal-title,
+#pm-unjudged .pm-section-title,
+#pm-unjudged .pm-label {
+  font-family:'Cinzel Decorative','Bebas Neue',serif !important;
+  letter-spacing:.04em;
+}
 .theme-priest  {--th-bg:#150008;--th-acc:#7c0010;--th-acc2:#ef4444;--th-glow:rgba(124,0,16,.25)}
+/* Nosifer pour le grand titre — Creepster pour les sections */
+#pm-priest .proj-modal-title {
+  font-family:'Nosifer',cursive !important;
+  font-size:clamp(2rem,4.5vw,3.8rem) !important;
+  letter-spacing:.05em;
+  text-shadow:0 0 30px rgba(200,0,0,.5),0 0 60px rgba(200,0,0,.2);
+}
+#pm-priest .pm-section-title {
+  font-family:'Creepster',cursive !important;
+  font-size:1.9rem !important;
+  letter-spacing:.08em;
+}
+#pm-priest .pm-label {
+  font-family:'Creepster',cursive !important;
+  font-size:.85rem !important;
+  letter-spacing:.18em;
+}
+/* DM Sans pour le corps — lisibilite maximale */
+#pm-priest p,
+#pm-priest .proj-modal-body [style*="font-mono"] {
+  font-family:'DM Sans',sans-serif !important;
+  font-size:.88rem !important;
+  line-height:1.9 !important;
+}
 .theme-city    {--th-bg:#0a0a1e;--th-acc:#818cf8;--th-acc2:#a78bfa;--th-glow:rgba(129,140,248,.2)}
 .theme-tower   {--th-bg:#0e1a08;--th-acc:#65a30d;--th-acc2:#a3e635;--th-glow:rgba(101,163,13,.18)}
 /* Macondo pour les titres uniquement du modal Tower Defense */
@@ -944,20 +974,111 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-tags"><span class="tag accent">En cours</span><span class="tag">Level Design</span><span class="tag">Narrative</span><span class="tag">Unreal Engine</span><span class="tag">Miro</span><span class="tag">Inky</span><span class="tag">Git</span></div>
     </div>
     <div class="proj-modal-body">
-      <p id="proj-unjudged-p1">Un jeu narratif où vous incarnez un juge dans une cour d'assises futuriste. Chaque décision affecte le destin des accusés. L'ambiance oscille entre le judiciaire oppressant et des espaces ouverts, <strong>presque paradisiaques</strong> — un contraste voulu entre la rigueur de la justice et la liberté de conscience. La lumière, les jardins suspendus et les espaces ouverts contrastent avec la froideur du tribunal.</p>
+      <p id="proj-unjudged-p1">Vous êtes mort, et vous savez que vous avez été un salaud. Tant que le jugement n'est pas acté, votre esprit n'est pas libre de votre corps. Vous décidez d'<strong>échapper au jugement</strong> et déclenchez une crise chez les anges et les démons. Votre tête mise à prix, il faut traverser ce domaine funéraire à la recherche de la vie.</p>
+
       <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-unjudged"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🌿</div><div class="carousel-placeholder-text">Espaces paradisiaques — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🏛️</div><div class="carousel-placeholder-text">Le tribunal futuriste — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🗺️</div><div class="carousel-placeholder-text">Plan du niveau — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-unjudged"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('unjudged',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('unjudged',1)">Suiv →</button></div></div></div>
+
       <div class="pm-label">Visualisation 3D isométrique</div>
       <div class="iso-map-container"><canvas id="iso-unjudged" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Tribunal Futuriste</div><div class="iso-map-badge">Placeholder</div></div>
-      <div class="pm-section-title" id="tw-unjudged-title">Conception du niveau</div>
-      <p id="proj-unjudged-p2">Le tribunal futuriste est pensé comme un espace d'impact émotionnel maximal. <strong>Chaque salle, chaque colonne, chaque lumière</strong> crée une ambiance qui affecte le joueur subconscieusement. L'architecture influence les décisions : une salle oppressante favorise les jugements sévères, tandis qu'un espace lumineux encourage la clémence. C'est du <strong>level design narratif à l'état pur</strong>.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine</div>
+
+      <!-- PITCH & PILLIERS -->
+      <div class="pm-section-title" id="tw-unjudged-title">Concept & Piliers</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.15);background:rgba(134,239,172,.04)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.4rem">🧠 CORPS & ESPRIT</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Complémentarité et dissociation entre le corps et l'esprit comme mécanique centrale</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.15);background:rgba(134,239,172,.04)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.4rem">⚔️ COMBAT STRATÉGIQUE</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Chaque combat donne une valeur à la vie — on se bat pour exister</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.15);background:rgba(134,239,172,.04)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.4rem">🕊️ REFUS DE LA FATALITÉ</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Fuir le jugement par peur — libre-arbitre contre destin enchaîné</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.15);background:rgba(134,239,172,.04)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.4rem">🌿 TRAME NARRATIVE</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Limbes / Enfer / Paradis — "Un esprit libre face à une fatalité enchaînée."</div>
+        </div>
+      </div>
+
+      <!-- ENNEMIS -->
+      <div class="pm-section-title" id="unjudged-title-enemies">Les Ennemis</div>
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.12);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">👼 L'ANGE — Unité aérienne corps à corps</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Patrouille jusqu'à détecter le joueur · Passe en mode traque · Attaque en tournoyant plutôt qu'en ligne droite</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.12);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">🪶 LE PLUMIER — Combattant à distance tactique</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Verrouille le joueur · Maintient une zone de confort · Se repositionne si le joueur s'approche · Esquive les attaques au corps à corps</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.12);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">⚡ LE VERTUS — Téléporteur brutal</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Se téléporte directement au corps à corps · Attaque lourde immédiate après téléportation · Poursuite implacable si le joueur fuit</div>
+        </div>
+      </div>
+
+      <!-- BOSS -->
+      <div class="pm-section-title" id="unjudged-title-boss">Boss</div>
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(250,204,21,.2);background:rgba(250,204,21,.04)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#fbbf24;letter-spacing:.15em;margin-bottom:.5rem">🐂 LE THORIUM — Boss de charge</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Charge rectiligne ultra-rapide · Trajectoire fixe · S'étourdit lui-même en percutant un mur → fenêtre d'attaque · Recommence après récupération</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(250,204,21,.12);background:rgba(250,204,21,.02)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#fbbf24;letter-spacing:.15em;margin-bottom:.5rem">🕊️ LE SÉRAPHIM — Boss en rotation (en cours)</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Tourne sur lui-même en infligeant des dégâts de zone avec ses ailes · Zones rouges vulnérables à cibler</div>
+        </div>
+      </div>
+
+      <!-- INTERFACE -->
+      <div class="pm-section-title" id="unjudged-title-ui">Interfaces & UI/UX</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">▶ MENU PRINCIPAL</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">Sobre, introspectif · Bouton survolé = décale à droite · Texte qui apparaît progressivement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">🎮 HUD IN-GAME</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">Léger · Barre de vie en bas (rouge) · Soul Time gauche (bougie) · Pas de surcharge visuelle</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">⏸ MENU PAUSE</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">Effet "papier déchiré" · Objectifs mis à jour · Anciennes missions raturées · Infos ennemis accessibles</div>
+        </div>
+      </div>
+
+      <!-- EQUIPE -->
+      <div class="pm-section-title" id="unjudged-title-team">Équipe</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.2);background:rgba(134,239,172,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">LÉO LUSSAN</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.9">Level Design · UI/UX</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.1);background:rgba(134,239,172,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">JULIE CASTAING-MOLIN</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.9">Narration · Scénario</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.1);background:rgba(134,239,172,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">ANDREW MALAURE</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.9">Codage</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(134,239,172,.1);background:rgba(134,239,172,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">ALEXANDRE BELY</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.9">Système Design</div>
+        </div>
+      </div>
+
+      <!-- OUTILS -->
+      <div class="pm-label">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine 5.6.4</div>
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">✍️ Inky</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📋 Hack'n'Plan</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎨 Suite Adobe</div>
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔀 Git</div>
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);grid-column:span 2">🎨 Suite Adobe</div>
       </div>
     </div>
   </div>
@@ -974,14 +1095,98 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-tags"><span class="tag">Level Design</span><span class="tag">Horreur</span><span class="tag">Course / Pression</span><span class="tag">Unreal Engine</span><span class="tag">Miro</span><span class="tag">SVN</span></div>
     </div>
     <div class="proj-modal-body">
-      <p id="proj-priest-p1">Devouring Priest est un jeu de course et de survie sous pression, avec une ambiance horreur dark fantasy sur thème religieux corrompu. <strong>Quelque chose vous poursuit.</strong> Chaque couloir est conçu pour amplifier la tension — le rythme cardiaque du joueur monte à mesure qu'il avance. Le level design est pensé pour la <strong>pression psychologique constante</strong>.</p>
-      <div class="pm-label">Galerie du projet</div>
+      <p id="proj-priest-p1">Devouring Priest est un jeu de course-horreur dans lequel un adolescent fuit un prêtre corrompu qui cherche à le d&eacute;vorer pour accomplir son rituel. Le level design est pens&eacute; pour cr&eacute;er une <strong>pression psychologique constante</strong> — espaces &eacute;troits, ambiance lourde et embrumée, ennemis omniprésents.</p>
+
+      <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-priest"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">⛪</div><div class="carousel-placeholder-text">L'église en ruines — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🩸</div><div class="carousel-placeholder-text">Atmosphère horreur — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🗺️</div><div class="carousel-placeholder-text">Plan du niveau — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-priest"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('priest',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('priest',1)">Suiv →</button></div></div></div>
+
       <div class="pm-label">Visualisation 3D isométrique</div>
       <div class="iso-map-container"><canvas id="iso-priest" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Église corrompue</div><div class="iso-map-badge">Placeholder</div></div>
-      <div class="pm-section-title">L'atmosphère de chasse</div>
-      <p>Le joueur avance dans l'obscurité, oppressé par la présence invisible du prêtre qui dévore. La conception des niveaux exploite les <strong>espaces étroits, les faux-semblants et les sons</strong> pour créer une tension permanente. Chaque embranchement est un choix sous pression. Le design est au service de la <strong>course — pas de la contemplation</strong>.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
+
+      <!-- HISTOIRE -->
+      <div class="pm-section-title" id="priest-title-story">Histoire</div>
+      <p id="proj-priest-p1b">Un adolescent fuit un pr&ecirc;tre qui essaie de le d&eacute;vorer pour accomplir son rituel — se transcender en fant&ocirc;me et devenir intu&eacute;. Pour cela, il doit manger le joueur. Le niveau est un circuit ouvert, avec un d&eacute;but et une fin, plongeant le joueur dans un environnement qui ne lui est pas familier.</p>
+
+      <!-- MECANIQUES -->
+      <div class="pm-section-title" id="priest-title-mec">Mécaniques de jeu</div>
+      <div class="pm-label" id="priest-label-env">Mécaniques environnementales</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">👹 THWOMPS</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Tombent et poursuivent le joueur pendant X temps quand il passe en dessous. Rient en tombant.</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">⚡ PADS DE VITESSE</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Boostent la vitesse du joueur sur une durée à une limite prédéfinie.</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">👻 SPAWN DE FANTÔMES</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Spawnent via box collision. Tombent et ralentissent le joueur en le surprenant.</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">📷 CHANGEMENT DE CAMÉRA</div>
+          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Box de changement de point de vue intégrée dans le LD. Passe de TPS à FPS et vice-versa.</div>
+        </div>
+      </div>
+
+      <div class="pm-label" id="priest-label-enemy">L'ennemi principal</div>
+      <div style="padding:1rem;border:1px solid rgba(248,113,113,.25);background:rgba(248,113,113,.05);margin-bottom:1.5rem">
+        <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.6rem">⛧ LE PRÊTRE DÉVOREUR</div>
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.9">
+          Poursuit le joueur sur ¾ du niveau<br/>
+          Ricane quand le joueur est trop proche<br/>
+          Lumière scintillante (battements de cœur) visible uniquement à courte distance<br/>
+          Peut être ralenti par la glue du joueur
+        </div>
+      </div>
+
+      <div class="pm-label" id="priest-label-player">Mécanique joueur</div>
+      <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);margin-bottom:1.5rem">
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.9">
+          🔫 <strong style="color:var(--white)">Glue</strong> — Le joueur lâche de la glue derrière lui pour ralentir l'ennemi et gagner de la distance<br/>
+          🚗 <strong style="color:var(--white)">Kart</strong> — Dérapages, pads de vitesse, rebonds sur les murs avec feedback sonore<br/>
+          📷 <strong style="color:var(--white)">Caméra</strong> — Changement TPS ↔ FPS intégré dans le level design pour évaluer la distance avec l'ennemi
+        </div>
+      </div>
+
+      <!-- SON -->
+      <div class="pm-section-title" id="priest-title-sound">Design Sonore</div>
+      <div class="pm-label" id="priest-label-sound-game">Sons de jeu</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">😈 Rire diabolique au lancement</div>
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🔢 Compteur "1,2,3 — Survive!"</div>
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🚗 Moteur kart (roulage + dérapage)</div>
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">💥 Collision mur — "bonk" + arrêt moteur</div>
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🍯 Son de glue au déversement</div>
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">👻 Rire fantômes au spawn</div>
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">😂 Rire prêtre à proximité</div>
+        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🎵 Musique entraînante · thème Halloween</div>
+      </div>
+
+      <!-- DA -->
+      <div class="pm-section-title" id="priest-title-da">Direction Artistique</div>
+      <p id="proj-priest-p2">Univers visuel mêlant <strong>cartoon</strong> (véhicule, fantômes, ennemi) et réalisme (glue, dérapages, gain de vitesse). Ambiance <strong>lourde, pesante et embrumée</strong>. Inspiré d'un circuit de kart suisse et de Mario Kart (manoirs, Boo). Typographie et sons adaptés à l'ambiance — boutons "rouge sang", musiques horrifiques ou entraînantes selon les menus.</p>
+
+      <!-- MENUS -->
+      <div class="pm-section-title" id="priest-title-menus">Menus</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">▶ INTRO</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">Titre · Ennemi principal qui tourne · Play / Leave · Contrôles in-game (Tab)</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">💀 LOSE SCENE</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">"You got Eaten" · Vidéo fond · Musique triste · Play Again / Leave</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">🏆 WIN SCENE</div>
+          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">"Good Job! You escaped the priest" · Image fixe · Son calme victorieux · Play Again / Leave</div>
+        </div>
+      </div>
+
+      <!-- OUTILS -->
+      <div class="pm-label" id="priest-label-tools">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine</div>
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
         <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎨 Suite Adobe</div>
