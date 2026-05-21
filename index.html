@@ -2041,6 +2041,18 @@ var _LANGS = {
   },
 };
 var _currentLang = 'fr';
+// Sauvegarder les valeurs originales FR du DOM au chargement
+var _originalHTML = {};
+function _saveOriginals() {
+  var ids = ['about-p1','about-p2','about-p3','about-p4',
+             'hero-desc','cv-desc','contact-desc','contact-heading',
+             'skills-hint','sk-cat-engines'];
+  ids.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) _originalHTML[id] = el.innerHTML;
+  });
+}
+document.addEventListener('DOMContentLoaded', _saveOriginals);
 
 function setLang(lang) {
   if (!_LANGS[lang]) return;
@@ -2346,7 +2358,13 @@ function setLang(lang) {
   var globalDict = TRANSLATIONS[lang] || TRANSLATIONS.fr;
   Object.keys(globalDict).forEach(function(id) {
     var el = document.getElementById(id);
-    if (el) el.innerHTML = globalDict[id];
+    if (!el) return;
+    // Pour le FR : utiliser les originaux du DOM si disponibles
+    if (lang === 'fr' && _originalHTML[id] !== undefined) {
+      el.innerHTML = _originalHTML[id];
+    } else {
+      el.innerHTML = globalDict[id];
+    }
   });
 
   // Galerie labels (multiple elements with data-i18n)
