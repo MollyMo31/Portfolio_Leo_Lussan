@@ -9,7 +9,7 @@
 <meta name="description" content="Portfolio de Léo Lussan, Level Designer & Game Designer, étudiant en Bachelor Game Design à Brassart Toulouse."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&family=Nosifer&family=Creepster&family=Uncial+Antiqua&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&family=Nosifer&family=Creepster&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Uncial+Antiqua&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -296,7 +296,52 @@ nav{
   font-size:.88rem !important;
   line-height:1.9 !important;
 }
-.theme-city    {--th-bg:#0a0a1e;--th-acc:#818cf8;--th-acc2:#a78bfa;--th-glow:rgba(129,140,248,.2)}
+.theme-city    {--th-bg:#04040f;--th-acc:#00d4ff;--th-acc2:#a78bfa;--th-glow:rgba(0,212,255,.22)}
+/* Orbitron pour le titre City Rider, Rajdhani pour sections */
+#pm-city .proj-modal-title {
+  font-family:'Orbitron',sans-serif !important;
+  font-size:clamp(1.8rem,3.8vw,3.2rem) !important;
+  letter-spacing:.12em;
+  text-shadow:0 0 30px rgba(0,212,255,.6),0 0 60px rgba(0,212,255,.3);
+}
+#pm-city .pm-section-title,
+#pm-city .pm-label {
+  font-family:'Rajdhani',sans-serif !important;
+  font-weight:700;
+  letter-spacing:.12em;
+  font-size:1.1rem !important;
+}
+/* ── PERSONNALISATION GLOW PAR PROJET ── */
+#pm-unjudged .proj-modal-title {
+  text-shadow:0 0 40px rgba(74,222,128,.4),0 0 80px rgba(74,222,128,.15);
+}
+#pm-tower .proj-modal-title {
+  text-shadow:0 0 35px rgba(163,230,53,.35),0 0 70px rgba(163,230,53,.12);
+}
+#pm-silence .proj-modal-title {
+  font-family:'Uncial Antiqua',serif !important;
+  font-size:clamp(2rem,4.5vw,4rem) !important;
+  letter-spacing:.1em;
+  text-shadow:0 0 25px rgba(156,163,175,.5),0 0 50px rgba(156,163,175,.2);
+}
+#pm-draconium .proj-modal-title {
+  text-shadow:0 0 30px rgba(255,140,56,.5),0 0 60px rgba(194,80,10,.3);
+}
+#pm-mira .proj-modal-title {
+  text-shadow:0 0 25px rgba(74,222,128,.3);
+}
+#pm-coaching .proj-modal-title {
+  text-shadow:0 0 25px rgba(244,160,51,.35);
+}
+#pm-streaming .proj-modal-title {
+  text-shadow:0 0 30px rgba(155,114,208,.5),0 0 60px rgba(155,114,208,.2);
+}
+#pm-juiceup .proj-modal-title {
+  font-family:'Orbitron',sans-serif !important;
+  font-size:clamp(1.8rem,3.8vw,3.2rem) !important;
+  letter-spacing:.1em;
+  text-shadow:0 0 30px rgba(192,132,252,.6),0 0 60px rgba(192,132,252,.3);
+}
 .theme-tower   {--th-bg:#0e1a08;--th-acc:#65a30d;--th-acc2:#a3e635;--th-glow:rgba(101,163,13,.18)}
 /* Macondo pour les titres uniquement du modal Tower Defense */
 #pm-tower .proj-modal-title,
@@ -1091,7 +1136,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.2);background:rgba(134,239,172,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">LÉO LUSSAN</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.9">Level Design · UI/UX</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.9">Level Design · UI/UX · Chef de projet</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.1);background:rgba(134,239,172,.02)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">JULIE CASTAING-MOLIN</div>
@@ -1225,7 +1270,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(248,113,113,.2);background:rgba(248,113,113,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#f87171;margin-bottom:.4rem">LÉO LUSSAN</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Design · Conception du circuit · Mécaniques de glue et caméra</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Design · Conception du circuit · Mécaniques de glue et caméra · Chef de projet</div>
         </div>
       </div>
 
@@ -1251,7 +1296,119 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-tags"><span class="tag">Course TPS</span><span class="tag">Néon</span><span class="tag">Vitesse</span><span class="tag">Unreal Engine</span><span class="tag">Level Design</span></div>
     </div>
     <div class="proj-modal-body">
-      <p id="proj-city-p1">City Rider est un jeu de course urbaine en vue TPS dans une ville néon futuriste. Le joueur incarne un livreur à moto qui doit rejoindre l'arrivée tout en évitant le trafic. La ville est conçue comme un terrain de jeu rapide et fluide — le level design est au service de la <strong>sensation de vitesse et de liberté</strong>.</p>
+      <p id="proj-city-p1">City Rider est un jeu de course néo-futuriste où vous incarnez un <strong>livreur de pizza à moto</strong> dans une ville cyberpunk illuminée de néons. Zigzaguez entre les véhicules, faites des loopings à 360°, empruntez des raccourcis sur les toits des buildings — tout ça pour livrer le plus vite possible.</p>
+
+      <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
+      <div class="carousel"><div class="carousel-track" id="ct-city">
+        <div class="carousel-slide"><img src="projet_cityrider/city-01.png" alt="City Rider - Vue aérienne map" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-02.png" alt="City Rider - Skyline néon" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-03.png" alt="City Rider - Flèches directionnelles" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-04.png" alt="City Rider - Route avec trafic" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-05.png" alt="City Rider - Gameplay TPS moto" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-06.png" alt="City Rider - Food truck PNJ" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-07.png" alt="City Rider - Menu principal" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-08.png" alt="City Rider - Crédits" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-09.png" alt="City Rider - Gameplay intérieur" style="width:100%;height:340px;object-fit:cover"/></div>
+      </div><div class="car-controls"><div class="carousel-dots" id="cd-city"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('city',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('city',1)">Suiv →</button></div></div></div>
+
+      <div class="pm-label">Visualisation 3D isométrique</div>
+      <div class="iso-map-container"><canvas id="iso-city" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Carte urbaine</div><div class="iso-map-badge">Placeholder</div></div>
+
+      <!-- CONCEPT -->
+      <div class="pm-section-title" id="tw-city-title">Concept & Fantasy</div>
+      <p id="proj-city-p2">Incarner un livreur sur un véhicule futuriste dans un monde néon — sauter, faire des loopings, rouler sur des bâtiments, éviter les véhicules. Le circuit part d'un parking et se termine sur le toit du bâtiment de livraison, en suivant les <strong>flèches néon</strong> au sol. Des raccourcis permettent aux joueurs audacieux de gagner du temps.</p>
+
+      <!-- DA -->
+      <div class="pm-section-title" id="city-title-da">Direction Artistique</div>
+      <p>Univers <strong>néo-futuriste</strong> — grands immeubles, routes surélevées, véhicules lumineux. L'éclairage oscille entre le jaune et le bleu. Les enceintes géantes émettent de la musique in-game. Les LEDs bordent les routes, les panneaux publicitaires illuminent la ville. VFX néon sur chaque élément pour renforcer l'aspect futuriste et vivant.</p>
+
+      <!-- MECANIQUES -->
+      <div class="pm-section-title" id="city-title-mec">Mécaniques de jeu</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.2);background:rgba(0,212,255,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#00d4ff;letter-spacing:.15em;margin-bottom:.4rem">🏍 LIVRAISON</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Livrer une pizza · Partir d'un parking · Arriver sur le toit · Vue TPS</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.2);background:rgba(0,212,255,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#00d4ff;letter-spacing:.15em;margin-bottom:.4rem">⚡ BARRE DE BOOST</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Fioles sur la route qui rechargent le boost · Accélération temporaire</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.2);background:rgba(0,212,255,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#00d4ff;letter-spacing:.15em;margin-bottom:.4rem">🔄 LOOPINGS & SAUTS</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Circuit avec montées/descentes · Loopings à 360° · Sauts entre bâtiments</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.2);background:rgba(0,212,255,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#00d4ff;letter-spacing:.15em;margin-bottom:.4rem">🚗 TRAFIC & RACCOURCIS</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Véhicules parasites à éviter · Raccourcis cachés pour les plus rapides</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.2);background:rgba(0,212,255,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#00d4ff;letter-spacing:.15em;margin-bottom:.4rem">➡ FLÈCHES NÉON</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Guidage directionnel au sol · Toutes les routes mènent à la même arrivée</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.2);background:rgba(0,212,255,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#00d4ff;letter-spacing:.15em;margin-bottom:.4rem">⏱ CHRONOMÈTRE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Haut gauche · Kilométrage bas droit · Barre de boost bas gauche</div>
+        </div>
+      </div>
+
+      <!-- VERBES -->
+      <div class="pm-section-title" id="city-title-verbs">Verbes d'action</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem">
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;color:#00d4ff;padding:.4rem .9rem;border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.06);letter-spacing:.08em">AVANCER</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;color:#00d4ff;padding:.4rem .9rem;border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.06);letter-spacing:.08em">ACCÉLÉRER</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;color:#00d4ff;padding:.4rem .9rem;border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.06);letter-spacing:.08em">TOURNER</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;color:#00d4ff;padding:.4rem .9rem;border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.06);letter-spacing:.08em">DASHER</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;color:#00d4ff;padding:.4rem .9rem;border:1px solid rgba(0,212,255,.3);background:rgba(0,212,255,.06);letter-spacing:.08em">SAUTER</span>
+        <span style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;color:#a78bfa;padding:.4rem .9rem;border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.06);letter-spacing:.08em">LIVRER UNE PIZZA</span>
+      </div>
+
+      <!-- EQUIPE -->
+      <div class="pm-section-title" id="city-title-team">Équipe</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.2);background:rgba(0,212,255,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#00d4ff;margin-bottom:.4rem">LÉO LUSSAN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">Lead Level Design · Communication · Chef de projet</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.1);background:rgba(0,212,255,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#00d4ff;margin-bottom:.4rem">CHAMBON ANTOINE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Level Design</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.1);background:rgba(0,212,255,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#00d4ff;margin-bottom:.4rem">FRITZ CELIANN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Développement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.1);background:rgba(0,212,255,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#00d4ff;margin-bottom:.4rem">LAMI FIONA</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Rédaction Doc · UI/UX</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.1);background:rgba(0,212,255,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#00d4ff;margin-bottom:.4rem">RICHAUD LUCAS</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Conception Assets</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.1);background:rgba(0,212,255,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#00d4ff;margin-bottom:.4rem">SELLA ROBIN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Conception Assets</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.1);background:rgba(0,212,255,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#00d4ff;margin-bottom:.4rem">VIARD ENZO</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Conception Assets</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(0,212,255,.1);background:rgba(0,212,255,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#00d4ff;margin-bottom:.4rem">VIARD PIERRE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Conception Assets</div>
+        </div>
+      </div>
+
+      <div class="pm-label">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📋 Hack'n'Plan</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎨 Suite Adobe</div>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-city">
@@ -1628,7 +1785,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
         <div style="padding:1.2rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.04)">
           <div style="font-family:var(--font-title);font-size:1.1rem;color:#a3e635;margin-bottom:.6rem">LÉO LUSSAN</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:2">GDD<br/>Level Design<br/>Design des tourelles<br/>Caméra<br/>Slots tourelles<br/>HUD<br/>Système de monnaie</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:2">GDD<br/>Lead Level Design<br/>Design des tourelles<br/>Caméra<br/>Slots tourelles<br/>HUD<br/>Système de monnaie<br/><strong style="color:#a3e635">Chef de projet</strong></div>D<br/>Système de monnaie</div>
         </div>
         <div style="padding:1.2rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.02)">
           <div style="font-family:var(--font-title);font-size:1.1rem;color:#a3e635;margin-bottom:.6rem">HUGO PLOUZEAU</div>
@@ -1760,7 +1917,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(107,114,128,.2);background:rgba(107,114,128,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#9ca3af;margin-bottom:.4rem">LÉO LUSSAN</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Multitâche · Aide Level Design · Visualisation · Menu pause · Respawn · Feedback joueur</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Multitâche · Aide Level Design · Visualisation · Menu pause · Respawn · Feedback joueur · Chef de projet</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(107,114,128,.1);background:rgba(107,114,128,.02)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#9ca3af;margin-bottom:.4rem">ANTOINE</div>
@@ -1866,7 +2023,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(74,222,128,.2);background:rgba(74,222,128,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#4ade80;margin-bottom:.4rem">LÉO LUSSAN</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Designer · Builder · Conception des environnements</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Designer · Builder · Conception des environnements · Chef de projet</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(74,222,128,.1);background:rgba(74,222,128,.02)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#4ade80;margin-bottom:.4rem">ÉQUIPE EPITECH</div>
@@ -1933,7 +2090,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(255,140,56,.2);background:rgba(255,140,56,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#ff8c38;margin-bottom:.4rem">LÉO LUSSAN</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Design · Concept · Narration · Direction artistique</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Design · Concept · Narration · Direction artistique · Chef de projet</div>
         </div>
       </div>
 
@@ -1984,7 +2141,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(244,160,51,.2);background:rgba(244,160,51,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#f4a033;margin-bottom:.4rem">LÉO LUSSAN — Coach E-Sport</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Ancien joueur compétitif · Équipes e-sport · Podiums en tournois · Approche analytique et pédagogique</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Ancien joueur compétitif · Équipes e-sport · Podiums en tournois · Approche analytique et pédagogique · Chef de projet</div>
         </div>
       </div>
 
@@ -2133,7 +2290,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(155,114,208,.2);background:rgba(155,114,208,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#9b72d0;margin-bottom:.4rem">LÉO LUSSAN — MollyMo31</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Streamer Twitch · Joueur compétitif haut niveau · Créateur de contenu · Communauté active</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Streamer Twitch · Joueur compétitif haut niveau · Créateur de contenu · Communauté active · Chef de projet</div>
         </div>
       </div>
 
@@ -2240,7 +2397,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(180,130,220,.2);background:rgba(180,130,220,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#c084fc;margin-bottom:.4rem">LÉO LUSSAN — Compositeur</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Musicien · Pianiste · Trompettiste · Compositeur de musiques d'ambiance et de jeux vidéo</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Musicien · Pianiste · Trompettiste · Compositeur de musiques d'ambiance et de jeux vidéo · Chef de projet</div>
         </div>
       </div>
 
@@ -2313,7 +2470,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(192,132,252,.2);background:rgba(192,132,252,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#c084fc;margin-bottom:.4rem">LÉO LUSSAN — Développeur solo</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">Game Design · Level Design · Game Feel · Développement Unity · Sound Design</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">Game Design · Level Design · Game Feel · Développement Unity · Sound Design · Chef de projet</div>
         </div>
       </div>
 
@@ -3017,7 +3174,7 @@ function switchMusic(idx){
 const FX_CONFIGS = {
   unjudged:{ type:'paradise',  color:'#86efac', glow:'rgba(134,239,172,' },
   priest:  { type:'horror',    color:'#ef4444', glow:'rgba(239,68,68,' },
-  city:    { type:'neon',      color:'#a78bfa', glow:'rgba(167,139,250,' },
+  city:    { type:'cityneon',   color:'#00d4ff', glow:'rgba(0,212,255,' },
   tower:   { type:'garden',    color:'#a3e635', glow:'rgba(163,230,53,' },
   silence: { type:'darkness',  color:'#6b7280', glow:'rgba(107,114,128,' },
   musiques:{ type:'music',     color:'#d070f0', glow:'rgba(208,112,240,' },
@@ -3391,6 +3548,94 @@ function startFx(projId) {
           ctx.shadowBlur=6; ctx.shadowColor=cfg.color;
           ctx.fillText(p.e,p.x,p.y); ctx.shadowBlur=0;
           ctx.globalAlpha=1; ctx.restore();
+        }
+      });
+      _fxRaf=requestAnimationFrame(draw);
+    }; draw();
+  }
+
+  // -- CITY NEON / CYBERPUNK -----------------------------------
+  else if (cfg.type === 'cityneon') {
+    var particles = [];
+    // Streaks cyan + violet
+    for(var i=0;i<22;i++){
+      var fl=Math.random()>.5;
+      particles.push({kind:'streak',
+        x:fl?-200:W+200, y:Math.random()*H,
+        vx:(fl?1:-1)*(5+Math.random()*9),
+        len:120+Math.random()*360, al:.5+Math.random()*.5,
+        w:1.5+Math.random()*3.5,
+        col:Math.random()>.5?'rgba(0,212,255,':'rgba(167,139,250,'});
+    }
+    // Dots sur les bords
+    for(var i=0;i<55;i++){
+      var pd=bpEdge();
+      particles.push({kind:'dot',x:pd.x,y:pd.y,
+        r:1.5+Math.random()*4, ph:Math.random()*Math.PI*2,
+        sp:.015+Math.random()*.03,
+        col:Math.random()>.5?'rgba(0,212,255,':'rgba(167,139,250,'});
+    }
+    var gridOff = 0;
+    var draw=function(){
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.45); t+=.008;
+      gridOff = (gridOff + 0.4) % 60;
+
+      // Grille cyberpunk qui defilent vers le bas (bords)
+      ctx.save();
+      ctx.strokeStyle='rgba(0,212,255,0.07)'; ctx.lineWidth=1;
+      // Lignes verticales sur les bords
+      for(var x=0;x<BL;x+=40){
+        ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
+      }
+      for(var x=BR;x<W;x+=40){
+        ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
+      }
+      // Lignes horizontales haut/bas
+      for(var y=gridOff;y<BT;y+=40){
+        ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+      }
+      for(var y=BB+(gridOff%40);y<H;y+=40){
+        ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+      }
+      ctx.restore();
+
+      // Scanline qui descend
+      var scanY = (t * 80) % H;
+      var sg = ctx.createLinearGradient(0, scanY-3, 0, scanY+3);
+      sg.addColorStop(0,'transparent'); sg.addColorStop(.5,'rgba(0,212,255,0.15)'); sg.addColorStop(1,'transparent');
+      ctx.fillStyle=sg; ctx.fillRect(0, scanY-3, W, 6);
+
+      // Halos neon sur les 4 bords
+      ['left','right','top','bottom'].forEach(function(side){
+        var sg2;
+        if(side==='left') sg2=ctx.createLinearGradient(0,0,BL,0);
+        else if(side==='right') sg2=ctx.createLinearGradient(W,0,BR,0);
+        else if(side==='top') sg2=ctx.createLinearGradient(0,0,0,BT);
+        else sg2=ctx.createLinearGradient(0,H,0,BB);
+        sg2.addColorStop(0,'rgba(0,212,255,0.18)'); sg2.addColorStop(1,'transparent');
+        ctx.fillStyle=sg2; ctx.fillRect(0,0,W,H);
+      });
+
+      particles.forEach(function(p){
+        if(p.kind==='dot'){
+          p.ph+=p.sp;
+          var al=(Math.sin(p.ph)*.4+.55)*.9;
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          ctx.fillStyle=p.col+al+')';
+          ctx.shadowBlur=8; ctx.shadowColor=cfg.color; ctx.fill(); ctx.shadowBlur=0;
+        } else {
+          p.x+=p.vx;
+          if(p.x<-400||p.x>W+400){
+            p.x=p.vx>0?-200:W+200;
+            p.y=Math.random()*H;
+          }
+          ctx.save();
+          var g2=ctx.createLinearGradient(p.x,0,p.x+(p.vx>0?p.len:-p.len),0);
+          g2.addColorStop(0,p.col+p.al+')'); g2.addColorStop(1,'transparent');
+          ctx.strokeStyle=g2; ctx.lineWidth=p.w;
+          ctx.shadowBlur=10; ctx.shadowColor=p.col+'1)';
+          ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p.x+(p.vx>0?-p.len:p.len),p.y);
+          ctx.stroke(); ctx.shadowBlur=0; ctx.restore();
         }
       });
       _fxRaf=requestAnimationFrame(draw);
@@ -3852,6 +4097,13 @@ function _ambStop() {
     _ambNodes._dracEl = null;
     _ambNodes._dracToken = null;
   }
+  if (_ambNodes._cityEl) {
+    var cel = _ambNodes._cityEl;
+    try { cel.pause(); cel.currentTime=0; cel.src = ''; } catch(e){}
+    try { if(cel.parentNode) cel.parentNode.removeChild(cel); } catch(e){}
+    _ambNodes._cityEl = null;
+    _ambNodes._cityToken = null;
+  }
   if (_ambNodes._towerEl) {
     var tel = _ambNodes._towerEl;
     try { tel.pause(); tel.currentTime=0; tel.src = ''; } catch(e){}
@@ -4048,83 +4300,48 @@ var _AMBIENCES = {
   },
 
   city: function() {
-    var ctx=_ambCtx,out=_ambGain;
-    var bassSeq=[55,55,73.4,55,55,82.4,73.4,61.7,55,55,73.4,55,82.4,82.4,73.4,55];
-    var bi=0;
-    function bass(){
-      if(_ambCurrentId!=='city')return;
-      var f=bassSeq[bi%bassSeq.length];bi++;
-      [-0.3,0,0.3].forEach(function(det){
-        var o=ctx.createOscillator(),g=ctx.createGain(),flt=ctx.createBiquadFilter();
-        flt.type='lowpass';flt.frequency.value=600;flt.Q.value=2;
-        o.type='sawtooth';o.frequency.value=f+det;g.gain.value=0.065;
-        var env=ctx.createGain();
-        env.gain.setValueAtTime(0,ctx.currentTime);env.gain.linearRampToValueAtTime(1,ctx.currentTime+0.02);
-        env.gain.setValueAtTime(1,ctx.currentTime+0.22);env.gain.linearRampToValueAtTime(0,ctx.currentTime+0.27);
-        o.connect(flt);flt.connect(g);g.connect(env);env.connect(out);o.start();o.stop(ctx.currentTime+0.3);
-      });
-      setTimeout(bass,280);
+    if (_ambNodes._cityEl) {
+      var old = _ambNodes._cityEl;
+      try { old.pause(); old.currentTime=0; old.src=''; } catch(e){}
+      try { if(old.parentNode) old.parentNode.removeChild(old); } catch(e){}
+      _ambNodes._cityEl = null;
     }
-    bass();
-    [[220,277.2,329.6],[110,138.6,164.8]].forEach(function(chord){
-      chord.forEach(function(f){
-        var o=ctx.createOscillator(),g=ctx.createGain(),flt=ctx.createBiquadFilter();
-        flt.type='lowpass';flt.frequency.value=1200;o.type='sawtooth';o.frequency.value=f;g.gain.value=0.02;
-        var vib=ctx.createOscillator(),vg=ctx.createGain();
-        vib.frequency.value=0.28+Math.random()*0.15;vg.gain.value=1.5;
-        vib.connect(vg);vg.connect(o.frequency);vib.start();_ambNodes.push(vib);
-        o.connect(flt);flt.connect(g);g.connect(out);o.start();_ambNodes.push(o);
-      });
-    });
-    function kick(){
-      if(_ambCurrentId!=='city')return;
-      var o=ctx.createOscillator(),g=ctx.createGain();
-      o.type='sine';o.frequency.setValueAtTime(200,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(38,ctx.currentTime+0.2);
-      g.gain.setValueAtTime(0.25,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.26);
-      o.connect(g);g.connect(out);o.start();o.stop(ctx.currentTime+0.28);
-      setTimeout(kick,560);
+    var a = document.createElement('audio');
+    a.loop = true; a.preload = 'auto'; a.volume = 0;
+    document.body.appendChild(a);
+    _ambNodes._cityEl = a;
+    var token = {};
+    _ambNodes._cityToken = token;
+    var urls = [
+      'projet_cityrider/Sound-cityrider.mp3',
+      'https://mollymo31.github.io/Portfolio_Leo_Lussan/projet_cityrider/Sound-cityrider.mp3'
+    ];
+    var tried = 0;
+    function doFade() {
+      var v=0, fi=setInterval(function(){
+        if(_ambNodes._cityToken!==token||!_ambNodes._cityEl){clearInterval(fi);return;}
+        v=Math.min(v+0.018, _audio.muted?0:0.45); a.volume=v;
+        if(v>=0.45||_audio.muted) clearInterval(fi);
+      },60);
     }
-    kick();
-    var bt=0;
-    function snare(){
-      if(_ambCurrentId!=='city')return;
-      bt++;
-      if(bt%2===0){
-        var sb=ctx.createBuffer(1,ctx.sampleRate*0.1,ctx.sampleRate);
-        var sd=sb.getChannelData(0);
-        for(var i=0;i<sd.length;i++)sd[i]=(Math.random()*2-1)*Math.exp(-i/(ctx.sampleRate*0.035));
-        var ss=ctx.createBufferSource(),sg=ctx.createGain(),sf=ctx.createBiquadFilter();
-        sf.type='bandpass';sf.frequency.value=2000;sf.Q.value=0.8;sg.gain.value=0.08;
-        ss.buffer=sb;ss.connect(sf);sf.connect(sg);sg.connect(out);ss.start();
+    function tryPlay() {
+      if (_ambNodes._cityToken !== token) return;
+      if (tried >= urls.length) return;
+      a.src = urls[tried]; a.load();
+      var p = a.play();
+      if (p && p.then) {
+        p.then(function() {
+          if (_ambNodes._cityToken !== token) { a.pause(); return; }
+          doFade();
+        }).catch(function(e) {
+          tried++;
+          setTimeout(tryPlay, 300);
+        });
+      } else {
+        doFade();
       }
-      setTimeout(snare,280);
     }
-    snare();
-    var ht=0;
-    function hat(){
-      if(_ambCurrentId!=='city')return;
-      ht++;
-      var hb=ctx.createBuffer(1,2500+(ht%4===0?8000:0),ctx.sampleRate);
-      var hd=hb.getChannelData(0);
-      var dec=ht%4===0?0.07:0.018;
-      for(var i=0;i<hd.length;i++)hd[i]=(Math.random()*2-1)*Math.exp(-i/(ctx.sampleRate*dec));
-      var hs=ctx.createBufferSource(),hg=ctx.createGain(),hf=ctx.createBiquadFilter();
-      hf.type='highpass';hf.frequency.value=9000;hg.gain.value=0.05;
-      hs.buffer=hb;hs.connect(hf);hf.connect(hg);hg.connect(out);hs.start();
-      setTimeout(hat,140);
-    }
-    hat();
-    var arp=[659.2,784,880,1046.5,880,784,659.2,523.2];
-    var ai=0;
-    function lead(){
-      if(_ambCurrentId!=='city')return;
-      var o=ctx.createOscillator(),g=ctx.createGain(),flt=ctx.createBiquadFilter();
-      flt.type='lowpass';flt.frequency.value=2200;o.type='sawtooth';o.frequency.value=arp[ai%arp.length];ai++;
-      g.gain.setValueAtTime(0.055,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.22);
-      o.connect(flt);flt.connect(g);g.connect(out);o.start();o.stop(ctx.currentTime+0.25);
-      setTimeout(lead,280);
-    }
-    lead();
+    setTimeout(tryPlay, 100);
   },
 
   tower: function() {
@@ -4314,8 +4531,9 @@ var _AMBIENCES = {
 };
 
 _AMBIENCES.mira      = _AMBIENCES.tower;
-_AMBIENCES.coaching  = _AMBIENCES.city;
+_AMBIENCES.coaching  = _AMBIENCES.neon;
 _AMBIENCES.streaming = _AMBIENCES.musiques;
+_AMBIENCES.juiceup   = _AMBIENCES.neon;
 
 
 /* == API publique == */
