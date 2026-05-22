@@ -102,9 +102,9 @@ nav{
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 3rem;padding-top:80px;position:relative;overflow:hidden;z-index:1}
 .hero-bg-text{position:absolute;top:50%;right:-2rem;transform:translateY(-50%);font-family:var(--font-title);font-size:clamp(10rem,22vw,22rem);color:rgba(255,255,255,.022);pointer-events:none;user-select:none;white-space:nowrap}
 .hero-tag{font-family:var(--font-mono);font-size:.72rem;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem}
-.hero-name{font-family:var(--font-title);font-size:clamp(5rem,14vw,14rem);line-height:.88}
+.hero-name{font-family:var(--font-title);font-size:clamp(2.8rem,7.5vw,7.5rem);line-height:.88}
 .hero-name .red{color:var(--red)}
-.hero-role{margin-top:2rem;font-family:var(--font-mono);font-size:.85rem;color:var(--grey-light);letter-spacing:.08em;text-transform:uppercase;border-left:2px solid var(--red);padding-left:1rem}
+.hero-role{margin-top:3.5rem;font-family:var(--font-mono);font-size:.85rem;color:var(--grey-light);letter-spacing:.08em;text-transform:uppercase;border-left:2px solid var(--red);padding-left:1rem}
 .hero-desc{margin-top:2.5rem;max-width:520px;color:var(--grey-light);font-size:.95rem;line-height:1.8}
 .hero-socials{display:flex;gap:1.5rem;margin-top:3rem;flex-wrap:wrap}
 .hero-socials a{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);border:1px solid var(--border);padding:.55rem 1.1rem;transition:all .2s}
@@ -158,7 +158,7 @@ nav{
 .flip-back{transform:rotateY(180deg)}
 .fc-tag{font-family:var(--font-mono);font-size:.6rem;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.7rem}
 .fc-name{font-family:var(--font-title);font-size:2.6rem;color:var(--white);line-height:1;margin-bottom:.5rem}
-.fc-role{font-family:var(--font-mono);font-size:.62rem;color:var(--grey-light);letter-spacing:.1em;text-transform:uppercase;border-left:2px solid var(--red);padding-left:.7rem;margin-top:.7rem}
+.fc-role{font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--grey-light);letter-spacing:.1em;text-transform:uppercase;border-left:2px solid var(--red);padding-left:.7rem;margin-top:.7rem}
 .fc-school{font-family:var(--font-mono);font-size:.58rem;color:var(--grey);margin-top:.7rem}
 .fc-hint{position:absolute;bottom:.8rem;right:1rem;font-family:var(--font-mono);font-size:.52rem;color:var(--grey);letter-spacing:.1em;opacity:.5}
 .fc-corner{position:absolute;width:9px;height:9px;border-color:rgba(200,169,110,.35);border-style:solid;border-width:0}
@@ -167,7 +167,7 @@ nav{
 .fc-corner.bl{bottom:8px;left:8px;border-bottom-width:1px;border-left-width:1px}
 .fc-corner.br{bottom:8px;right:8px;border-bottom-width:1px;border-right-width:1px}
 .fc-links{display:flex;flex-direction:column;gap:.55rem;margin-top:.3rem}
-.fc-link{display:flex;align-items:center;gap:.8rem;font-family:var(--font-mono);font-size:.62rem;color:var(--grey-light);letter-spacing:.08em;text-decoration:none;transition:color .15s}
+.fc-link{display:flex;align-items:center;gap:.8rem;font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--grey-light);letter-spacing:.08em;text-decoration:none;transition:color .15s}
 .fc-link:hover{color:var(--red)}
 .fc-link-icon{width:18px;height:18px;border:1px solid rgba(200,169,110,.35);display:flex;align-items:center;justify-content:center;font-size:.58rem;color:var(--red);flex-shrink:0}
 .fc-link-label{flex:1}
@@ -324,6 +324,7 @@ nav{
 }
 .theme-stream  {--th-bg:#140e1e;--th-acc:#6441a5;--th-acc2:#9b72d0;--th-glow:rgba(100,65,165,.18)}
 .theme-musiques{--th-bg:#130e1e;--th-acc:#9b3fb5;--th-acc2:#d070f0;--th-glow:rgba(155,63,181,.18)}
+.theme-juiceup {--th-bg:#0a0415;--th-acc:#8b00ff;--th-acc2:#c084fc;--th-glow:rgba(192,132,252,.25)}
 
 /* -- EFFETS CANVAS PAR THÈME -- */
 .proj-modal-fx{position:absolute;top:0;left:0;width:100%;height:200px;pointer-events:none;overflow:hidden;z-index:0}
@@ -396,13 +397,18 @@ nav{
 /* Lisibilite globale du corps de tous les modals */
 .proj-modal-body p {
   font-family:'DM Sans',var(--font-body),sans-serif;
-  font-size:.9rem;
-  line-height:1.95;
+  font-size:.92rem;
+  line-height:2;
+  color:#d0c8bf;
 }
 .proj-modal-body [style*="font-mono"] {
   font-family:'DM Sans',var(--font-body),sans-serif !important;
-  font-size:.82rem !important;
+  font-size:.83rem !important;
   line-height:1.85 !important;
+}
+/* Labels de cartes (titres en majuscules) gardent Space Mono */
+.proj-modal-body [style*="letter-spacing:.15em"] {
+  font-family:var(--font-mono) !important;
 }
 .proj-modal-body strong{color:var(--white)}
 .pm-section-title{font-family:var(--font-title);font-size:2.2rem;color:var(--white);margin:3.5rem 0 1.2rem;letter-spacing:.02em}
@@ -980,6 +986,11 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div><div class="project-name" data-i18n="proj_musiques">MUSIQUES</div><div class="project-tags"><span class="tag">Production</span><span class="tag">Soundtrap</span><span class="tag">Ambiances</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">Personnel</span><span class="project-arrow">→</span></div>
     </div>
+    <div class="project-row fade-in" onclick="openProj('juiceup')">
+      <div class="project-num">11</div>
+      <div><div class="project-name">JUICEUP</div><div class="project-tags"><span class="tag">Game Feel</span><span class="tag">Unity 2D</span><span class="tag">Platformer</span></div></div>
+      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">Personnel</span><span class="project-arrow">→</span></div>
+    </div>
   </div>
 </section>
 
@@ -1004,24 +1015,27 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="pm-label">Visualisation 3D isométrique</div>
       <div class="iso-map-container"><canvas id="iso-unjudged" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Tribunal Futuriste</div><div class="iso-map-badge">Placeholder</div></div>
 
+      <!-- DIRECTION ARTISTIQUE -->
+      <div class="pm-section-title" id="unjudged-title-da">Direction Artistique</div>
+      <p>Esthétique <strong>entre le céleste et le funèbre</strong> — blancs lumineux du paradis, rouges profonds de l'enfer, gris des limbes. L'interface est sobre et introspective. L'environnement raconte la mort et le jugement à travers l'architecture, la lumière et les couleurs. Inspiré des représentations modernes du purgatoire et de la justice divine. Genre : <strong>Rogue Lite Action RPG / Beat'em Up</strong>.</p>
+
       <!-- PITCH & PILLIERS -->
       <div class="pm-section-title" id="tw-unjudged-title">Concept & Piliers</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.15);background:rgba(134,239,172,.04)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.4rem">🧠 CORPS & ESPRIT</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Complémentarité et dissociation entre le corps et l'esprit comme mécanique centrale</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Complémentarité et dissociation entre le corps et l'esprit comme mécanique centrale</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.15);background:rgba(134,239,172,.04)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.4rem">⚔️ COMBAT STRATÉGIQUE</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Chaque combat donne une valeur à la vie — on se bat pour exister</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Chaque combat donne une valeur à la vie — on se bat pour exister</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.15);background:rgba(134,239,172,.04)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.4rem">🕊️ REFUS DE LA FATALITÉ</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Fuir le jugement par peur — libre-arbitre contre destin enchaîné</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Fuir le jugement par peur — libre-arbitre contre destin enchaîné</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.15);background:rgba(134,239,172,.04)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.4rem">🌿 TRAME NARRATIVE</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Limbes / Enfer / Paradis — "Un esprit libre face à une fatalité enchaînée."</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Limbes / Enfer / Paradis — "Un esprit libre face à une fatalité enchaînée."</div>
         </div>
       </div>
 
@@ -1030,15 +1044,15 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem">
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.12);background:rgba(0,0,0,.2)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">👼 L'ANGE — Unité aérienne corps à corps</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Patrouille jusqu'à détecter le joueur · Passe en mode traque · Attaque en tournoyant plutôt qu'en ligne droite</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.8">Patrouille jusqu'à détecter le joueur · Passe en mode traque · Attaque en tournoyant plutôt qu'en ligne droite</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.12);background:rgba(0,0,0,.2)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">🪶 LE PLUMIER — Combattant à distance tactique</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Verrouille le joueur · Maintient une zone de confort · Se repositionne si le joueur s'approche · Esquive les attaques au corps à corps</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.8">Verrouille le joueur · Maintient une zone de confort · Se repositionne si le joueur s'approche · Esquive les attaques au corps à corps</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.12);background:rgba(0,0,0,.2)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">⚡ LE VERTUS — Téléporteur brutal</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Se téléporte directement au corps à corps · Attaque lourde immédiate après téléportation · Poursuite implacable si le joueur fuit</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.8">Se téléporte directement au corps à corps · Attaque lourde immédiate après téléportation · Poursuite implacable si le joueur fuit</div>
         </div>
       </div>
 
@@ -1047,11 +1061,11 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem">
         <div style="padding:1rem;border:1px solid rgba(250,204,21,.2);background:rgba(250,204,21,.04)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#fbbf24;letter-spacing:.15em;margin-bottom:.5rem">🐂 LE THORIUM — Boss de charge</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Charge rectiligne ultra-rapide · Trajectoire fixe · S'étourdit lui-même en percutant un mur → fenêtre d'attaque · Recommence après récupération</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.8">Charge rectiligne ultra-rapide · Trajectoire fixe · S'étourdit lui-même en percutant un mur → fenêtre d'attaque · Recommence après récupération</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(250,204,21,.12);background:rgba(250,204,21,.02)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#fbbf24;letter-spacing:.15em;margin-bottom:.5rem">🕊️ LE SÉRAPHIM — Boss en rotation (en cours)</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.8">Tourne sur lui-même en infligeant des dégâts de zone avec ses ailes · Zones rouges vulnérables à cibler</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.8">Tourne sur lui-même en infligeant des dégâts de zone avec ses ailes · Zones rouges vulnérables à cibler</div>
         </div>
       </div>
 
@@ -1060,15 +1074,15 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.5rem">
         <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">▶ MENU PRINCIPAL</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">Sobre, introspectif · Bouton survolé = décale à droite · Texte qui apparaît progressivement</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">Sobre, introspectif · Bouton survolé = décale à droite · Texte qui apparaît progressivement</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">🎮 HUD IN-GAME</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">Léger · Barre de vie en bas (rouge) · Soul Time gauche (bougie) · Pas de surcharge visuelle</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">Léger · Barre de vie en bas (rouge) · Soul Time gauche (bougie) · Pas de surcharge visuelle</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#86efac;letter-spacing:.15em;margin-bottom:.5rem">⏸ MENU PAUSE</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">Effet "papier déchiré" · Objectifs mis à jour · Anciennes missions raturées · Infos ennemis accessibles</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">Effet "papier déchiré" · Objectifs mis à jour · Anciennes missions raturées · Infos ennemis accessibles</div>
         </div>
       </div>
 
@@ -1077,30 +1091,30 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.2);background:rgba(134,239,172,.04)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">LÉO LUSSAN</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.9">Level Design · UI/UX</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.9">Level Design · UI/UX</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.1);background:rgba(134,239,172,.02)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">JULIE CASTAING-MOLIN</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.9">Narration · Scénario</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.9">Narration · Scénario</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.1);background:rgba(134,239,172,.02)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">ANDREW MALAURE</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.9">Codage</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.9">Codage</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(134,239,172,.1);background:rgba(134,239,172,.02)">
           <div style="font-family:var(--font-title);font-size:1rem;color:#86efac;margin-bottom:.4rem">ALEXANDRE BELY</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.9">Système Design</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.9">Système Design</div>
         </div>
       </div>
 
       <!-- OUTILS -->
       <div class="pm-label">Outils utilisés</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine 5.6.4</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">✍️ Inky</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔀 Git</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);grid-column:span 2">🎨 Suite Adobe</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine 5.6.4</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">✍️ Inky</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔀 Git</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);grid-column:span 2">🎨 Suite Adobe</div>
       </div>
     </div>
   </div>
@@ -1135,26 +1149,26 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
         <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">👹 THWOMPS</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Tombent et poursuivent le joueur pendant X temps quand il passe en dessous. Rient en tombant.</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Tombent et poursuivent le joueur pendant X temps quand il passe en dessous. Rient en tombant.</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">⚡ PADS DE VITESSE</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Boostent la vitesse du joueur sur une durée à une limite prédéfinie.</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Boostent la vitesse du joueur sur une durée à une limite prédéfinie.</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">👻 SPAWN DE FANTÔMES</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Spawnent via box collision. Tombent et ralentissent le joueur en le surprenant.</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Spawnent via box collision. Tombent et ralentissent le joueur en le surprenant.</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">📷 CHANGEMENT DE CAMÉRA</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Box de changement de point de vue intégrée dans le LD. Passe de TPS à FPS et vice-versa.</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Box de changement de point de vue intégrée dans le LD. Passe de TPS à FPS et vice-versa.</div>
         </div>
       </div>
 
       <div class="pm-label" id="priest-label-enemy">L'ennemi principal</div>
       <div style="padding:1rem;border:1px solid rgba(248,113,113,.25);background:rgba(248,113,113,.05);margin-bottom:1.5rem">
         <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.6rem">⛧ LE PRÊTRE DÉVOREUR</div>
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.9">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">
           Poursuit le joueur sur ¾ du niveau<br/>
           Ricane quand le joueur est trop proche<br/>
           Lumière scintillante (battements de cœur) visible uniquement à courte distance<br/>
@@ -1164,7 +1178,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
       <div class="pm-label" id="priest-label-player">Mécanique joueur</div>
       <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);margin-bottom:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.9">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">
           🔫 <strong style="color:var(--white)">Glue</strong> — Le joueur lâche de la glue derrière lui pour ralentir l'ennemi et gagner de la distance<br/>
           🚗 <strong style="color:var(--white)">Kart</strong> — Dérapages, pads de vitesse, rebonds sur les murs avec feedback sonore<br/>
           📷 <strong style="color:var(--white)">Caméra</strong> — Changement TPS ↔ FPS intégré dans le level design pour évaluer la distance avec l'ennemi
@@ -1175,14 +1189,14 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="pm-section-title" id="priest-title-sound">Design Sonore</div>
       <div class="pm-label" id="priest-label-sound-game">Sons de jeu</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">😈 Rire diabolique au lancement</div>
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🔢 Compteur "1,2,3 — Survive!"</div>
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🚗 Moteur kart (roulage + dérapage)</div>
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">💥 Collision mur — "bonk" + arrêt moteur</div>
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🍯 Son de glue au déversement</div>
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">👻 Rire fantômes au spawn</div>
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">😂 Rire prêtre à proximité</div>
-        <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🎵 Musique entraînante · thème Halloween</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">😈 Rire diabolique au lancement</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🔢 Compteur "1,2,3 — Survive!"</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🚗 Moteur kart (roulage + dérapage)</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">💥 Collision mur — "bonk" + arrêt moteur</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🍯 Son de glue au déversement</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">👻 Rire fantômes au spawn</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">😂 Rire prêtre à proximité</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🎵 Musique entraînante · thème Halloween</div>
       </div>
 
       <!-- DA -->
@@ -1194,25 +1208,33 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">▶ INTRO</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">Titre · Ennemi principal qui tourne · Play / Leave · Contrôles in-game (Tab)</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">Titre · Ennemi principal qui tourne · Play / Leave · Contrôles in-game (Tab)</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">💀 LOSE SCENE</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">"You got Eaten" · Vidéo fond · Musique triste · Play Again / Leave</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">"You got Eaten" · Vidéo fond · Musique triste · Play Again / Leave</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">🏆 WIN SCENE</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:1.8">"Good Job! You escaped the priest" · Image fixe · Son calme victorieux · Play Again / Leave</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">"Good Job! You escaped the priest" · Image fixe · Son calme victorieux · Play Again / Leave</div>
         </div>
       </div>
 
       <!-- OUTILS -->
+      <div class="pm-section-title" id="priest-title-team">Équipe</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(248,113,113,.2);background:rgba(248,113,113,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#f87171;margin-bottom:.4rem">LÉO LUSSAN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Design · Conception du circuit · Mécaniques de glue et caméra</div>
+        </div>
+      </div>
+
       <div class="pm-label" id="priest-label-tools">Outils utilisés</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎨 Suite Adobe</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔀 SVN</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎨 Suite Adobe</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔀 SVN</div>
       </div>
     </div>
   </div>
@@ -1226,26 +1248,99 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-num" id="pm-num-city">// 03 — Projet d'école · 2ème Année</div>
       <div class="proj-modal-title">CITY<br/><span>RIDER</span></div>
       <button class="proj-modal-close" onclick="closeProj('city')">✕ Fermer</button>
-      <div class="proj-modal-tags"><span class="tag">Urban Design</span><span class="tag">Néon</span><span class="tag">Vitesse</span><span class="tag">Unity</span><span class="tag">LDtk</span><span class="tag">Miro</span></div>
+      <div class="proj-modal-tags"><span class="tag">Course TPS</span><span class="tag">Néon</span><span class="tag">Vitesse</span><span class="tag">Unreal Engine</span><span class="tag">Level Design</span></div>
     </div>
     <div class="proj-modal-body">
-      <p id="proj-city-p1">City Rider est un jeu de course urbaine dans un environnement <strong>néon, vitesse et électrique</strong>. La ville est pensée comme un terrain de jeu rapide, fluide et lisible à haute vitesse. Chaque quartier a son propre rythme visuel, ses propres néons et sa propre densité — le level design est au service de la <strong>sensation de course</strong>.</p>
-      <div class="pm-label">Galerie du projet</div>
-      <div class="carousel"><div class="carousel-track" id="ct-city"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🏙️</div><div class="carousel-placeholder-text">Vue d'ensemble — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">⚡</div><div class="carousel-placeholder-text">Environnement néon — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🛣️</div><div class="carousel-placeholder-text">Réseau de routes — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-city"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('city',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('city',1)">Suiv →</button></div></div></div>
+      <p id="proj-city-p1">City Rider est un jeu de course urbaine en vue TPS dans une ville néon futuriste. Le joueur incarne un livreur à moto qui doit rejoindre l'arrivée tout en évitant le trafic. La ville est conçue comme un terrain de jeu rapide et fluide — le level design est au service de la <strong>sensation de vitesse et de liberté</strong>.</p>
+
+      <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
+      <div class="carousel"><div class="carousel-track" id="ct-city">
+        <div class="carousel-slide"><img src="projet_cityrider/city-01.png" alt="City Rider - Vue aérienne map" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-02.png" alt="City Rider - Skyline néon" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-03.png" alt="City Rider - Flèches directionnelles" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-04.png" alt="City Rider - Route avec trafic" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-05.png" alt="City Rider - Gameplay TPS moto" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-06.png" alt="City Rider - Food truck PNJ" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-07.png" alt="City Rider - Menu principal" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-08.png" alt="City Rider - Crédits" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-09.png" alt="City Rider - Gameplay intérieur" style="width:100%;height:340px;object-fit:cover"/></div>
+      </div><div class="car-controls"><div class="carousel-dots" id="cd-city"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('city',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('city',1)">Suiv →</button></div></div></div>
+
       <div class="pm-label">Visualisation 3D isométrique</div>
       <div class="iso-map-container"><canvas id="iso-city" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Carte urbaine</div><div class="iso-map-badge">Placeholder</div></div>
-      <div class="pm-section-title" id="tw-city-title">Conception urbaine interactive</div>
-      <p id="proj-city-p2">Routes stratégiquement placées, points d'intérêt bien positionnés, flux de trafic naturels. La lisibilité à grande vitesse est la contrainte principale : <strong>chaque virage, chaque carrefour doit être lisible en moins d'une seconde</strong>. L'espace urbain comme circuit de jeu.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unity</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗂 LDtk</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔀 Git</div>
+
+      <div class="pm-section-title" id="tw-city-title">Concept & But du jeu</div>
+      <p id="proj-city-p2">Livraison de pizza à moto dans une ville néon cyberpunk. Le joueur part d'un point A vers l'arrivée le plus vite possible tout en évitant obstacles et trafic. Un <strong>chronomètre</strong> presse le joueur. Les flèches directionnelles au sol guident la progression. La ville s'inspire de l'esthétique Blade Runner / Tron.</p>
+
+      <div class="pm-section-title" id="city-title-da">Direction Artistique</div>
+      <p>Esthétique <strong>néon cyberpunk nocturne</strong> — cyan, orange, blanc sur fond sombre. La ville est composée de blocs modulaires avec néons, panneaux publicitaires lumineux et logos d'enseignes. Les routes sont bordées de lignes lumineuses qui créent naturellement les couloirs de course. Ambiance Blade Runner meets Mario Kart.</p>
+
+      <div class="pm-section-title" id="city-title-mec">Mécaniques de jeu</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.2);background:rgba(167,139,250,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#a78bfa;letter-spacing:.15em;margin-bottom:.4rem">🏍 COURSE TPS</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Vue troisième personne · Moto · Chronomètre · Trafic à éviter</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.2);background:rgba(167,139,250,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#a78bfa;letter-spacing:.15em;margin-bottom:.4rem">⚡ GUIDAGE DIRECTIONNEL</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Flèches lumineuses au sol · Circuit ouvert avec un début et une fin</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.2);background:rgba(167,139,250,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#a78bfa;letter-spacing:.15em;margin-bottom:.4rem">🚗 TRAFIC URBAIN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Voitures et food trucks dynamiques · Obstacles à éviter en pleine vitesse</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.2);background:rgba(167,139,250,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#a78bfa;letter-spacing:.15em;margin-bottom:.4rem">🗺 LEVEL DESIGN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Segments extérieurs et intérieurs · Zones néon distinctes · Lisibilité à haute vitesse</div>
+        </div>
+      </div>
+
+      <div class="pm-section-title" id="city-title-team">Équipe</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.2);background:rgba(167,139,250,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#a78bfa;margin-bottom:.4rem">LÉO LUSSAN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">Level Design · Conception du circuit</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.1);background:rgba(167,139,250,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#a78bfa;margin-bottom:.4rem">CHAMBON ANTOINE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Développement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.1);background:rgba(167,139,250,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#a78bfa;margin-bottom:.4rem">FRITZ CELIANN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Développement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.1);background:rgba(167,139,250,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#a78bfa;margin-bottom:.4rem">LAMI FIONA</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Développement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.1);background:rgba(167,139,250,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#a78bfa;margin-bottom:.4rem">RICHAUD LUCAS</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Développement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.1);background:rgba(167,139,250,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#a78bfa;margin-bottom:.4rem">SELLA ROBIN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Développement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.1);background:rgba(167,139,250,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#a78bfa;margin-bottom:.4rem">VIARD ENZO</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Développement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(167,139,250,.1);background:rgba(167,139,250,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#a78bfa;margin-bottom:.4rem">VIARD PIERRE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf">Développement</div>
+        </div>
+      </div>
+
+      <div class="pm-label">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📋 Hack'n'Plan</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎨 Suite Adobe</div>
       </div>
     </div>
   </div>
 </div>
-
 <!-- TOWER DEFENSE — Jardin / Gnomes / Nature -->
 <div id="pm-tower" class="proj-modal-overlay theme-tower" onclick="if(event.target===this)closeProj('tower')">
   <div class="proj-modal-backdrop" onclick="closeProj('tower')"></div>
@@ -1257,7 +1352,12 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-tags"><span class="tag">Tower Defense</span><span class="tag">Jardin</span><span class="tag">LDtk</span><span class="tag">Hack'n'Plan</span><span class="tag">Map Design</span></div>
     </div>
     <div class="proj-modal-body">
-      <p>Tower Defense se déroule dans un <strong>jardin enchanté</strong> — gnomes, champignons, haies taillées et allées fleuries. C'est un jeu de stratégie et d'équilibrage où la conception des maps est centrale. Les chemins ennemis serpentent entre les massifs, et les tours de défense s'intègrent dans l'environnement naturel et coloré.</p>
+      <p>Tower Defense se déroule dans un <strong>jardin enchanté</strong>
+
+      <div class="pm-section-title" id="tower-title-da">Direction Artistique</div>
+      <p>Univers de <strong>jardin enchanté féerique</strong> — couleurs vives, végétation luxuriante, champignons géants, gnomes colorés. Un contraste voulu entre l'esthétique douce et bucolique et la rigueur stratégique du tower defense. Chaque bâtiment défensif est une plante ou un élément du jardin. Les ennemis (gnomes rebelles) gardent un aspect cartoon accessible.</p>
+
+      <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-tower">
 
         <!-- -- SLIDE 1 : MENU -- -->
@@ -1404,20 +1504,20 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="pm-section-title" id="tw-mec-title">Mécaniques de jeu</div>
       <div class="pm-label" id="tw-base-label">Base Tower Defense</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Cheminement d'ennemis paramétrable</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">5 vagues par niveau</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Visibilité argent / dépenses du joueur</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Gestion des waves en temps réel</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Défendre un objectif central</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Upgrade des défenses · Vue de dessus</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Cheminement d'ennemis paramétrable</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">5 vagues par niveau</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Visibilité argent / dépenses du joueur</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Gestion des waves en temps réel</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Défendre un objectif central</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.04);line-height:1.7">Upgrade des défenses · Vue de dessus</div>
       </div>
 
       <div class="pm-label" id="tw-orig-label">Mécaniques originales</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">↯</span> Modifier les chemins en cours de partie</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">☁</span> Météorologie qui affecte les ennemis</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">⚔</span> 5 mobs différents · 4 bâtiments défensifs</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">👁</span> Affichage des vagues à venir</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">↯</span> Modifier les chemins en cours de partie</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">☁</span> Météorologie qui affecte les ennemis</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">⚔</span> 5 mobs différents · 4 bâtiments défensifs</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.07);line-height:1.7"><span style="color:#a3e635">👁</span> Affichage des vagues à venir</div>
       </div>
 
       <!-- ENNEMIS -->
@@ -1425,23 +1525,23 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-bottom:1.5rem">
         <div style="padding:1rem;border:1px solid rgba(163,230,53,.15);background:rgba(0,0,0,.2)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.5rem">GNOME D'EAU</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Petit · Rapide · Peu de HP<br/>Ennemi terrestre standard</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Petit · Rapide · Peu de HP<br/>Ennemi terrestre standard</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(163,230,53,.15);background:rgba(0,0,0,.2)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.5rem">GNOME DE BOUE</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Stats équilibrées<br/>Tout moyen — polyvalent</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Stats équilibrées<br/>Tout moyen — polyvalent</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(163,230,53,.15);background:rgba(0,0,0,.2)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.5rem">GNOME MÉTALLEUX</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Gros · Lent · Mega tank<br/>Résistant aux dégâts</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Gros · Lent · Mega tank<br/>Résistant aux dégâts</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(163,230,53,.15);background:rgba(0,0,0,.2)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.5rem">GNOME AVIATEUR</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Ennemi aérien<br/>Touchable : Caserne lv2, Tour archer, Baliste AA</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Ennemi aérien<br/>Touchable : Caserne lv2, Tour archer, Baliste AA</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(255,191,36,.2);background:rgba(255,191,36,.04)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#fbbf24;letter-spacing:.15em;margin-bottom:.5rem">BOSS</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Fort partout · Résistant à certains éléments<br/>Apparaît tous les X niveaux / vagues</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Fort partout · Résistant à certains éléments<br/>Apparaît tous les X niveaux / vagues</div>
         </div>
       </div>
 
@@ -1497,30 +1597,30 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
         <div style="padding:1rem;border:1px solid rgba(100,180,255,.2);background:rgba(100,180,255,.05)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#67e8f9;letter-spacing:.15em;margin-bottom:.4rem">🌧 PLUIE</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">+20 dégâts sur les ennemis touchés</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">+20 dégâts sur les ennemis touchés</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(180,100,255,.2);background:rgba(180,100,255,.05)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#c084fc;letter-spacing:.15em;margin-bottom:.4rem">⚡ ORAGE</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">La foudre paralyse les ennemis sur une durée définie</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">La foudre paralyse les ennemis sur une durée définie</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(200,230,180,.2);background:rgba(200,230,180,.05)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#bbf7d0;letter-spacing:.15em;margin-bottom:.4rem">💨 VENT</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Ralentit toutes sortes de monstres</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Ralentit toutes sortes de monstres</div>
         </div>
         <div style="padding:1rem;border:1px solid rgba(255,220,100,.2);background:rgba(255,220,100,.05)">
           <div style="font-family:var(--font-mono);font-size:.6rem;color:#fde68a;letter-spacing:.15em;margin-bottom:.4rem">☀ SOLEIL</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:#d0c8bf;line-height:1.7">Dégâts sur la durée sur toutes les unités</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Dégâts sur la durée sur toutes les unités</div>
         </div>
       </div>
 
       <!-- ECONOMIE -->
       <div class="pm-section-title" id="tw-eco-title">Économie</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:2rem">
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">💰 Argent par vague terminée</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏗 Prix des bâtiments</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">⬆ Prix des améliorations par branche</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">☁ Prix du contrôle météorologique</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);grid-column:span 2">🛤 Prix des déplacements de chemin</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">💰 Argent par vague terminée</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏗 Prix des bâtiments</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">⬆ Prix des améliorations par branche</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">☁ Prix du contrôle météorologique</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);grid-column:span 2">🛤 Prix des déplacements de chemin</div>
       </div>
 
       <!-- EQUIPE -->
@@ -1528,25 +1628,25 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
         <div style="padding:1.2rem;border:1px solid rgba(163,230,53,.2);background:rgba(163,230,53,.04)">
           <div style="font-family:var(--font-title);font-size:1.1rem;color:#a3e635;margin-bottom:.6rem">LÉO LUSSAN</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:2">GDD<br/>Level Design<br/>Design des tourelles<br/>Caméra<br/>Slots tourelles<br/>HUD<br/>Système de monnaie</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:2">GDD<br/>Level Design<br/>Design des tourelles<br/>Caméra<br/>Slots tourelles<br/>HUD<br/>Système de monnaie</div>
         </div>
         <div style="padding:1.2rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.02)">
           <div style="font-family:var(--font-title);font-size:1.1rem;color:#a3e635;margin-bottom:.6rem">HUGO PLOUZEAU</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:2">GDD<br/>IA & Navigation des IA<br/>Nodes tourelles<br/>Types d'ennemis<br/>Zoom caméra<br/>Météo</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:2">GDD<br/>IA & Navigation des IA<br/>Nodes tourelles<br/>Types d'ennemis<br/>Zoom caméra<br/>Météo</div>
         </div>
         <div style="padding:1.2rem;border:1px solid rgba(163,230,53,.12);background:rgba(163,230,53,.02)">
           <div style="font-family:var(--font-title);font-size:1.1rem;color:#a3e635;margin-bottom:.6rem">BASTIEN LAMBERT</div>
-          <div style="font-family:var(--font-mono);font-size:.62rem;color:#d0c8bf;line-height:2">HUD<br/>Barre de vie<br/>Diaporama<br/>Répartition des tâches<br/>Expérimentations<br/>Gestion des vagues</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:2">HUD<br/>Barre de vie<br/>Diaporama<br/>Répartition des tâches<br/>Expérimentations<br/>Gestion des vagues</div>
         </div>
       </div>
 
       <!-- OUTILS -->
       <div class="pm-label" id="tw-tools-label">Outils utilisés</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗂 LDtk — Level Design</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📋 Hack'n'Plan — Gestion de projet</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unreal Engine — Développement</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📊 Google Sheets — Tableaux stats</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗂 LDtk — Level Design</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📋 Hack'n'Plan — Gestion de projet</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unreal Engine — Développement</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📊 Google Sheets — Tableaux stats</div>
       </div>
     </div>
   </div>
@@ -1563,17 +1663,133 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="proj-modal-tags"><span class="tag">Horreur</span><span class="tag">Exploration</span><span class="tag">Son & Ambiance</span><span class="tag">Unity</span><span class="tag">Inky</span><span class="tag">Twine</span></div>
     </div>
     <div class="proj-modal-body">
-      <p id="proj-silence-p1"><strong>The Silence</strong> est un jeu vidéo narratif d'horreur atmosphérique basé sur le son et l'exploration. L'absence de son est aussi terrifiante que sa présence. Chaque environnement est conçu pour créer un ressenti particulier — <strong>une tension qui monte sans jamais éclater</strong>. Le joueur explore seul, guidé uniquement par l'ambiance sonore et visuelle.</p>
-      <div class="pm-label">Galerie du projet</div>
+      <p id="proj-silence-p1"><strong>The Silence</strong> est un jeu d'horreur dans lequel on incarne un survivant qui cherche à s'échapper d'une ville en explorant des bâtisses abandonnées, tout en évitant des monstres dans le silence. Pour s'évader, le joueur doit récupérer <strong>six fragments de clé</strong> au sein des bâtiments pour ouvrir le portail extérieur.</p>
+
+      <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-silence"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🌫️</div><div class="carousel-placeholder-text">Environnement principal — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🎧</div><div class="carousel-placeholder-text">Design sonore — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-silence"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('silence',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('silence',1)">Suiv →</button></div></div></div>
-      <p id="proj-silence-p2" style="margin-top:1.5rem">Une expérience où le son (ou son absence) guide autant que le visuel. Le joueur est immergé dans une atmosphère qui parle d'elle-même. <strong>L'exploration est la mécanique centrale</strong> — il n'y a pas de carte, pas d'objectif affiché. Juste le silence, et ce qu'il cache.</p>
-      <a class="modal-link" href="https://docs.google.com/presentation/d/1y-RETF-h7BlPfYaFQRp0vxRHhGXSxbmkYq4S0671T8E/present" target="_blank">📊 Présentation détaillée</a>
+
+      <div class="pm-label">Visualisation 3D isométrique</div>
+      <div class="iso-map-container"><canvas id="iso-silence" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Ville abandonnée</div><div class="iso-map-badge">Placeholder</div></div>
+
+      <!-- DIRECTION ARTISTIQUE -->
+      <div class="pm-section-title" id="silence-title-da">Direction Artistique</div>
+      <p id="proj-silence-p2">Le jeu se veut <strong>réaliste</strong> — ce style graphique permet une immersion totale et une narration par l'environnement. La majorité des couleurs sont ternes, ce qui installe un malaise permanent à l'idée d'explorer ce monde peu accueillant. La lumière, bien que rare, contraste, oriente ou perd le joueur dans son environnement. Inspiré de Resident Evil 7 et Alan Wake 2.</p>
+
+      <!-- CONCEPT -->
+      <div class="pm-section-title" id="silence-title-concept">Concept & Environnements</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.2);background:rgba(107,114,128,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🏚 RUELLE — HUB</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Zone de départ. Le joueur comprend qu'il doit récupérer des clés dans les bâtiments pour ouvrir le portail.</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.2);background:rgba(107,114,128,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🛒 MARKET — Supermarché</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Rayons sombres, néons clignotants. La note de courses guide le joueur au début du niveau.</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.2);background:rgba(107,114,128,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🏛 MUSEUM — Musée</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Énigmes avec statues — le nombre d'épées = réponse des tableaux. Ambiance froide et oppressante.</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.2);background:rgba(107,114,128,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🏫 ÉCOLE — School</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Couloirs déserts, salles de classe abandonnées. Codes à résoudre pour progresser.</div>
+        </div>
+      </div>
+
+      <!-- MECANIQUES -->
+      <div class="pm-section-title" id="silence-title-mec">Mécaniques de jeu</div>
+      <div class="pm-label" id="silence-label-sound">Le bruit — mécanique centrale</div>
+      <p>Le joueur émet des sons en effectuant des actions. Les monstres <strong>aveugles</strong> détectent ces bruits pour localiser le joueur. Marcher sur du verre, ouvrir une porte grinçante, courir, recharger sa lampe — chaque action a un niveau sonore différent. S'accroupir réduit considérablement le bruit mais ralentit le joueur.</p>
+
+      <div class="pm-label" id="silence-label-actions">Verbes d'action</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🚶 SE DÉPLACER</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Marcher · Courir · S'accroupir · Combiner les directions librement</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🔦 ÉCLAIRER (F / R)</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Lampe torche à mouliner — s'épuise à l'usage · Recharger = faire du bruit</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🗺 EXPLORER</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Zones multiples · Clés internes + clés principales · Notes et cassettes audio</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">👂 ÉCOUTER</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Les sons des monstres permettent de deviner leur position dans l'obscurité</div>
+        </div>
+      </div>
+
+      <!-- ENNEMIS -->
+      <div class="pm-section-title" id="silence-title-enemies">Les Entités</div>
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.2);background:rgba(0,0,0,.25)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.5rem">👁 MONSTRE AVEUGLE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.8">Se déplace librement dans une zone · Sensible à chaque bruit · Peut tuer en deux coups · Émet des sons terrifiants indiquant sa position · Le joueur peut fuir ou se cacher</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.2);background:rgba(0,0,0,.25)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.5rem">🌫 MIASME <span style="color:#ef4444;font-size:.55rem">— TUE INSTANTANÉMENT</span></div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.8">Statique · Placé à des endroits stratégiques · Détecte le bruit · Tue immédiatement si le joueur émet un son à proximité · Inspiré de Zelda: Tears of the Kingdom</div>
+        </div>
+      </div>
+
+      <!-- HUD -->
+      <div class="pm-section-title" id="silence-title-hud">HUD & Progression</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">❤️ BARRE DE VIE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">2 coups max · Sang à l'écran après 1 coup · Pression visuelle permanente</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">⚡ BARRE D'ÉNERGIE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Vide = impossible de courir · Terreur de ne plus pouvoir fuir</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🔊 INDICATEUR DE BRUIT</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Indique en temps réel le son généré · Guide le joueur dans ses choix</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.15);background:rgba(0,0,0,.2)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#9ca3af;letter-spacing:.15em;margin-bottom:.4rem">🛡 SAFE ZONES</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.83rem;color:#d0c8bf;line-height:1.7">Pièces sécurisées pour souffler et sauvegarder · Sentiment de progression</div>
+        </div>
+      </div>
+
+      <!-- EQUIPE -->
+      <div class="pm-section-title" id="silence-title-team">Équipe</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.2);background:rgba(107,114,128,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#9ca3af;margin-bottom:.4rem">LÉO LUSSAN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Multitâche · Aide Level Design · Visualisation · Menu pause · Respawn · Feedback joueur</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.1);background:rgba(107,114,128,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#9ca3af;margin-bottom:.4rem">ANTOINE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Design · Narrative Design · Game Doc</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.1);background:rgba(107,114,128,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#9ca3af;margin-bottom:.4rem">CLÉMENT</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Code · Sound Design</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.1);background:rgba(107,114,128,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#9ca3af;margin-bottom:.4rem">ALEXANDRE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Sound Design · Level Design · Aide au code</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(107,114,128,.1);background:rgba(107,114,128,.02);grid-column:span 2">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#9ca3af;margin-bottom:.4rem">KOLLIAN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Narrative Design · Level Design</div>
+        </div>
+      </div>
+
+      <!-- LIENS + OUTILS -->
       <a class="modal-link" href="https://yuseless.itch.io/the-silence" target="_blank">🎮 Jouer sur itch.io</a>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unity</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">✍️ Inky</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🌐 Twine</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎵 Soundtrap</div>
+      <a class="modal-link" href="https://docs.google.com/presentation/d/1y-RETF-h7BlPfYaFQRp0vxRHhGXSxbmkYq4S0671T8E/present" target="_blank">📊 Présentation détaillée</a>
+
+      <div class="pm-label">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unity</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">✍️ Inky</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🌐 Twine</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎵 Soundtrap</div>
       </div>
     </div>
   </div>
@@ -1605,12 +1821,12 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
       <div class="pm-section-title" id="proj-mira-title3">Mon rôle — Level Designer / Builder</div>
       <p id='proj-mira-p4'>Sur le Projet Mira, j'interviens principalement en tant que Level Designer et Builder. Je suis en charge de la conception et de la réalisation des environnements du serveur, en lien direct avec les besoins du gameplay et les idées de l'équipe. Ce rôle me permet de travailler à la fois sur l'aspect artistique et sur la manière dont les joueurs vont évoluer et interagir dans les espaces.</p>
-      <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);margin-top:1rem">Mes missions principales :</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);margin-top:1rem">Mes missions principales :</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-top:.6rem">
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Conception de maps et zones de jeu</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Builds pensés pour le gameplay et la lisibilité</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Travail sur l'ambiance et les volumes</div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Collaboration avec l'équipe technique</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Conception de maps et zones de jeu</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Builds pensés pour le gameplay et la lisibilité</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Travail sur l'ambiance et les volumes</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.6rem .9rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">→ Collaboration avec l'équipe technique</div>
       </div>
 
       <div class="pm-section-title">Différents builds</div>
@@ -1623,9 +1839,9 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <p>Le hub principal est pensé comme le cœur du serveur. Il doit être à la fois lisible, accueillant et immersif, tout en facilitant l'orientation des joueurs.</p>
       <p>Nous avons travaillé sur :</p>
       <div style="display:flex;flex-direction:column;gap:.3rem;margin:.8rem 0 1.2rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.5rem .9rem;border-left:2px solid var(--th-acc2,#34d399)">Une architecture claire et identifiable</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.5rem .9rem;border-left:2px solid var(--th-acc2,#34d399)">Une circulation fluide entre les différentes zones</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.5rem .9rem;border-left:2px solid var(--th-acc2,#34d399)">Une ambiance visuelle cohérente avec l'univers du projet</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.5rem .9rem;border-left:2px solid var(--th-acc2,#34d399)">Une architecture claire et identifiable</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.5rem .9rem;border-left:2px solid var(--th-acc2,#34d399)">Une circulation fluide entre les différentes zones</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.5rem .9rem;border-left:2px solid var(--th-acc2,#34d399)">Une ambiance visuelle cohérente avec l'univers du projet</div>
       </div>
 
       <div class="pm-label">Visualisation 3D isométrique — Hub Mira</div>
@@ -1645,11 +1861,29 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div class="pm-section-title">Un projet pour développer mes concepts</div>
       <p>Au-delà du projet en lui-même, Projet Mira est un terrain d'expérimentation. Il me permet de tester des idées de level design, d'explorer différentes ambiances et styles, et d'améliorer ma compréhension du lien entre environnement et gameplay.</p>
       <p style="color:var(--grey);font-size:.85rem">Les projets de construction Minecraft ont été réalisés dans l'objectif d'ouvrir un serveur Minecraft différent et nourri en builds. Nous étions 13 dans ce projet — il est actuellement en pause de développement.</p>
+
+      <div class="pm-section-title" id="mira-title-team">Équipe</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(74,222,128,.2);background:rgba(74,222,128,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#4ade80;margin-bottom:.4rem">LÉO LUSSAN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Designer · Builder · Conception des environnements</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(74,222,128,.1);background:rgba(74,222,128,.02)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#4ade80;margin-bottom:.4rem">ÉQUIPE EPITECH</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">13 membres · Développeurs · Builders · Étudiants Epitech</div>
+        </div>
+      </div>
+
+      <div class="pm-label">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">⛏ Minecraft Java</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎨 Suite Adobe</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔀 Git</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 WorldEdit</div>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- DRACONIUM — Platformer 2D Medieval Fantasy Dragon -->
 <div id="pm-draconium" class="proj-modal-overlay theme-draconium" onclick="if(event.target===this)closeProj('draconium')">
   <div class="proj-modal-backdrop" onclick="closeProj('draconium')"></div>
   <div class="proj-modal">
@@ -1681,12 +1915,12 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
       <div class="pm-section-title" id="proj-draco-title-gameplay">Gameplay</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">🔥 Cracher des flammes — attaque principale</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">🐉 Évolution progressive au fil des niveaux</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">⚗️ Effets d'alchimie — buffs et malus</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">🗺️ Niveaux en zones distinctes (laboratoire, donjons, forêts)</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">☠️ Boss = expériences ratées de l'alchimiste</div>
-        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">💀 Platformer exigeant — mort = recommencer</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">🔥 Cracher des flammes — attaque principale</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">🐉 Évolution progressive au fil des niveaux</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">⚗️ Effets d'alchimie — buffs et malus</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">🗺️ Niveaux en zones distinctes (laboratoire, donjons, forêts)</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">☠️ Boss = expériences ratées de l'alchimiste</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,106,0,.04)">💀 Platformer exigeant — mort = recommencer</div>
       </div>
 
       <div class="pm-section-title" id="proj-draco-title-visual">Univers visuel</div>
@@ -1694,11 +1928,25 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       <div style="border-left:3px solid var(--th-acc2,#ff8c38);padding-left:1.2rem;margin-top:1.5rem">
         <p style="font-size:.88rem;color:var(--grey);font-style:italic">"Projet en cours de développement — concepts en phase de design. Les premières images arriveront prochainement."</p>
       </div>
+
+      <div class="pm-section-title" id="draco-title-team">Équipe</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(255,140,56,.2);background:rgba(255,140,56,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#ff8c38;margin-bottom:.4rem">LÉO LUSSAN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Design · Concept · Narration · Direction artistique</div>
+        </div>
+      </div>
+
+      <div class="pm-label">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">✏️ Aseprite</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unity 2D</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎵 Soundtrap</div>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- COACHING -->
 <div id="pm-coaching" class="proj-modal-overlay theme-coaching" onclick="if(event.target===this)closeProj('coaching')">
   <div class="proj-modal-backdrop" onclick="closeProj('coaching')"></div>
   <div class="proj-modal">
@@ -1731,11 +1979,25 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <p style="flex:1;font-size:.88rem;color:var(--grey-light);line-height:1.8" id="proj-coaching-p4">Séances ponctuelles ou suivi régulier selon tes objectifs. Un accompagnement sérieux, humain et sans jugement.</p>
       </div>
       <a class="modal-link" href="mailto:leo.lussan@gmail.com" style="margin-top:1.5rem">→ Réserver une séance</a>
+
+      <div class="pm-section-title" id="coaching-title-team">À propos</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(244,160,51,.2);background:rgba(244,160,51,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#f4a033;margin-bottom:.4rem">LÉO LUSSAN — Coach E-Sport</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Ancien joueur compétitif · Équipes e-sport · Podiums en tournois · Approche analytique et pédagogique</div>
+        </div>
+      </div>
+
+      <div class="pm-label">Outils & Plateformes</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Discord</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📊 Méthode analytique</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎯 League of Legends</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔫 Valorant · DBD</div>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- STREAMING -->
 <div id="pm-streaming" class="proj-modal-overlay theme-stream" onclick="if(event.target===this)closeProj('streaming')">
   <div class="proj-modal-backdrop" onclick="closeProj('streaming')"></div>
   <div class="proj-modal">
@@ -1867,11 +2129,24 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         </div>
       </div>
 
+      <div class="pm-section-title" id="streaming-title-team">À propos du streameur</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(155,114,208,.2);background:rgba(155,114,208,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#9b72d0;margin-bottom:.4rem">LÉO LUSSAN — MollyMo31</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Streamer Twitch · Joueur compétitif haut niveau · Créateur de contenu · Communauté active</div>
+        </div>
+      </div>
+
+      <div class="pm-label">Plateformes & Outils</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🟣 Twitch — MollyMo31</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">▶️ YouTube</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎙 OBS Studio</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Discord</div>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- MUSIQUES — carousel interactif avec infos dynamiques -->
 <div id="pm-musiques" class="proj-modal-overlay theme-musiques" onclick="if(event.target===this)closeProj('musiques')">
   <div class="proj-modal-backdrop" onclick="closeProj('musiques')"></div>
   <div class="proj-modal">
@@ -1959,7 +2234,96 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
       </div>
 
       <div class="pm-section-title" style="margin-top:2.5rem">Ma démarche musicale</div>
-      <p id="proj-musiques-p2">La production musicale me permet d'aborder la création sous un autre angle. À travers ces morceaux, je m'attache à travailler la <strong>dimension sensible du son</strong>, en construisant des textures, des dynamiques et des espaces sonores qui participent pleinement à l'expérience joueur. Ce travail m'amène à réfléchir à la manière dont le son peut accompagner l'exploration et renforcer une atmosphère.</p>
+      <p id="proj-musiques-p2">La production musicale me permet d'aborder la création sous un autre angle. À travers ces morceaux, je m'attache à travailler la <strong>dimension sensible du son</strong>, en construisant des textures, des dynamiques et des espaces sonores qui participent pleinement à l'expérience joueur.</p>
+
+      <div class="pm-section-title" id="musiques-title-team">À propos</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(180,130,220,.2);background:rgba(180,130,220,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#c084fc;margin-bottom:.4rem">LÉO LUSSAN — Compositeur</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Musicien · Pianiste · Trompettiste · Compositeur de musiques d'ambiance et de jeux vidéo</div>
+        </div>
+      </div>
+
+      <div class="pm-label">Outils de production</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎵 FL Studio</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎹 Piano · Trompette</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎧 Soundtrap</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">▶️ YouTube</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JUICEUP — Game Feel / Platformer 2D Unity -->
+<div id="pm-juiceup" class="proj-modal-overlay theme-juiceup" onclick="if(event.target===this)closeProj('juiceup')">
+  <div class="proj-modal-backdrop" onclick="closeProj('juiceup')"></div>
+  <div class="proj-modal">
+    <div class="proj-modal-hero" style="background:linear-gradient(160deg,rgba(10,4,20,.99) 0%,rgba(20,8,40,.96) 100%);overflow:hidden">
+      <div class="proj-modal-num">// 11 — Projet Personnel · En cours</div>
+      <div class="proj-modal-title">JUICE<span>UP</span></div>
+      <button class="proj-modal-close" onclick="closeProj('juiceup')">✕ Fermer</button>
+      <div class="proj-modal-tags"><span class="tag accent">En cours</span><span class="tag">Game Feel</span><span class="tag">Unity 2D</span><span class="tag">Platformer</span><span class="tag">Feedback</span></div>
+    </div>
+    <div class="proj-modal-body">
+      <p id="proj-juiceup-p1"><strong>JuiceUp</strong> est un projet personnel de <strong>game feel</strong> — prendre un platformer 2D existant ennuyeux et peu satisfaisant, et le transformer en une expérience jouissive à travers l'ajout de feedbacks visuels, sonores et physiques. L'objectif : rendre chaque action mémorable et gratifiante.</p>
+
+      <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
+      <div class="carousel"><div class="carousel-track" id="ct-juiceup">
+        <div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">✨</div><div class="carousel-placeholder-text">Avant / Après game feel — à venir</div></div></div>
+        <div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">💥</div><div class="carousel-placeholder-text">VFX de gameplay — à venir</div></div></div>
+        <div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🎮</div><div class="carousel-placeholder-text">Gameplay complet — à venir</div></div></div>
+      </div><div class="car-controls"><div class="carousel-dots" id="cd-juiceup"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('juiceup',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('juiceup',1)">Suiv →</button></div></div></div>
+
+      <div class="pm-section-title" id="juiceup-title-concept">Concept & But du projet</div>
+      <p>Le <strong>"juice"</strong> désigne l'ensemble des feedbacks qui rendent un jeu satisfaisant : particules, sons, screen shake, animations réactives, trail, slow-motion... Un jeu peut être techniquement fonctionnel mais totalement plat à jouer. JuiceUp part d'une base volontairement ennuyeuse et documente <strong>chaque couche de feedback ajoutée</strong> pour montrer l'impact du game feel.</p>
+
+      <div class="pm-section-title" id="juiceup-title-da">Direction Artistique</div>
+      <p>Esthétique <strong>minimaliste et colorée</strong> — formes géométriques nettes, palette saturée. Le style volontairement simple permet de mettre en valeur les effets de feedback sans surcharger visuellement. Chaque action déclenche une réaction visuelle distincte et lisible.</p>
+
+      <div class="pm-section-title" id="juiceup-title-mec">Les couches de "Juice"</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
+        <div style="padding:1rem;border:1px solid rgba(192,132,252,.2);background:rgba(192,132,252,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#c084fc;letter-spacing:.15em;margin-bottom:.4rem">💥 SCREEN SHAKE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Tremblement de caméra sur les impacts · Intensité calibrée selon l'action</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(192,132,252,.2);background:rgba(192,132,252,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#c084fc;letter-spacing:.15em;margin-bottom:.4rem">✨ PARTICULES & VFX</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Explosions de particules au saut, à l'atterrissage, aux collectibles</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(192,132,252,.2);background:rgba(192,132,252,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#c084fc;letter-spacing:.15em;margin-bottom:.4rem">🎵 SOUND DESIGN</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Son pour chaque action · Pitch variable selon la séquence · Audio satisfaisant</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(192,132,252,.2);background:rgba(192,132,252,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#c084fc;letter-spacing:.15em;margin-bottom:.4rem">⏱ HITSTOP & SLOW-MO</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Freeze frame sur les impacts forts · Sensation de poids et de puissance</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(192,132,252,.2);background:rgba(192,132,252,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#c084fc;letter-spacing:.15em;margin-bottom:.4rem">🌊 SQUASH & STRETCH</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Déformation du personnage à l'impulsion et à l'atterrissage</div>
+        </div>
+        <div style="padding:1rem;border:1px solid rgba(192,132,252,.2);background:rgba(192,132,252,.05)">
+          <div style="font-family:var(--font-mono);font-size:.6rem;color:#c084fc;letter-spacing:.15em;margin-bottom:.4rem">💨 TRAIL & COYOTE TIME</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Traînée de mouvement · Tolérance de saut en bord de plateforme</div>
+        </div>
+      </div>
+
+      <div class="pm-section-title" id="juiceup-title-team">À propos</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
+        <div style="padding:1rem;border:1px solid rgba(192,132,252,.2);background:rgba(192,132,252,.04)">
+          <div style="font-family:var(--font-title);font-size:1rem;color:#c084fc;margin-bottom:.4rem">LÉO LUSSAN — Développeur solo</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">Game Design · Level Design · Game Feel · Développement Unity · Sound Design</div>
+        </div>
+      </div>
+
+      <div class="pm-label">Outils utilisés</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎮 Unity 2D</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">✏️ Aseprite</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔊 Soundtrap</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">📋 Notion</div>
+      </div>
     </div>
   </div>
 </div>
@@ -2138,7 +2502,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
         <!-- Boutons CV -->
         <div style="margin-top:1rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap">
-          <a href="cv.html" target="_blank" style="display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--red);padding:.7rem 1.5rem;transition:opacity .2s;text-decoration:none" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" data-i18n="cv_btn" data-i18n="cv_btn">→ Voir le CV stylisé</a>
+          <a href="cv.html" onclick="if(window.location.protocol==='file:'){window.open('https://mollymo31.github.io/Portfolio_Leo_Lussan/cv.html','_blank');return false;}" target="_blank" style="display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--red);padding:.7rem 1.5rem;transition:opacity .2s;text-decoration:none" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'" data-i18n="cv_btn">→ Voir le CV stylisé</a>
         </div>
 
       </div>
@@ -2657,6 +3021,7 @@ const FX_CONFIGS = {
   tower:   { type:'garden',    color:'#a3e635', glow:'rgba(163,230,53,' },
   silence: { type:'darkness',  color:'#6b7280', glow:'rgba(107,114,128,' },
   musiques:{ type:'music',     color:'#d070f0', glow:'rgba(208,112,240,' },
+  juiceup: { type:'neon',      color:'#c084fc', glow:'rgba(192,132,252,' },
   draconium:{ type:'flames',   color:'#ff8c38', glow:'rgba(255,140,56,' },
   coaching:{ type:'neon',      color:'#f4a033', glow:'rgba(244,160,51,' },
   mira:    { type:'garden',    color:'#34d399', glow:'rgba(52,211,153,' },
