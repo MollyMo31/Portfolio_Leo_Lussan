@@ -4512,9 +4512,83 @@ var _AMBIENCES = {
   },
 };
 
-_AMBIENCES.mira      = _AMBIENCES.garden;
+_AMBIENCES.mira = function() {
+    var ctx=_ambCtx, out=_ambGain;
+    var wb=ctx.createBuffer(1,ctx.sampleRate*6,ctx.sampleRate);
+    var wd=wb.getChannelData(0);
+    for(var i=0;i<wd.length;i++) wd[i]=(Math.random()*2-1)*0.003;
+    var ws=ctx.createBufferSource(),wf=ctx.createBiquadFilter(),wg=ctx.createGain();
+    wf.type='lowpass'; wf.frequency.value=300; wg.gain.value=1.0;
+    ws.buffer=wb; ws.loop=true; ws.connect(wf); wf.connect(wg); wg.connect(out); ws.start(); _ambNodes.push(ws);
+    [[73.4,0.015],[110,0.010],[146.8,0.007]].forEach(function(p){
+      var o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+      f.type='lowpass'; f.frequency.value=500; o.type='sine'; o.frequency.value=p[0]; g.gain.value=p[1];
+      o.connect(f); f.connect(g); g.connect(out); o.start(); _ambNodes.push(o);
+    });
+    var notes=[261.6,329.6,392,523.2,392,329.6,261.6,220];
+    var ni=0;
+    function playNote(){
+      if(_ambCurrentId!=='mira') return;
+      var f=notes[ni%notes.length]; ni++;
+      var o=ctx.createOscillator(),g=ctx.createGain(),fl=ctx.createBiquadFilter();
+      fl.type='lowpass'; fl.frequency.value=900;
+      o.type='triangle'; o.frequency.value=f;
+      g.gain.setValueAtTime(0.035,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+3.5);
+      o.connect(fl); fl.connect(g); g.connect(out); o.start(); o.stop(ctx.currentTime+3.6);
+      _ambLoop=setTimeout(playNote,1800+Math.random()*2200);
+    }
+    playNote();
+  };
 _AMBIENCES.coaching  = _AMBIENCES.neon;
-_AMBIENCES.streaming = _AMBIENCES.musiques;
+_AMBIENCES.streaming = function() {
+    var ctx=_ambCtx, out=_ambGain;
+    // Ambiance lofi streaming - pad doux + basse subtile
+    [[110,0.022],[138.6,0.016],[165,0.012]].forEach(function(p){
+      var o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+      f.type='lowpass'; f.frequency.value=600; o.type='triangle'; o.frequency.value=p[0]; g.gain.value=p[1];
+      var vib=ctx.createOscillator(),vg=ctx.createGain();
+      vib.frequency.value=0.18; vg.gain.value=1.2; vib.connect(vg); vg.connect(o.frequency); vib.start(); _ambNodes.push(vib);
+      o.connect(f); f.connect(g); g.connect(out); o.start(); _ambNodes.push(o);
+    });
+    // Kick lofi lent
+    function kick(){
+      if(_ambCurrentId!=='streaming') return;
+      var o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine'; o.frequency.setValueAtTime(120,ctx.currentTime); o.frequency.exponentialRampToValueAtTime(35,ctx.currentTime+0.25);
+      g.gain.setValueAtTime(0.18,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.3);
+      o.connect(g); g.connect(out); o.start(); o.stop(ctx.currentTime+0.32);
+      setTimeout(kick,750);
+    }
+    kick();
+    // Hi-hat doux
+    var ht=0;
+    function hat(){
+      if(_ambCurrentId!=='streaming') return;
+      ht++;
+      var hb=ctx.createBuffer(1,ctx.sampleRate*0.06,ctx.sampleRate);
+      var hd=hb.getChannelData(0);
+      for(var j=0;j<hd.length;j++) hd[j]=(Math.random()*2-1)*Math.exp(-j/(ctx.sampleRate*0.018));
+      var hs=ctx.createBufferSource(),hg=ctx.createGain(),hf=ctx.createBiquadFilter();
+      hf.type='highpass'; hf.frequency.value=8000; hg.gain.value=ht%2===0?0.025:0.012;
+      hs.buffer=hb; hs.connect(hf); hf.connect(hg); hg.connect(out); hs.start();
+      setTimeout(hat,375);
+    }
+    hat();
+    // Basse rythmique lofi
+    var bSeq=[110,110,82.4,98,110,82.4,110,98];
+    var bi=0;
+    function bass(){
+      if(_ambCurrentId!=='streaming') return;
+      var f=bSeq[bi%bSeq.length]; bi++;
+      var o=ctx.createOscillator(),g=ctx.createGain(),fl=ctx.createBiquadFilter();
+      fl.type='lowpass'; fl.frequency.value=400; o.type='sawtooth'; o.frequency.value=f;
+      g.gain.setValueAtTime(0.12,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.55);
+      o.connect(fl); fl.connect(g); g.connect(out); o.start(); o.stop(ctx.currentTime+0.6);
+      setTimeout(bass,750);
+    }
+    bass();
+  };
 _AMBIENCES.juiceup = function() {
   var ctx=_ambCtx, out=_ambGain;
 
