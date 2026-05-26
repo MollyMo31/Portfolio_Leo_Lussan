@@ -99,10 +99,10 @@ nav{
 .lang-btn:hover{opacity:1 !important;transform:scale(1.1);color:#e8d48e !important}
 .lang-btn.active{opacity:1 !important;text-decoration:underline;text-underline-offset:3px}
 
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 3rem;padding-top:80px;position:relative;overflow:hidden;z-index:1}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 3rem;padding-top:110px;position:relative;overflow:hidden;z-index:1}
 .hero-bg-text{position:absolute;top:50%;right:-2rem;transform:translateY(-50%);font-family:var(--font-title);font-size:clamp(10rem,22vw,22rem);color:rgba(255,255,255,.022);pointer-events:none;user-select:none;white-space:nowrap}
 .hero-tag{font-family:var(--font-mono);font-size:.72rem;color:var(--red);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem}
-.hero-name{font-family:var(--font-title);font-size:clamp(2.8rem,7.5vw,7.5rem);line-height:.88}
+.hero-name{font-family:var(--font-title);font-size:clamp(2.8rem,7.5vw,7.5rem);line-height:.88;margin-top:2.5rem;padding-top:.4rem}
 .hero-name .red{color:var(--red)}
 .hero-role{margin-top:3.5rem;font-family:var(--font-mono);font-size:.85rem;color:var(--grey-light);letter-spacing:.08em;text-transform:uppercase;border-left:2px solid var(--red);padding-left:1rem}
 .hero-desc{margin-top:2.5rem;max-width:520px;color:var(--grey-light);font-size:.95rem;line-height:1.8}
@@ -253,7 +253,7 @@ nav{
 .project-year{font-family:var(--font-mono);font-size:.65rem;color:var(--grey)}
 
 /* project modal themes */
-.proj-modal-overlay{display:none;position:fixed;inset:0;z-index:200;align-items:flex-start;justify-content:center;overflow-y:auto;padding:2rem 1rem}
+.proj-modal-overlay{display:none;position:fixed;inset:0;z-index:200;align-items:flex-start;justify-content:center;overflow-y:auto;padding:2rem 1rem;will-change:opacity}
 .proj-modal-overlay.open{display:flex}
 .proj-modal-backdrop{position:fixed;inset:0;z-index:-1;backdrop-filter:blur(6px);background:rgba(0,0,0,.55)}
 
@@ -1304,15 +1304,15 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
       <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-city">
-        <div class="carousel-slide"><img src="projet_cityrider/city-01.png" alt="City Rider - Vue aérienne map" style="width:100%;height:340px;object-fit:cover"/></div>
-        <div class="carousel-slide"><img src="projet_cityrider/city-02.png" alt="City Rider - Skyline néon" style="width:100%;height:340px;object-fit:cover"/></div>
-        <div class="carousel-slide"><img src="projet_cityrider/city-03.png" alt="City Rider - Flèches directionnelles" style="width:100%;height:340px;object-fit:cover"/></div>
-        <div class="carousel-slide"><img src="projet_cityrider/city-04.png" alt="City Rider - Route avec trafic" style="width:100%;height:340px;object-fit:cover"/></div>
-        <div class="carousel-slide"><img src="projet_cityrider/city-05.png" alt="City Rider - Gameplay TPS moto" style="width:100%;height:340px;object-fit:cover"/></div>
-        <div class="carousel-slide"><img src="projet_cityrider/city-06.png" alt="City Rider - Food truck PNJ" style="width:100%;height:340px;object-fit:cover"/></div>
-        <div class="carousel-slide"><img src="projet_cityrider/city-07.png" alt="City Rider - Menu principal" style="width:100%;height:340px;object-fit:cover"/></div>
-        <div class="carousel-slide"><img src="projet_cityrider/city-08.png" alt="City Rider - Crédits" style="width:100%;height:340px;object-fit:cover"/></div>
-        <div class="carousel-slide"><img src="projet_cityrider/city-09.png" alt="City Rider - Gameplay intérieur" style="width:100%;height:340px;object-fit:cover"/></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-01.png" alt="City Rider - Vue aérienne map" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-02.png" alt="City Rider - Skyline néon" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-03.png" alt="City Rider - Flèches directionnelles" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-04.png" alt="City Rider - Route avec trafic" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-05.png" alt="City Rider - Gameplay TPS moto" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-06.png" alt="City Rider - Food truck PNJ" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-07.png" alt="City Rider - Menu principal" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-08.png" alt="City Rider - Crédits" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
+        <div class="carousel-slide"><img src="projet_cityrider/city-09.png" alt="City Rider - Gameplay intérieur" style="width:100%;height:340px;object-fit:cover"/ loading="lazy"></div>
       </div><div class="car-controls"><div class="carousel-dots" id="cd-city"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('city',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('city',1)">Suiv →</button></div></div></div>
 
       <div class="pm-label">Visualisation 3D · Circuit City Rider</div>
@@ -1446,7 +1446,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <!-- -- SLIDE 1 : MENU -- -->
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
-            <img src="projet_towerdefense/tower-menu-2.png" alt="Menu principal" style="width:100%;height:100%;object-fit:cover;opacity:.85"/>
+            <img src="projet_towerdefense/tower-menu-2.png" alt="Menu principal" style="width:100%;height:100%;object-fit:cover;opacity:.85"/ loading="lazy">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.85) 100%)"></div>
             <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
               <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.4rem">01 — Menu</div>
@@ -1459,7 +1459,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <!-- -- SLIDE 2 : INTERFACE -- -->
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
-            <img src="projet_towerdefense/tower-menu.png" alt="Interface de jeu" style="width:100%;height:100%;object-fit:cover;opacity:.85"/>
+            <img src="projet_towerdefense/tower-menu.png" alt="Interface de jeu" style="width:100%;height:100%;object-fit:cover;opacity:.85"/ loading="lazy">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.85) 100%)"></div>
             <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
               <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.4rem">02 — Interface</div>
@@ -1472,7 +1472,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <!-- -- SLIDE 3 : GAMEPLAY 1 -- -->
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
-            <img src="projet_towerdefense/tower-game-01.png" alt="Gameplay phase défense" style="width:100%;height:100%;object-fit:cover;opacity:.9"/>
+            <img src="projet_towerdefense/tower-game-01.png" alt="Gameplay phase défense" style="width:100%;height:100%;object-fit:cover;opacity:.9"/ loading="lazy">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.88) 100%)"></div>
             <div style="position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-mono);font-size:.55rem;color:#a3e635;background:rgba(0,0,0,.6);padding:.3rem .7rem;border:1px solid rgba(163,230,53,.3)">IN-GAME</div>
             <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
@@ -1486,7 +1486,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <!-- -- SLIDE 4 : GAMEPLAY 2 -- -->
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
-            <img src="projet_towerdefense/tower-game-02.png" alt="Vague ennemie" style="width:100%;height:100%;object-fit:cover;opacity:.9"/>
+            <img src="projet_towerdefense/tower-game-02.png" alt="Vague ennemie" style="width:100%;height:100%;object-fit:cover;opacity:.9"/ loading="lazy">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.88) 100%)"></div>
             <div style="position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-mono);font-size:.55rem;color:#f87171;background:rgba(0,0,0,.6);padding:.3rem .7rem;border:1px solid rgba(248,113,113,.3)">VAGUE ENNEMIE</div>
             <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
@@ -1500,7 +1500,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <!-- -- SLIDE 5 : MAP ÉDITEUR -- -->
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
-            <img src="projet_towerdefense/tower-map.png" alt="Vue éditeur de la map" style="width:100%;height:100%;object-fit:cover;opacity:.9"/>
+            <img src="projet_towerdefense/tower-map.png" alt="Vue éditeur de la map" style="width:100%;height:100%;object-fit:cover;opacity:.9"/ loading="lazy">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.88) 100%)"></div>
             <div style="position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-mono);font-size:.55rem;color:#67e8f9;background:rgba(0,0,0,.6);padding:.3rem .7rem;border:1px solid rgba(103,232,249,.3)">LEVEL DESIGN</div>
             <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
@@ -1514,7 +1514,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <!-- -- SLIDE 6 : VUE D'ENSEMBLE -- -->
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a1a04">
-            <img src="projet_towerdefense/tower-overview.png" alt="Vue d'ensemble du niveau" style="width:100%;height:100%;object-fit:cover;opacity:.9"/>
+            <img src="projet_towerdefense/tower-overview.png" alt="Vue d'ensemble du niveau" style="width:100%;height:100%;object-fit:cover;opacity:.9"/ loading="lazy">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.88) 100%)"></div>
             <div style="position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-mono);font-size:.55rem;color:#fbbf24;background:rgba(0,0,0,.6);padding:.3rem .7rem;border:1px solid rgba(251,191,36,.3)">OVERVIEW</div>
             <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem">
@@ -1528,7 +1528,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
         <!-- -- SLIDES 7-10 : MÉCANIQUES / MODÈLES -- -->
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0a1a04,#1a3008);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
-            <img src="projet_towerdefense/tower-model-01.png" alt="Gnome" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/>
+            <img src="projet_towerdefense/tower-model-01.png" alt="Gnome" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/ loading="lazy">
             <div style="flex:1;max-width:280px">
               <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;margin-bottom:.8rem">07 — Mécanique</div>
               <div style="font-family:var(--font-title);font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.8rem">GNOME<br/><span style="color:#a3e635;font-size:1.4rem">DÉFENSEUR</span></div>
@@ -1539,7 +1539,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0a1a04,#1a3008);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
-            <img src="projet_towerdefense/tower-model-02.png" alt="Ver de terre" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/>
+            <img src="projet_towerdefense/tower-model-02.png" alt="Ver de terre" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/ loading="lazy">
             <div style="flex:1;max-width:280px">
               <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;margin-bottom:.8rem">08 — Ennemi</div>
               <div style="font-family:var(--font-title);font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.8rem">VER DE TERRE<br/><span style="color:#f87171;font-size:1.4rem">ENNEMI LENT</span></div>
@@ -1550,7 +1550,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0a1a04,#1a3008);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
-            <img src="projet_towerdefense/tower-model-03.png" alt="Cafard" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/>
+            <img src="projet_towerdefense/tower-model-03.png" alt="Cafard" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/ loading="lazy">
             <div style="flex:1;max-width:280px">
               <div style="font-family:var(--font-mono);font-size:.55rem;color:#a3e635;letter-spacing:.25em;margin-bottom:.8rem">09 — Ennemi</div>
               <div style="font-family:var(--font-title);font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.8rem">CAFARD<br/><span style="color:#f87171;font-size:1.4rem">ENNEMI RAPIDE</span></div>
@@ -1561,7 +1561,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
         <div class="carousel-slide">
           <div style="position:relative;width:100%;height:100%;background:linear-gradient(135deg,#0a1a04,#1a3008);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
-            <img src="projet_towerdefense/tower-model-04.png" alt="Boss" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/>
+            <img src="projet_towerdefense/tower-model-04.png" alt="Boss" style="max-height:75%;max-width:30%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(163,230,53,.3))"/ loading="lazy">
             <div style="flex:1;max-width:280px">
               <div style="font-family:var(--font-mono);font-size:.55rem;color:#fbbf24;letter-spacing:.25em;margin-bottom:.8rem">10 — Boss</div>
               <div style="font-family:var(--font-title);font-size:2.2rem;color:#fff;line-height:1;margin-bottom:.8rem">LE PATRON<br/><span style="color:#fbbf24;font-size:1.4rem">BOSS FINAL</span></div>
@@ -4864,54 +4864,22 @@ var _audio = {
 })();
 
 // Sons UI au clic / hover
-document.addEventListener('click', function(e){
-  if(e.target.closest('button,a,[onclick],.project-row,.skill-card,.carousel-btn,.acc-header,.fc-link,.flip-card-wrapper'))
-    _audio.playClick();
-});
-var _hoverT;
-document.addEventListener('mouseover', function(e){
-  if(e.target.closest('.project-row,.skill-card,button,.nav-links a,.fc-link,.acc-header')){
-    clearTimeout(_hoverT);
-    _hoverT = setTimeout(function(){ _audio.playHover(); }, 60);
-  }
-});
+// Son clic désactivé pour performance
+// Sons hover désactivés pour performance
+// var _hoverT;
 
 
 
 /* == EFFETS D'INTERACTION GLOBAUX == */
 (function(){
-  // Ripple effect on click
-  document.addEventListener('click', function(e){
-    if(e.target.closest('.proj-modal, .skill-modal')) return;
-    var ripple = document.createElement('div');
-    ripple.style.cssText='position:fixed;z-index:9998;left:'+(e.clientX-20)+'px;top:'+(e.clientY-20)+'px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(200,169,110,.5);pointer-events:none;animation:ripple-out .5s ease forwards;';
-    document.body.appendChild(ripple);
-    setTimeout(function(){return ripple.remove();},500);
-  });
+  // Ripple effect désactivé pour performance
   var style = document.createElement('style');
   style.textContent='@keyframes ripple-out{from{transform:scale(0);opacity:.8}to{transform:scale(2.5);opacity:0}}';
   document.head.appendChild(style);
 
-  // Magnetic effect on project rows
-  document.querySelectorAll('.project-row').forEach(function(row){
-    row.addEventListener('mousemove', function(e){
-      var rect = row.getBoundingClientRect();
-      var y = (e.clientY - rect.top) / rect.height - .5;
-      row.style.transform = 'translateY('+(y*4)+'px)';
-    });
-    row.addEventListener('mouseleave', function(){ row.style.transform=''; });
-  });
+  // Magnetic effect désactivé pour performance
 
-  // Skill card tilt effect
-  document.querySelectorAll('.skill-card').forEach(function(card){
-    card.addEventListener('mousemove', function(e){
-      var rect = card.getBoundingClientRect();
-      var x = (e.clientX - rect.left) / rect.width - .5;
-      var y = (e.clientY - rect.top) / rect.height - .5;
-      card.style.transform = 'perspective(400px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg) translateZ(4px)';
-    });
-    card.addEventListener('mouseleave', function(){ card.style.transform=''; card.style.transition='transform .3s'; setTimeout(function(){return card.style.transition='';},300); });
-  });
+  // Skill card tilt désactivé pour performance
 })();
 
 
@@ -5219,8 +5187,11 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
 
   var BOUND_X = 45, BOUND_Y = 28, BOUND_Z = 22;
 
-  function animate(){
+  var _bgLast = 0;
+  function animate(now){
     requestAnimationFrame(animate);
+    if (now - _bgLast < 50) return; // max 20fps pour le fond
+    _bgLast = now;
     cubes.forEach(function(c){
       var d = c.userData;
       c.position.x += d.vx;
