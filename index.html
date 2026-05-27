@@ -4380,42 +4380,96 @@ var _AMBIENCES = {
 
   silence: function() {
     var ctx=_ambCtx,out=_ambGain;
+    
+    // Drone infrasonique ultra-grave et oppressant
     var sub=ctx.createOscillator(),sg=ctx.createGain();
-    sub.type='sine';sub.frequency.value=28;sg.gain.value=0.1;
+    sub.type='sine';sub.frequency.value=19;sg.gain.value=0.18;
     sub.connect(sg);sg.connect(out);sub.start();_ambNodes.push(sub);
-    [[110,0.03],[116.5,0.025]].forEach(function(p){
+    
+    // Deuxième drone grave (27Hz) pour l'effet "battement" créant une tension
+    var sub2=ctx.createOscillator(),sg2=ctx.createGain();
+    sub2.type='sine';sub2.frequency.value=27;sg2.gain.value=0.14;
+    sub2.connect(sg2);sg2.connect(out);sub2.start();_ambNodes.push(sub2);
+    
+    // Bruit blanc fortement filtré - effet de "vide urbain"
+    var noiseBuf=ctx.createBuffer(1,Math.floor(ctx.sampleRate*8),ctx.sampleRate);
+    var noiseData=noiseBuf.getChannelData(0);
+    for(var i=0;i<noiseData.length;i++) noiseData[i]=(Math.random()*2-1)*0.003;
+    var noiseSource=ctx.createBufferSource();
+    var noiseLowpass=ctx.createBiquadFilter();
+    noiseLowpass.type='lowpass';
+    noiseLowpass.frequency.value=150;
+    var notchFilter=ctx.createBiquadFilter();
+    notchFilter.type='notch';
+    notchFilter.frequency.value=60;
+    notchFilter.Q.value=8;
+    var noiseGain=ctx.createGain();
+    noiseGain.gain.value=0.35;
+    noiseSource.buffer=noiseBuf;
+    noiseSource.loop=true;
+    noiseSource.connect(noiseLowpass);
+    noiseLowpass.connect(notchFilter);
+    notchFilter.connect(noiseGain);
+    noiseGain.connect(out);
+    noiseSource.start();
+    _ambNodes.push(noiseSource);
+    
+    // Pad évanescent grave très sombre
+    [[88,0.028],[73.4,0.022],[110,0.018]].forEach(function(p){
       var o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
-      f.type='lowpass';f.frequency.value=450;o.type='sine';o.frequency.value=p[0];g.gain.value=p[1];
+      f.type='lowpass';f.frequency.value=420;
+      o.type='sine';o.frequency.value=p[0];g.gain.value=p[1];
       o.connect(f);f.connect(g);g.connect(out);o.start();_ambNodes.push(o);
     });
-    var rb=ctx.createBuffer(1,ctx.sampleRate*4,ctx.sampleRate);
-    var rd=rb.getChannelData(0);
-    for(var i=0;i<rd.length;i++)rd[i]=(Math.random()*2-1)*0.005;
-    var rs=ctx.createBufferSource(),rg=ctx.createGain();
-    rs.buffer=rb;rs.loop=true;rg.gain.value=0.4;rs.connect(rg);rg.connect(out);rs.start();_ambNodes.push(rs);
-    function distant(){
+    
+    // Bruit de vent étouffé (buffers courts avec decay exponentiel)
+    function windGust(){
       if(_ambCurrentId!=='silence')return;
-      var freq=70+Math.random()*180;
+      var wb=ctx.createBuffer(1,Math.floor(ctx.sampleRate*0.4),ctx.sampleRate);
+      var wd=wb.getChannelData(0);
+      for(var j=0;j<wd.length;j++){
+        var env=Math.exp(-4*j/wd.length);
+        wd[j]=(Math.random()*2-1)*0.0012*env;
+      }
+      var ws=ctx.createBufferSource(),wf=ctx.createBiquadFilter(),wg=ctx.createGain();
+      wf.type='lowpass';wf.frequency.value=280;
+      wg.gain.value=0.24;
+      ws.buffer=wb;ws.connect(wf);wf.connect(wg);wg.connect(out);ws.start();
+      _ambLoop=setTimeout(windGust,8000+Math.random()*12000);
+    }
+    windGust();
+    
+    // Sons évanescents lointains - très grave et triste
+    function distantEcho(){
+      if(_ambCurrentId!=='silence')return;
+      var freq=32+Math.random()*45;
       var o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
-      f.type='lowpass';f.frequency.value=350;o.type='sine';
-      o.frequency.setValueAtTime(freq,ctx.currentTime);o.frequency.linearRampToValueAtTime(freq*0.65,ctx.currentTime+3.5);
-      g.gain.setValueAtTime(0,ctx.currentTime);g.gain.linearRampToValueAtTime(0.055,ctx.currentTime+1.2);
-      g.gain.linearRampToValueAtTime(0,ctx.currentTime+4.5);
-      o.connect(f);f.connect(g);g.connect(out);o.start();o.stop(ctx.currentTime+5);
-      setTimeout(distant,7000+Math.random()*9000);
+      f.type='lowpass';f.frequency.value=320;o.type='sine';
+      o.frequency.setValueAtTime(freq,ctx.currentTime);
+      o.frequency.linearRampToValueAtTime(freq*0.4,ctx.currentTime+5.2);
+      g.gain.setValueAtTime(0.001,ctx.currentTime);
+      g.gain.linearRampToValueAtTime(0.045,ctx.currentTime+1.5);
+      g.gain.linearRampToValueAtTime(0.001,ctx.currentTime+6.2);
+      o.connect(f);f.connect(g);g.connect(out);o.start();o.stop(ctx.currentTime+6.3);
+      _ambLoop=setTimeout(distantEcho,9000+Math.random()*11000);
     }
-    distant();
-    function step(){
+    distantEcho();
+    
+    // Glitch/stutter sombre périodique
+    function stutter(){
       if(_ambCurrentId!=='silence')return;
-      var sb=ctx.createBuffer(1,ctx.sampleRate*0.07,ctx.sampleRate);
+      var sb=ctx.createBuffer(1,Math.floor(ctx.sampleRate*0.14),ctx.sampleRate);
       var sd=sb.getChannelData(0);
-      for(var j=0;j<sd.length;j++)sd[j]=(Math.random()*2-1)*Math.exp(-j/(ctx.sampleRate*0.022));
-      var ss=ctx.createBufferSource(),sg2=ctx.createGain(),sf=ctx.createBiquadFilter();
-      sf.type='lowpass';sf.frequency.value=250;sg2.gain.value=0.1;ss.buffer=sb;
-      ss.connect(sf);sf.connect(sg2);sg2.connect(out);ss.start();
-      setTimeout(step,10000+Math.random()*18000);
+      for(var j=0;j<sd.length;j++){
+        sd[j]=(Math.random()*2-1)*Math.exp(-2*j/sd.length)*0.001;
+      }
+      var ss=ctx.createBufferSource(),sf=ctx.createBiquadFilter(),sg3=ctx.createGain();
+      sf.type='lowpass';sf.frequency.value=240;
+      sg3.gain.value=0.13;
+      ss.buffer=sb;ss.connect(sf);sf.connect(sg3);sg3.connect(out);ss.start();
+      _ambLoop=setTimeout(stutter,11000+Math.random()*9000);
     }
-    step();
+    stutter();
   },
 
   draconium: function() {
@@ -4716,11 +4770,11 @@ var _audio = {
       var ctx = _ambCtx || new (window.AudioContext||window.webkitAudioContext)();
       var o=ctx.createOscillator(), g=ctx.createGain();
       o.connect(g); g.connect(ctx.destination);
-      o.type='sine'; o.frequency.setValueAtTime(880,ctx.currentTime);
-      o.frequency.exponentialRampToValueAtTime(440,ctx.currentTime+.08);
-      g.gain.setValueAtTime(.1,ctx.currentTime);
-      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.09);
-      o.start(); o.stop(ctx.currentTime+.1);
+      o.type='sine'; o.frequency.setValueAtTime(720,ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(320,ctx.currentTime+.12);
+      g.gain.setValueAtTime(.15,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.14);
+      o.start(); o.stop(ctx.currentTime+.15);
     } catch(e){}
   },
   playHover: function() {
@@ -4729,10 +4783,10 @@ var _audio = {
       var ctx = _ambCtx || new (window.AudioContext||window.webkitAudioContext)();
       var o=ctx.createOscillator(), g=ctx.createGain();
       o.connect(g); g.connect(ctx.destination);
-      o.type='sine'; o.frequency.value=620;
-      g.gain.setValueAtTime(.035,ctx.currentTime);
-      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.06);
-      o.start(); o.stop(ctx.currentTime+.07);
+      o.type='sine'; o.frequency.value=540;
+      g.gain.setValueAtTime(.045,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.08);
+      o.start(); o.stop(ctx.currentTime+.09);
     } catch(e){}
   },
   playModalOpen: function() {
@@ -4928,6 +4982,34 @@ document.addEventListener('keydown',function(e){
     });
   }
 });
+
+/* == AUDIO FEEDBACK ON INTERACTIONS == */
+(function(){
+  // Hover feedback sur les project rows
+  document.querySelectorAll('.project-row').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ _audio.playHover(); });
+    el.addEventListener('click',function(){ _audio.playClick(); });
+  });
+  
+  // Hover feedback sur les skill cards
+  document.querySelectorAll('.skill-card').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ _audio.playHover(); });
+    el.addEventListener('click',function(){ _audio.playClick(); });
+  });
+  
+  // Hover sur les nav links
+  document.querySelectorAll('.nav-links a').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ _audio.playHover(); });
+    el.addEventListener('click',function(){ _audio.playClick(); });
+  });
+  
+  // CTA button
+  var ctaBtn=document.querySelector('.nav-cta');
+  if(ctaBtn){
+    ctaBtn.addEventListener('mouseenter',function(){ _audio.playHover(); });
+    ctaBtn.addEventListener('click',function(){ _audio.playClick(); });
+  }
+})();
 
 /* == CAROUSELS == */
 var CS={};
