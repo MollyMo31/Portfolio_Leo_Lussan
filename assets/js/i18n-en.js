@@ -636,7 +636,8 @@
  "Une nouvelle mécanique environnementale : les souffleurs, placés le long des murs, repoussent quiconque entre dans leur zone d'action. Une seconde zone narrative, au milieu, donne accès à la première torche qui débloque le chemin vers Thorium.": "A new environmental mechanic: blowers placed along the walls push back anyone entering their area of effect. A second narrative zone, in the middle, gives access to the first torch that unlocks the path to Thorium.",
  "Zone débloquée uniquement grâce à la torche placée dans le bénitier de la porte du lobby (zone 6). Elle demande beaucoup de réflexion : plusieurs possibilités existent et mènent toutes au même but, récupérer la seconde torche pour enfin accéder au boss. Mais elle n'est pas faite que de réflexion : la torche est bien gardée par des hordes de monstres.": "This zone is unlocked only thanks to the torch placed in the holy water font of the lobby door (zone 6). It requires a lot of thinking: several options exist and all lead to the same goal, getting the second torch to finally reach the boss. But it isn't only about thinking: the torch is well guarded by hordes of monsters.",
  "Un petit couloir mène à la zone du boss. Thorium, un taureau, attaque à coups de charge ; des piliers installés en plein milieu du niveau permettent d'éviter ses charges.": "A short corridor leads to the boss zone. Thorium, a bull, attacks with charges; pillars set up in the middle of the level let the player dodge his charges.",
- "Dans cette dernière zone, un escalier qui monte dans les nuages attend le joueur pour son ascension vers sa résurrection. Au bout de l'escalier se trouve Charon, le passeur vers l'autre monde.": "In this last zone, a staircase climbing into the clouds awaits the player, leading to their resurrection. At the top of the stairs stands Charon, the ferryman to the other world."
+ "Dans cette dernière zone, un escalier qui monte dans les nuages attend le joueur pour son ascension vers sa résurrection. Au bout de l'escalier se trouve Charon, le passeur vers l'autre monde.": "In this last zone, a staircase climbing into the clouds awaits the player, leading to their resurrection. At the top of the stairs stands Charon, the ferryman to the other world.",
+ "Plan d'ensemble et zones proposées": "Overview map and proposed zones"
 };
   var ATTR = {
  "Aigle en pixel art": "Pixel art eagle",
@@ -678,7 +679,8 @@
  "Plan de la zone 6": "Zone 6 map",
  "Plan de la zone 7": "Zone 7 map",
  "Plan de la zone 8": "Zone 8 map",
- "Plan de la zone 1": "Zone 1 map"
+ "Plan de la zone 1": "Zone 1 map",
+ "Plan d'ensemble et zones proposées": "Overview map and proposed zones"
 };
   var SKIP = {SCRIPT:1,STYLE:1,NOSCRIPT:1,IFRAME:1,CANVAS:1,svg:1,SVG:1};
   var INLINE = {STRONG:1,EM:1,B:1,I:1,A:1,BR:1,SPAN:1,CODE:1,SMALL:1,U:1};
