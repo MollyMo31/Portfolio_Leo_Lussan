@@ -677,7 +677,8 @@
  "Plan de la zone 5": "Zone 5 map",
  "Plan de la zone 6": "Zone 6 map",
  "Plan de la zone 7": "Zone 7 map",
- "Plan de la zone 8": "Zone 8 map"
+ "Plan de la zone 8": "Zone 8 map",
+ "Plan de la zone 1": "Zone 1 map"
 };
   var SKIP = {SCRIPT:1,STYLE:1,NOSCRIPT:1,IFRAME:1,CANVAS:1,svg:1,SVG:1};
   var INLINE = {STRONG:1,EM:1,B:1,I:1,A:1,BR:1,SPAN:1,CODE:1,SMALL:1,U:1};
