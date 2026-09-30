@@ -335,7 +335,7 @@
   window.openProj=function(id){
     _o1(id);
     if(id==='tower') setTimeout(initTower3D,200);
-    if(id==='city')  setTimeout(function(){ if(window.initCity3D) window.initCity3D(); },200);
+    if(id==='city')  setTimeout(function(){ if(window.initCity3D) window.initCity3D(); else if(window.loadCity3D) window.loadCity3D(function(){ if(window.initCity3D) window.initCity3D(); }); },200);
   };
   var _o2=window.closeProj;
   window.closeProj=function(id){

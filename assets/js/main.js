@@ -1348,8 +1348,8 @@ var _AMBIENCES = {
     _ambNodes._towerToken = token;
 
     var urls = [
-      'assets/audio/towerdefense.wav',
-      'https://mollymo31.github.io/Portfolio_Leo_Lussan/assets/audio/towerdefense.wav'
+      'assets/audio/towerdefense.mp3',
+      'https://mollymo31.github.io/Portfolio_Leo_Lussan/assets/audio/towerdefense.mp3'
     ];
     var tried = 0;
     function tryPlay() {
@@ -2236,3 +2236,19 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   document.addEventListener('mouseover',function(e){if(e.target.closest(sel))document.body.classList.add('ch-hover')});
   document.addEventListener('mouseout', function(e){if(e.target.closest(sel))document.body.classList.remove('ch-hover')});
 })();
+
+
+/* == CHARGEMENT DIFFERE DU MODULE 3D DE CITY RIDER (three.js r150, ~1 Mo) ==
+   Charge apres le chargement de la page, pendant un moment d'inactivite. */
+window.loadCity3D=function(cb){
+  if(window.initCity3D){if(cb)cb();return;}
+  var s=document.getElementById('city3d-module');
+  if(!s){
+    s=document.createElement('script');s.type='module';s.id='city3d-module';s.src='assets/js/city-3d.js';
+    document.body.appendChild(s);
+  }
+  if(cb)s.addEventListener('load',cb);
+};
+window.addEventListener('load',function(){
+  (window.requestIdleCallback||function(f){setTimeout(f,2000);})(function(){window.loadCity3D();},{timeout:5000});
+});

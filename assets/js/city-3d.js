@@ -60,8 +60,8 @@ window.initCity3D = function() {
   gltfLoader.setDRACOLoader(dracoLoader);
 
   var urls = [
-    'https://mollymo31.github.io/Portfolio_Leo_Lussan/assets/models/city_map.glb',
-    'assets/models/city_map.glb'
+    'assets/models/city_map.glb',
+    'https://mollymo31.github.io/Portfolio_Leo_Lussan/assets/models/city_map.glb'
   ];
   var tried = 0;
 
