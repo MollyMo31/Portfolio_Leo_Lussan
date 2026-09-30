@@ -1171,6 +1171,23 @@ function _noise(gainVal, filterFreq, filterType) {
 
 /* == COMPOSITIONS CINEMATIQUES PAR PROJET == */
 
+/* Volume cible des musiques (elements <audio>) : respecte le volume et la sourdine choisis par le visiteur */
+function _ambTargetVol() {
+  if (_audio.muted) return 0;
+  var v = _audio.volume;
+  if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
+  if (v === undefined || isNaN(v)) v = 0.5;
+  return Math.min(0.45, 0.9 * v);
+}
+function _ambFadeEl(a, stillValid) {
+  var v = 0, fi = setInterval(function() {
+    if (!stillValid()) { clearInterval(fi); return; }
+    var t = _ambTargetVol();
+    v = Math.min(v + 0.018, t); a.volume = v;
+    if (v >= t) clearInterval(fi);
+  }, 60);
+}
+
 var _AMBIENCES = {
 
   unjudged: function() {
@@ -1299,13 +1316,7 @@ var _AMBIENCES = {
     ];
     var tried = 0;
     function doFade() {
-      var savedVol = 0.45;
-      try { var sv=localStorage.getItem('portfolio_volume'); if(sv!==null) savedVol=Math.min(0.45,0.9*parseFloat(sv)); } catch(e){}
-      var v=0, fi=setInterval(function(){
-        if(_ambNodes._cityToken!==token||!_ambNodes._cityEl){clearInterval(fi);return;}
-        v=Math.min(v+0.018, _audio.muted?0:savedVol); a.volume=v;
-        if(v>=savedVol||_audio.muted) clearInterval(fi);
-      },60);
+      _ambFadeEl(a, function(){ return _ambNodes._cityToken===token && _ambNodes._cityEl; });
     }
     function tryPlay() {
       if (_ambNodes._cityToken !== token) return;
@@ -1362,18 +1373,10 @@ var _AMBIENCES = {
       if (p && p.then) {
         p.then(function() {
           if (_ambNodes._towerToken !== token) { a.pause(); return; }
-          var v=0, fi=setInterval(function(){
-            if(_ambNodes._towerToken!==token||!_ambNodes._towerEl){clearInterval(fi);return;}
-            v=Math.min(v+0.018, 0.45); a.volume=v;
-            if(v>=0.45) clearInterval(fi);
-          },60);
+          _ambFadeEl(a, function(){ return _ambNodes._towerToken===token && _ambNodes._towerEl; });
         }).catch(function(){ tried++; setTimeout(tryPlay,200); });
       } else {
-        var v=0, fi=setInterval(function(){
-          if(_ambNodes._towerToken!==token){clearInterval(fi);return;}
-          v=Math.min(v+0.018,0.45); a.volume=v;
-          if(v>=0.45) clearInterval(fi);
-        },60);
+        _ambFadeEl(a, function(){ return _ambNodes._towerToken===token && _ambNodes._towerEl; });
       }
     }
     setTimeout(tryPlay, 50);
@@ -1503,18 +1506,10 @@ var _AMBIENCES = {
       if (p && p.then) {
         p.then(function() {
           if (_ambNodes._dracToken !== token) { a.pause(); return; }
-          var v=0, fi=setInterval(function(){
-            if(_ambNodes._dracToken!==token||!_ambNodes._dracEl){clearInterval(fi);return;}
-            v=Math.min(v+0.018, 0.45); a.volume=v;
-            if(v>=0.45) clearInterval(fi);
-          },60);
+          _ambFadeEl(a, function(){ return _ambNodes._dracToken===token && _ambNodes._dracEl; });
         }).catch(function(){ tried++; setTimeout(tryPlay,200); });
       } else {
-        var v=0, fi=setInterval(function(){
-          if(_ambNodes._dracToken!==token){clearInterval(fi);return;}
-          v=Math.min(v+0.018,0.45); a.volume=v;
-          if(v>=0.45) clearInterval(fi);
-        },60);
+        _ambFadeEl(a, function(){ return _ambNodes._dracToken===token && _ambNodes._dracEl; });
       }
     }
     setTimeout(tryPlay, 50);
@@ -1745,7 +1740,7 @@ var _audio = {
     // Mute Web Audio API
     if (_ambGain) _ambGain.gain.value = this.muted ? 0 : 0.28 * (vol / 0.5);
     // Mute elements HTML audio (tower + draco)
-    ['_towerEl','_dracEl'].forEach(function(k) {
+    ['_towerEl','_dracEl','_cityEl'].forEach(function(k) {
       if (_ambNodes[k]) _ambNodes[k].volume = this.muted ? 0 : Math.min(0.45, 0.9 * vol);
     }.bind(this));
     var btn = document.getElementById('audio-btn');
@@ -1866,13 +1861,15 @@ var _audio = {
   ].join(';');
   slider.addEventListener('input', function() {
     _ambInit();
-    _audio.setVolume(parseFloat(this.value));
-    if (parseFloat(this.value) === 0) {
-      _audio.muted = true;
-      btn.textContent = '\uD83D\uDD07';
-    } else if (_audio.muted) {
+    var val = parseFloat(this.value);
+    if (val > 0 && _audio.muted) {
       _audio.muted = false;
       btn.textContent = '\uD83D\uDD0A';
+    }
+    _audio.setVolume(val);
+    if (val === 0) {
+      _audio.muted = true;
+      btn.textContent = '\uD83D\uDD07';
     }
   });
 
@@ -2336,4 +2333,49 @@ window.addEventListener('load',function(){
     });
     a.addEventListener('mouseleave',function(){clearInterval(t);t=null;});
   });
+})();
+
+/* == COORDONNEES PROTEGEES CONTRE LES BOTS ==
+   L'email et le telephone ne sont pas dans le HTML : ils sont reconstruits ici, uniquement quand le
+   visiteur passe le bouton sur "Actif". Par defaut : "Cache" (rien a lire ni a selectionner). */
+(function(){
+  var D={email:'bW9jLmxpYW1nQG5hc3N1bC5vZWw=',phone:'NDIgNjIgNzcgOTYgNyAzMys='};
+  function val(k){ try{ return atob(D[k]).split('').reverse().join(''); }catch(e){ return ''; } }
+  var active=false, toggles=[];
+  function fr(){ return (document.documentElement.lang||'fr')!=='en'; }
+  function render(){
+    [].forEach.call(document.querySelectorAll('[data-mail]'),function(el){
+      if(active){ el.textContent=val(el.getAttribute('data-mail')); el.classList.remove('mail-off'); }
+      else{ el.textContent=''; el.classList.add('mail-off'); }
+    });
+    [].forEach.call(document.querySelectorAll('[data-mail-link]'),function(a){
+      if(active) a.setAttribute('href','mailto:'+val('email')); else a.setAttribute('href','#contact');
+    });
+    toggles.forEach(function(t){
+      t.classList.toggle('on',active);
+      t.setAttribute('aria-pressed',active?'true':'false');
+      t.querySelector('.mt-txt').textContent=active?(fr()?'Actif':'Active'):(fr()?'Caché':'Hidden');
+      t.title=fr()?(active?'Cacher mes coordonnées':'Afficher mes coordonnées'):(active?'Hide my contact details':'Show my contact details');
+    });
+  }
+  function set(v){ active=v; render(); }
+  // un petit bouton Cache / Actif a cote de chaque coordonnee
+  [].forEach.call(document.querySelectorAll('[data-mail="email"]'),function(el){
+    var host=el.closest('[data-mail-link]')||el;
+    var t=document.createElement('button');
+    t.type='button'; t.className='mail-toggle';
+    t.innerHTML='<span class="mt-dot"></span><span class="mt-txt"></span>';
+    t.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); set(!active); });
+    host.parentNode.insertBefore(t,host.nextSibling); toggles.push(t);
+    if(host.tagName==='A'&&host.classList.contains('fc-link')){ host.appendChild(t); }
+  });
+  // liens "mailto" proteges : tant que c'est cache, un clic sur un lien de contact l'active puis ouvre la messagerie
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-mail-link],[data-mail-cta]');
+    if(!a) return;
+    if(a.hasAttribute('data-mail-cta')){ e.preventDefault(); set(true); window.location.href='mailto:'+val('email'); return; }
+    if(!active) e.preventDefault();
+  });
+  new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  render();
 })();

@@ -556,7 +556,7 @@
  "// Mentions légales": "// Legal notice",
  "MENTIONS<br>LÉGALES": "LEGAL<br>NOTICE",
  "Éditeur": "Publisher",
- "leo.lussan@gmail.com · LinkedIn : léo-lussan": "leo.lussan@gmail.com · LinkedIn: léo-lussan",
+ "LinkedIn : léo-lussan": "LinkedIn: léo-lussan",
  "Hébergement": "Hosting",
  "Propriété intellectuelle": "Intellectual property",
  "Données personnelles": "Personal data",
