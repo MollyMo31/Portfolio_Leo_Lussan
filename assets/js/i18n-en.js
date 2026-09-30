@@ -625,7 +625,6 @@
  "→ Organisation des réunions, comptes-rendus, suivi du rythme et de l'avancée du projet": "→ Organizing meetings, minutes, tracking the pace and progress of the project",
  "→ Interfaces : dialogues, vie du joueur, menus et sauvegarde": "→ Interfaces: dialogues, player health, menus and saving",
  "📅 Rétroplanning": "📅 Production schedule",
- "📊 Présentation orale": "📊 Oral presentation",
  "🎧 Pixabay (sons)": "🎧 Pixabay (sounds)",
  "Le joueur s'approprie les touches et découvre le type de jeu grâce à la première perspective (les escaliers). Une balance, placée dès cette zone, lui fait comprendre le système de sauvegarde.": "The player gets used to the controls and discovers the type of game through the first perspective (the stairs). A scale, placed right in this zone, introduces the save system.",
  "Deux nouveaux systèmes apparaissent. D'abord le combat : des vases cassables barrent la route et font découvrir la touche d'attaque, puis les trashmobs donnent accès aux attaques de l'âme (attaque + et soin +). Ensuite, une porte fermée qui ne s'ouvre qu'avec 2 torches.": "Two new systems appear. First, combat: breakable vases block the way and introduce the attack button, then the trash mobs unlock the soul's attacks (attack + and heal +). Second, a closed door that only opens with 2 torches.",
