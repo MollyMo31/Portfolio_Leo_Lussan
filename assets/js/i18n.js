@@ -1,4 +1,4 @@
-/* == SYSTEME I18N - FR / EN / ES / DE == */
+/* == SYSTEME I18N - FR / EN == */
 var _LANGS = {
   fr: {
     nav_about:'Profil', nav_skills:'Comp\u00E9tences', nav_projects:'Projets',
@@ -37,44 +37,6 @@ var _LANGS = {
     proj_mira:'PROJECT MIRA', proj_coaching:'ESPORT COACHING',
     proj_streaming:'TWITCH STREAMING', proj_musiques:'MUSIC',
     cv_btn:'\u2192 View styled resume',
-  },
-  es: {
-    nav_about:'Perfil', nav_skills:'Habilidades', nav_projects:'Proyectos',
-    nav_cv:'CV', nav_contact:'Contacto', nav_cta:'Cont\u00E1ctame',
-    hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
-    hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
-    hero_desc:'Apasionado por el dise\u00F1o de niveles desde 2016, creo niveles como se dibujan planos \u2014 con rigor, intenci\u00F3n narrativa y ambici\u00F3n creativa constante.',
-    stat_brassart:'A\u00F1os en Brassart', stat_projects:'Proyectos', stat_start:'Inicio',
-    label_gallery:'Galerie du projet', label_about:'// 001 \u2014 Perfil', label_skills:'// 002 \u2014 Herramientas',
-    label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Curr\u00EDculum',
-    label_contact:'// 006 \u2014 Contacto', label_personal:'// 004 \u2014 Proyectos personales',
-    title_about:'SOBRE M\u00CD', title_skills:'HABILIDADES', title_projects:'PROYECTOS',
-    title_cv:'MI CV', title_contact:'CONTACTO',
-    cat_personal:'Proyectos personales',
-    proj_unjudged:'UNJUDGED', proj_priest:'DEVOURING PRIEST', proj_city:'CITY RIDER',
-    proj_tower:'TOWER DEFENSE', proj_silence:'THE SILENCE', proj_draconium:'DRACONIUM',
-    proj_mira:'PROYECTO MIRA', proj_coaching:'COACHING ESPORT',
-    proj_streaming:'STREAMING TWITCH', proj_musiques:'M\u00DASICAS',
-    cv_btn:'\u2192 Ver CV estilizado',
-  },
-  de: {
-    nav_about:'Profil', nav_skills:'F\u00E4higkeiten', nav_projects:'Projekte',
-    nav_cv:'Lebenslauf', nav_contact:'Kontakt', nav_cta:'Kontaktieren',
-    hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
-    hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
-    hero_desc:'Seit 2016 leidenschaftlich f\u00FCr Level Design \u2014 ich entwerfe Levels wie Baupl\u00E4ne: mit Pr\u00E4zision, narrativer Absicht und st\u00E4ndigem Ehrgeiz.',
-    stat_brassart:'Jahre in Brassart', stat_projects:'Projekte', stat_start:'Beginn',
-    label_gallery:'Galerie du projet', label_about:'// 001 \u2014 Profil', label_skills:'// 002 \u2014 Werkzeuge',
-    label_projects:'// 003 \u2014 Portfolio', label_cv:'// 005 \u2014 Lebenslauf',
-    label_contact:'// 006 \u2014 Kontakt', label_personal:'// 004 \u2014 Eigene Projekte',
-    title_about:'\u00DCBER MICH', title_skills:'F\u00C4HIGKEITEN', title_projects:'PROJEKTE',
-    title_cv:'MEIN LEBENSLAUF', title_contact:'KONTAKT',
-    cat_personal:'Eigene Projekte',
-    proj_unjudged:'UNJUDGED', proj_priest:'DEVOURING PRIEST', proj_city:'CITY RIDER',
-    proj_tower:'TOWER DEFENSE', proj_silence:'THE SILENCE', proj_draconium:'DRACONIUM',
-    proj_mira:'PROJEKT MIRA', proj_coaching:'ESPORT-COACHING',
-    proj_streaming:'TWITCH-STREAMING', proj_musiques:'MUSIK',
-    cv_btn:'\u2192 Lebenslauf ansehen',
   },
 };
 var _currentLang = 'fr';
@@ -133,36 +95,6 @@ function setLang(lang) {
       'tw-eco-title': 'Economy',
       'tw-team-title': 'Team & Tasks',
       'tw-tools-label': 'Tools Used',
-    },
-    es: {
-      'tw-lore-title': 'Historia',
-      'tw-lore-p1': "En un mundo m\u00e1gico donde el clima reina, los gnomos eran los guardianes de los jardines encantados. Pero un d\u00eda, un grupo de gnomos cansados de obedecer a las plantas decidi\u00f3 convertirse en invasores \u2014 su objetivo: conquistar todos los jardines y tomar el poder del mundo m\u00e1gico.",
-      'tw-lore-p2': "Invadieron el jard\u00edn de la <strong>diosa del clima</strong>, donde cardos, lotos y juncos florecian. Furiosa, la diosa llam\u00f3 a sus plantas para defender su jard\u00edn. La batalla arri\u00f3 durante d\u00edas \u2014 las plantas rechazaron al ej\u00e9rcito de gnomos, pero el desenlace final qued\u00f3 desconocido. <strong>\u00bfY t\u00fa, qu\u00e9 destino reservas para este mundo?</strong>",
-      'tw-mec-title': 'Mec\u00e1nicas de juego',
-      'tw-base-label': 'Base Tower Defense',
-      'tw-orig-label': 'Mec\u00e1nicas originales',
-      'tw-enemies-title': 'Los Enemigos',
-      'tw-build-title': 'Edificios defensivos',
-      'tw-weather-title': 'Sistema Meteorol\u00f3gico',
-      'tw-weather-p': 'El clima est\u00e1 <strong>limitado a una vez cada dos oleadas</strong>. Influye directamente en las estad\u00edsticas de enemigos y edificios.',
-      'tw-eco-title': 'Econom\u00eda',
-      'tw-team-title': 'Equipo & Reparto',
-      'tw-tools-label': 'Herramientas usadas',
-    },
-    de: {
-      'tw-lore-title': 'Hintergrundgeschichte',
-      'tw-lore-p1': "In einer magischen Welt, in der das Wetter regiert, waren die Gnome einst die H\u00fcter der verzauberten G\u00e4rten. Doch eines Tages beschloss eine Gruppe von Gnomen, die des Gehorchens m\u00fcde war, Eindringlinge zu werden \u2014 ihr Ziel: alle G\u00e4rten zu erobern und die Macht \u00fcber die magische Welt zu \u00fcbernehmen.",
-      'tw-lore-p2': "Sie \u00fcberfielen den Garten der <strong>Klimag\u00f6ttin</strong>, wo Disteln, Lotusblumen und Schilf bl\u00fchten. Die w\u00fctende G\u00f6ttin rief ihre Pflanzen zur Verteidigung. Die Schlacht tobte tagelang \u2014 die Pflanzen schlugen die Gnomarmee zur\u00fcck, doch das endg\u00fcltige Schicksal blieb unbekannt. <strong>Und Sie \u2014 welches Schicksal bereiten Sie dieser Welt?</strong>",
-      'tw-mec-title': 'Spielmechaniken',
-      'tw-base-label': 'Tower Defense Grundlage',
-      'tw-orig-label': 'Originale Mechaniken',
-      'tw-enemies-title': 'Feinde',
-      'tw-build-title': 'Verteidigungsgeb\u00e4ude',
-      'tw-weather-title': 'Wettersystem',
-      'tw-weather-p': 'Das Wetter ist <strong>auf einmal alle zwei Wellen begrenzt</strong>. Es beeinflusst direkt die Werte von Feinden und Geb\u00e4uden.',
-      'tw-eco-title': 'Wirtschaft',
-      'tw-team-title': 'Team & Aufgaben',
-      'tw-tools-label': 'Verwendete Tools',
     },
   };
 
@@ -281,90 +213,6 @@ function setLang(lang) {
       'mentions-p2': "All content is the property of L\u00e9o Lussan unless otherwise stated.",
       'mentions-p3': "This site collects no personal data. No tracking cookies.",
     },
-    es: {
-      'about-p1': "Me llamo L\u00e9o Lussan, soy estudiante en la escuela <a href='https://www.brassart.fr' target='_blank' style='color:var(--red)'>Brassart</a> de Toulouse, 3er a\u00f1o Bachelor Game Design.",
-      'about-p2': "Descubr\u00ed los videojuegos en 2016 y no he parado desde entonces. Apasionado del level design y la creaci\u00f3n de mundos.",
-      'about-p3': "Me encant\u00f3 crear niveles, explorar universos e investigar entornos para crear experiencias inmersivas.",
-      'about-p4': "Este espacio te permitir\u00e1 descubrir algunos de mis proyectos.",
-      'skills-hint': 'Haz clic en una habilidad para ver los proyectos asociados \u2192',
-      'sk-cat-engines': 'Motores de juego',
-      'contact-heading': 'TRABAJEMOS<br/>JUNTOS',
-      'contact-desc': "Disponible para pr\u00e1cticas, colaboraciones creativas o intercambios sobre videojuegos.",
-      'cv-desc': "Game Designer especializado en Level Design, con experiencia en gesti\u00f3n de proyectos.",
-      'pm-num-unjudged': '// 01 \u2014 Proyecto escolar \u00b7 3er A\u00f1o \u00b7 En curso',
-      "unjudged-ctx-title": "Contexto del proyecto",
-      "unjudged-ctx-p1": "Unjudged es nuestro <strong>proyecto de fin de estudios</strong> en Brassart. Empez\u00f3 en 2.\u00ba curso: ten\u00edamos que proponer ideas de juego, ir reduci\u00e9ndolas y elegir un \u00fanico juego para desarrollar.",
-      "unjudged-ctx-p2": "El desarrollo lo hicimos <strong>4 personas</strong> durante el <strong>segundo semestre de 3.er curso</strong>.",
-      "unjudged-role-title": "Mi papel \u2014 Lead Level Designer y jefe de proyecto",
-      "unjudged-role-label": "Mis principales misiones:",
-      "unjudged-role-1": "\u2192 Lead Level Designer",
-      "unjudged-role-2": "\u2192 Jefe de proyecto",
-      "unjudged-role-3": "\u2192 Comunicaci\u00f3n entre el equipo y los artistas",
-      "unjudged-role-4": "\u2192 Redacci\u00f3n de parte de la documentaci\u00f3n",
-      "unjudged-role-5": "\u2192 Ayuda con la presentaci\u00f3n oral del proyecto",
-      "unjudged-tools-title": "Herramientas",
-      "unjudged-learn-title": "Lo que aprend\u00ed",
-      "unjudged-learn-p": "Este proyecto me ense\u00f1\u00f3 sobre todo a <strong>comunicar en equipo</strong>: repartir las tareas, organizar reuniones que favorezcan el intercambio y explicar mis ideas de level design de forma <strong>comprensible para personas no especialistas</strong>.",
-      "unjudged-tools-p": "<strong>Unreal Engine 5</strong> \u00b7 <strong>Miro</strong> \u00b7 <strong>LDtk</strong> \u00b7 <strong>Git</strong> \u00b7 <strong>Google Workspace</strong> (Docs\u2026) \u00b7 <strong>Hack\u2019n Plan</strong> \u00b7 Roadmaps",
-      'pm-num-priest':   '// 02 \u2014 Proyecto escolar \u00b7 2\u00ba A\u00f1o',
-      'pm-num-city':     '// 03 \u2014 Proyecto escolar \u00b7 2\u00ba A\u00f1o',
-      'pm-num-tower':    '// 04 \u2014 Proyecto escolar \u00b7 1er A\u00f1o',
-      'tw-unjudged-title': 'Dise\u00f1o del nivel',
-      'tw-priest-title': 'La atm\u00f3sfera de caza',
-      'tw-city-title': 'Dise\u00f1o urbano interactivo',
-      'tw-musiques-title': 'Mi enfoque musical',
-      'proj-draco-title-lore': 'Historia',
-      'proj-draco-title-gameplay': 'Gameplay',
-      'proj-draco-title-visual': 'Universo visual',
-      'proj-coaching-title1': 'Juegos entrenados',
-      'proj-coaching-title2': 'Desarrollo de una sesi\u00f3n',
-      'proj-mira-title1': 'Introducci\u00f3n',
-      'proj-mira-title2': 'Una de nuestras construcciones',
-      'proj-mira-title3': 'Mi rol \u2014 Level Designer / Builder',
-    },
-    de: {
-      'about-p1': "Mein Name ist L\u00e9o Lussan, ich studiere an der <a href='https://www.brassart.fr' target='_blank' style='color:var(--red)'>Brassart</a> Schule in Toulouse, 3. Jahr Game Design Bachelor.",
-      'about-p2': "Ich entdeckte Videospiele 2016 und h\u00f6rte seitdem nie auf. Leidenschaftlich f\u00fcr Level Design und Weltenbau.",
-      'about-p3': "Ich liebte es, Levels zu erstellen und Umgebungen zu erforschen, um immersive Erlebnisse zu schaffen.",
-      'about-p4': "Dieser Bereich erm\u00f6glicht Ihnen, einige meiner Projekte zu entdecken.",
-      'skills-hint': 'Klicken Sie auf eine F\u00e4higkeit, um Projekte zu sehen \u2192',
-      'sk-cat-engines': 'Spiel-Engines',
-      'contact-heading': 'LASS UNS<br/>ZUSAMMENARBEITEN',
-      'contact-desc': "Verf\u00fcgbar f\u00fcr Praktika, kreative Zusammenarbeit oder Austausch rund um Videospiele.",
-      'cv-desc': "Game Designer spezialisiert auf Level Design, mit Erfahrung in Projektmanagement.",
-      'pm-num-unjudged': '// 01 \u2014 Schulprojekt \u00b7 3. Jahr \u00b7 In Arbeit',
-      "unjudged-ctx-title": "Projektkontext",
-      "unjudged-ctx-p1": "Unjudged ist unser <strong>Abschlussprojekt</strong> an der Brassart. Es begann im 2. Jahr: Wir sollten Spielideen sammeln, sie schrittweise eingrenzen und am Ende ein einziges Spiel zur Umsetzung ausw\u00e4hlen.",
-      "unjudged-ctx-p2": "Umgesetzt haben wir es zu <strong>viert</strong> im <strong>zweiten Semester des 3. Jahres</strong>.",
-      "unjudged-role-title": "Meine Rolle \u2014 Lead Level Designer & Projektleiter",
-      "unjudged-role-label": "Meine Hauptaufgaben:",
-      "unjudged-role-1": "\u2192 Lead Level Designer",
-      "unjudged-role-2": "\u2192 Projektleitung",
-      "unjudged-role-3": "\u2192 Kommunikation zwischen Team und K\u00fcnstlern",
-      "unjudged-role-4": "\u2192 Verfassen eines Teils der Dokumentation",
-      "unjudged-role-5": "\u2192 Unterst\u00fctzung bei der m\u00fcndlichen Projektpr\u00e4sentation",
-      "unjudged-tools-title": "Werkzeuge",
-      "unjudged-learn-title": "Was ich gelernt habe",
-      "unjudged-learn-p": "Dieses Projekt hat mir vor allem gezeigt, wie man im Team <strong>kommuniziert</strong>: Aufgaben verteilen, Meetings organisieren, die den Austausch f\u00f6rdern, und meine Level-Design-Ideen so erkl\u00e4ren, dass sie auch <strong>Nicht-Fachleute verstehen</strong>.",
-      "unjudged-tools-p": "<strong>Unreal Engine 5</strong> \u00b7 <strong>Miro</strong> \u00b7 <strong>LDtk</strong> \u00b7 <strong>Git</strong> \u00b7 <strong>Google Workspace</strong> (Docs\u2026) \u00b7 <strong>Hack\u2019n Plan</strong> \u00b7 Roadmaps",
-      'pm-num-priest':   '// 02 \u2014 Schulprojekt \u00b7 2. Jahr',
-      'pm-num-city':     '// 03 \u2014 Schulprojekt \u00b7 2. Jahr',
-      'pm-num-tower':    '// 04 \u2014 Schulprojekt \u00b7 1. Jahr',
-      'tw-unjudged-title': 'Level-Design',
-      'tw-priest-title': 'Die Jagdatmosph\u00e4re',
-      'tw-city-title': 'Interaktives Stadtdesign',
-      'tw-musiques-title': 'Mein musikalischer Ansatz',
-      'proj-draco-title-lore': 'Hintergrundgeschichte',
-      'proj-draco-title-gameplay': 'Gameplay',
-      'proj-draco-title-visual': 'Visuelles Universum',
-      'proj-coaching-title1': 'Trainierte Spiele',
-      'proj-coaching-title2': 'Sitzungsablauf',
-      'proj-mira-title1': 'Einf\u00fchrung',
-      'proj-mira-title2': 'Eines unserer Builds',
-      'proj-mira-title3': 'Meine Rolle \u2014 Level Designer / Builder',
-      'mentions-p2': "Alle Inhalte sind Eigentum von L\u00e9o Lussan, sofern nicht anders angegeben.",
-      'mentions-p3': "Diese Website sammelt keine personenbezogenen Daten. Keine Tracking-Cookies.",
-    },
   };
 
   var globalDict = TRANSLATIONS[lang] || TRANSLATIONS.fr;
@@ -381,7 +229,7 @@ function setLang(lang) {
 
   // Galerie labels (multiple elements with data-i18n)
   document.querySelectorAll('[data-i18n="label_gallery"]').forEach(function(el) {
-    var galleries = {fr:'Galerie du projet', en:'Project Gallery', es:'Galer\u00eda del proyecto', de:'Projektgalerie'};
+    var galleries = {fr:'Galerie du projet', en:'Project Gallery'};
     el.textContent = galleries[lang] || galleries.fr;
   });
   // Update flag buttons opacity
@@ -391,7 +239,7 @@ function setLang(lang) {
     btn.classList.toggle('active', isActive);
   });
   // Sync modal lang bar too
-  ['fr','en','es','de'].forEach(function(l){
+  ['fr','en'].forEach(function(l){
     var b=document.getElementById('mlang-'+l);
     if(b) b.style.opacity=(l===lang)?'1':'.35';
   });

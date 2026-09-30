@@ -1952,7 +1952,7 @@ function openProj(id){
   if(mlb){
     mlb.style.display='flex';
     // Sync etat actif avec la langue courante
-    ['fr','en','es','de'].forEach(function(l){
+    ['fr','en'].forEach(function(l){
       var b=document.getElementById('mlang-'+l);
       if(b) b.style.opacity=(_currentLang===l)?'1':'.35';
     });
