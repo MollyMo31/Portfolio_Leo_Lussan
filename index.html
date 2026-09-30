@@ -317,7 +317,7 @@
     </div>
     <div class="project-row" onclick="openProj('priest')">
       <div class="project-num">02</div>
-      <div><div class="project-name" data-i18n="proj_priest">DEVOURING PRIEST</div><div class="project-tags"><span class="tag">Level Design</span><span class="tag">Dark Fantasy</span><span class="tag">2ème Année</span></div></div>
+      <div><div class="project-name" data-i18n="proj_priest">DEVOURING PRIEST</div><div class="project-tags"><span class="tag">Level Design</span><span class="tag">Horreur</span><span class="tag">2ème Année</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2ème Année</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row" onclick="openProj('city')">
@@ -612,16 +612,32 @@
         </div>
       </div>
 
+      <div class="pm-label">Schéma de poursuite</div>
+      <div class="chase">
+        <div class="chase-row"><span class="chase-a">⛧ Prêtre</span><span class="chase-gap">distance</span><span class="chase-a">🚗 Joueur</span></div>
+        <div class="chase-zones"><span class="cz-close">Trop proche : ricanement et lumière qui bat</span><span class="cz-far">Loin : silence, aucun indice</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem">
+          <div style="flex:1;min-width:200px;padding:.7rem .8rem;border:1px solid rgba(74,222,128,.35);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55"><b style="color:#4ade80">Distance qui augmente</b><br>Glue lâchée derrière le joueur<br>Pads de vitesse</div>
+          <div style="flex:1;min-width:200px;padding:.7rem .8rem;border:1px solid rgba(239,68,68,.4);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55"><b style="color:#ef4444">Distance qui diminue</b><br>Fantômes qui tombent sur le joueur<br>Thwomps<br>Collisions et rebonds sur les murs</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem">
+          <div style="flex:1;min-width:200px;padding:.7rem .8rem;border:1px solid rgba(239,68,68,.3);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55"><b>Distance = 0</b> : « You got Eaten »</div>
+          <div style="flex:1;min-width:200px;padding:.7rem .8rem;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55"><b>Ligne d’arrivée franchie</b> : « Good Job! You escaped the priest »</div>
+        </div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55;margin-top:.5rem;color:var(--grey-light)">Les box de caméra passent de la vue TPS à la vue FPS pour que le joueur juge sa distance avec le prêtre.</div>
+      </div>
+
       <div class="pm-section-title">Ambiance</div>
       <p>Univers visuel mêlant <strong>cartoon</strong> (véhicule, fantômes, ennemi) et réalisme (glue, dérapages, gain de vitesse), dans une ambiance lourde, pesante et embrumée. Inspiré d'un circuit de kart suisse et de Mario Kart (manoirs, Boo). Typographie, sons et boutons « rouge sang » sont adaptés à l'ambiance, avec des musiques horrifiques ou entraînantes selon les menus.</p>
       <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem;margin:.6rem 0 .3rem">
+        <img class="pm-img" src="assets/img/projets/priest/voiture.webp" alt="La voiture du joueur" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
         <img class="pm-img" src="assets/img/projets/priest/decor-cage.webp" alt="Décor : citrouille en cage" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
         <img class="pm-img" src="assets/img/projets/priest/decor-souche.webp" alt="Décor : souche à la citrouille" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
         <img class="pm-img" src="assets/img/projets/priest/decor-epouvantail.webp" alt="Décor : épouvantail" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
         <img class="pm-img" src="assets/img/projets/priest/fantome.webp" alt="Un fantôme rouge" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
         <img class="pm-img" src="assets/img/projets/priest/pretre.webp" alt="Le prêtre dévoreur" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
       </div>
-      <p style="font-size:.72rem;color:var(--grey-light);text-align:center;margin:0 0 1rem">Décors, fantôme et prêtre dévoreur (le monstre qui poursuit le joueur)</p>
+      <p style="font-size:.72rem;color:var(--grey-light);text-align:center;margin:0 0 1rem">Voiture du joueur, décors, fantôme et prêtre dévoreur (le monstre qui poursuit le joueur)</p>
       <p><strong>Sons :</strong> rire diabolique au lancement, compteur « 1, 2, 3 — Survive! », moteur du kart (roulage et dérapage), « bonk » à la collision, bruit de la glue, rire des fantômes et du prêtre, musique entraînante au thème d'Halloween. <strong>Menus :</strong> intro (titre, prêtre qui tourne, Play / Leave, contrôles avec Tab), écran de défaite (« You got Eaten ») et de victoire (« Good Job! You escaped the priest »).</p>
 
       <div class="pm-section-title">Équipe</div>
