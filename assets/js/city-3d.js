@@ -27,9 +27,32 @@ window.cityOrient = function(dir) {
 
 window.initCity3D = function() {
   var container = document.getElementById('city-3d-viewer');
-  if (!container || container.dataset.init) return;
+  if (!container) return;
+  // etat orphelin (init lance mais jamais termine) : on repart de zero
+  if (container.dataset.init && !_c3d) { container.innerHTML = ''; delete container.dataset.init; }
+  try { initCity3DCore(container); }
+  catch (err) {
+    console.error('City 3D :', err);
+    if (_c3d) { _c3d.stop(); _c3d = null; }
+    delete container.dataset.init;
+    container.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">' + ((document.documentElement.lang==='en') ? '// 3D error: ' : '// Erreur 3D : ') + String(err && err.message || err).replace(/</g,'&lt;') + '</div>';
+  }
+};
+
+function initCity3DCore(container) {
+  if (container.dataset.init) return;
   container.dataset.init = '1';
   var stopped = false;
+  function safe(fn) {
+    return function() {
+      try { return fn.apply(this, arguments); }
+      catch (err) {
+        console.error('City 3D :', err);
+        overlay.style.opacity = '1';
+        overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">' + ((document.documentElement.lang==='en') ? '// 3D error: ' : '// Erreur 3D : ') + String(err && err.message || err).replace(/</g,'&lt;') + '</div>';
+      }
+    };
+  }
   var W = container.clientWidth || 800, H = container.clientHeight || 420;
 
   var renderer;
@@ -78,7 +101,7 @@ window.initCity3D = function() {
       return;
     }
     gltfLoader.load(urls[tried],
-      function(gltf) {
+      safe(function(gltf) {
         if (stopped) return;
         var model = gltf.scene;
 
@@ -137,7 +160,7 @@ window.initCity3D = function() {
         overlay.style.opacity = '0';
         setTimeout(function() { if (overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 700);
         animate();
-      },
+      }),
       function(xhr) {
         var p = document.getElementById('c3d-prog');
         if (p && xhr.total > 0) p.style.width = (xhr.loaded / xhr.total * 100) + '%';
@@ -213,7 +236,7 @@ window.initCity3D = function() {
     stop: function() { stopped = true; cancelAnimationFrame(raf); renderer.dispose(); if (renderer.forceContextLoss) renderer.forceContextLoss(); },
     setTheta: function(v) { theta = v; phi = 0.6; updateCam(); }
   };
-};
+}
 
 // Intercepter openProj / closeProj
 var _checkInterval = setInterval(function() {
