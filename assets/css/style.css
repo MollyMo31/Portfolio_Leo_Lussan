@@ -19,7 +19,10 @@ img{display:block;max-width:100%}
 ::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
 
 /* == CROSSHAIR — carré intérieur glisse dans l'anneau == */
-body{cursor:none}
+/* Souris classique masquee partout (liens, boutons, cartes...) : seul le curseur du site reste visible */
+@media(pointer:fine){*,*::before,*::after{cursor:none!important}}
+/* Curseur du site masque quand la souris est hors de la fenetre (2e ecran) ou sur une video integree */
+body.ch-out #crosshair-dot,body.ch-out #crosshair-ring{opacity:0}
 #crosshair-dot{
   position:fixed;
   width:6px;height:6px;
@@ -28,7 +31,7 @@ body{cursor:none}
   pointer-events:none;z-index:9999;
   transform:translate(-50%,-50%);
   box-shadow:0 0 12px rgba(200,169,110,.8),0 0 24px rgba(200,169,110,.3);
-  transition:width .25s cubic-bezier(.16,1,.3,1),height .25s cubic-bezier(.16,1,.3,1),box-shadow .25s;
+  transition:width .25s cubic-bezier(.16,1,.3,1),height .25s cubic-bezier(.16,1,.3,1),box-shadow .25s,opacity .2s;
 }
 #crosshair-ring{
   position:fixed;
@@ -51,7 +54,7 @@ body.ch-hover #crosshair-dot{
   width:8px;height:8px;
   box-shadow:0 0 18px rgba(200,169,110,1),0 0 34px rgba(200,169,110,.4);
 }
-@media(pointer:coarse){#crosshair-dot,#crosshair-ring{display:none}body{cursor:auto}}
+@media(pointer:coarse){#crosshair-dot,#crosshair-ring{display:none}}
 
 #bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 

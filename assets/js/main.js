@@ -2205,9 +2205,23 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   var ringX=mouseX, ringY=mouseY;
 
   // Le petit carre (dot) suit directement la souris - il DIRIGE
-  document.addEventListener('mousemove',function(e){
+  function place(e){
     mouseX=e.clientX; mouseY=e.clientY;
     dot.style.left=mouseX+'px'; dot.style.top=mouseY+'px';
+  }
+  // Masque tant que la souris n'est pas dans la page
+  document.body.classList.add('ch-out');
+  document.addEventListener('mousemove',function(e){
+    if(document.body.classList.contains('ch-out')){ringX=e.clientX;ringY=e.clientY;document.body.classList.remove('ch-out');}
+    place(e);
+  });
+  // Souris qui quitte la fenetre (2e ecran) : on masque le curseur du site, il revient a l'entree
+  document.documentElement.addEventListener('mouseleave',function(){document.body.classList.add('ch-out');});
+  document.documentElement.addEventListener('mouseenter',function(e){ringX=e.clientX;ringY=e.clientY;place(e);document.body.classList.remove('ch-out');});
+  // Sur une video integree (YouTube) le navigateur garde son curseur : on masque celui du site pour n'en avoir qu'un
+  document.querySelectorAll('iframe').forEach(function(f){
+    f.addEventListener('mouseenter',function(){document.body.classList.add('ch-out');});
+    f.addEventListener('mouseleave',function(){document.body.classList.remove('ch-out');});
   });
 
   // Le grand carre (ring) suit avec lag - il SUIT le petit
