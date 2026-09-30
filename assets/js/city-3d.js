@@ -29,6 +29,7 @@ window.initCity3D = function() {
   var container = document.getElementById('city-3d-viewer');
   if (!container || container.dataset.init) return;
   container.dataset.init = '1';
+  var stopped = false;
   var W = container.clientWidth || 800, H = container.clientHeight || 420;
 
   var renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -72,6 +73,7 @@ window.initCity3D = function() {
     }
     gltfLoader.load(urls[tried],
       function(gltf) {
+        if (stopped) return;
         var model = gltf.scene;
 
         // Palette réduite - max 8 matériaux pour éviter MAX_FRAGMENT_UNIFORM_VECTORS
@@ -189,6 +191,7 @@ window.initCity3D = function() {
 
   var raf = null;
   function animate() {
+    if (stopped) return;
     raf = requestAnimationFrame(animate);
     if (autoRot && modelLoaded) { theta += 0.002; updateCam(); }
     renderer.render(scene, camera);
@@ -200,7 +203,8 @@ window.initCity3D = function() {
   });
 
   _c3d = {
-    renderer: renderer, raf: raf,
+    renderer: renderer,
+    stop: function() { stopped = true; cancelAnimationFrame(raf); renderer.dispose(); },
     setTheta: function(v) { theta = v; phi = 0.6; updateCam(); }
   };
 };
@@ -218,11 +222,11 @@ var _checkInterval = setInterval(function() {
   var _o2 = window.closeProj;
   window.closeProj = function(id) {
     _o2(id);
-    if (id === 'city' && _c3d) {
-      cancelAnimationFrame(_c3d.raf);
+    if (id === 'city') {
+      // meme si le chargement n'est pas fini : on nettoie pour que la reouverture reparte de zero
+      if (_c3d) { _c3d.stop(); _c3d = null; }
       var c = document.getElementById('city-3d-viewer');
       if (c) { c.innerHTML = ''; delete c.dataset.init; }
-      _c3d = null;
     }
   };
 }, 50);
