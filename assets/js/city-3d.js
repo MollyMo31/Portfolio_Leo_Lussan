@@ -50,7 +50,7 @@ window.initCity3D = function() {
   // Overlay chargement
   var overlay = document.createElement('div');
   overlay.style.cssText = 'position:absolute;inset:0;background:#04040f;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity .6s';
-  overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.7rem;color:#00d4ff;letter-spacing:.15em;margin-bottom:.8rem">// Chargement map...</div>'
+  overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.7rem;color:#00d4ff;letter-spacing:.15em;margin-bottom:.8rem">' + ((document.documentElement.lang==='en') ? '// Loading map...' : '// Chargement map...') + '</div>'
     + '<div style="width:180px;height:3px;background:rgba(0,212,255,.2)"><div id="c3d-prog" style="height:100%;background:#00d4ff;width:0%;transition:width .3s"></div></div>';
   container.appendChild(overlay);
 
@@ -67,7 +67,7 @@ window.initCity3D = function() {
 
   function tryLoad() {
     if (tried >= urls.length) {
-      overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">// city_map.glb introuvable</div>';
+      overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">' + ((document.documentElement.lang==='en') ? '// city_map.glb not found' : '// city_map.glb introuvable') + '</div>';
       return;
     }
     gltfLoader.load(urls[tried],
@@ -184,7 +184,7 @@ window.initCity3D = function() {
 
   var info = document.createElement('div');
   info.style.cssText = 'position:absolute;bottom:.7rem;left:.8rem;font-family:Space Mono,monospace;font-size:.5rem;color:rgba(0,212,255,.5);z-index:20;line-height:1.8;pointer-events:none';
-  info.innerHTML = 'Souris — Orbiter · Molette — Zoom';
+  info.innerHTML = (document.documentElement.lang==='en') ? 'Mouse — Orbit · Wheel — Zoom' : 'Souris — Orbiter · Molette — Zoom';
   container.appendChild(info);
 
   var raf = null;

@@ -253,10 +253,11 @@ function setLang(lang) {
     var saved = localStorage.getItem('portfolio_lang');
     if (saved && _LANGS[saved] && saved !== 'fr') {
       // Attendre que le DOM soit pret
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() { setLang(saved); });
+      // Les scripts sont en defer : on attend DOMContentLoaded pour que i18n-en.js soit charge
+      if (document.readyState !== 'complete') {
+        document.addEventListener('DOMContentLoaded', function() { window.setLang(saved); });
       } else {
-        setLang(saved);
+        window.setLang(saved);
       }
     }
   } catch(e) {}

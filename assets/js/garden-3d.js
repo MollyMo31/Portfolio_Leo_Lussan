@@ -79,7 +79,7 @@
     // Overlay chargement
     var overlay = document.createElement('div');
     overlay.style.cssText = 'position:absolute;inset:0;background:#0a1a04;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;transition:opacity .6s';
-    overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.7rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.8rem">// Chargement map...</div>'
+    overlay.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.7rem;color:#a3e635;letter-spacing:.15em;margin-bottom:.8rem">' + ((document.documentElement.lang==='en') ? '// Loading map...' : '// Chargement map...') + '</div>'
       + '<div style="width:180px;height:3px;background:rgba(163,230,53,.2)"><div id="t3d-prog" style="height:100%;background:#a3e635;width:0%;transition:width .3s"></div></div>';
     container.appendChild(overlay);
 
@@ -93,7 +93,7 @@
 
     function tryLoad() {
       if (tried >= urls.length) {
-        overlay.innerHTML='<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">// garden.glb introuvable</div>';
+        overlay.innerHTML='<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">' + ((document.documentElement.lang==='en') ? '// garden.glb not found' : '// garden.glb introuvable') + '</div>';
         return;
       }
       gltfLoader.load(urls[tried],
@@ -295,7 +295,7 @@
     // Info
     var info=document.createElement('div');
     info.style.cssText='position:absolute;bottom:.7rem;left:.8rem;font-family:Space Mono,monospace;font-size:.5rem;color:rgba(10,30,10,.6);z-index:20;line-height:1.8;pointer-events:none';
-    info.innerHTML='Souris \u2014 Orbiter \u00b7 Molette \u2014 Zoom \u00b7 ZQSD \u2014 Rotation \u00b7 E/C \u2014 Zoom';
+    info.innerHTML=(document.documentElement.lang==='en')?'Mouse \u2014 Orbit \u00b7 Wheel \u2014 Zoom \u00b7 WASD \u2014 Rotation \u00b7 E/C \u2014 Zoom':'Souris \u2014 Orbiter \u00b7 Molette \u2014 Zoom \u00b7 ZQSD \u2014 Rotation \u00b7 E/C \u2014 Zoom';
     container.appendChild(info);
 
     // 4 boutons orientation
