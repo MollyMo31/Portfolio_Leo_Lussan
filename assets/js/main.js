@@ -2334,3 +2334,48 @@ window.addEventListener('load',function(){
     a.addEventListener('mouseleave',function(){clearInterval(t);t=null;});
   });
 })();
+
+/* == COORDONNEES PROTEGEES CONTRE LES BOTS ==
+   L'email et le telephone ne sont pas dans le HTML : ils sont reconstruits ici, uniquement quand le
+   visiteur passe le bouton sur "Actif". Par defaut : "Cache" (rien a lire ni a selectionner). */
+(function(){
+  var D={email:'bW9jLmxpYW1nQG5hc3N1bC5vZWw=',phone:'NDIgNjIgNzcgOTYgNyAzMys='};
+  function val(k){ try{ return atob(D[k]).split('').reverse().join(''); }catch(e){ return ''; } }
+  var active=false, toggles=[];
+  function fr(){ return (document.documentElement.lang||'fr')!=='en'; }
+  function render(){
+    [].forEach.call(document.querySelectorAll('[data-mail]'),function(el){
+      if(active){ el.textContent=val(el.getAttribute('data-mail')); el.classList.remove('mail-off'); }
+      else{ el.textContent=''; el.classList.add('mail-off'); }
+    });
+    [].forEach.call(document.querySelectorAll('[data-mail-link]'),function(a){
+      if(active) a.setAttribute('href','mailto:'+val('email')); else a.setAttribute('href','#contact');
+    });
+    toggles.forEach(function(t){
+      t.classList.toggle('on',active);
+      t.setAttribute('aria-pressed',active?'true':'false');
+      t.querySelector('.mt-txt').textContent=active?(fr()?'Actif':'Active'):(fr()?'Caché':'Hidden');
+      t.title=fr()?(active?'Cacher mes coordonnées':'Afficher mes coordonnées'):(active?'Hide my contact details':'Show my contact details');
+    });
+  }
+  function set(v){ active=v; render(); }
+  // un petit bouton Cache / Actif a cote de chaque coordonnee
+  [].forEach.call(document.querySelectorAll('[data-mail="email"]'),function(el){
+    var host=el.closest('[data-mail-link]')||el;
+    var t=document.createElement('button');
+    t.type='button'; t.className='mail-toggle';
+    t.innerHTML='<span class="mt-dot"></span><span class="mt-txt"></span>';
+    t.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); set(!active); });
+    host.parentNode.insertBefore(t,host.nextSibling); toggles.push(t);
+    if(host.tagName==='A'&&host.classList.contains('fc-link')){ host.appendChild(t); }
+  });
+  // liens "mailto" proteges : tant que c'est cache, un clic sur un lien de contact l'active puis ouvre la messagerie
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-mail-link],[data-mail-cta]');
+    if(!a) return;
+    if(a.hasAttribute('data-mail-cta')){ e.preventDefault(); set(true); window.location.href='mailto:'+val('email'); return; }
+    if(!active) e.preventDefault();
+  });
+  new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  render();
+})();

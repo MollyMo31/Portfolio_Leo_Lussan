@@ -65,7 +65,7 @@
       <span style="color:rgba(200,169,110,.3);font-size:.7rem">|</span>
       <button onclick="setLang('en')" id="lang-en" title="English" style="background:none;border:none;cursor:pointer;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#c8a96e;opacity:.35;transition:all .2s;padding:.2rem .35rem;line-height:1" class="lang-btn">EN</button>
     </div>
-    <a href="mailto:leo.lussan@gmail.com" class="nav-cta" data-i18n="nav_cta">Me contacter</a>
+    <a href="#contact" class="nav-cta" data-mail-cta data-i18n="nav_cta">Me contacter</a>
     <button id="nav-burger" onclick="toggleMenu()" style="display:none;background:none;border:1px solid var(--border);color:var(--white);padding:.4rem .6rem;cursor:pointer;font-size:1rem;line-height:1">☰</button>
   </div>
 </nav>
@@ -149,10 +149,10 @@
             <span class="fc-link-label">GitHub</span>
             <span class="fc-link-val">MollyMo31</span>
           </a>
-          <a class="fc-link" href="mailto:leo.lussan@gmail.com" onclick="event.stopPropagation()">
+          <a class="fc-link" href="#contact" data-mail-link onclick="event.stopPropagation()">
             <div class="fc-link-icon">@</div>
             <span class="fc-link-label">Email</span>
-            <span class="fc-link-val">leo.lussan@gmail.com</span>
+            <span class="fc-link-val" data-mail="email"></span>
           </a>
           <div class="fc-link" style="cursor:default">
             <div class="fc-link-icon">#</div>
@@ -1433,7 +1433,7 @@
         <div style="background:var(--th-acc,#c4720a);padding:1.4rem 3rem"><div style="font-family:var(--font-title);font-size:3rem;color:#fff;line-height:1">15€</div><div style="font-family:var(--font-mono);font-size:.6rem;color:rgba(255,255,255,.7);letter-spacing:.15em;text-transform:uppercase">/ heure · Tarif accessible</div></div>
         <p style="flex:1;font-size:.88rem;color:var(--grey-light);line-height:1.8">Séances ponctuelles ou suivi régulier selon tes objectifs. Un accompagnement sérieux, humain et sans jugement.</p>
       </div>
-      <a class="modal-link" href="mailto:leo.lussan@gmail.com" style="margin-top:1.5rem">→ Réserver une séance</a>
+      <a class="modal-link" href="#contact" data-mail-cta style="margin-top:1.5rem">→ Réserver une séance</a>
 
       <div class="pm-section-title" id="coaching-title-team">À propos</div>
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
@@ -1804,8 +1804,8 @@
         </div>
       </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
-        <a href="mailto:leo.lussan@gmail.com" style="font-family:var(--font-mono);font-size:.6rem;color:var(--grey-light);letter-spacing:.1em;display:flex;align-items:center;gap:.4rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--grey-light)'">✉ leo.lussan@gmail.com</a>
-        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--grey);letter-spacing:.1em">📞 +33 7 69 77 26 24</span>
+        <a href="#contact" data-mail-link style="font-family:var(--font-mono);font-size:.6rem;color:var(--grey-light);letter-spacing:.1em;display:flex;align-items:center;gap:.4rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--grey-light)'">✉ <span data-mail="email"></span></a>
+        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--grey);letter-spacing:.1em">📞 <span data-mail="phone"></span></span>
         <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--grey);letter-spacing:.1em">📍 Toulouse (31)</span>
         <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--grey);letter-spacing:.1em">📅 02.03.2004 · Français</span>
         <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--grey);letter-spacing:.1em">🚗 AM / B1 / B</span>
@@ -1973,7 +1973,7 @@
     <p class="fade-in" style="color:var(--grey-light);font-size:.92rem;line-height:1.85;max-width:400px">Disponible pour des opportunités de stage, des collaborations créatives ou des échanges autour du game design et du level design.</p>
   </div>
   <div class="fade-in">
-    <div class="contact-row"><span class="contact-key">Email</span><span class="contact-val"><a href="mailto:leo.lussan@gmail.com">leo.lussan@gmail.com</a></span></div>
+    <div class="contact-row"><span class="contact-key">Email</span><span class="contact-val"><a href="#contact" data-mail-link><span data-mail="email"></span></a></span></div>
     <div class="contact-row"><span class="contact-key">LinkedIn</span><span class="contact-val"><a href="https://www.linkedin.com/in/léo-lussan-571768251/" target="_blank">léo-lussan</a></span></div>
     <div class="contact-row"><span class="contact-key">Twitch</span><span class="contact-val"><a href="https://www.twitch.tv/MollyMo31" target="_blank">MollyMo31</a></span></div>
     <div class="contact-row"><span class="contact-key">GitHub</span><span class="contact-val"><a href="https://github.com/MollyMo31" target="_blank">MollyMo31</a></span></div>
@@ -1988,7 +1988,7 @@
   <h2 class="section-title fade-in" style="font-size:2.5rem">MENTIONS<br/>LÉGALES</h2>
   <div class="fade-in">
     <h3>Éditeur</h3><p id="mentions-p1">Portfolio personnel de Léo Lussan, étudiant Bachelor Game Design, Brassart Toulouse.</p>
-    <h3>Contact</h3><p>leo.lussan@gmail.com · LinkedIn : léo-lussan</p>
+    <h3>Contact</h3><p><span data-mail="email"></span></p><p>LinkedIn : léo-lussan</p>
     <h3>Hébergement</h3><p>GitHub Pages — GitHub Inc., 88 Colin P. Kelly Jr Street, San Francisco, CA 94107, USA.</p>
     <h3>Propriété intellectuelle</h3><p id="mentions-p2">Tout le contenu est la propriété de Léo Lussan sauf mention contraire. Reproduction interdite sans autorisation.</p>
     <h3>Données personnelles</h3><p id="mentions-p3">Ce site ne collecte aucune donnée personnelle. Aucun cookie de suivi.</p>

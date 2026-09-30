@@ -732,3 +732,13 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .chase-zones span{padding:.35rem .6rem}
 .cz-close{flex:1;background:rgba(239,68,68,.22);color:#fca5a5}
 .cz-far{flex:1.5;background:rgba(255,255,255,.05);color:var(--grey-light)}
+
+/* coordonnees protegees */
+.mail-off{user-select:none;-webkit-user-select:none;pointer-events:none}
+.mail-off::before{content:'••••••••••@•••••.•••';letter-spacing:.06em;opacity:.7}
+[data-mail="phone"].mail-off::before{content:'+•• • •• •• •• ••'}
+.mail-toggle{display:inline-flex;align-items:center;gap:.35rem;margin-left:.6rem;padding:.14rem .5rem;font-family:var(--font-mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:rgba(255,255,255,.04);border:1px solid var(--border);cursor:pointer;vertical-align:middle;transition:color .2s,border-color .2s}
+.mail-toggle:hover{color:var(--white);border-color:rgba(255,255,255,.3)}
+.mail-toggle .mt-dot{width:6px;height:6px;border-radius:50%;background:#6b7280}
+.mail-toggle.on{color:#86efac;border-color:rgba(74,222,128,.4)}
+.mail-toggle.on .mt-dot{background:#4ade80;box-shadow:0 0 6px #4ade80}
