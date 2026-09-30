@@ -448,11 +448,12 @@ nav{
 
 /* carousel */
 .carousel{position:relative;margin:1.5rem 0}
-.carousel-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--th-acc,#555) transparent;border:1px solid rgba(255,255,255,.07)}
-.carousel-track::-webkit-scrollbar{height:2px}
-.carousel-track::-webkit-scrollbar-thumb{background:var(--th-acc,#555)}
-.carousel-slide{flex:0 0 100%;scroll-snap-align:start;background:rgba(255,255,255,.025);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.carousel-track{display:flex;overflow:hidden;border:1px solid rgba(255,255,255,.07);transition:height .45s cubic-bezier(.4,0,.2,1)}
+.carousel-track.car-adapt{align-items:flex-start}
+.carousel-slide{flex:0 0 100%;transform:translateX(calc(var(--car-i,0)*-100%));transition:transform .45s cubic-bezier(.4,0,.2,1);background:rgba(255,255,255,.025);min-height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .carousel-slide img{width:100%;height:200px;object-fit:cover}
+.car-adapt .carousel-slide{min-height:0}
+.car-adapt .carousel-slide img{display:block;height:auto;max-height:75vh;object-fit:contain}
 .carousel-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;padding:2.5rem;width:100%;text-align:center}
 .carousel-placeholder-icon{font-size:2.2rem;opacity:.25}
 .carousel-placeholder-text{font-family:var(--font-mono);font-size:.6rem;color:var(--grey);letter-spacing:.15em;text-transform:uppercase}
@@ -649,7 +650,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
   /* CAROUSEL */
   .carousel-slide{min-height:160px}
-  .carousel-slide img{height:160px!important}
+  .carousel-track:not(.car-adapt) .carousel-slide img{height:160px!important}
 
   /* ISO MAP */
   .iso-map-container canvas{height:180px!important}

@@ -2014,11 +2014,26 @@ document.addEventListener('keydown',function(e){
 
 /* == CAROUSELS == */
 var CS={};
+/* Carrousel : la piste glisse par transform (fluide meme en cliquant vite).
+   Si tous les slides ne contiennent qu'une image, la hauteur s'adapte a l'image affichee. */
+function carFit(id){
+  var t=document.getElementById('ct-'+id),s=CS[id];
+  if(!t||!s||!s.adapt)return;
+  var sl=t.children[s.cur],h=sl&&sl.offsetHeight;
+  if(h)t.style.height=h+'px';
+}
 function initCar(id){
-  var t=document.getElementById('ct-'+id);if(!t||CS[id])return;
+  var t=document.getElementById('ct-'+id);if(!t)return;
+  if(CS[id]){carFit(id);return;}
   var slides=t.querySelectorAll('.carousel-slide');
   var d=document.getElementById('cd-'+id);if(!d)return;
-  CS[id]={cur:0,n:slides.length};
+  var adapt=Array.prototype.every.call(slides,function(sl){return sl.children.length===1&&sl.firstElementChild.tagName==='IMG';});
+  CS[id]={cur:0,n:slides.length,adapt:adapt};
+  if(adapt){
+    t.classList.add('car-adapt');
+    Array.prototype.forEach.call(t.querySelectorAll('img'),function(im){im.addEventListener('load',function(){carFit(id);});});
+    carFit(id);
+  }
   d.innerHTML='';
   slides.forEach(function(_,i){
     var dot=document.createElement('div');
@@ -2026,14 +2041,23 @@ function initCar(id){
     dot.onclick=function(){return carTo(id,i);};
     d.appendChild(dot);
   });
+  var x0=null;
+  t.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  t.addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0;x0=null;
+    if(Math.abs(dx)>40)carTo(id,CS[id].cur+(dx<0?1:-1));
+  });
 }
 function carTo(id,i){
   var t=document.getElementById('ct-'+id),s=CS[id];if(!t||!s)return;
   s.cur=Math.max(0,Math.min(s.n-1,i));
-  t.scrollTo({left:t.parentElement.offsetWidth*s.cur,behavior:'smooth'});
+  t.style.setProperty('--car-i',s.cur);
+  carFit(id);
   document.querySelectorAll('#cd-'+id+' .carousel-dot').forEach(function(d,j){return d.classList.toggle('active',j===s.cur);});
 }
 function carNav(id,dir){var s=CS[id];if(s)carTo(id,s.cur+dir)}
+window.addEventListener('resize',function(){for(var id in CS)carFit(id);});
 
 /* == ISO MAP RENDERER == */
 var ISO={
