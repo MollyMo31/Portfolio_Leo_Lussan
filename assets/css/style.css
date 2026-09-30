@@ -710,3 +710,8 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
 .fade-in{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* Bouton de telechargement des projets (visible seulement si le zip existe sur la release GitHub) */
+.dl-zip[hidden]{display:none!important}
+.dl-zip .dl-size{opacity:.65;font-size:.62rem;margin-left:.15rem;text-transform:none}
+.dl-zip .dl-size:not(:empty)::before{content:"· "}
