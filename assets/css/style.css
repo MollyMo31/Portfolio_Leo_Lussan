@@ -495,7 +495,7 @@ nav{
 .step-text{font-size:.85rem;color:var(--grey-light)}
 
 .modal-link{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);border:1px solid var(--th-acc2,var(--red));padding:.55rem 1.1rem;margin-top:1rem;margin-right:.6rem;transition:all .2s}
-.modal-link:hover{background:var(--th-acc2,var(--red));border-color:transparent}
+.modal-link:hover{background:linear-gradient(var(--th-glow,rgba(220,38,38,.25)),var(--th-glow,rgba(220,38,38,.25))),rgba(255,255,255,.04);box-shadow:0 0 16px var(--th-glow,rgba(220,38,38,.25))}
 
 .contact-row{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--border)}
 .contact-row:first-child{border-top:1px solid var(--border)}
@@ -715,3 +715,20 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .dl-zip[hidden]{display:none!important}
 .dl-zip .dl-size{opacity:.65;font-size:.62rem;margin-left:.15rem;text-transform:none}
 .dl-zip .dl-size:not(:empty)::before{content:"· "}
+/* Particules autour du bouton de telechargement au survol */
+.dl-zip{position:relative}
+.dl-p{position:absolute;width:3px;height:3px;border-radius:50%;pointer-events:none;will-change:transform,opacity}
+
+/* Plan du circuit (Devouring Priest) : reperes numerotes poses sur l'image */
+.circ-fig{position:relative;max-width:100%;margin:0 auto}
+.circ-m{position:absolute;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:#fff;color:#111;border:2px solid var(--th-acc2,#ef4444);font-family:var(--font-mono);font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(0,0,0,.6);pointer-events:none}
+
+.chase{margin:.4rem 0 1.4rem;padding:.9rem;border:1px solid rgba(239,68,68,.22);background:rgba(124,0,16,.08)}
+.chase-row{display:flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.7rem;color:var(--white)}
+.chase-a{padding:.35rem .6rem;border:1px solid var(--th-acc2,#ef4444);background:rgba(0,0,0,.35);white-space:nowrap}
+.chase-gap{flex:1;display:flex;align-items:center;gap:.5rem;font-size:.6rem;letter-spacing:.14em;color:var(--grey-light)}
+.chase-gap::before,.chase-gap::after{content:'';flex:1;border-top:2px dashed var(--th-acc2,#ef4444)}
+.chase-zones{display:flex;margin-top:.5rem;font-family:'DM Sans',sans-serif;font-size:.72rem;line-height:1.4}
+.chase-zones span{padding:.35rem .6rem}
+.cz-close{flex:1;background:rgba(239,68,68,.22);color:#fca5a5}
+.cz-far{flex:1.5;background:rgba(255,255,255,.05);color:var(--grey-light)}

@@ -317,7 +317,7 @@
     </div>
     <div class="project-row" onclick="openProj('priest')">
       <div class="project-num">02</div>
-      <div><div class="project-name" data-i18n="proj_priest">DEVOURING PRIEST</div><div class="project-tags"><span class="tag">Level Design</span><span class="tag">Dark Fantasy</span><span class="tag">2ème Année</span></div></div>
+      <div><div class="project-name" data-i18n="proj_priest">DEVOURING PRIEST</div><div class="project-tags"><span class="tag">Level Design</span><span class="tag">Horreur</span><span class="tag">2ème Année</span></div></div>
       <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2ème Année</span><span class="project-arrow">→</span></div>
     </div>
     <div class="project-row" onclick="openProj('city')">
@@ -555,114 +555,102 @@
       <div class="proj-modal-num" id="pm-num-priest">// 02 — Projet d'école · 2ème Année</div>
       <div class="proj-modal-title">DEVOURING<br/><span>PRIEST</span></div>
       <button class="proj-modal-close" onclick="closeProj('priest')">✕ Fermer</button>
-      <div class="proj-modal-tags"><span class="tag">Level Design</span><span class="tag">Horreur</span><span class="tag">Course / Pression</span><span class="tag">Unreal Engine</span><span class="tag">Miro</span><span class="tag">SVN</span></div>
+      <div class="proj-modal-tags"><span class="tag">Level Design</span><span class="tag">Horreur</span><span class="tag">Course / Pression</span><span class="tag">Unity</span><span class="tag">Miro</span><span class="tag">SVN</span></div>
     </div>
     <div class="proj-modal-body">
       <a class="modal-link dl-zip" data-asset="DevouringPriest.zip" href="#" rel="noopener" hidden style="margin:0 0 1.4rem"><span class="dl-label">⬇ Télécharger le projet (.zip)</span><span class="dl-size"></span></a>
-      <p>Devouring Priest est un jeu de course-horreur dans lequel un adolescent fuit un prêtre corrompu qui cherche à le d&eacute;vorer pour accomplir son rituel. Le level design est pens&eacute; pour cr&eacute;er une <strong>pression psychologique constante</strong> — espaces &eacute;troits, ambiance lourde et embrumée, ennemis omniprésents.</p>
 
-      <div class="pm-label" data-i18n="label_gallery">Galerie du projet</div>
-      <div class="carousel"><div class="carousel-track" id="ct-priest"><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">⛪</div><div class="carousel-placeholder-text">L'église en ruines — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🩸</div><div class="carousel-placeholder-text">Atmosphère horreur — à venir</div></div></div><div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon">🗺️</div><div class="carousel-placeholder-text">Plan du niveau — à venir</div></div></div></div><div class="car-controls"><div class="carousel-dots" id="cd-priest"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('priest',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('priest',1)">Suiv →</button></div></div></div>
+      <p>Devouring Priest est un jeu de <strong>course-horreur</strong> dans lequel un adolescent fuit un <strong>prêtre corrompu</strong> qui cherche à le dévorer pour accomplir son rituel : se transcender en fantôme. Le circuit est ouvert, avec un début et une fin, et plonge le joueur dans un environnement qui ne lui est pas familier. Le level design est pensé pour créer une <strong>pression psychologique constante</strong> : espaces étroits, ambiance lourde et embrumée, ennemis omniprésents.</p>
 
-      <div class="pm-label">Visualisation 3D isométrique</div>
-      <div class="iso-map-container"><canvas id="iso-priest" width="720" height="250"></canvas><div class="iso-map-label">Vue isométrique · Église corrompue</div><div class="iso-map-badge">Placeholder</div></div>
-
-      <!-- HISTOIRE -->
-      <div class="pm-section-title" id="priest-title-story">Histoire</div>
-      <p id="proj-priest-p1b">Un adolescent fuit un pr&ecirc;tre qui essaie de le d&eacute;vorer pour accomplir son rituel — se transcender en fant&ocirc;me et devenir intu&eacute;. Pour cela, il doit manger le joueur. Le niveau est un circuit ouvert, avec un d&eacute;but et une fin, plongeant le joueur dans un environnement qui ne lui est pas familier.</p>
-
-      <!-- MECANIQUES -->
-      <div class="pm-section-title" id="priest-title-mec">Mécaniques de jeu</div>
-      <div class="pm-label" id="priest-label-env">Mécaniques environnementales</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem">
-        <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">👹 THWOMPS</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Tombent et poursuivent le joueur pendant X temps quand il passe en dessous. Rient en tombant.</div>
+      <div class="pm-section-title">Le circuit</div>
+      <div class="circ-fig">
+        <img class="pm-img" src="assets/img/projets/priest/circuit.webp" alt="Plan du circuit vu du dessus, avec repères" loading="lazy" decoding="async" style="width:100%;max-height:none;margin:0"/>
+        <span class="circ-m" style="left:15.5%;top:37.2%">1</span>
+        <span class="circ-m" style="left:15.5%;top:44.4%">2</span>
+        <span class="circ-m" style="left:23.1%;top:64.8%">3</span>
+        <span class="circ-m" style="left:69.6%;top:65.0%">3</span>
+        <span class="circ-m" style="left:72.2%;top:6.0%">4</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin:.7rem 0 1.2rem">
+        <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:var(--grey-light)"><b>1</b> Le prêtre apparaît derrière le joueur</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:var(--grey-light)"><b>2</b> Ligne de départ et d'arrivée</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:var(--grey-light)"><b>3</b> Pads de vitesse (chevrons bleus)</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:var(--grey-light)"><b>4</b> Grand virage surélevé</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-bottom:1.4rem">
+        <div style="padding:.9rem;border:1px solid rgba(239,68,68,.16);background:rgba(0,0,0,.25)">
+          <div style="font-family:var(--font-mono);font-size:.58rem;color:#ef4444;letter-spacing:.14em;margin-bottom:.4rem">👹 THWOMPS</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.65">Tombent et poursuivent le joueur pendant un temps donné quand il passe en dessous · rient en tombant</div>
         </div>
-        <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">⚡ PADS DE VITESSE</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Boostent la vitesse du joueur sur une durée à une limite prédéfinie.</div>
+        <div style="padding:.9rem;border:1px solid rgba(239,68,68,.16);background:rgba(0,0,0,.25)">
+          <div style="font-family:var(--font-mono);font-size:.58rem;color:#ef4444;letter-spacing:.14em;margin-bottom:.4rem">⚡ PADS DE VITESSE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.65">Boostent la vitesse du joueur pendant une durée limitée</div>
         </div>
-        <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">👻 SPAWN DE FANTÔMES</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Spawnent via box collision. Tombent et ralentissent le joueur en le surprenant.</div>
+        <div style="padding:.9rem;border:1px solid rgba(239,68,68,.16);background:rgba(0,0,0,.25)">
+          <div style="font-family:var(--font-mono);font-size:.58rem;color:#ef4444;letter-spacing:.14em;margin-bottom:.4rem">👻 FANTÔMES</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.65">Apparaissent via une box de collision · tombent sur le joueur et le ralentissent en le surprenant</div>
         </div>
-        <div style="padding:1rem;border:1px solid rgba(180,0,0,.2);background:rgba(180,0,0,.05)">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.4rem">📷 CHANGEMENT DE CAMÉRA</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.7">Box de changement de point de vue intégrée dans le LD. Passe de TPS à FPS et vice-versa.</div>
+        <div style="padding:.9rem;border:1px solid rgba(239,68,68,.16);background:rgba(0,0,0,.25)">
+          <div style="font-family:var(--font-mono);font-size:.58rem;color:#ef4444;letter-spacing:.14em;margin-bottom:.4rem">📷 CHANGEMENT DE CAMÉRA</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.65">Une box intégrée au level design passe de la vue TPS à la vue FPS, et inversement, pour évaluer la distance avec le prêtre</div>
         </div>
       </div>
 
-      <div class="pm-label" id="priest-label-enemy">L'ennemi principal</div>
-      <div style="padding:1rem;border:1px solid rgba(248,113,113,.25);background:rgba(248,113,113,.05);margin-bottom:1.5rem">
-        <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.6rem">⛧ LE PRÊTRE DÉVOREUR</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">
-          Poursuit le joueur sur ¾ du niveau<br/>
-          Ricane quand le joueur est trop proche<br/>
-          Lumière scintillante (battements de cœur) visible uniquement à courte distance<br/>
-          Peut être ralenti par la glue du joueur
+      <div class="pm-section-title">La poursuite</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1.4rem">
+        <div style="padding:.9rem;border:1px solid rgba(239,68,68,.3);background:rgba(124,0,16,.14)">
+          <div style="font-family:var(--font-mono);font-size:.58rem;color:#ef4444;letter-spacing:.14em;margin-bottom:.4rem">⛧ LE PRÊTRE DÉVOREUR</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.65">Poursuit le joueur sur ¾ du niveau · ricane quand le joueur est trop proche · lumière scintillante (battements de cœur) visible seulement à courte distance · peut être ralenti par la glue</div>
+        </div>
+        <div style="padding:.9rem;border:1px solid rgba(239,68,68,.16);background:rgba(0,0,0,.25)">
+          <div style="font-family:var(--font-mono);font-size:.58rem;color:#ef4444;letter-spacing:.14em;margin-bottom:.4rem">🔫 LA GLUE</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.65">Le joueur en lâche derrière lui pour ralentir l'ennemi et gagner de la distance</div>
+        </div>
+        <div style="padding:.9rem;border:1px solid rgba(239,68,68,.16);background:rgba(0,0,0,.25)">
+          <div style="font-family:var(--font-mono);font-size:.58rem;color:#ef4444;letter-spacing:.14em;margin-bottom:.4rem">🚗 LE KART</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.65">Dérapages, pads de vitesse et rebonds sur les murs, avec retour sonore</div>
         </div>
       </div>
 
-      <div class="pm-label" id="priest-label-player">Mécanique joueur</div>
-      <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);margin-bottom:1.5rem">
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;line-height:1.9">
-          🔫 <strong style="color:var(--white)">Glue</strong> — Le joueur lâche de la glue derrière lui pour ralentir l'ennemi et gagner de la distance<br/>
-          🚗 <strong style="color:var(--white)">Kart</strong> — Dérapages, pads de vitesse, rebonds sur les murs avec feedback sonore<br/>
-          📷 <strong style="color:var(--white)">Caméra</strong> — Changement TPS ↔ FPS intégré dans le level design pour évaluer la distance avec l'ennemi
+      <div class="pm-label">Schéma de poursuite</div>
+      <div class="chase">
+        <div class="chase-row"><span class="chase-a">⛧ Prêtre</span><span class="chase-gap">distance</span><span class="chase-a">🚗 Joueur</span></div>
+        <div class="chase-zones"><span class="cz-close">Trop proche : ricanement et lumière qui bat</span><span class="cz-far">Loin : silence, aucun indice</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem">
+          <div style="flex:1;min-width:200px;padding:.7rem .8rem;border:1px solid rgba(74,222,128,.35);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55"><b style="color:#4ade80">Distance qui augmente</b><br>Glue lâchée derrière le joueur<br>Pads de vitesse</div>
+          <div style="flex:1;min-width:200px;padding:.7rem .8rem;border:1px solid rgba(239,68,68,.4);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55"><b style="color:#ef4444">Distance qui diminue</b><br>Fantômes qui tombent sur le joueur<br>Thwomps<br>Collisions et rebonds sur les murs</div>
         </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem">
+          <div style="flex:1;min-width:200px;padding:.7rem .8rem;border:1px solid rgba(239,68,68,.3);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55"><b>Distance = 0</b> : « You got Eaten »</div>
+          <div style="flex:1;min-width:200px;padding:.7rem .8rem;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55"><b>Ligne d’arrivée franchie</b> : « Good Job! You escaped the priest »</div>
+        </div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.55;margin-top:.5rem;color:var(--grey-light)">Les box de caméra passent de la vue TPS à la vue FPS pour que le joueur juge sa distance avec le prêtre.</div>
       </div>
 
-      <!-- SON -->
-      <div class="pm-section-title" id="priest-title-sound">Design Sonore</div>
-      <div class="pm-label" id="priest-label-sound-game">Sons de jeu</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">😈 Rire diabolique au lancement</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🔢 Compteur "1,2,3 — Survive!"</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🚗 Moteur kart (roulage + dérapage)</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">💥 Collision mur — "bonk" + arrêt moteur</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🍯 Son de glue au déversement</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">👻 Rire fantômes au spawn</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">😂 Rire prêtre à proximité</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#d0c8bf;padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);line-height:1.8">🎵 Musique entraînante · thème Halloween</div>
+      <div class="pm-section-title">Ambiance</div>
+      <p>Univers visuel mêlant <strong>cartoon</strong> (véhicule, fantômes, ennemi) et réalisme (glue, dérapages, gain de vitesse), dans une ambiance lourde, pesante et embrumée. Inspiré d'un circuit de kart suisse et de Mario Kart (manoirs, Boo). Typographie, sons et boutons « rouge sang » sont adaptés à l'ambiance, avec des musiques horrifiques ou entraînantes selon les menus.</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem;margin:.6rem 0 .3rem">
+        <img class="pm-img" src="assets/img/projets/priest/voiture.webp" alt="La voiture du joueur" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
+        <img class="pm-img" src="assets/img/projets/priest/decor-cage.webp" alt="Décor : citrouille en cage" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
+        <img class="pm-img" src="assets/img/projets/priest/decor-souche.webp" alt="Décor : souche à la citrouille" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
+        <img class="pm-img" src="assets/img/projets/priest/decor-epouvantail.webp" alt="Décor : épouvantail" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
+        <img class="pm-img" src="assets/img/projets/priest/fantome.webp" alt="Un fantôme rouge" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
+        <img class="pm-img" src="assets/img/projets/priest/pretre.webp" alt="Le prêtre dévoreur" loading="lazy" decoding="async" style="height:230px;width:auto;max-width:100%;margin:0;"/>
       </div>
+      <p style="font-size:.72rem;color:var(--grey-light);text-align:center;margin:0 0 1rem">Voiture du joueur, décors, fantôme et prêtre dévoreur (le monstre qui poursuit le joueur)</p>
+      <p><strong>Sons :</strong> rire diabolique au lancement, compteur « 1, 2, 3 — Survive! », moteur du kart (roulage et dérapage), « bonk » à la collision, bruit de la glue, rire des fantômes et du prêtre, musique entraînante au thème d'Halloween. <strong>Menus :</strong> intro (titre, prêtre qui tourne, Play / Leave, contrôles avec Tab), écran de défaite (« You got Eaten ») et de victoire (« Good Job! You escaped the priest »).</p>
 
-      <!-- DA -->
-      <div class="pm-section-title" id="priest-title-da">Direction Artistique</div>
-      <p>Univers visuel mêlant <strong>cartoon</strong> (véhicule, fantômes, ennemi) et réalisme (glue, dérapages, gain de vitesse). Ambiance <strong>lourde, pesante et embrumée</strong>. Inspiré d'un circuit de kart suisse et de Mario Kart (manoirs, Boo). Typographie et sons adaptés à l'ambiance — boutons "rouge sang", musiques horrifiques ou entraînantes selon les menus.</p>
-
-      <!-- MENUS -->
-      <div class="pm-section-title" id="priest-title-menus">Menus</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:2rem">
-        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">▶ INTRO</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">Titre · Ennemi principal qui tourne · Play / Leave · Contrôles in-game (Tab)</div>
-        </div>
-        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">💀 LOSE SCENE</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">"You got Eaten" · Vidéo fond · Musique triste · Play Again / Leave</div>
-        </div>
-        <div style="padding:1rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:#f87171;letter-spacing:.15em;margin-bottom:.5rem">🏆 WIN SCENE</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#d0c8bf;line-height:1.8">"Good Job! You escaped the priest" · Image fixe · Son calme victorieux · Play Again / Leave</div>
-        </div>
+      <div class="pm-section-title">Équipe</div>
+      <div style="padding:.8rem 1rem;border:1px solid rgba(239,68,68,.22);background:rgba(124,0,16,.1);margin-bottom:1.2rem">
+        <div style="font-family:var(--font-title);font-size:1rem;color:#ef4444;margin-bottom:.3rem">LÉO LUSSAN</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:#d0c8bf;line-height:1.7">Level Design · Conception du circuit · Mécaniques de glue et caméra · Chef de projet</div>
       </div>
-
-      <!-- OUTILS -->
-      <div class="pm-section-title" id="priest-title-team">Équipe</div>
-      <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
-        <div style="padding:1rem;border:1px solid rgba(248,113,113,.2);background:rgba(248,113,113,.04)">
-          <div style="font-family:var(--font-title);font-size:1rem;color:#f87171;margin-bottom:.4rem">LÉO LUSSAN</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:#d0c8bf;line-height:1.9">Level Design · Conception du circuit · Mécaniques de glue et caméra · Chef de projet</div>
-        </div>
-      </div>
-
-      <div class="pm-label" id="priest-label-tools">Outils utilisés</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🏔 Unreal Engine</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🗺 Miro</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🎨 Suite Adobe</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">🔀 SVN</div>
+      <div class="pm-label">Outils utilisés</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+        <span style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:var(--grey-light);padding:.3rem .7rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)">Unity</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:var(--grey-light);padding:.3rem .7rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)">Miro</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:var(--grey-light);padding:.3rem .7rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)">Suite Adobe</span>
+        <span style="font-family:'DM Sans',sans-serif;font-size:.75rem;color:var(--grey-light);padding:.3rem .7rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)">SVN</span>
       </div>
     </div>
   </div>
