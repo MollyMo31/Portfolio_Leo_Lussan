@@ -2252,3 +2252,51 @@ window.loadCity3D=function(cb){
 window.addEventListener('load',function(){
   (window.requestIdleCallback||function(f){setTimeout(f,2000);})(function(){window.loadCity3D();},{timeout:5000});
 });
+
+/* == TELECHARGEMENT DES PROJETS (zips publies dans les Releases GitHub) ==
+   Les boutons .dl-zip restent caches tant que le fichier n'existe pas sur la release "projets".
+   Le poids est lu automatiquement : ajouter ou remplacer un zip sur la release suffit. */
+(function(){
+  var REPO='MollyMo31/Portfolio_Leo_Lussan', TAG='projets', KEY='dl_assets_v1';
+  var btns=[].slice.call(document.querySelectorAll('.dl-zip'));
+  if(!btns.length) return;
+  function norm(n){return String(n).toLowerCase().replace(/\.zip$/,'').replace(/[^a-z0-9]/g,'');}
+  function fmt(b){
+    var en=document.documentElement.lang==='en', mb=b/1048576, v, u;
+    if(mb>=1024){v=(mb/1024).toFixed(1); u=en?' GB':' Go';}
+    else {v=mb>=10?String(Math.round(mb)):mb.toFixed(1); u=en?' MB':' Mo';}
+    return (en?v:v.replace('.',','))+u;
+  }
+  function render(){
+    btns.forEach(function(a){
+      var n=a.getAttribute('data-bytes'), s=a.querySelector('.dl-size');
+      if(n&&s) s.textContent=fmt(+n);
+    });
+  }
+  function apply(list){
+    list.forEach(function(x){
+      if(!x||typeof x.url!=='string'||x.url.indexOf('https://github.com/')!==0) return;
+      btns.forEach(function(a){
+        if(norm(a.getAttribute('data-asset'))===norm(x.name)){
+          a.href=x.url; a.setAttribute('data-bytes',x.size); a.hidden=false;
+        }
+      });
+    });
+    render();
+  }
+  var cached=null;
+  try{cached=JSON.parse(sessionStorage.getItem(KEY)||'null');}catch(e){}
+  if(cached&&cached.t>Date.now()-600000){ apply(cached.a); }
+  else {
+    fetch('https://api.github.com/repos/'+REPO+'/releases/tags/'+TAG,{headers:{Accept:'application/vnd.github+json'}})
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(j){
+        if(!j||!j.assets) return;
+        var list=j.assets.map(function(x){return {name:x.name,size:x.size,url:x.browser_download_url};});
+        try{sessionStorage.setItem(KEY,JSON.stringify({t:Date.now(),a:list}));}catch(e){}
+        apply(list);
+      }).catch(function(){});
+  }
+  // le poids suit la langue (Mo / MB)
+  new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+})();

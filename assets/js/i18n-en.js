@@ -679,7 +679,8 @@
  "<strong>Menu principal</strong> (nouvelle partie, continuer, supprimer la sauvegarde, crédits, quitter), <strong>HUD léger</strong> (barre de vie, Soul Time, icône de sauvegarde), <strong>menu pause</strong> (rappel des touches, objectifs, infos ennemis) et menu de mort.": "<strong>Main menu</strong> (new game, continue, delete save, credits, quit), <strong>light HUD</strong> (health bar, Soul Time, save icon), <strong>pause menu</strong> (controls reminder, objectives, enemy info) and a death menu.",
  "Programmation · Mécaniques · UI/UX": "Programming · Mechanics · UI/UX",
  "System Design · Ennemis · GDD": "System Design · Enemies · GDD",
- "Pixabay (sons)": "Pixabay (sounds)"
+ "Pixabay (sons)": "Pixabay (sounds)",
+ "⬇ Télécharger le projet (.zip)": "⬇ Download the project (.zip)"
 };
   var ATTR = {
  "Aigle en pixel art": "Pixel art eagle",
