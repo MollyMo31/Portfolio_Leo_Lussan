@@ -32,7 +32,13 @@ window.initCity3D = function() {
   var stopped = false;
   var W = container.clientWidth || 800, H = container.clientHeight || 420;
 
-  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({ antialias: true }); }
+  catch (err) {
+    delete container.dataset.init;
+    container.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">' + ((document.documentElement.lang==='en') ? '// WebGL unavailable, reload the page' : '// WebGL indisponible, recharge la page') + '</div>';
+    return;
+  }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(W, H);
   renderer.setClearColor(0x06061a, 1);
@@ -204,7 +210,7 @@ window.initCity3D = function() {
 
   _c3d = {
     renderer: renderer,
-    stop: function() { stopped = true; cancelAnimationFrame(raf); renderer.dispose(); },
+    stop: function() { stopped = true; cancelAnimationFrame(raf); renderer.dispose(); if (renderer.forceContextLoss) renderer.forceContextLoss(); },
     setTheta: function(v) { theta = v; phi = 0.6; updateCam(); }
   };
 };

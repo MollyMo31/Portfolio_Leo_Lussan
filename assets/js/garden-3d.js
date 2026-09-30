@@ -316,8 +316,9 @@
     container.appendChild(rotDiv);
 
     // === ANIMATION ===
-    var raf=null;
+    var raf=null, stopped=false;
     function animate(){
+      if(stopped) return;
       raf=requestAnimationFrame(animate);
       doKeys();
       if(autoRot){rotateCamera(0.0018,0);}
@@ -328,7 +329,7 @@
       var w=container.clientWidth,h=container.clientHeight||420;
       renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();
     });
-    _t3d={renderer:renderer,raf:raf};
+    _t3d={renderer:renderer,stop:function(){stopped=true;cancelAnimationFrame(raf);renderer.dispose();if(renderer.forceContextLoss)renderer.forceContextLoss();}};
   }
 
   var _o1=window.openProj;
@@ -341,16 +342,10 @@
   window.closeProj=function(id){
     _o2(id);
     if(id==='tower'&&_t3d){
-      cancelAnimationFrame(_t3d.raf);
+      _t3d.stop();
       var c=document.getElementById('tower-3d-viewer');
       if(c){c.innerHTML='';delete c.dataset.init;}
       _t3d=null;
-    }
-    if(id==='city'&&window._c3d){
-      cancelAnimationFrame(window._c3d.raf);
-      var cc=document.getElementById('city-3d-viewer');
-      if(cc){cc.innerHTML='';delete cc.dataset.init;}
-      window._c3d=null;
     }
   };
 })();
