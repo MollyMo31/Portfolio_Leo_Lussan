@@ -604,17 +604,10 @@
  "ZONE 1 — PRISE EN MAIN": "ZONE 1 — GETTING STARTED",
  "ZONE 2 — COMBAT &amp; ÂME": "ZONE 2 — COMBAT &amp; SOUL",
  "ZONE 3 — NARRATION": "ZONE 3 — NARRATIVE",
- "Nouvelle perspective, axes et plans de caméra différents : un peu de réflexion et du bashing de mobs.": "New perspective, different camera axes and planes: a bit of thinking and mob bashing.",
  "ZONE 5 — ÉNIGME": "ZONE 5 — PUZZLE",
- "Plus de réflexion : une dalle utilisable uniquement par l'âme, une zone plus grande et plus complexe, et un point de vue qui laisse voir la sortie.": "More thinking: a slab usable only by the soul, a larger and more complex zone, and a viewpoint that shows the exit.",
  "ZONE 6 — LOBBY DU BOSS": "ZONE 6 — BOSS LOBBY",
- "Nouveau style de lobby avant la salle du boss. Le principe des torches est réutilisé, mais un lance-flammes bloque l'accès de gauche : un seul passage, à droite.": "New lobby style before the boss room. The torch principle is reused, but a flamethrower blocks the left access: a single passage, on the right.",
  "ZONE 7 — SOUFFLEURS": "ZONE 7 — BLOWERS",
- "Nouvelle mécanique environnementale : les souffleurs, placés le long des murs, repoussent le joueur. Une seconde zone narrative, au milieu, donne la première torche vers Thorium.": "New environmental mechanic: blowers placed along the walls push the player back. A second narrative zone, in the middle, gives the first torch toward Thorium.",
  "ZONE 8 — LA SECONDE TORCHE": "ZONE 8 — THE SECOND TORCH",
- "Débloquée par la torche placée dans le bénitier de la porte du lobby (zone 6). Plusieurs solutions mènent à la même finalité : récupérer la seconde torche, gardée par des hordes de monstres.": "Unlocked by the torch placed in the holy water font of the lobby door (zone 6). Several solutions lead to the same goal: getting the second torch, guarded by hordes of monsters.",
- "Un petit couloir mène à l'arène du boss. Des piliers installés au milieu du niveau permettent d'éviter ses charges.": "A short corridor leads to the boss arena. Pillars set up in the middle of the level let you dodge his charges.",
- "Un escalier monte dans les nuages, vers Charon, le passeur vers l'autre monde.": "A staircase climbs into the clouds, toward Charon, the ferryman to the other world.",
  "Recherches &amp; tests": "Research &amp; testing",
  "Des recherches sur des jeux proches (<strong>Hadès, Sworn, Dead Cells, Hordes of Hel, Binding of Isaac, Brotato</strong>) et sur les bâtiments religieux et gothiques (églises, cathédrales) ont servi à comprendre l'espace et la réflexion derrière ces architectures. Plusieurs <strong>modules de test</strong> ont ensuite validé la largeur des couloirs, la taille et le placement des ennemis, leurs combos (par exemple Séraphins + Vertues), les déplacements du joueur, les souffleurs et lance-flammes, la profondeur de caméra et la luminosité des salles.": "Research on similar games (<strong>Hades, Sworn, Dead Cells, Hordes of Hel, Binding of Isaac, Brotato</strong>) and on religious and gothic buildings (churches, cathedrals) helped understand the space and the thinking behind these architectures. Several <strong>test modules</strong> then validated corridor widths, enemy size and placement, their combos (for example Seraphim + Virtues), player movement, blowers and flamethrowers, camera depth and room lighting.",
  "Pistes explorées : dalle à projectiles, pièces annexes où l'âme part seule, environnement interactif (dalles, leviers), alternance d'intérieurs et d'extérieurs.": "Explored ideas: projectile slab, side rooms where the soul goes alone, interactive environment (slabs, levers), alternating indoor and outdoor areas.",
@@ -636,7 +629,14 @@
  "🎧 Pixabay (sons)": "🎧 Pixabay (sounds)",
  "Le joueur s'approprie les touches et découvre le type de jeu grâce à la première perspective (les escaliers). Une balance, placée dès cette zone, lui fait comprendre le système de sauvegarde.": "The player gets used to the controls and discovers the type of game through the first perspective (the stairs). A scale, placed right in this zone, introduces the save system.",
  "Deux nouveaux systèmes apparaissent. D'abord le combat : des vases cassables barrent la route et font découvrir la touche d'attaque, puis les trashmobs donnent accès aux attaques de l'âme (attaque + et soin +). Ensuite, une porte fermée qui ne s'ouvre qu'avec 2 torches.": "Two new systems appear. First, combat: breakable vases block the way and introduce the attack button, then the trash mobs unlock the soul's attacks (attack + and heal +). Second, a closed door that only opens with 2 torches.",
- "Première zone narrative. Une fois la scène terminée, des barreaux continuent de barrer la route tant que le joueur n'a pas sauvegardé sur la nouvelle balance, disponible uniquement dans cette zone.": "First narrative zone. Once the scene is over, bars keep blocking the way until the player has saved on the new scale, available only in this zone."
+ "Première zone narrative. Une fois la scène terminée, des barreaux continuent de barrer la route tant que le joueur n'a pas sauvegardé sur la nouvelle balance, disponible uniquement dans cette zone.": "First narrative zone. Once the scene is over, bars keep blocking the way until the player has saved on the new scale, available only in this zone.",
+ "Une nouvelle perspective et des axes et plans de caméra différents apprennent au joueur dans quelle direction va le level design : un peu de réflexion et du bashing de mobs.": "A new perspective and different camera axes and planes teach the player which direction the level design is heading: a bit of thinking and some mob bashing.",
+ "Cette zone demande un peu plus de réflexion : une dalle utilisable uniquement par l'âme, une zone plus grande et plus complexe que les précédentes, et un point de vue différent qui laisse tout de même voir la sortie de la salle.": "This zone demands a bit more thinking: a slab usable only by the soul, a larger and more complex zone than the previous ones, and a different viewpoint that still lets the player see the room's exit.",
+ "Un nouveau style de lobby, avant la salle du boss, où le principe des torches est réutilisé. Un seul accès est possible, à droite, car un lance-flammes bloque le passage à gauche.": "A new lobby style before the boss room, where the torch principle is reused. Only one access is possible, on the right, because a flamethrower blocks the passage on the left.",
+ "Une nouvelle mécanique environnementale : les souffleurs, placés le long des murs, repoussent quiconque entre dans leur zone d'action. Une seconde zone narrative, au milieu, donne accès à la première torche qui débloque le chemin vers Thorium.": "A new environmental mechanic: blowers placed along the walls push back anyone entering their area of effect. A second narrative zone, in the middle, gives access to the first torch that unlocks the path to Thorium.",
+ "Zone débloquée uniquement grâce à la torche placée dans le bénitier de la porte du lobby (zone 6). Elle demande beaucoup de réflexion : plusieurs possibilités existent et mènent toutes au même but, récupérer la seconde torche pour enfin accéder au boss. Mais elle n'est pas faite que de réflexion : la torche est bien gardée par des hordes de monstres.": "This zone is unlocked only thanks to the torch placed in the holy water font of the lobby door (zone 6). It requires a lot of thinking: several options exist and all lead to the same goal, getting the second torch to finally reach the boss. But it isn't only about thinking: the torch is well guarded by hordes of monsters.",
+ "Un petit couloir mène à la zone du boss. Thorium, un taureau, attaque à coups de charge ; des piliers installés en plein milieu du niveau permettent d'éviter ses charges.": "A short corridor leads to the boss zone. Thorium, a bull, attacks with charges; pillars set up in the middle of the level let the player dodge his charges.",
+ "Dans cette dernière zone, un escalier qui monte dans les nuages attend le joueur pour son ascension vers sa résurrection. Au bout de l'escalier se trouve Charon, le passeur vers l'autre monde.": "In this last zone, a staircase climbing into the clouds awaits the player, leading to their resurrection. At the top of the stairs stands Charon, the ferryman to the other world."
 };
   var ATTR = {
  "Aigle en pixel art": "Pixel art eagle",
@@ -672,7 +672,12 @@
  "Œuf de Yoshi et Among Us": "Yoshi's egg and Among Us",
  "Couper / activer le son": "Mute / unmute",
  "Français": "French",
- "Cafard": "Cockroach"
+ "Cafard": "Cockroach",
+ "Plan de la zone 4": "Zone 4 map",
+ "Plan de la zone 5": "Zone 5 map",
+ "Plan de la zone 6": "Zone 6 map",
+ "Plan de la zone 7": "Zone 7 map",
+ "Plan de la zone 8": "Zone 8 map"
 };
   var SKIP = {SCRIPT:1,STYLE:1,NOSCRIPT:1,IFRAME:1,CANVAS:1,svg:1,SVG:1};
   var INLINE = {STRONG:1,EM:1,B:1,I:1,A:1,BR:1,SPAN:1,CODE:1,SMALL:1,U:1};
