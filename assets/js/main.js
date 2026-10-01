@@ -1,5 +1,5 @@
-function openSkill(id){document.getElementById('sk-'+id).classList.add('open');document.body.style.overflow='hidden'}
-function closeSkill(id){document.getElementById('sk-'+id).classList.remove('open');document.body.style.overflow=''}
+function openSkill(id){document.getElementById('sk-'+id).classList.add('open');document.body.style.overflow='hidden';document.body.classList.add('modal-open')}
+function closeSkill(id){document.getElementById('sk-'+id).classList.remove('open');document.body.style.overflow='';document.body.classList.remove('modal-open')}
 
 /* == ACCORDEON == */
 function toggleAcc(header){
@@ -32,7 +32,7 @@ var FX_CONFIGS = {
 };
 
 var _fxCanvas = document.createElement('canvas');
-_fxCanvas.style.cssText = 'position:fixed;inset:0;z-index:199;pointer-events:none;display:none;opacity:0.78;mix-blend-mode:screen;';
+_fxCanvas.style.cssText = 'position:fixed;inset:0;z-index:199;pointer-events:none;display:none;opacity:0.78;';
 document.body.appendChild(_fxCanvas);
 var _fxRaf = null;
 var _fxLastTime = 0;
@@ -1965,6 +1965,7 @@ var _audio = {
 function openProj(id){
   document.getElementById('pm-'+id).classList.add('open');
   document.body.style.overflow='hidden';
+  document.body.classList.add('modal-open');
   initCar(id);
   _audio.init();
   _audio.playModalOpen();
@@ -1985,6 +1986,7 @@ function openProj(id){
 function closeProj(id){
   document.getElementById('pm-'+id).classList.remove('open');
   document.body.style.overflow='';
+  document.body.classList.remove('modal-open');
   stopFx();
   _audio.playModalClose();
   _audio.stopAmbient();
@@ -2230,7 +2232,7 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   // Le petit carre (dot) suit directement la souris - il DIRIGE
   function place(e){
     mouseX=e.clientX; mouseY=e.clientY;
-    dot.style.left=mouseX+'px'; dot.style.top=mouseY+'px';
+    dot.style.transform='translate3d('+mouseX+'px,'+mouseY+'px,0) translate(-50%,-50%)';
   }
   // Masque tant que la souris n'est pas dans la page
   document.body.classList.add('ch-out');
@@ -2250,7 +2252,7 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   // Le grand carre (ring) suit avec lag - il SUIT le petit
   function animateRing(){
     ringX+=(mouseX-ringX)*.25; ringY+=(mouseY-ringY)*.25;
-    ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
+    ring.style.transform='translate3d('+ringX+'px,'+ringY+'px,0) translate(-50%,-50%)';
     requestAnimationFrame(animateRing);
   }
   animateRing();
