@@ -1049,3 +1049,7 @@ body.modal-open #bg-canvas{visibility:hidden}
 .sel-emblem[data-id=draconium] img{max-width:300px;max-height:240px}
 .sel-emblem[data-id=mira] img{max-width:290px;max-height:240px}
 .sel-emblem[data-id=juiceup] img{max-width:230px;max-height:230px}
+
+/* Bouton CV dans la section Contact */
+.contact-val a.cv-dl{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--red);padding:.55rem 1.1rem;transition:opacity .2s,box-shadow .2s}
+.contact-val a.cv-dl:hover{color:var(--white);opacity:.85;box-shadow:0 0 18px rgba(200,169,110,.35)}
