@@ -1143,3 +1143,18 @@ body.modal-open #bg-canvas{visibility:hidden}
 .wl-detail{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:transparent;border:1px solid var(--red);padding:.4rem .9rem;cursor:pointer;transition:all .2s}
 .wl-detail:hover{background:var(--red);color:#0a0a0a}
 .wl-detail[hidden]{display:none}
+
+/* Competences : panneau de description d'outil et apercu de projet */
+.wl-panel{margin-top:1.4rem}
+.wl-panel[hidden]{display:none}
+.wl-tdesc{display:flex;gap:1.4rem;align-items:flex-start;padding:1.6rem 1.8rem;border:1px solid rgba(200,169,110,.35);background:linear-gradient(160deg,rgba(200,169,110,.08),rgba(0,0,0,.25));animation:selIn .4s cubic-bezier(.2,.75,.2,1) both}
+.wl-tdesc .vw-logo{height:60px;min-width:60px}
+.wl-tname{font-family:var(--font-title);font-size:1.7rem;letter-spacing:.04em;color:var(--white);margin-bottom:.5rem}
+.wl-tbody p{font-size:1rem;line-height:1.85;color:#e1dad2;max-width:68ch;margin:0}
+.wl-prev{display:grid;grid-template-columns:minmax(240px,38%) 1fr;gap:0;border:1px solid color-mix(in srgb,var(--c) 55%,#222);background:radial-gradient(120% 100% at 85% 0%,color-mix(in srgb,var(--c) 24%,#000),#08080b 70%);overflow:hidden;animation:selIn .4s cubic-bezier(.2,.75,.2,1) both}
+.wl-prev-art{position:relative;min-height:280px;color:var(--c2)}
+.wl-prev-art .sel-emblem{position:absolute;inset:0;opacity:1;transform:none;padding:6% 6% 6% 6%;display:flex;align-items:center;justify-content:center}
+.wl-prev-art .sel-emblem img,.wl-prev-art .sel-emblem svg{max-width:100%;max-height:100%}
+.wl-prev-body{padding:1.8rem 2rem;display:flex;flex-direction:column;gap:.55rem;justify-content:center}
+.wl-prev-body .sel-title{font-size:clamp(1.8rem,3.2vw,2.8rem)}
+@media(max-width:800px){.wl-prev{grid-template-columns:1fr}.wl-prev-art{min-height:220px}.wl-tdesc{flex-direction:column}}
