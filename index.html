@@ -200,19 +200,19 @@
 
   <div class="skills-category-label" id="sk-cat-engines">Moteurs de jeu</div>
   <div class="skills-grid">
-    <div class="skill-card" onclick="openSkill('unity')"><div class="skill-icon">🎮</div><div class="skill-name">Unity</div><div class="skill-desc">Moteur C# — Conception HUD, scripting, level design</div><div class="skill-arrow">→ Voir les projets</div></div>
-    <div class="skill-card" onclick="openSkill('unreal')"><div class="skill-icon">🏔</div><div class="skill-name">Unreal Engine</div><div class="skill-desc">Level design cube grid — Nodale, HUD, blueprints</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('unity')"><div class="skill-icon has-logo"><img class="tool-logo tl-unity" src="assets/img/logos/unity.webp" alt="Unity" loading="lazy" decoding="async"/></div><div class="skill-name">Unity</div><div class="skill-desc">Moteur C# — Conception HUD, scripting, level design</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('unreal')"><div class="skill-icon has-logo"><img class="tool-logo tl-unreal" src="assets/img/logos/unreal.webp" alt="Unreal Engine" loading="lazy" decoding="async"/></div><div class="skill-name">Unreal Engine</div><div class="skill-desc">Level design cube grid — Nodale, HUD, blueprints</div><div class="skill-arrow">→ Voir les projets</div></div>
   </div>
 
   <div class="skills-category-label">Narration & Jeux narratifs</div>
   <div class="skills-grid">
-    <div class="skill-card" onclick="openSkill('inky')"><div class="skill-icon">✍️</div><div class="skill-name">Inky</div><div class="skill-desc">Narration interactive, scripts arborescents</div><div class="skill-arrow">→ Voir les projets</div></div>
-    <div class="skill-card" onclick="openSkill('twine')"><div class="skill-icon">🌐</div><div class="skill-name">Twine</div><div class="skill-desc">Jeux narratifs hypertext, parcours joueur</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('inky')"><div class="skill-icon has-logo"><span class="logo-plate"><img class="tool-logo tl-inky" src="assets/img/logos/inky.webp" alt="Inky" loading="lazy" decoding="async"/></span></div><div class="skill-name">Inky</div><div class="skill-desc">Narration interactive, scripts arborescents</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('twine')"><div class="skill-icon has-logo"><span class="logo-plate"><img class="tool-logo tl-twine" src="assets/img/logos/twine.webp" alt="Twine" loading="lazy" decoding="async"/></span></div><div class="skill-name">Twine</div><div class="skill-desc">Jeux narratifs hypertext, parcours joueur</div><div class="skill-arrow">→ Voir les projets</div></div>
   </div>
 
   <div class="skills-category-label">Design & Conception</div>
   <div class="skills-grid">
-    <div class="skill-card" onclick="openSkill('miro')"><div class="skill-icon">🗺</div><div class="skill-name">Miro</div><div class="skill-desc">Wireframing, mind maps, conception de niveaux</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('miro')"><div class="skill-icon has-logo"><span class="logo-plate"><img class="tool-logo tl-miro" src="assets/img/logos/miro.webp" alt="Miro" loading="lazy" decoding="async"/></span></div><div class="skill-name">Miro</div><div class="skill-desc">Wireframing, mind maps, conception de niveaux</div><div class="skill-arrow">→ Voir les projets</div></div>
     <div class="skill-card" onclick="openSkill('adobe')"><div class="skill-icon">🎨</div><div class="skill-name">Suite Adobe</div><div class="skill-desc">Photoshop, Illustrator — assets et concept arts</div><div class="skill-arrow">→ Voir les projets</div></div>
   </div>
 
@@ -226,34 +226,34 @@
 
 <!-- SKILL MODALS -->
 <div id="sk-unity" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('unity')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">🎮</div><div class="skill-modal-name">UNITY</div><button class="skill-modal-close" onclick="closeSkill('unity')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><img class="tool-logo tl-unity" src="assets/img/logos/unity.webp" alt="Unity" loading="lazy" decoding="async"/></div><div class="skill-modal-name">UNITY</div><button class="skill-modal-close" onclick="closeSkill('unity')">✕</button></div>
   <div class="skill-modal-body"><p>Moteur de jeu principal utilisé en <strong>2ème et 3ème année</strong> à Brassart. Conception de niveaux, HUD, scripting C# et mise en scène de gameplay.</p>
   </div>
   </div></div>
 </div>
 
 <div id="sk-unreal" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('unreal')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">🏔</div><div class="skill-modal-name">UNREAL ENGINE</div><button class="skill-modal-close" onclick="closeSkill('unreal')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><img class="tool-logo tl-unreal" src="assets/img/logos/unreal.webp" alt="Unreal Engine" loading="lazy" decoding="async"/></div><div class="skill-modal-name">UNREAL ENGINE</div><button class="skill-modal-close" onclick="closeSkill('unreal')">✕</button></div>
   <div class="skill-modal-body"><p>Découvert en <strong>1ère année</strong> via la fonction Cube Grid. Construction rapide de niveaux complets, approche nodale et blueprint.</p>
   </div>
   </div></div>
 </div>
 
 <div id="sk-inky" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('inky')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">✍️</div><div class="skill-modal-name">INKY</div><button class="skill-modal-close" onclick="closeSkill('inky')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><span class="logo-plate"><img class="tool-logo tl-inky" src="assets/img/logos/inky.webp" alt="Inky" loading="lazy" decoding="async"/></span></div><div class="skill-modal-name">INKY</div><button class="skill-modal-close" onclick="closeSkill('inky')">✕</button></div>
   <div class="skill-modal-body"><p>Outil de narration interactive — scripts arborescents avec conditions et variables. Idéal pour les jeux narratifs à choix multiples.</p>
   </div>
   </div></div>
 </div>
 
 <div id="sk-twine" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('twine')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">🌐</div><div class="skill-modal-name">TWINE</div><button class="skill-modal-close" onclick="closeSkill('twine')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><span class="logo-plate"><img class="tool-logo tl-twine" src="assets/img/logos/twine.webp" alt="Twine" loading="lazy" decoding="async"/></span></div><div class="skill-modal-name">TWINE</div><button class="skill-modal-close" onclick="closeSkill('twine')">✕</button></div>
   <div class="skill-modal-body"><p>Plateforme de création de jeux narratifs hypertext. Prototypage rapide d'expériences interactives accessibles directement dans le navigateur.</p></div>
   </div></div>
 </div>
 
 <div id="sk-miro" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('miro')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">🗺</div><div class="skill-modal-name">MIRO</div><button class="skill-modal-close" onclick="closeSkill('miro')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><span class="logo-plate"><img class="tool-logo tl-miro" src="assets/img/logos/miro.webp" alt="Miro" loading="lazy" decoding="async"/></span></div><div class="skill-modal-name">MIRO</div><button class="skill-modal-close" onclick="closeSkill('miro')">✕</button></div>
   <div class="skill-modal-body"><p>Collaboration visuelle pour le wireframing de niveaux, mind maps de game design et planification spatiale des zones de jeu.</p>
   </div>
   </div></div>

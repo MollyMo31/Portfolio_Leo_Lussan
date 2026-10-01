@@ -742,3 +742,12 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .mail-toggle .mt-dot{width:6px;height:6px;border-radius:50%;background:#6b7280}
 .mail-toggle.on{color:#86efac;border-color:rgba(74,222,128,.4)}
 .mail-toggle.on .mt-dot{background:#4ade80;box-shadow:0 0 6px #4ade80}
+
+/* vrais logos des outils */
+.skill-icon.has-logo,.skill-modal-icon.has-logo{display:flex;align-items:center;height:56px;font-size:0}
+.skill-modal-icon.has-logo{height:72px}
+.tool-logo{display:block;height:100%;width:auto;max-width:100%;object-fit:contain}
+.tool-logo.tl-unity{border-radius:12px}
+.logo-plate{display:inline-flex;align-items:center;height:100%;padding:.55rem .8rem;background:#f4f4f6;border-radius:10px;box-sizing:border-box}
+.logo-plate .tool-logo{height:100%}
+.skill-icon.has-logo .tool-logo.tl-unreal,.skill-modal-icon.has-logo .tool-logo.tl-unreal{height:100%}
