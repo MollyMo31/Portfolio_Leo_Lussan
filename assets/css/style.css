@@ -1014,3 +1014,7 @@ body.modal-open #bg-canvas{visibility:hidden}
 .st-about{display:flex;align-items:center;gap:1.5rem;padding:1.6rem;border:1px solid rgba(155,114,208,.25);background:rgba(155,114,208,.05)}
 .st-avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid #9b72d0;box-shadow:0 0 22px rgba(155,114,208,.45);flex-shrink:0}
 @media(max-width:700px){.st-about{flex-direction:column;text-align:center}#pm-streaming .acc-header{font-size:1.2rem;padding:1.2rem}#pm-streaming .acc-body{padding:0 1.2rem 1.4rem}}
+
+.mira-hero-icon{position:absolute;right:5%;top:50%;transform:translateY(-50%);height:82%;width:auto;image-rendering:pixelated;opacity:.6;pointer-events:none;z-index:0;filter:drop-shadow(0 0 22px rgba(52,211,153,.35))}
+#pm-mira .proj-modal-hero>*:not(.mira-hero-icon):not(.proj-modal-close){position:relative;z-index:1}
+@media(max-width:700px){.mira-hero-icon{opacity:.25;height:60%}}
