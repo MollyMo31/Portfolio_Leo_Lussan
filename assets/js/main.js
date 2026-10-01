@@ -2502,7 +2502,7 @@ window.addEventListener('load',function(){
   [].forEach.call(document.querySelectorAll('.wl-open'),function(b){
     b.addEventListener('click',function(){ var id=b.getAttribute('data-go'); if(document.getElementById('pm-'+id)) openProj(id); });
   });
-  var USES={unity:['priest','draconium','juiceup'],unreal:['unjudged','city','silence'],inky:['unjudged','silence'],twine:['silence','entretien'],miro:['unjudged','priest'],adobe:['mira'],ldtk:['tower'],hacknplan:['tower'],git:['unjudged','mira']};
+  var USES={unity:['priest','draconium','juiceup'],unreal:['unjudged','city','silence','tower'],inky:['unjudged','silence'],twine:['silence','entretien'],miro:['unjudged','priest'],adobe:['mira'],ldtk:['tower'],hacknplan:['tower'],git:['unjudged','mira']};
   var tools=[].slice.call(document.querySelectorAll('.wl-tool')), projs=[].slice.call(document.querySelectorAll('.wl-proj')), pw=document.querySelector('.wl-projs'), tw=document.querySelector('.wl-tools'), st=document.getElementById('wl-status'), dt=document.getElementById('wl-detail'), cur=null;
   function clear(){ cur=null; if(dt) dt.hidden=true; tools.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-pressed','false'); }); projs.forEach(function(p){ p.classList.remove('on'); }); pw.classList.remove('has-sel'); tw.classList.remove('has-sel'); st.textContent=(document.documentElement.lang==='en')?'Everything is shown.':'Tout est affiché.'; }
   function lbl(t){ return t.querySelector('.wl-n').textContent; }
