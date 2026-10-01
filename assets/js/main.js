@@ -2514,3 +2514,34 @@ window.addEventListener('load',function(){
     });
   });
 })();
+
+/* == Competences : bascule d'affichage, tableau et mur de logos == */
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('.vw-btn')), views=[].slice.call(document.querySelectorAll('#competences .vw'));
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    var v=b.getAttribute('data-v');
+    btns.forEach(function(x){ x.classList.toggle('active',x===b); });
+    views.forEach(function(w){ w.hidden=w.getAttribute('data-view')!==v; });
+  }); });
+  [].forEach.call(document.querySelectorAll('.mx-dot,.mx-pbtn,.wl-open'),function(b){
+    b.addEventListener('click',function(){ var id=b.getAttribute('data-go'); if(document.getElementById('pm-'+id)) openProj(id); });
+  });
+  var USES={unity:['priest','silence','draconium','juiceup'],unreal:['unjudged','city'],inky:['unjudged','silence'],twine:['silence','entretien'],miro:['unjudged','priest'],adobe:['mira'],ldtk:['tower'],hacknplan:['tower'],git:['unjudged','mira']};
+  var tools=[].slice.call(document.querySelectorAll('.wl-tool')), projs=[].slice.call(document.querySelectorAll('.wl-proj')), pw=document.querySelector('.wl-projs'), tw=document.querySelector('.wl-tools'), st=document.getElementById('wl-status');
+  function clear(){ tools.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-pressed','false'); }); projs.forEach(function(p){ p.classList.remove('on'); }); pw.classList.remove('has-sel'); tw.classList.remove('has-sel'); st.textContent=(document.documentElement.lang==='en')?'Everything is shown.':'Tout est affiché.'; }
+  function lbl(t){ return t.querySelector('.wl-n').textContent; }
+  tools.forEach(function(t){ t.addEventListener('click',function(){
+    if(t.classList.contains('on')){ clear(); return; }
+    clear(); var id=t.getAttribute('data-tool'), list=USES[id]||[];
+    t.classList.add('on'); t.setAttribute('aria-pressed','true'); tw.classList.add('has-sel'); pw.classList.add('has-sel');
+    projs.forEach(function(p){ p.classList.toggle('on',list.indexOf(p.getAttribute('data-proj'))>-1); });
+    st.textContent=lbl(t)+' → '+list.length+((document.documentElement.lang==='en')?' project(s)':' projet(s)');
+  }); });
+  [].forEach.call(document.querySelectorAll('.wl-pname'),function(b){ b.addEventListener('click',function(){
+    var id=b.getAttribute('data-pick'), pr=b.parentNode;
+    if(pr.classList.contains('on')&&pw.classList.contains('has-sel')&&!tools.some(function(t){return t.classList.contains('on');})){ clear(); return; }
+    clear(); pr.classList.add('on'); pw.classList.add('has-sel'); tw.classList.add('has-sel'); var n=0;
+    tools.forEach(function(t){ var on=(USES[t.getAttribute('data-tool')]||[]).indexOf(id)>-1; t.classList.toggle('on',on); if(on) n++; t.setAttribute('aria-pressed',on?'true':'false'); });
+    st.textContent=b.textContent+' → '+n+((document.documentElement.lang==='en')?' tool(s)':' outil(s)');
+  }); });
+})();

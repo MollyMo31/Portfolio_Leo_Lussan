@@ -1121,3 +1121,50 @@ body.modal-open #bg-canvas{visibility:hidden}
 .sk-uses-l{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
 .sk-use{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.06em;color:var(--grey-light);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.22rem .55rem;cursor:pointer;transition:all .2s}
 .sk-use:hover{color:var(--bg);background:var(--red);border-color:var(--red)}
+
+/* Competences : trois affichages (cartes, tableau, logos) */
+.vw[hidden]{display:none}
+.vw-switch{display:flex;gap:.4rem;align-items:center;margin:0 0 1.6rem;flex-wrap:wrap}
+.vw-switch-l{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-right:.6rem}
+.vw-btn{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);background:transparent;border:1px solid var(--border);padding:.5rem 1rem;cursor:pointer;transition:all .2s}
+.vw-btn:hover{color:var(--white);border-color:rgba(255,255,255,.35)}
+.vw-btn.active{color:var(--white);border-color:var(--red);box-shadow:inset 0 -2px 0 var(--red)}
+.vw-help{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.06em;color:var(--grey);margin:0 0 1.2rem}
+.vw-logo{display:inline-flex;align-items:center;justify-content:center;height:34px;min-width:34px;border-radius:6px;overflow:hidden;flex-shrink:0}
+.vw-logo img{height:100%;width:auto;max-width:90px;display:block}
+.vw-light{background:#f4f4f6;padding:.15rem .35rem}
+/* tableau */
+.mx-wrap{overflow-x:auto;border:1px solid var(--border);background:var(--bg3)}
+.mx{border-collapse:collapse;width:100%;min-width:760px}
+.mx th,.mx td{border-bottom:1px solid var(--border);text-align:center}
+.mx thead th{height:150px;vertical-align:bottom;padding:.4rem 0;background:rgba(255,255,255,.02)}
+.mx-pbtn{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:none;border:0;cursor:pointer;padding:.4rem .2rem;white-space:nowrap;transition:color .2s}
+.mx-col:hover .mx-pbtn{color:var(--pc)}
+.mx-row{text-align:left!important;padding:.6rem 1rem!important;white-space:nowrap}
+.mx-row .vw-logo{margin-right:.8rem;vertical-align:middle}
+.mx-name{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--white);vertical-align:middle}
+.mx-cell{width:64px;height:58px;position:relative;transition:background .2s}
+.mx tbody tr:hover{background:rgba(255,255,255,.03)}
+.mx-dot{width:18px;height:18px;border-radius:50%;background:var(--pc);border:0;cursor:pointer;box-shadow:0 0 0 0 var(--pc);transition:transform .2s,box-shadow .2s}
+.mx-dot:hover{transform:scale(1.5);box-shadow:0 0 16px var(--pc)}
+.mx-count{font-family:var(--font-mono);font-size:.7rem;color:var(--grey-light);width:70px}
+.mx-sum{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);vertical-align:bottom!important}
+/* logos */
+.wl-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem;margin-bottom:1.2rem}
+.wl-tool{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:1.1rem .6rem;background:var(--bg3);border:1px solid var(--border);cursor:pointer;transition:all .25s;color:var(--grey-light)}
+.wl-tool .vw-logo{height:46px}
+.wl-n{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
+.wl-tool:hover{border-color:rgba(255,255,255,.3);transform:translateY(-3px)}
+.wl-tool[aria-pressed=true]{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 0 24px rgba(200,169,110,.25);color:var(--white)}
+.wl-status{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;color:var(--grey-light);margin:.4rem 0 .8rem;min-height:1.2em}
+.wl-projs{display:flex;flex-wrap:wrap;gap:.5rem}
+.wl-proj{display:inline-flex;border:1px solid var(--border);background:var(--bg3);transition:all .25s}
+.wl-pname,.wl-open{font-family:var(--font-title);background:none;border:0;color:var(--grey-light);cursor:pointer;transition:all .2s}
+.wl-pname{font-size:1.15rem;letter-spacing:.04em;padding:.55rem .9rem}
+.wl-open{font-size:.7rem;padding:0 .8rem;border-left:1px solid var(--border);color:var(--grey)}
+.wl-open:hover{background:var(--pc);color:#0a0a0a}
+.wl-projs.has-sel .wl-proj{opacity:.28}
+.wl-projs.has-sel .wl-proj.on{opacity:1;border-color:var(--pc);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
+.wl-proj.on .wl-pname{color:var(--white)}
+.wl-tools.has-sel .wl-tool:not(.on){opacity:.35}
+@media(max-width:700px){.wl-tools{grid-template-columns:repeat(2,1fr)}}
