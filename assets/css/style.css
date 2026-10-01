@@ -778,17 +778,17 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 @media(max-width:700px){.proj-modal-tags .tl-adobe .adobe-grid{grid-template-columns:repeat(8,22px)}}
 
 /* == Ouverture d'un projet : onde de choc depuis la carte + titre qui se revele == */
-.proj-modal-overlay.open{animation:pmReveal .75s cubic-bezier(.2,.75,.2,1) both}
+.proj-modal-overlay.open{animation:pmReveal .75s cubic-bezier(.2,.75,.2,1) backwards}
 @keyframes pmReveal{from{clip-path:circle(0 at var(--ox,50%) var(--oy,50%))}to{clip-path:circle(150% at var(--ox,50%) var(--oy,50%))}}
 .proj-modal-overlay.open::after{content:'';position:fixed;left:var(--ox,50%);top:var(--oy,50%);width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;
   border:2px solid var(--th-acc2,#fff);box-shadow:0 0 40px var(--th-acc2,#fff),inset 0 0 30px var(--th-acc2,#fff);pointer-events:none;z-index:5;opacity:0;animation:pmShock .9s ease-out both}
 @keyframes pmShock{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(48)}}
-.proj-modal-overlay.open .proj-modal{animation:pmRise .8s cubic-bezier(.2,.75,.2,1) .12s both}
+.proj-modal-overlay.open .proj-modal{animation:pmRise .8s cubic-bezier(.2,.75,.2,1) .12s backwards}
 @keyframes pmRise{from{transform:translateY(40px) scale(.96);opacity:0}to{transform:none;opacity:1}}
-.proj-modal-overlay.open .proj-modal-title{animation:pmTitle 1s cubic-bezier(.2,.75,.2,1) .35s both}
+.proj-modal-overlay.open .proj-modal-title{animation:pmTitle 1s cubic-bezier(.2,.75,.2,1) .35s backwards}
 @keyframes pmTitle{from{letter-spacing:.32em;opacity:0;filter:blur(16px)}to{letter-spacing:normal;opacity:1;filter:blur(0)}}
-.proj-modal-overlay.open .proj-modal-num{animation:pmUp .6s ease .3s both}
-.proj-modal-overlay.open .proj-modal-tags .tag{animation:pmUp .5s ease both;animation-delay:calc(.7s + var(--i,0) * .07s)}
+.proj-modal-overlay.open .proj-modal-num{animation:pmUp .6s ease .3s backwards}
+.proj-modal-overlay.open .proj-modal-tags .tag{animation:pmUp .5s ease backwards;animation-delay:calc(.7s + var(--i,0) * .07s)}
 @keyframes pmUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.proj-modal-overlay.open,.proj-modal-overlay.open::after,.proj-modal-overlay.open .proj-modal,.proj-modal-overlay.open .proj-modal-title,.proj-modal-overlay.open .proj-modal-num,.proj-modal-overlay.open .proj-modal-tags .tag{animation:none}}
 
@@ -863,3 +863,6 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .pr-hero-img{position:absolute;right:-4%;top:50%;transform:translateY(-50%);height:150%;aspect-ratio:1;object-fit:cover;opacity:.3;pointer-events:none;z-index:0;-webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);mask-image:radial-gradient(closest-side,#000 45%,transparent 100%)}
 #pm-priest .proj-modal-hero>*:not(.pr-hero-img):not(.proj-modal-close){position:relative;z-index:1}
 @media(max-width:700px){.pr-hero-img{opacity:.2;height:120%}}
+
+/* bouton de telechargement qui suit le defilement (le bouton Fermer est deja fixe) */
+.proj-modal-body .dl-zip{position:sticky;top:-.5rem;z-index:250;width:fit-content;background:rgba(10,10,11,.94);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(0,0,0,.45)}

@@ -1590,7 +1590,33 @@ _AMBIENCES.mira = function() {
     }
     playNote();
   };
-_AMBIENCES.coaching  = _AMBIENCES.neon;
+/* Coaching : boucle synthetique motivante (la ligne precedente pointait vers une ambiance inexistante, d'ou le silence) */
+_AMBIENCES.coaching = function() {
+  var ctx=_ambCtx, out=_ambGain, bpm=104, step=60/bpm/4, n=0, next=ctx.currentTime+0.15;
+  var nb=ctx.createBuffer(1,Math.floor(ctx.sampleRate*0.25),ctx.sampleRate), nd=nb.getChannelData(0);
+  for(var i=0;i<nd.length;i++) nd[i]=Math.random()*2-1;
+  // Am - F - C - G
+  var ROOT=[55,43.65,65.41,49], CH=[[220,261.63,329.63,440],[174.61,220,261.63,349.23],[261.63,329.63,392,523.25],[196,246.94,293.66,392]];
+  function env(g,t,peak,dur){ g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(peak,t+0.006); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); }
+  function kick(t){ var o=ctx.createOscillator(),g=ctx.createGain(); o.type='sine'; o.frequency.setValueAtTime(140,t); o.frequency.exponentialRampToValueAtTime(42,t+0.14); env(g,t,0.55,0.28); o.connect(g); g.connect(out); o.start(t); o.stop(t+0.3); }
+  function noise(t,type,freq,peak,dur,q){ var s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain(); s.buffer=nb; f.type=type; f.frequency.value=freq; if(q) f.Q.value=q; env(g,t,peak,dur); s.connect(f); f.connect(g); g.connect(out); s.start(t); s.stop(t+dur+0.02); }
+  function tone(t,type,freq,peak,dur,cut){ var o=ctx.createOscillator(),f=ctx.createBiquadFilter(),g=ctx.createGain(); o.type=type; o.frequency.value=freq; f.type='lowpass'; f.frequency.value=cut||2400; env(g,t,peak,dur); o.connect(f); f.connect(g); g.connect(out); o.start(t); o.stop(t+dur+0.02); }
+  function schedule(){
+    if(_ambCurrentId!=='coaching') return;
+    while(next<ctx.currentTime+0.5){
+      var s=n%16, bar=Math.floor(n/16)%4, t=next;
+      if(s%4===0) kick(t);
+      if(s===4||s===12) noise(t,'bandpass',1900,0.22,0.16,0.9);
+      if(s%2===1) noise(t,'highpass',7500,0.07,0.05);
+      if([0,3,6,8,11,14].indexOf(s)!==-1) tone(t,'sawtooth',ROOT[bar]*(s===8||s===14?2:1),0.2,step*2.2,420);
+      var arp=CH[bar][[0,1,2,3,2,1,2,3][s%8]]; tone(t,'triangle',arp,s%2===0?0.075:0.05,step*1.6,3200);
+      if(s===0){ CH[bar].forEach(function(f){ tone(t,'sine',f/2,0.035,step*15.5,900); }); }
+      n++; next+=step;
+    }
+    _ambLoop=setTimeout(schedule,120);
+  }
+  schedule();
+};
 _AMBIENCES.streaming = function() {
     var ctx=_ambCtx, out=_ambGain;
     // Ambiance lofi streaming - pad doux + basse subtile
