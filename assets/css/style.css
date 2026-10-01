@@ -870,3 +870,5 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .tw-hero-logo{position:absolute;right:2%;top:50%;transform:translateY(-50%);height:96%;max-width:44%;object-fit:contain;opacity:.4;pointer-events:none;z-index:0;filter:drop-shadow(0 0 18px rgba(163,230,53,.25))}
 #pm-tower .proj-modal-hero>*:not(.tw-hero-logo):not(.proj-modal-close){position:relative;z-index:1}
 @media(max-width:700px){.tw-hero-logo{opacity:.2;max-width:60%}}
+
+.sel-emblem-pixel img{image-rendering:pixelated;max-height:70%;filter:drop-shadow(0 0 22px color-mix(in srgb,var(--c2) 50%,transparent))}

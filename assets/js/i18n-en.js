@@ -47,6 +47,11 @@
  "DAW en ligne pour la production de compositions musicales et de sound design. Crée des ambiances sonores qui enrichissent les projets de game design.": "Online DAW for producing musical compositions and sound design. Creates soundscapes that enrich game design projects.",
  "Terrain d'expérimentation pour le level design. Construction de maps, architectures thématiques, parkour et hubs immersifs avec 32 références jeux vidéo.": "Experimentation ground for level design. Map building, themed architecture, parkour and immersive hubs with 32 video game references.",
  "Projets d'école": "School Projects",
+ "L'ennemi": "The enemy",
+ "Le portail": "The portal",
+ "Les ennemis sur leur plateforme": "The enemies on their platform",
+ "Compteur de kills": "Kill counter",
+ "Univers du jeu": "Game world",
  "<strong>City Rider</strong> est un jeu de course néo-futuriste en vue à la troisième personne : vous incarnez un <strong>livreur de pizza à moustache</strong>, sur une grosse moto futuriste, dans une ville musicale illuminée de néons. Le but : livrer la pizza le plus vite possible, du parking de départ jusqu'au toit du bâtiment d'arrivée.": "<strong>City Rider</strong> is a neo-futuristic racing game in third person: you play a <strong>mustachioed pizza delivery rider</strong> on a big futuristic bike, in a neon-lit musical city. The goal: deliver the pizza as fast as possible, from the starting car park to the roof of the finish building.",
  "1 joueur": "1 player",
  "Vue TPS": "TPS view",
@@ -769,6 +774,10 @@
  "<strong>Sons :</strong> rire diabolique au lancement, compteur « 1, 2, 3 — Survive! », moteur du kart (roulage et dérapage), « bonk » à la collision, bruit de la glue, rire des fantômes et du prêtre, musique entraînante au thème d'Halloween. <strong>Menus :</strong> intro (titre, prêtre qui tourne, Play / Leave, contrôles avec Tab), écran de défaite (« You got Eaten ») et de victoire (« Good Job! You escaped the priest »).": "<strong>Sounds:</strong> diabolical laugh at launch, \"1, 2, 3 — Survive!\" counter, kart engine (driving and drifting), \"bonk\" on collision, glue sound, ghost and priest laughter, upbeat Halloween-themed music. <strong>Menus:</strong> intro (title, rotating priest, Play / Leave, in-game controls with Tab), defeat screen (\"You got Eaten\") and victory screen (\"Good Job! You escaped the priest\")."
 };
   var ATTR = {
+ "Un ennemi cube rouge": "A red cube enemy",
+ "Le portail": "The portal",
+ "Des ennemis empilés sur une plateforme": "Enemies stacked on a platform",
+ "Compteur de kills": "Kill counter",
  "Couloir de casiers de l'école": "School locker corridor",
  "Le musée : tableaux et épées": "The museum: paintings and swords",
  "Le supermarché vu de l'extérieur": "The supermarket seen from outside",
