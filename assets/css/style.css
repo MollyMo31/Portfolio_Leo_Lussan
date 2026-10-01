@@ -751,3 +751,10 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .logo-plate{display:inline-flex;align-items:center;height:100%;padding:.55rem .8rem;background:#f4f4f6;border-radius:10px;box-sizing:border-box}
 .logo-plate .tool-logo{height:100%}
 .skill-icon.has-logo .tool-logo.tl-unreal,.skill-modal-icon.has-logo .tool-logo.tl-unreal{height:100%}
+.skill-icon.has-logo,.skill-modal-icon.has-logo{gap:.6rem}
+.tool-logo.tl-photoshop,.tool-logo.tl-illustrator{border-radius:8px}
+.tool-logo.tl-ldtk{border-radius:10px}
+.tool-logo,.logo-plate{flex-shrink:0}
+.has-logo .tool-logo.tl-git{height:40px}
+.has-logo .logo-plate:has(.tl-svn){height:44px;padding:.2rem .35rem}
+.has-logo .logo-plate .tl-svn{height:100%;width:auto}

@@ -213,14 +213,14 @@
   <div class="skills-category-label">Design & Conception</div>
   <div class="skills-grid">
     <div class="skill-card" onclick="openSkill('miro')"><div class="skill-icon has-logo"><span class="logo-plate"><img class="tool-logo tl-miro" src="assets/img/logos/miro.webp" alt="Miro" loading="lazy" decoding="async"/></span></div><div class="skill-name">Miro</div><div class="skill-desc">Wireframing, mind maps, conception de niveaux</div><div class="skill-arrow">→ Voir les projets</div></div>
-    <div class="skill-card" onclick="openSkill('adobe')"><div class="skill-icon">🎨</div><div class="skill-name">Suite Adobe</div><div class="skill-desc">Photoshop, Illustrator — assets et concept arts</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('adobe')"><div class="skill-icon has-logo"><img class="tool-logo tl-photoshop" src="assets/img/logos/photoshop.webp" alt="Photoshop" loading="lazy" decoding="async"/><img class="tool-logo tl-illustrator" src="assets/img/logos/illustrator.webp" alt="Illustrator" loading="lazy" decoding="async"/></div><div class="skill-name">Suite Adobe</div><div class="skill-desc">Photoshop, Illustrator — assets et concept arts</div><div class="skill-arrow">→ Voir les projets</div></div>
   </div>
 
   <div class="skills-category-label">Outils & Gestion</div>
   <div class="skills-grid">
-    <div class="skill-card" onclick="openSkill('ldtk')"><div class="skill-icon">🗂</div><div class="skill-name">LDtk</div><div class="skill-desc">Level Design Toolkit — tilemaps, blocs, export moteur</div><div class="skill-arrow">→ Voir les projets</div></div>
-    <div class="skill-card" onclick="openSkill('hacknplan')"><div class="skill-icon">📋</div><div class="skill-name">Hack'n'Plan</div><div class="skill-desc">Gestion de projet, planification de sprint</div><div class="skill-arrow">→ Voir les projets</div></div>
-    <div class="skill-card" onclick="openSkill('git')"><div class="skill-icon">🔀</div><div class="skill-name">Git / SVN</div><div class="skill-desc">GitHub, Tortoise SVN — versionnage collaboratif</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('ldtk')"><div class="skill-icon has-logo"><img class="tool-logo tl-ldtk" src="assets/img/logos/ldtk.webp" alt="LDtk" loading="lazy" decoding="async"/></div><div class="skill-name">LDtk</div><div class="skill-desc">Level Design Toolkit — tilemaps, blocs, export moteur</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('hacknplan')"><div class="skill-icon has-logo"><img class="tool-logo tl-hacknplan" src="assets/img/logos/hacknplan.webp" alt="Hack'n'Plan" loading="lazy" decoding="async"/></div><div class="skill-name">Hack'n'Plan</div><div class="skill-desc">Gestion de projet, planification de sprint</div><div class="skill-arrow">→ Voir les projets</div></div>
+    <div class="skill-card" onclick="openSkill('git')"><div class="skill-icon has-logo"><img class="tool-logo tl-git" src="assets/img/logos/git.webp" alt="Git" loading="lazy" decoding="async"/><span class="logo-plate"><img class="tool-logo tl-svn" src="assets/img/logos/svn.webp" alt="TortoiseSVN" loading="lazy" decoding="async"/></span></div><div class="skill-name">Git / SVN</div><div class="skill-desc">GitHub, Tortoise SVN — versionnage collaboratif</div><div class="skill-arrow">→ Voir les projets</div></div>
   </div>
 </section>
 
@@ -260,14 +260,14 @@
 </div>
 
 <div id="sk-adobe" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('adobe')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">🎨</div><div class="skill-modal-name">SUITE ADOBE</div><button class="skill-modal-close" onclick="closeSkill('adobe')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><img class="tool-logo tl-photoshop" src="assets/img/logos/photoshop.webp" alt="Photoshop" loading="lazy" decoding="async"/><img class="tool-logo tl-illustrator" src="assets/img/logos/illustrator.webp" alt="Illustrator" loading="lazy" decoding="async"/></div><div class="skill-modal-name">SUITE ADOBE</div><button class="skill-modal-close" onclick="closeSkill('adobe')">✕</button></div>
   <div class="skill-modal-body"><p><strong>Photoshop</strong> pour la retouche d'assets et textures. <strong>Illustrator</strong> pour les éléments vectoriels, UI et concept arts de niveaux.</p>
   </div>
   </div></div>
 </div>
 
 <div id="sk-ldtk" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('ldtk')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">🗂</div><div class="skill-modal-name">LDtk</div><button class="skill-modal-close" onclick="closeSkill('ldtk')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><img class="tool-logo tl-ldtk" src="assets/img/logos/ldtk.webp" alt="LDtk" loading="lazy" decoding="async"/></div><div class="skill-modal-name">LDtk</div><button class="skill-modal-close" onclick="closeSkill('ldtk')">✕</button></div>
   <div class="skill-modal-body"><p><strong>Level Designer Toolkit</strong> — logiciel open-source dédié à la création de niveaux 2D par blocs (tilemaps). Couches, entités, règles automatiques et export vers les moteurs de jeu.</p>
   <p>Idéal pour prototyper rapidement la structure d'un niveau avant intégration dans Unity ou Unreal.</p>
   </div>
@@ -275,14 +275,14 @@
 </div>
 
 <div id="sk-hacknplan" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('hacknplan')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">📋</div><div class="skill-modal-name">HACK'N'PLAN</div><button class="skill-modal-close" onclick="closeSkill('hacknplan')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><img class="tool-logo tl-hacknplan" src="assets/img/logos/hacknplan.webp" alt="Hack'n'Plan" loading="lazy" decoding="async"/></div><div class="skill-modal-name">HACK'N'PLAN</div><button class="skill-modal-close" onclick="closeSkill('hacknplan')">✕</button></div>
   <div class="skill-modal-body"><p>Outil de gestion de projet pour les équipes de développement de jeux. Planification des sprints, répartition des tâches, suivi de production.</p>
   </div>
   </div></div>
 </div>
 
 <div id="sk-git" class="skill-modal-overlay" onclick="if(event.target===this)closeSkill('git')">
-  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon">🔀</div><div class="skill-modal-name">GIT / SVN</div><button class="skill-modal-close" onclick="closeSkill('git')">✕</button></div>
+  <div class="skill-modal"><div class="skill-modal-header"><div class="skill-modal-icon has-logo"><img class="tool-logo tl-git" src="assets/img/logos/git.webp" alt="Git" loading="lazy" decoding="async"/><span class="logo-plate"><img class="tool-logo tl-svn" src="assets/img/logos/svn.webp" alt="TortoiseSVN" loading="lazy" decoding="async"/></span></div><div class="skill-modal-name">GIT / SVN</div><button class="skill-modal-close" onclick="closeSkill('git')">✕</button></div>
   <div class="skill-modal-body"><p><strong>GitHub</strong> pour le versionnage personnel et collaboratif. <strong>Tortoise SVN</strong> utilisé en contexte scolaire pour les projets d'équipe.</p>
   </div>
   </div></div>
