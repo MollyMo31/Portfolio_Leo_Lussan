@@ -866,3 +866,7 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 
 /* bouton de telechargement qui suit le defilement (le bouton Fermer est deja fixe) */
 .proj-modal-body .dl-zip{position:sticky;top:-.5rem;z-index:250;width:fit-content;background:rgba(10,10,11,.94);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(0,0,0,.45)}
+
+.tw-hero-logo{position:absolute;right:2%;top:50%;transform:translateY(-50%);height:96%;max-width:44%;object-fit:contain;opacity:.4;pointer-events:none;z-index:0;filter:drop-shadow(0 0 18px rgba(163,230,53,.25))}
+#pm-tower .proj-modal-hero>*:not(.tw-hero-logo):not(.proj-modal-close){position:relative;z-index:1}
+@media(max-width:700px){.tw-hero-logo{opacity:.2;max-width:60%}}
