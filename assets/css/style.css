@@ -945,3 +945,19 @@ body.modal-open #bg-canvas{visibility:hidden}
 .sel-item[data-id=entretien] .sel-name,.sel-info[data-id=entretien] .sel-title{font-family:'Creepster',cursive;letter-spacing:.05em}
 .sel-item[data-id=entretien] .sel-name{font-size:clamp(1.2rem,2vw,1.7rem)}
 .sel-info[data-id=entretien] .sel-title{font-size:clamp(2.2rem,4.2vw,3.8rem);line-height:1.05}
+
+.hero-bg-img{position:absolute;right:0;top:0;height:100%;width:60%;object-fit:cover;opacity:.32;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 55%);mask-image:linear-gradient(90deg,transparent,#000 55%)}
+#pm-coaching .proj-modal-hero>*:not(.hero-bg-img):not(.proj-modal-close),#pm-streaming .proj-modal-hero>*:not(.hero-bg-img):not(.proj-modal-close){position:relative;z-index:1}
+.sel-emblem-wide{padding:0 3% 12% 0;box-sizing:border-box}
+.sel-emblem-wide img{width:100%;height:auto;max-height:100%;object-fit:contain;border-radius:6px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(0deg,transparent,#000 14%,#000 86%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(0deg,transparent,#000 14%,#000 86%,transparent);mask-composite:intersect}
+.sel-emblem-tall img{width:auto;height:100%;max-width:100%}
+@media(max-width:700px){.hero-bg-img{opacity:.2;width:100%}}
+
+/* Mira : essai de police pixel (type Minecraft) */
+#pm-mira .proj-modal-title,#pm-mira .pm-section-title,#pm-mira .pm-label{font-family:'Press Start 2P',monospace!important;letter-spacing:.02em;line-height:1.35}
+#pm-mira .proj-modal-title{font-size:clamp(1.6rem,3.6vw,3rem)!important}
+#pm-mira .pm-section-title{font-size:1.15rem}
+.sel-item[data-id=mira] .sel-name,.sel-info[data-id=mira] .sel-title{font-family:'Press Start 2P',monospace;letter-spacing:.02em}
+.sel-item[data-id=mira] .sel-name{font-size:clamp(.8rem,1.3vw,1.05rem)}
+.sel-info[data-id=mira] .sel-title{font-size:clamp(1.5rem,3vw,2.6rem);line-height:1.3}
+.co-hero-img{object-position:50% 10%}.st-hero-img{object-position:50% 20%}
