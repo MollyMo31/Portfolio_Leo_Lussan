@@ -2401,3 +2401,23 @@ window.addEventListener('load',function(){
     });
   });
 })();
+
+/* == Cartes : faisceau qui suit le curseur + origine de l'onde de choc a l'ouverture == */
+(function(){
+  [].forEach.call(document.querySelectorAll('.lvl-card'),function(c){
+    var art=c.querySelector('.lvl-art');
+    c.addEventListener('mousemove',function(e){
+      var r=art.getBoundingClientRect();
+      art.style.setProperty('--mx',(e.clientX-r.left)+'px'); art.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  });
+  document.addEventListener('click',function(e){
+    var c=e.target.closest&&e.target.closest('.lvl-card'); if(!c) return;
+    var m=(c.getAttribute('onclick')||'').match(/openProj\('(\w+)'\)/); if(!m) return;
+    var o=document.getElementById('pm-'+m[1]); if(!o) return;
+    var x=e.clientX, y=e.clientY;
+    if(!x&&!y){ var r=c.getBoundingClientRect(); x=r.left+r.width/2; y=r.top+r.height/2; }
+    o.style.setProperty('--ox',x+'px'); o.style.setProperty('--oy',y+'px');
+    [].forEach.call(o.querySelectorAll('.proj-modal-tags .tag'),function(t,i){ t.style.setProperty('--i',i); });
+  },true);
+})();

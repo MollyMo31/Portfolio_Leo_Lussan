@@ -808,3 +808,34 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .lvl-card:hover .lvl-play,.lvl-card:focus-visible .lvl-play{opacity:1;transform:none}
 @media(hover:none){.lvl-play{opacity:1;transform:none}}
 @media(max-width:700px){.lvl-grid{grid-template-columns:1fr}.lvl-glyph{font-size:4.5rem}}
+
+/* == Cartes enigmatiques : l'image n'apparait que dans le "faisceau" qui suit le curseur == */
+.lvl-art{--mx:50%;--my:50%}
+.lvl-art .lvl-glyph{z-index:0}
+.lvl-art img{position:absolute;inset:0;z-index:1;filter:saturate(1.05) brightness(1.05);
+  -webkit-mask-image:radial-gradient(circle 0 at var(--mx) var(--my),#000 0,transparent 100%);mask-image:radial-gradient(circle 0 at var(--mx) var(--my),#000 0,transparent 100%);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;transition:transform .5s}
+.lvl-card:hover .lvl-art img,.lvl-card:focus-visible .lvl-art img{transform:scale(1.04);filter:saturate(1.05) brightness(1.05);
+  -webkit-mask-image:radial-gradient(circle 120px at var(--mx) var(--my),#000 35%,transparent 100%);mask-image:radial-gradient(circle 120px at var(--mx) var(--my),#000 35%,transparent 100%)}
+.lvl-art::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle 140px at var(--mx) var(--my),color-mix(in srgb,var(--c2) 40%,transparent),transparent 70%);mix-blend-mode:screen}
+.lvl-card:hover .lvl-art::before{opacity:1}
+.lvl-art::after{z-index:3}
+.lvl-badge{z-index:4}
+.lvl-card:hover .lvl-glyph{opacity:.55;text-shadow:0 0 28px var(--c)}
+@media(hover:none){.lvl-art img{-webkit-mask-image:none;mask-image:none;filter:saturate(.85) brightness(.6)}}
+
+/* == Ouverture d'un projet : onde de choc depuis la carte + titre qui se revele == */
+.proj-modal-overlay.open{animation:pmReveal .75s cubic-bezier(.2,.75,.2,1) both}
+@keyframes pmReveal{from{clip-path:circle(0 at var(--ox,50%) var(--oy,50%))}to{clip-path:circle(150% at var(--ox,50%) var(--oy,50%))}}
+.proj-modal-overlay.open::after{content:'';position:fixed;left:var(--ox,50%);top:var(--oy,50%);width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;
+  border:2px solid var(--th-acc2,#fff);box-shadow:0 0 40px var(--th-acc2,#fff),inset 0 0 30px var(--th-acc2,#fff);pointer-events:none;z-index:5;opacity:0;animation:pmShock .9s ease-out both}
+@keyframes pmShock{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(48)}}
+.proj-modal-overlay.open .proj-modal{animation:pmRise .8s cubic-bezier(.2,.75,.2,1) .12s both}
+@keyframes pmRise{from{transform:translateY(40px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+.proj-modal-overlay.open .proj-modal-title{animation:pmTitle 1s cubic-bezier(.2,.75,.2,1) .35s both}
+@keyframes pmTitle{from{letter-spacing:.32em;opacity:0;filter:blur(16px)}to{letter-spacing:normal;opacity:1;filter:blur(0)}}
+.proj-modal-overlay.open .proj-modal-num{animation:pmUp .6s ease .3s both}
+.proj-modal-overlay.open .proj-modal-tags .tag{animation:pmUp .5s ease both;animation-delay:calc(.7s + var(--i,0) * .07s)}
+@keyframes pmUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.proj-modal-overlay.open,.proj-modal-overlay.open::after,.proj-modal-overlay.open .proj-modal,.proj-modal-overlay.open .proj-modal-title,.proj-modal-overlay.open .proj-modal-num,.proj-modal-overlay.open .proj-modal-tags .tag{animation:none}}
