@@ -872,3 +872,19 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 @media(max-width:700px){.tw-hero-logo{opacity:.2;max-width:60%}}
 
 .sel-emblem-pixel img{image-rendering:pixelated;max-height:70%;filter:drop-shadow(0 0 22px color-mix(in srgb,var(--c2) 50%,transparent))}
+
+/* Chasse aux references (Mira) : cases visibles seulement dans le faisceau de la lampe torche */
+.ref-hunt{margin:1rem 0 2rem;padding:1rem;border:1px solid rgba(52,211,153,.22);background:radial-gradient(120% 120% at 50% 0%,rgba(5,150,105,.12),rgba(0,0,0,.55));cursor:none}
+.ref-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--th-acc2,#34d399)}
+.ref-all{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);background:transparent;border:1px solid var(--border);padding:.3rem .7rem;cursor:pointer}
+.ref-all:hover{color:var(--white);border-color:var(--th-acc2,#34d399)}
+.ref-grid{display:flex;flex-wrap:wrap;gap:.45rem}
+.ref-chip{--lx:-999px;--ly:-999px;font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--white);padding:.45rem .8rem;border:1px dashed rgba(52,211,153,.28);background:rgba(0,0,0,.35);cursor:pointer;transition:border-color .3s,background .3s,box-shadow .3s}
+.ref-chip span{display:block;-webkit-mask-image:radial-gradient(circle 80px at var(--lx) var(--ly),#000 35%,transparent 100%);mask-image:radial-gradient(circle 80px at var(--lx) var(--ly),#000 35%,transparent 100%);opacity:.95}
+.ref-chip::after{content:'?';position:absolute}
+.ref-chip{position:relative}
+.ref-chip::after{left:50%;top:50%;transform:translate(-50%,-50%);color:rgba(52,211,153,.35);font-family:var(--font-mono);pointer-events:none;transition:opacity .3s}
+.ref-chip.found{border-style:solid;border-color:var(--th-acc2,#34d399);background:rgba(52,211,153,.1);box-shadow:0 0 14px rgba(52,211,153,.25)}
+.ref-chip.found span{-webkit-mask-image:none;mask-image:none}
+.ref-chip.found::after{opacity:0}
+@media(hover:none){.ref-hunt{cursor:auto}}

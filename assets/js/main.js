@@ -2444,3 +2444,16 @@ window.addEventListener('load',function(){
   stage.addEventListener('mousemove',function(e){ var r=stage.getBoundingClientRect(); stage.style.setProperty('--mx',(e.clientX-r.left)+'px'); stage.style.setProperty('--my',(e.clientY-r.top)+'px'); });
   select(items[0].getAttribute('data-id'));
 })();
+
+/* == Mira : chasse aux references (lampe torche + clic) == */
+(function(){
+  var box=document.getElementById('ref-hunt'); if(!box) return;
+  var chips=[].slice.call(box.querySelectorAll('.ref-chip')), nEl=box.querySelector('.ref-n');
+  function count(){ nEl.textContent=box.querySelectorAll('.ref-chip.found').length; }
+  box.addEventListener('mousemove',function(e){
+    chips.forEach(function(c){ var r=c.getBoundingClientRect(); c.style.setProperty('--lx',(e.clientX-r.left)+'px'); c.style.setProperty('--ly',(e.clientY-r.top)+'px'); });
+  });
+  box.addEventListener('mouseleave',function(){ chips.forEach(function(c){ c.style.setProperty('--lx','-999px'); }); });
+  chips.forEach(function(c){ c.addEventListener('click',function(){ c.classList.add('found'); count(); }); });
+  box.querySelector('.ref-all').addEventListener('click',function(){ chips.forEach(function(c){ c.classList.add('found'); }); count(); });
+})();
