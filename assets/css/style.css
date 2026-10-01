@@ -752,7 +752,6 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .logo-plate .tool-logo{height:100%}
 .skill-icon.has-logo .tool-logo.tl-unreal,.skill-modal-icon.has-logo .tool-logo.tl-unreal{height:100%}
 .skill-icon.has-logo,.skill-modal-icon.has-logo{gap:.6rem}
-.tool-logo.tl-photoshop,.tool-logo.tl-illustrator{border-radius:8px}
 .tool-logo.tl-ldtk{border-radius:10px}
 .tool-logo,.logo-plate{flex-shrink:0}
 .has-logo .tool-logo.tl-git{height:40px}
@@ -763,8 +762,18 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .proj-modal-tags .tag.tag-logo{display:inline-flex;align-items:center;gap:.4rem;height:36px;padding:.3rem .6rem;box-sizing:border-box}
 .proj-modal-tags .tag-logo img{height:100%;width:auto;display:block}
 .proj-modal-tags .tag-logo.tl-unity img{border-radius:5px}
-.proj-modal-tags .tag-logo.tl-photoshop img{border-radius:4px}
 .proj-modal-tags .tag-logo.tl-light{background:#f4f4f6;border-color:#f4f4f6}
 .proj-modal-tags .tag-logo.tl-unreal{height:44px}
 .proj-modal-tags .tag-logo.tl-ldtk{padding:.2rem}
 @media(max-width:700px){.proj-modal-tags .tag.tag-logo{height:28px;padding:.2rem .4rem}.proj-modal-tags .tag-logo.tl-unreal{height:34px}}
+
+/* Suite Adobe : toutes les icones */
+.adobe-grid{display:grid;grid-template-columns:repeat(5,30px);gap:5px}
+.adobe-i{width:30px;height:30px;border-radius:4px;display:block}
+.skill-modal-icon .adobe-grid{grid-template-columns:repeat(8,34px);gap:6px}
+.skill-modal-icon .adobe-i{width:34px;height:34px}
+.skill-icon.has-logo:has(.adobe-grid),.skill-modal-icon.has-logo:has(.adobe-grid){height:auto;min-height:56px}
+.proj-modal-tags .tag-logo.tl-adobe{height:auto;padding:.4rem .5rem}
+.proj-modal-tags .tl-adobe .adobe-grid{grid-template-columns:repeat(15,22px);gap:4px}
+.proj-modal-tags .tl-adobe .adobe-i{width:22px;height:22px;border-radius:3px}
+@media(max-width:700px){.proj-modal-tags .tl-adobe .adobe-grid{grid-template-columns:repeat(8,22px)}}
