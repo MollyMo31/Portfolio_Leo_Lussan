@@ -47,6 +47,9 @@
  "DAW en ligne pour la production de compositions musicales et de sound design. Crée des ambiances sonores qui enrichissent les projets de game design.": "Online DAW for producing musical compositions and sound design. Creates soundscapes that enrich game design projects.",
  "Terrain d'expérimentation pour le level design. Construction de maps, architectures thématiques, parkour et hubs immersifs avec 32 références jeux vidéo.": "Experimentation ground for level design. Map building, themed architecture, parkour and immersive hubs with 32 video game references.",
  "Projets d'école": "School Projects",
+ "Mes jeux": "My games",
+ "Chaque jeu a sa place dans le stream. Ouvre un jeu pour lire mon parcours et ma façon de le jouer.": "Every game has its place on the stream. Open a game to read my background and how I play it.",
+ "Au-delà du jeu": "Beyond the game",
  "−5 à −20": "−5 to −20",
  "−10 / erreur": "−10 / mistake",
  "L'appel": "The call",
@@ -843,6 +846,9 @@
  "<strong>Sons :</strong> rire diabolique au lancement, compteur « 1, 2, 3 — Survive! », moteur du kart (roulage et dérapage), « bonk » à la collision, bruit de la glue, rire des fantômes et du prêtre, musique entraînante au thème d'Halloween. <strong>Menus :</strong> intro (titre, prêtre qui tourne, Play / Leave, contrôles avec Tab), écran de défaite (« You got Eaten ») et de victoire (« Good Job! You escaped the priest »).": "<strong>Sounds:</strong> diabolical laugh at launch, \"1, 2, 3 — Survive!\" counter, kart engine (driving and drifting), \"bonk\" on collision, glue sound, ghost and priest laughter, upbeat Halloween-themed music. <strong>Menus:</strong> intro (title, rotating priest, Play / Leave, in-game controls with Tab), defeat screen (\"You got Eaten\") and victory screen (\"Good Job! You escaped the priest\")."
 };
   var ATTR = {
+ "Léo Lussan": "Léo Lussan",
+ "Séance de coaching": "Coaching session",
+ "Léo en séance de coaching": "Léo during a coaching session",
  "Un ennemi cube rouge": "A red cube enemy",
  "Le portail": "The portal",
  "Des ennemis empilés sur une plateforme": "Enemies stacked on a platform",
