@@ -895,3 +895,15 @@ body.modal-open *{-webkit-backdrop-filter:none!important;backdrop-filter:none!im
 body.modal-open .proj-modal-backdrop{background:rgba(3,3,6,.82)}
 body.modal-open .skill-modal-overlay{background:rgba(0,0,0,.92)}
 body.modal-open #bg-canvas{visibility:hidden}
+
+/* Unjudged : statue de la balance + logo du jeu */
+.sel-unj{flex-direction:column;gap:2%;padding:0 3% 6% 0;box-sizing:border-box}
+.sel-unj-statue{max-height:74%;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 0 22px color-mix(in srgb,var(--c2) 45%,transparent))}
+.sel-unj-logo{max-height:17%;width:auto;max-width:92%;object-fit:contain;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
+.un-hero-img{position:absolute;right:3%;top:50%;transform:translateY(-50%);height:128%;width:auto;object-fit:contain;opacity:.34;pointer-events:none;z-index:0;filter:drop-shadow(0 0 22px rgba(74,222,128,.25))}
+#pm-unjudged .proj-modal-hero>*:not(.un-hero-img):not(.proj-modal-close){position:relative;z-index:1}
+@media(max-width:700px){.un-hero-img{opacity:.18;height:105%}}
+.sel-unj{justify-content:flex-start;padding-top:1%}
+.sel-unj-logo{order:-1;max-height:15%}
+.sel-unj-statue{max-height:76%}
+.un-hero-img{height:112%;top:52%}
