@@ -1590,6 +1590,30 @@ _AMBIENCES.mira = function() {
     }
     playNote();
   };
+/* Entretien d'embauche : valse de cirque en la mineur, orgue de barbarie un peu faux */
+_AMBIENCES.entretien = function() {
+  var ctx=_ambCtx, out=_ambGain, bpm=138, beat=60/bpm, n=0, next=ctx.currentTime+0.2;
+  var A=55, F=function(semi){ return A*Math.pow(2,semi/12); };
+  // progression : Am Am E7 Am | Dm Am E7 Am  (racine, accord)
+  var BASS=[0,0,-5,0,5,0,-5,0], CH=[[12,15,19],[12,15,19],[11,15,18],[12,15,19],[17,21,24],[12,15,19],[11,15,18],[12,15,19]];
+  // melodie (une note par temps, 3 temps par mesure, 8 mesures) en demi-tons au-dessus de A3
+  var MEL=[24,27,31, 29,27,24, 23,26,29, 28,24,24, 29,33,36, 33,29,27, 26,23,26, 24,24,-1];
+  function env(g,t,peak,att,dur){ g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(peak,t+att); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); }
+  function tone(t,type,freq,peak,dur,cut,att,detune){ var o=ctx.createOscillator(),f=ctx.createBiquadFilter(),g=ctx.createGain(); o.type=type; o.frequency.value=freq; if(detune) o.detune.value=detune; f.type='lowpass'; f.frequency.value=cut||2000; env(g,t,peak,att||0.01,dur); o.connect(f); f.connect(g); g.connect(out); o.start(t); o.stop(t+dur+0.05); }
+  function schedule(){
+    if(_ambCurrentId!=='entretien') return;
+    while(next<ctx.currentTime+0.6){
+      var bar=Math.floor(n/3)%8, b=n%3, t=next, mi=(Math.floor(n/3)%8)*3+b;
+      if(b===0){ tone(t,'triangle',F(BASS[bar]),0.32,beat*0.9,500,0.01); }
+      else { CH[bar].forEach(function(s){ tone(t,'square',F(s),0.05,beat*0.45,1400,0.005); }); }
+      var m=MEL[mi]; if(m>=0){ tone(t,'sawtooth',F(m),0.07,beat*0.95,2600,0.03,(mi%2?9:-9)); tone(t,'sine',F(m+12),0.025,beat*0.9,3000,0.04,14); }
+      n++; next+=beat;
+    }
+    _ambLoop=setTimeout(schedule,120);
+  }
+  schedule();
+};
+
 /* Coaching : boucle synthetique motivante (la ligne precedente pointait vers une ambiance inexistante, d'ou le silence) */
 _AMBIENCES.coaching = function() {
   var ctx=_ambCtx, out=_ambGain, bpm=104, step=60/bpm/4, n=0, next=ctx.currentTime+0.15;
