@@ -1106,3 +1106,55 @@ body.modal-open #bg-canvas{visibility:hidden}
 .st-team-go{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#c4a6ee;border:1px solid currentColor;padding:.6rem 1rem;white-space:nowrap;transition:background .25s,color .25s}
 .st-team:hover .st-team-go{background:#c4a6ee;color:#0a0610}
 @media(max-width:700px){.st-team{grid-template-columns:1fr;gap:.8rem}.st-team-go{justify-self:start}}
+
+/* Competences : trois affichages (cartes, tableau, logos) */
+.vw[hidden]{display:none}
+.vw-switch{display:flex;gap:.4rem;align-items:center;margin:0 0 1.6rem;flex-wrap:wrap}
+.vw-switch-l{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-right:.6rem}
+.vw-btn{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);background:transparent;border:1px solid var(--border);padding:.5rem 1rem;cursor:pointer;transition:all .2s}
+.vw-btn:hover{color:var(--white);border-color:rgba(255,255,255,.35)}
+.vw-btn.active{color:var(--white);border-color:var(--red);box-shadow:inset 0 -2px 0 var(--red)}
+.vw-help{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.06em;color:var(--grey);margin:0 0 1.2rem}
+.vw-logo{display:inline-flex;align-items:center;justify-content:center;height:34px;min-width:34px;border-radius:6px;overflow:hidden;flex-shrink:0}
+.vw-logo img{height:100%;width:auto;max-width:90px;display:block}
+.vw-light{background:#f4f4f6;padding:.15rem .35rem}
+/* logos */
+.wl-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem;margin-bottom:1.2rem}
+.wl-tool{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:1.1rem .6rem;background:var(--bg3);border:1px solid var(--border);cursor:pointer;transition:all .25s;color:var(--grey-light)}
+.wl-tool .vw-logo{height:46px}
+.wl-n{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
+.wl-tool:hover{border-color:rgba(255,255,255,.3);transform:translateY(-3px)}
+.wl-tool[aria-pressed=true]{border-color:var(--red);box-shadow:0 0 0 1px var(--red),0 0 24px rgba(200,169,110,.25);color:var(--white)}
+.wl-status{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;color:var(--grey-light);margin:.4rem 0 .8rem;min-height:1.2em}
+.wl-projs{display:flex;flex-wrap:wrap;gap:.5rem}
+.wl-proj{display:inline-flex;border:1px solid var(--border);background:var(--bg3);transition:all .25s}
+.wl-pname,.wl-open{font-family:var(--font-title);background:none;border:0;color:var(--grey-light);cursor:pointer;transition:all .2s}
+.wl-pname{font-size:1.15rem;letter-spacing:.04em;padding:.55rem .9rem}
+.wl-open{font-size:.7rem;padding:0 .8rem;border-left:1px solid var(--border);color:var(--grey)}
+.wl-open:hover{background:var(--pc);color:#0a0a0a}
+.wl-projs.has-sel .wl-proj{opacity:.28}
+.wl-projs.has-sel .wl-proj.on{opacity:1;border-color:var(--pc);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
+.wl-proj.on .wl-pname{color:var(--white)}
+.wl-tools.has-sel .wl-tool:not(.on){opacity:.35}
+@media(max-width:700px){.wl-tools{grid-template-columns:repeat(2,1fr)}}
+
+.wl-status-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+.wl-status-row .wl-status{margin:0}
+.wl-detail{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:transparent;border:1px solid var(--red);padding:.4rem .9rem;cursor:pointer;transition:all .2s}
+.wl-detail:hover{background:var(--red);color:#0a0a0a}
+.wl-detail[hidden]{display:none}
+
+/* Competences : panneau de description d'outil et apercu de projet */
+.wl-panel{margin-top:1.4rem}
+.wl-panel[hidden]{display:none}
+.wl-tdesc{display:flex;gap:1.4rem;align-items:flex-start;padding:1.6rem 1.8rem;border:1px solid rgba(200,169,110,.35);background:linear-gradient(160deg,rgba(200,169,110,.08),rgba(0,0,0,.25));animation:selIn .4s cubic-bezier(.2,.75,.2,1) both}
+.wl-tdesc .vw-logo{height:60px;min-width:60px}
+.wl-tname{font-family:var(--font-title);font-size:1.7rem;letter-spacing:.04em;color:var(--white);margin-bottom:.5rem}
+.wl-tbody p{font-size:1rem;line-height:1.85;color:#e1dad2;max-width:68ch;margin:0}
+.wl-prev{display:grid;grid-template-columns:minmax(240px,38%) 1fr;gap:0;border:1px solid color-mix(in srgb,var(--c) 55%,#222);background:radial-gradient(120% 100% at 85% 0%,color-mix(in srgb,var(--c) 24%,#000),#08080b 70%);overflow:hidden;animation:selIn .4s cubic-bezier(.2,.75,.2,1) both}
+.wl-prev-art{position:relative;min-height:280px;color:var(--c2)}
+.wl-prev-art .sel-emblem{position:absolute;inset:0;opacity:1;transform:none;padding:6% 6% 6% 6%;display:flex;align-items:center;justify-content:center}
+.wl-prev-art .sel-emblem img,.wl-prev-art .sel-emblem svg{max-width:100%;max-height:100%}
+.wl-prev-body{padding:1.8rem 2rem;display:flex;flex-direction:column;gap:.55rem;justify-content:center}
+.wl-prev-body .sel-title{font-size:clamp(1.8rem,3.2vw,2.8rem)}
+@media(max-width:800px){.wl-prev{grid-template-columns:1fr}.wl-prev-art{min-height:220px}.wl-tdesc{flex-direction:column}}
