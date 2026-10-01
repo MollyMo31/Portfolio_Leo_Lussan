@@ -933,3 +933,15 @@ body.modal-open #bg-canvas{visibility:hidden}
 .sel-info[data-id=tower] .sel-title{font-size:clamp(2.2rem,4.4vw,4rem)}
 .cr-hero-art{top:0;transform:none;height:100%;padding-top:14px;box-sizing:border-box;opacity:.65}
 .cr-hero-logo{width:210px;margin-bottom:-10px}
+
+/* Entretien d'embauche (mini-jeu Twine) */
+.theme-entretien{--th-bg:#14060b;--th-acc:#be123c;--th-acc2:#fbbf24;--th-glow:rgba(190,18,60,.22)}
+#pm-entretien .proj-modal-title,#pm-entretien .pm-section-title{font-family:'Creepster',cursive!important;letter-spacing:.06em;font-weight:400}
+#pm-entretien .proj-modal-title{text-shadow:0 0 30px rgba(190,18,60,.55)}
+#pm-entretien .pm-label{color:#fbbf24}
+.ent-play{background:linear-gradient(90deg,rgba(190,18,60,.35),rgba(251,191,36,.18));font-size:.78rem;padding:.8rem 1.4rem}
+.sel-glyph-emb{right:6%}
+.sel-glyph-emb .sel-glyph{font-family:'Creepster',cursive;font-size:clamp(10rem,24vw,22rem);line-height:1;color:var(--c2);opacity:.18;text-shadow:0 0 50px var(--c)}
+.sel-item[data-id=entretien] .sel-name,.sel-info[data-id=entretien] .sel-title{font-family:'Creepster',cursive;letter-spacing:.05em}
+.sel-item[data-id=entretien] .sel-name{font-size:clamp(1.2rem,2vw,1.7rem)}
+.sel-info[data-id=entretien] .sel-title{font-size:clamp(2.2rem,4.2vw,3.8rem);line-height:1.05}
