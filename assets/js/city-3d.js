@@ -62,7 +62,7 @@ function initCity3DCore(container) {
     container.innerHTML = '<div style="font-family:Space Mono,monospace;font-size:.65rem;color:#f87171;text-align:center;padding:1rem">' + ((document.documentElement.lang==='en') ? '// WebGL unavailable, reload the page' : '// WebGL indisponible, recharge la page') + '</div>';
     return;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
   renderer.setSize(W, H);
   renderer.setClearColor(0x06061a, 1);
   renderer.shadowMap.enabled = false;
@@ -218,10 +218,13 @@ function initCity3DCore(container) {
   info.innerHTML = (document.documentElement.lang==='en') ? 'Mouse — Orbit · Wheel — Zoom' : 'Souris — Orbiter · Molette — Zoom';
   container.appendChild(info);
 
-  var raf = null;
+  var raf = null, inView = true;
+  // on ne dessine la 3D que lorsqu'elle est visible a l'ecran
+  if (window.IntersectionObserver) new IntersectionObserver(function(en) { inView = en[0].isIntersecting; }).observe(container);
   function animate() {
     if (stopped) return;
     raf = requestAnimationFrame(animate);
+    if (!inView) return;
     if (autoRot && modelLoaded) { theta += 0.002; updateCam(); }
     renderer.render(scene, camera);
   }

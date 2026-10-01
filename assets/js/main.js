@@ -1,5 +1,5 @@
-function openSkill(id){document.getElementById('sk-'+id).classList.add('open');document.body.style.overflow='hidden'}
-function closeSkill(id){document.getElementById('sk-'+id).classList.remove('open');document.body.style.overflow=''}
+function openSkill(id){document.getElementById('sk-'+id).classList.add('open');document.body.style.overflow='hidden';document.body.classList.add('modal-open')}
+function closeSkill(id){document.getElementById('sk-'+id).classList.remove('open');document.body.style.overflow='';document.body.classList.remove('modal-open')}
 
 /* == ACCORDEON == */
 function toggleAcc(header){
@@ -25,14 +25,14 @@ var FX_CONFIGS = {
   silence: { type:'darkness',  color:'#6b7280', glow:'rgba(107,114,128,' },
   musiques:{ type:'music',     color:'#d070f0', glow:'rgba(208,112,240,' },
   juiceup: { type:'juice',     color:'#c084fc', glow:'rgba(192,132,252,' },
-  draconium:{ type:'flames',   color:'#ff8c38', glow:'rgba(255,140,56,' },
+  draconium:{ type:'flames',   color:'#e9a23b', glow:'rgba(233,162,59,' },
   coaching:{ type:'neon',      color:'#f4a033', glow:'rgba(244,160,51,' },
   mira:    { type:'garden',    color:'#34d399', glow:'rgba(52,211,153,' },
   streaming:{ type:'stream',   color:'#9b72d0', glow:'rgba(155,114,208,' },
 };
 
 var _fxCanvas = document.createElement('canvas');
-_fxCanvas.style.cssText = 'position:fixed;inset:0;z-index:199;pointer-events:none;display:none;opacity:0.78;mix-blend-mode:screen;';
+_fxCanvas.style.cssText = 'position:fixed;inset:0;z-index:199;pointer-events:none;display:none;opacity:0.78;';
 document.body.appendChild(_fxCanvas);
 var _fxRaf = null;
 var _fxLastTime = 0;
@@ -1590,7 +1590,57 @@ _AMBIENCES.mira = function() {
     }
     playNote();
   };
-_AMBIENCES.coaching  = _AMBIENCES.neon;
+/* Entretien d'embauche : valse de cirque en la mineur, orgue de barbarie un peu faux */
+_AMBIENCES.entretien = function() {
+  var ctx=_ambCtx, out=_ambGain, bpm=138, beat=60/bpm, n=0, next=ctx.currentTime+0.2;
+  var A=55, F=function(semi){ return A*Math.pow(2,semi/12); };
+  // progression : Am Am E7 Am | Dm Am E7 Am  (racine, accord)
+  var BASS=[0,0,-5,0,5,0,-5,0], CH=[[12,15,19],[12,15,19],[11,15,18],[12,15,19],[17,21,24],[12,15,19],[11,15,18],[12,15,19]];
+  // melodie (une note par temps, 3 temps par mesure, 8 mesures) en demi-tons au-dessus de A3
+  var MEL=[24,27,31, 29,27,24, 23,26,29, 28,24,24, 29,33,36, 33,29,27, 26,23,26, 24,24,-1];
+  function env(g,t,peak,att,dur){ g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(peak,t+att); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); }
+  function tone(t,type,freq,peak,dur,cut,att,detune){ var o=ctx.createOscillator(),f=ctx.createBiquadFilter(),g=ctx.createGain(); o.type=type; o.frequency.value=freq; if(detune) o.detune.value=detune; f.type='lowpass'; f.frequency.value=cut||2000; env(g,t,peak,att||0.01,dur); o.connect(f); f.connect(g); g.connect(out); o.start(t); o.stop(t+dur+0.05); }
+  function schedule(){
+    if(_ambCurrentId!=='entretien') return;
+    while(next<ctx.currentTime+0.6){
+      var bar=Math.floor(n/3)%8, b=n%3, t=next, mi=(Math.floor(n/3)%8)*3+b;
+      if(b===0){ tone(t,'triangle',F(BASS[bar]),0.32,beat*0.9,500,0.01); }
+      else { CH[bar].forEach(function(s){ tone(t,'square',F(s),0.05,beat*0.45,1400,0.005); }); }
+      var m=MEL[mi]; if(m>=0){ tone(t,'sawtooth',F(m),0.07,beat*0.95,2600,0.03,(mi%2?9:-9)); tone(t,'sine',F(m+12),0.025,beat*0.9,3000,0.04,14); }
+      n++; next+=beat;
+    }
+    _ambLoop=setTimeout(schedule,120);
+  }
+  schedule();
+};
+
+/* Coaching : boucle synthetique motivante (la ligne precedente pointait vers une ambiance inexistante, d'ou le silence) */
+_AMBIENCES.coaching = function() {
+  var ctx=_ambCtx, out=_ambGain, bpm=104, step=60/bpm/4, n=0, next=ctx.currentTime+0.15;
+  var nb=ctx.createBuffer(1,Math.floor(ctx.sampleRate*0.25),ctx.sampleRate), nd=nb.getChannelData(0);
+  for(var i=0;i<nd.length;i++) nd[i]=Math.random()*2-1;
+  // Am - F - C - G
+  var ROOT=[55,43.65,65.41,49], CH=[[220,261.63,329.63,440],[174.61,220,261.63,349.23],[261.63,329.63,392,523.25],[196,246.94,293.66,392]];
+  function env(g,t,peak,dur){ g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(peak,t+0.006); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); }
+  function kick(t){ var o=ctx.createOscillator(),g=ctx.createGain(); o.type='sine'; o.frequency.setValueAtTime(140,t); o.frequency.exponentialRampToValueAtTime(42,t+0.14); env(g,t,0.55,0.28); o.connect(g); g.connect(out); o.start(t); o.stop(t+0.3); }
+  function noise(t,type,freq,peak,dur,q){ var s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain(); s.buffer=nb; f.type=type; f.frequency.value=freq; if(q) f.Q.value=q; env(g,t,peak,dur); s.connect(f); f.connect(g); g.connect(out); s.start(t); s.stop(t+dur+0.02); }
+  function tone(t,type,freq,peak,dur,cut){ var o=ctx.createOscillator(),f=ctx.createBiquadFilter(),g=ctx.createGain(); o.type=type; o.frequency.value=freq; f.type='lowpass'; f.frequency.value=cut||2400; env(g,t,peak,dur); o.connect(f); f.connect(g); g.connect(out); o.start(t); o.stop(t+dur+0.02); }
+  function schedule(){
+    if(_ambCurrentId!=='coaching') return;
+    while(next<ctx.currentTime+0.5){
+      var s=n%16, bar=Math.floor(n/16)%4, t=next;
+      if(s%4===0) kick(t);
+      if(s===4||s===12) noise(t,'bandpass',1900,0.22,0.16,0.9);
+      if(s%2===1) noise(t,'highpass',7500,0.07,0.05);
+      if([0,3,6,8,11,14].indexOf(s)!==-1) tone(t,'sawtooth',ROOT[bar]*(s===8||s===14?2:1),0.2,step*2.2,420);
+      var arp=CH[bar][[0,1,2,3,2,1,2,3][s%8]]; tone(t,'triangle',arp,s%2===0?0.075:0.05,step*1.6,3200);
+      if(s===0){ CH[bar].forEach(function(f){ tone(t,'sine',f/2,0.035,step*15.5,900); }); }
+      n++; next+=step;
+    }
+    _ambLoop=setTimeout(schedule,120);
+  }
+  schedule();
+};
 _AMBIENCES.streaming = function() {
     var ctx=_ambCtx, out=_ambGain;
     // Ambiance lofi streaming - pad doux + basse subtile
@@ -1939,6 +1989,7 @@ var _audio = {
 function openProj(id){
   document.getElementById('pm-'+id).classList.add('open');
   document.body.style.overflow='hidden';
+  document.body.classList.add('modal-open');
   initCar(id);
   _audio.init();
   _audio.playModalOpen();
@@ -1959,6 +2010,7 @@ function openProj(id){
 function closeProj(id){
   document.getElementById('pm-'+id).classList.remove('open');
   document.body.style.overflow='';
+  document.body.classList.remove('modal-open');
   stopFx();
   _audio.playModalClose();
   _audio.stopAmbient();
@@ -1984,7 +2036,7 @@ document.addEventListener('keydown',function(e){
 /* == AUDIO FEEDBACK ON INTERACTIONS == */
 (function(){
   // Hover feedback sur les project rows
-  document.querySelectorAll('.project-row').forEach(function(el){
+  document.querySelectorAll('.project-row,.sel-item,.sel-go').forEach(function(el){
     el.addEventListener('mouseenter',function(){ _audio.playHover(); });
     el.addEventListener('click',function(){ _audio.playClick(); });
   });
@@ -2204,7 +2256,7 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   // Le petit carre (dot) suit directement la souris - il DIRIGE
   function place(e){
     mouseX=e.clientX; mouseY=e.clientY;
-    dot.style.left=mouseX+'px'; dot.style.top=mouseY+'px';
+    dot.style.transform='translate3d('+mouseX+'px,'+mouseY+'px,0) translate(-50%,-50%)';
   }
   // Masque tant que la souris n'est pas dans la page
   document.body.classList.add('ch-out');
@@ -2224,12 +2276,12 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   // Le grand carre (ring) suit avec lag - il SUIT le petit
   function animateRing(){
     ringX+=(mouseX-ringX)*.25; ringY+=(mouseY-ringY)*.25;
-    ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
+    ring.style.transform='translate3d('+ringX+'px,'+ringY+'px,0) translate(-50%,-50%)';
     requestAnimationFrame(animateRing);
   }
   animateRing();
 
-  var sel='a,button,[onclick],.skill-card,.project-row,.sm-project-row,.carousel-btn,.nav-cta,.proj-modal-close,.skill-modal-close,.acc-header,.music-nav-btn,.flip-card-wrapper,.contact-row';
+  var sel='a,button,[onclick],.skill-card,.project-row,.sel-item,.sel-go,.sm-project-row,.carousel-btn,.nav-cta,.proj-modal-close,.skill-modal-close,.acc-header,.music-nav-btn,.flip-card-wrapper,.contact-row';
   document.addEventListener('mouseover',function(e){if(e.target.closest(sel))document.body.classList.add('ch-hover')});
   document.addEventListener('mouseout', function(e){if(e.target.closest(sel))document.body.classList.remove('ch-hover')});
 })();
@@ -2378,4 +2430,56 @@ window.addEventListener('load',function(){
   });
   new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   render();
+})();
+
+/* == SELECTEUR DE PROJETS : survol / clavier pour choisir, clic pour entrer == */
+(function(){
+  var root=document.getElementById('sel'); if(!root) return;
+  var stage=document.getElementById('sel-stage'), items=[].slice.call(root.querySelectorAll('.sel-item')), cur=null;
+  [].forEach.call(root.querySelectorAll('.ln'),function(n){ n.setAttribute('pathLength','1'); });
+  function select(id,focus){
+    if(cur===id) return; cur=id;
+    items.forEach(function(it){ var on=it.getAttribute('data-id')===id; it.classList.toggle('active',on); it.setAttribute('aria-selected',on?'true':'false'); if(on){ stage.style.setProperty('--c',it.style.getPropertyValue('--c')); stage.style.setProperty('--c2',it.style.getPropertyValue('--c2')); if(focus) it.focus({preventScroll:true}); } });
+    [].forEach.call(stage.querySelectorAll('.sel-info'),function(n){ n.hidden=n.getAttribute('data-id')!==id; });
+    [].forEach.call(stage.querySelectorAll('.sel-emblem'),function(n){ n.classList.toggle('on',n.getAttribute('data-id')===id); });
+  }
+  function open(id,ev){
+    var o=document.getElementById('pm-'+id); if(!o) return;
+    var x=ev&&ev.clientX, y=ev&&ev.clientY;
+    if(!x&&!y){ var r=stage.getBoundingClientRect(); x=r.left+r.width/2; y=r.top+r.height/2; }
+    o.style.setProperty('--ox',x+'px'); o.style.setProperty('--oy',y+'px');
+    [].forEach.call(o.querySelectorAll('.proj-modal-tags .tag'),function(t,i){ t.style.setProperty('--i',i); });
+    openProj(id);
+  }
+  var canHover=window.matchMedia&&matchMedia('(hover:hover)').matches;
+  items.forEach(function(it,i){
+    var id=it.getAttribute('data-id');
+    // intention de survol : on ne change de projet que si le curseur s'arrete un instant sur la ligne,
+    // pour ne pas basculer en traversant la liste vers la scene
+    var tm=null;
+    it.addEventListener('mouseenter',function(){ if(!canHover) return; clearTimeout(tm); tm=setTimeout(function(){ select(id); },cur===id?0:170); });
+    it.addEventListener('mouseleave',function(){ clearTimeout(tm); });
+    it.addEventListener('focus',function(){ select(id); });
+    it.addEventListener('click',function(e){ if(canHover||cur===id&&!canHover&&false) open(id,e); else select(id); });
+    it.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(id,null); }
+      else if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); var n=items[i+(e.key==='ArrowDown'?1:-1)]; if(n) n.focus(); }
+    });
+  });
+  [].forEach.call(stage.querySelectorAll('.sel-go'),function(b){ b.addEventListener('click',function(e){ open(b.getAttribute('data-id'),e); }); });
+  stage.addEventListener('mousemove',function(e){ var r=stage.getBoundingClientRect(); stage.style.setProperty('--mx',(e.clientX-r.left)+'px'); stage.style.setProperty('--my',(e.clientY-r.top)+'px'); });
+  select(items[0].getAttribute('data-id'));
+})();
+
+/* == Mira : chasse aux references (lampe torche + clic) == */
+(function(){
+  var box=document.getElementById('ref-hunt'); if(!box) return;
+  var chips=[].slice.call(box.querySelectorAll('.ref-chip')), nEl=box.querySelector('.ref-n');
+  function count(){ nEl.textContent=box.querySelectorAll('.ref-chip.found').length; }
+  box.addEventListener('mousemove',function(e){
+    chips.forEach(function(c){ var r=c.getBoundingClientRect(); c.style.setProperty('--lx',(e.clientX-r.left)+'px'); c.style.setProperty('--ly',(e.clientY-r.top)+'px'); });
+  });
+  box.addEventListener('mouseleave',function(){ chips.forEach(function(c){ c.style.setProperty('--lx','-999px'); }); });
+  chips.forEach(function(c){ c.addEventListener('click',function(){ c.classList.add('found'); count(); }); });
+  box.querySelector('.ref-all').addEventListener('click',function(){ chips.forEach(function(c){ c.classList.add('found'); }); count(); });
 })();

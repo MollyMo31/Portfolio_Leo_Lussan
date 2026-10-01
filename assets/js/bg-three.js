@@ -69,6 +69,7 @@
   function animate(now){
     requestAnimationFrame(animate);
     if (now - _bgLast < 50) return; // max 20fps pour le fond
+    if (document.body.classList.contains('modal-open')) return; // fond cache derriere la fiche : on ne le dessine pas
     _bgLast = now;
     cubes.forEach(function(c){
       var d = c.userData;

@@ -8,7 +8,7 @@
     var W = container.clientWidth, H = container.clientHeight || 420;
 
     var renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(W, H);
     renderer.shadowMap.enabled = true;
     renderer.outputEncoding = THREE.sRGBEncoding;
@@ -316,10 +316,12 @@
     container.appendChild(rotDiv);
 
     // === ANIMATION ===
-    var raf=null, stopped=false;
+    var raf=null, stopped=false, inView=true;
+    if(window.IntersectionObserver) new IntersectionObserver(function(en){ inView=en[0].isIntersecting; }).observe(container);
     function animate(){
       if(stopped) return;
       raf=requestAnimationFrame(animate);
+      if(!inView) return;
       doKeys();
       if(autoRot){rotateCamera(0.0018,0);}
       renderer.render(scene,camera);
