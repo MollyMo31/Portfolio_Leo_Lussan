@@ -758,3 +758,13 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .has-logo .tool-logo.tl-git{height:40px}
 .has-logo .logo-plate:has(.tl-svn){height:44px;padding:.2rem .35rem}
 .has-logo .logo-plate .tl-svn{height:100%;width:auto}
+
+/* logos d'outils dans les tags d'en-tete des projets */
+.proj-modal-tags .tag.tag-logo{display:inline-flex;align-items:center;gap:.4rem;height:36px;padding:.3rem .6rem;box-sizing:border-box}
+.proj-modal-tags .tag-logo img{height:100%;width:auto;display:block}
+.proj-modal-tags .tag-logo.tl-unity img{border-radius:5px}
+.proj-modal-tags .tag-logo.tl-photoshop img{border-radius:4px}
+.proj-modal-tags .tag-logo.tl-light{background:#f4f4f6;border-color:#f4f4f6}
+.proj-modal-tags .tag-logo.tl-unreal{height:44px}
+.proj-modal-tags .tag-logo.tl-ldtk{padding:.2rem}
+@media(max-width:700px){.proj-modal-tags .tag.tag-logo{height:28px;padding:.2rem .4rem}.proj-modal-tags .tag-logo.tl-unreal{height:34px}}
