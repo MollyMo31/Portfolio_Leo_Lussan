@@ -2402,7 +2402,11 @@ window.addEventListener('load',function(){
   var canHover=window.matchMedia&&matchMedia('(hover:hover)').matches;
   items.forEach(function(it,i){
     var id=it.getAttribute('data-id');
-    it.addEventListener('mouseenter',function(){ if(canHover) select(id); });
+    // intention de survol : on ne change de projet que si le curseur s'arrete un instant sur la ligne,
+    // pour ne pas basculer en traversant la liste vers la scene
+    var tm=null;
+    it.addEventListener('mouseenter',function(){ if(!canHover) return; clearTimeout(tm); tm=setTimeout(function(){ select(id); },cur===id?0:170); });
+    it.addEventListener('mouseleave',function(){ clearTimeout(tm); });
     it.addEventListener('focus',function(){ select(id); });
     it.addEventListener('click',function(e){ if(canHover||cur===id&&!canHover&&false) open(id,e); else select(id); });
     it.addEventListener('keydown',function(e){

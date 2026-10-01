@@ -856,3 +856,10 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 .sel-emblem-img.on{opacity:1}
 .sel-emblem-img{padding:0 3% 12% 0;box-sizing:border-box}
 .sel-emblems{right:3%}
+
+/* images "photo" (fond plein) : fondu doux sur les bords pour se fondre dans la scene */
+.sel-emblem-photo{padding:0 2% 10% 0}
+.sel-emblem-photo img{border-radius:50%;-webkit-mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);mask-image:radial-gradient(closest-side,#000 62%,transparent 100%);filter:saturate(1.05) drop-shadow(0 0 24px color-mix(in srgb,var(--c2) 40%,transparent))}
+.pr-hero-img{position:absolute;right:-4%;top:50%;transform:translateY(-50%);height:150%;aspect-ratio:1;object-fit:cover;opacity:.3;pointer-events:none;z-index:0;-webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);mask-image:radial-gradient(closest-side,#000 45%,transparent 100%)}
+#pm-priest .proj-modal-hero>*:not(.pr-hero-img):not(.proj-modal-close){position:relative;z-index:1}
+@media(max-width:700px){.pr-hero-img{opacity:.2;height:120%}}
