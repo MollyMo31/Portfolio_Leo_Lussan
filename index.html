@@ -308,66 +308,110 @@
   <div class="section-num"><span data-i18n="label_projects">// 003 — Portfolio</span></div>
   <h2 class="section-title" data-i18n="title_projects">PROJETS</h2>
 
-  <div class="proj-cat-label">Projets d'école</div>
-  <div>
-    <div class="project-row" onclick="openProj('unjudged')">
-      <div class="project-num">01</div>
-      <div><div class="project-name" data-i18n="proj_unjudged">UNJUDGED</div><div class="project-tags"><span class="tag">Level Design</span><span class="tag">Narratif</span><span class="tag">3ème Année</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2024 — Présent</span><span class="project-arrow">→</span></div>
-    </div>
-    <div class="project-row" onclick="openProj('priest')">
-      <div class="project-num">02</div>
-      <div><div class="project-name" data-i18n="proj_priest">DEVOURING PRIEST</div><div class="project-tags"><span class="tag">Level Design</span><span class="tag">Horreur</span><span class="tag">2ème Année</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2ème Année</span><span class="project-arrow">→</span></div>
-    </div>
-    <div class="project-row" onclick="openProj('city')">
-      <div class="project-num">03</div>
-      <div><div class="project-name" data-i18n="proj_city">CITY RIDER</div><div class="project-tags"><span class="tag">Urban Design</span><span class="tag">Unity</span><span class="tag">2ème Année</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2ème Année</span><span class="project-arrow">→</span></div>
-    </div>
-    <div class="project-row" onclick="openProj('tower')">
-      <div class="project-num">04</div>
-      <div><div class="project-name" data-i18n="proj_tower">TOWER DEFENSE</div><div class="project-tags"><span class="tag">Tower Defense</span><span class="tag">Jardin</span><span class="tag">LDtk</span><span class="tag">Hack'n'Plan</span><span class="tag">Map Design</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">1ère Année</span><span class="project-arrow">→</span></div>
-    </div>
-    <div class="project-row" onclick="openProj('silence')">
-      <div class="project-num">05</div>
-      <div><div class="project-name" data-i18n="proj_silence">THE SILENCE</div><div class="project-tags"><span class="tag">Game Design</span><span class="tag">Narrative</span><span class="tag">Atmosphère</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">École + Personnel</span><span class="project-arrow">→</span></div>
-    </div>
+  <div class="lvl-tabs" role="tablist">
+    <button type="button" class="lvl-tab active" data-f="all" role="tab">Tous</button>
+    <button type="button" class="lvl-tab" data-f="school" role="tab">Projets d'école</button>
+    <button type="button" class="lvl-tab" data-f="perso" role="tab">Projets personnels</button>
   </div>
-
-  <div class="proj-cat-label" id="cat-school-label" data-i18n="cat_personal" style="margin-top:4rem">Projets personnels</div>
-  <div>
-    <div class="project-row" onclick="openProj('draconium')">
-      <div class="project-num">06</div>
-      <div><div class="project-name" data-i18n="proj_draconium">DRACONIUM</div><div class="project-tags"><span class="tag red">En développement</span><span class="tag">Platformer 2D</span><span class="tag">Medieval Fantasy</span><span class="tag">Dragon</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">Personnel</span><span class="project-arrow">→</span></div>
+  <div class="lvl-grid">
+    <div class="lvl-card" data-cat="school" tabindex="0" role="button" style="--c:#4ade80;--c2:#86efac" onclick="openProj('unjudged')">
+      <div class="lvl-art"><img src="assets/img/projets/thumbs/unjudged.webp" alt="" loading="lazy" decoding="async"/><span class="lvl-badge">École</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 01</span><span class="project-year">2024 — Présent</span></div>
+        <div class="project-name" data-i18n="proj_unjudged">UNJUDGED</div>
+        <div class="project-tags"><span class="tag">Level Design</span><span class="tag">Narratif</span><span class="tag">3ème Année</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
     </div>
-    <div class="project-row" onclick="openProj('juiceup')">
-      <div class="project-num">07</div>
-      <div><div class="project-name">JUICEUP</div><div class="project-tags"><span class="tag">Game Feel</span><span class="tag">Unity 2D</span><span class="tag">Platformer</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">Personnel</span><span class="project-arrow">→</span></div>
+    <div class="lvl-card" data-cat="school" tabindex="0" role="button" style="--c:#b91c1c;--c2:#ef4444" onclick="openProj('priest')">
+      <div class="lvl-art"><img src="assets/img/projets/thumbs/priest.webp" alt="" loading="lazy" decoding="async"/><span class="lvl-badge">École</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 02</span><span class="project-year">2ème Année</span></div>
+        <div class="project-name" data-i18n="proj_priest">DEVOURING PRIEST</div>
+        <div class="project-tags"><span class="tag">Level Design</span><span class="tag">Horreur</span><span class="tag">2ème Année</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
     </div>
-    <div class="project-row" onclick="openProj('mira')">
-      <div class="project-num">08</div>
-      <div><div class="project-name" data-i18n="proj_mira">PROJET MIRA</div><div class="project-tags"><span class="tag">Minecraft</span><span class="tag">Level Design</span><span class="tag">Builder</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2020 — Présent</span><span class="project-arrow">→</span></div>
+    <div class="lvl-card" data-cat="school" tabindex="0" role="button" style="--c:#00d4ff;--c2:#a78bfa" onclick="openProj('city')">
+      <div class="lvl-art"><img src="assets/img/projets/thumbs/city.webp" alt="" loading="lazy" decoding="async"/><span class="lvl-badge">École</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 03</span><span class="project-year">2ème Année</span></div>
+        <div class="project-name" data-i18n="proj_city">CITY RIDER</div>
+        <div class="project-tags"><span class="tag">Urban Design</span><span class="tag tag-logo tl-unity" title="Unity" role="img" aria-label="Unity"><img src="assets/img/logos/unity.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag">2ème Année</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
     </div>
-    <div class="project-row" onclick="openProj('coaching')">
-      <div class="project-num">09</div>
-      <div><div class="project-name" data-i18n="proj_coaching">COACHING E-SPORT</div><div class="project-tags"><span class="tag">E-Sport</span><span class="tag">Valorant</span><span class="tag">LoL</span><span class="tag">Dead by Daylight</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2022 — Présent</span><span class="project-arrow">→</span></div>
+    <div class="lvl-card" data-cat="school" tabindex="0" role="button" style="--c:#65a30d;--c2:#a3e635" onclick="openProj('tower')">
+      <div class="lvl-art"><img src="assets/img/projets/thumbs/tower.webp" alt="" loading="lazy" decoding="async"/><span class="lvl-badge">École</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 04</span><span class="project-year">1ère Année</span></div>
+        <div class="project-name" data-i18n="proj_tower">TOWER DEFENSE</div>
+        <div class="project-tags"><span class="tag">Tower Defense</span><span class="tag">Jardin</span><span class="tag tag-logo tl-ldtk" title="LDtk" role="img" aria-label="LDtk"><img src="assets/img/logos/ldtk.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-hacknplan" title="Hack'n'Plan" role="img" aria-label="Hack'n'Plan"><img src="assets/img/logos/hacknplan.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag">Map Design</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
     </div>
-    <div class="project-row" onclick="openProj('streaming')">
-      <div class="project-num">10</div>
-      <div><div class="project-name" data-i18n="proj_streaming">STREAMING TWITCH</div><div class="project-tags"><span class="tag">Twitch</span><span class="tag">Community</span><span class="tag">Gaming</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">2025 — Présent</span><span class="project-arrow">→</span></div>
+    <div class="lvl-card" data-cat="school" tabindex="0" role="button" style="--c:#4b5563;--c2:#9ca3af" onclick="openProj('silence')">
+      <div class="lvl-art"><span class="lvl-glyph">05</span><span class="lvl-badge">École</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 05</span><span class="project-year">École + Personnel</span></div>
+        <div class="project-name" data-i18n="proj_silence">THE SILENCE</div>
+        <div class="project-tags"><span class="tag">Game Design</span><span class="tag">Narrative</span><span class="tag">Atmosphère</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
     </div>
-    <div class="project-row" onclick="openProj('musiques')">
-      <div class="project-num">11</div>
-      <div><div class="project-name" data-i18n="proj_musiques">MUSIQUES</div><div class="project-tags"><span class="tag">Production</span><span class="tag">Soundtrap</span><span class="tag">Ambiances</span></div></div>
-      <div style="display:flex;align-items:center;gap:1.2rem"><span class="project-year">Personnel</span><span class="project-arrow">→</span></div>
+    <div class="lvl-card" data-cat="perso" tabindex="0" role="button" style="--c:#c2500a;--c2:#ff8c38" onclick="openProj('draconium')">
+      <div class="lvl-art"><span class="lvl-glyph">06</span><span class="lvl-badge">Perso</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 06</span><span class="project-year">Personnel</span></div>
+        <div class="project-name" data-i18n="proj_draconium">DRACONIUM</div>
+        <div class="project-tags"><span class="tag red">En développement</span><span class="tag">Platformer 2D</span><span class="tag">Medieval Fantasy</span><span class="tag">Dragon</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
+    </div>
+    <div class="lvl-card" data-cat="perso" tabindex="0" role="button" style="--c:#8b00ff;--c2:#c084fc" onclick="openProj('juiceup')">
+      <div class="lvl-art"><span class="lvl-glyph">07</span><span class="lvl-badge">Perso</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 07</span><span class="project-year">Personnel</span></div>
+        <div class="project-name">JUICEUP</div>
+        <div class="project-tags"><span class="tag">Game Feel</span><span class="tag tag-logo tl-unity" title="Unity 2D" role="img" aria-label="Unity 2D"><img src="assets/img/logos/unity.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag">Platformer</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
+    </div>
+    <div class="lvl-card" data-cat="perso" tabindex="0" role="button" style="--c:#059669;--c2:#34d399" onclick="openProj('mira')">
+      <div class="lvl-art"><img src="assets/img/projets/thumbs/mira.webp" alt="" loading="lazy" decoding="async"/><span class="lvl-badge">Perso</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 08</span><span class="project-year">2020 — Présent</span></div>
+        <div class="project-name" data-i18n="proj_mira">PROJET MIRA</div>
+        <div class="project-tags"><span class="tag">Minecraft</span><span class="tag">Level Design</span><span class="tag">Builder</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
+    </div>
+    <div class="lvl-card" data-cat="perso" tabindex="0" role="button" style="--c:#c8a96e;--c2:#e8c98a" onclick="openProj('coaching')">
+      <div class="lvl-art"><img src="assets/img/projets/thumbs/coaching.webp" alt="" loading="lazy" decoding="async"/><span class="lvl-badge">Perso</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 09</span><span class="project-year">2022 — Présent</span></div>
+        <div class="project-name" data-i18n="proj_coaching">COACHING E-SPORT</div>
+        <div class="project-tags"><span class="tag">E-Sport</span><span class="tag">Valorant</span><span class="tag">LoL</span><span class="tag">Dead by Daylight</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
+    </div>
+    <div class="lvl-card" data-cat="perso" tabindex="0" role="button" style="--c:#6441a5;--c2:#9b72d0" onclick="openProj('streaming')">
+      <div class="lvl-art"><img src="assets/img/projets/thumbs/streaming.webp" alt="" loading="lazy" decoding="async"/><span class="lvl-badge">Perso</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 10</span><span class="project-year">2025 — Présent</span></div>
+        <div class="project-name" data-i18n="proj_streaming">STREAMING TWITCH</div>
+        <div class="project-tags"><span class="tag">Twitch</span><span class="tag">Community</span><span class="tag">Gaming</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
+    </div>
+    <div class="lvl-card" data-cat="perso" tabindex="0" role="button" style="--c:#9b3fb5;--c2:#d070f0" onclick="openProj('musiques')">
+      <div class="lvl-art"><span class="lvl-glyph">11</span><span class="lvl-badge">Perso</span></div>
+      <div class="lvl-body">
+        <div class="lvl-top"><span class="lvl-num"><span>Niveau</span> 11</span><span class="project-year">Personnel</span></div>
+        <div class="project-name" data-i18n="proj_musiques">MUSIQUES</div>
+        <div class="project-tags"><span class="tag">Production</span><span class="tag">Soundtrap</span><span class="tag">Ambiances</span></div>
+        <div class="lvl-play">▶ Lancer</div>
+      </div>
     </div>
   </div>
 </section>

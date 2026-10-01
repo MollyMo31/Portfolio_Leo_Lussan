@@ -1984,7 +1984,7 @@ document.addEventListener('keydown',function(e){
 /* == AUDIO FEEDBACK ON INTERACTIONS == */
 (function(){
   // Hover feedback sur les project rows
-  document.querySelectorAll('.project-row').forEach(function(el){
+  document.querySelectorAll('.project-row,.lvl-card').forEach(function(el){
     el.addEventListener('mouseenter',function(){ _audio.playHover(); });
     el.addEventListener('click',function(){ _audio.playClick(); });
   });
@@ -2229,7 +2229,7 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   }
   animateRing();
 
-  var sel='a,button,[onclick],.skill-card,.project-row,.sm-project-row,.carousel-btn,.nav-cta,.proj-modal-close,.skill-modal-close,.acc-header,.music-nav-btn,.flip-card-wrapper,.contact-row';
+  var sel='a,button,[onclick],.skill-card,.project-row,.lvl-card,.lvl-tab,.sm-project-row,.carousel-btn,.nav-cta,.proj-modal-close,.skill-modal-close,.acc-header,.music-nav-btn,.flip-card-wrapper,.contact-row';
   document.addEventListener('mouseover',function(e){if(e.target.closest(sel))document.body.classList.add('ch-hover')});
   document.addEventListener('mouseout', function(e){if(e.target.closest(sel))document.body.classList.remove('ch-hover')});
 })();
@@ -2378,4 +2378,26 @@ window.addEventListener('load',function(){
   });
   new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   render();
+})();
+
+/* == SELECTEUR DE NIVEAUX (liste des projets) : filtres + navigation clavier == */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.lvl-card')), tabs=[].slice.call(document.querySelectorAll('.lvl-tab'));
+  if(!cards.length) return;
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.toggle('active',x===t);});
+      var f=t.getAttribute('data-f');
+      cards.forEach(function(c){ c.hidden=!(f==='all'||c.getAttribute('data-cat')===f); });
+    });
+  });
+  function visible(){ return cards.filter(function(c){return !c.hidden;}); }
+  cards.forEach(function(c){
+    c.addEventListener('keydown',function(e){
+      var v=visible(), i=v.indexOf(c), cols=getComputedStyle(c.parentNode).gridTemplateColumns.split(' ').length, n=-1;
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.click(); return; }
+      if(e.key==='ArrowRight') n=i+1; else if(e.key==='ArrowLeft') n=i-1; else if(e.key==='ArrowDown') n=i+cols; else if(e.key==='ArrowUp') n=i-cols; else return;
+      e.preventDefault(); if(v[n]) v[n].focus();
+    });
+  });
 })();
