@@ -1092,3 +1092,17 @@ body.modal-open #bg-canvas{visibility:hidden}
 .st-vt{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:1.25rem;color:#c4a6ee;text-transform:uppercase;margin-bottom:.4rem}
 .st-vd{font-family:'DM Sans',sans-serif;font-size:.86rem;line-height:1.7;color:#d6cfc6}
 @media(max-width:700px){.st-stats{grid-template-columns:1fr 1fr}.st-vals{grid-template-columns:1fr}.st-tl li{grid-template-columns:1fr;gap:.2rem}.st-panel{padding:1.2rem}}
+
+/* Lien vers la structure e-sport (Kalyx) */
+.st-team{display:grid;grid-template-columns:auto 1fr auto;gap:1.4rem;align-items:center;margin:2rem 0 .4rem;padding:1.3rem 1.6rem;border:1px solid rgba(155,114,208,.5);background:linear-gradient(100deg,rgba(155,114,208,.22),rgba(0,0,0,.25));text-decoration:none;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.st-team::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s}
+.st-team:hover{transform:translateY(-3px);border-color:#c4a6ee;box-shadow:0 14px 40px -14px rgba(155,114,208,.7)}
+.st-team:hover::after{transform:translateX(120%)}
+.st-team-badge{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:.08em;color:#0a0610;background:#c4a6ee;padding:.7rem 1rem;box-shadow:0 0 24px rgba(155,114,208,.55)}
+.st-team-txt{display:flex;flex-direction:column;gap:.15rem}
+.st-team-k{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:#c4a6ee}
+.st-team-t{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:1.45rem;color:var(--white)}
+.st-team-d{font-family:'DM Sans',sans-serif;font-size:.85rem;line-height:1.6;color:#d6cfc6}
+.st-team-go{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#c4a6ee;border:1px solid currentColor;padding:.6rem 1rem;white-space:nowrap;transition:background .25s,color .25s}
+.st-team:hover .st-team-go{background:#c4a6ee;color:#0a0610}
+@media(max-width:700px){.st-team{grid-template-columns:1fr;gap:.8rem}.st-team-go{justify-self:start}}
