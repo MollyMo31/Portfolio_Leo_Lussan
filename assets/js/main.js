@@ -2483,3 +2483,16 @@ window.addEventListener('load',function(){
   chips.forEach(function(c){ c.addEventListener('click',function(){ c.classList.add('found'); count(); }); });
   box.querySelector('.ref-all').addEventListener('click',function(){ chips.forEach(function(c){ c.classList.add('found'); }); count(); });
 })();
+
+/* == Streaming : onglets de jeux == */
+(function(){
+  var root=document.getElementById('pm-streaming'); if(!root) return;
+  var tabs=[].slice.call(root.querySelectorAll('.st-tab')), panels=[].slice.call(root.querySelectorAll('.st-panel'));
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      var id=t.getAttribute('data-t');
+      tabs.forEach(function(x){ x.classList.toggle('active',x===t); });
+      panels.forEach(function(p){ p.hidden=p.getAttribute('data-p')!==id; });
+    });
+  });
+})();
