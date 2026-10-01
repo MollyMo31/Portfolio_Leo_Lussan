@@ -1107,21 +1107,6 @@ body.modal-open #bg-canvas{visibility:hidden}
 .st-team:hover .st-team-go{background:#c4a6ee;color:#0a0610}
 @media(max-width:700px){.st-team{grid-template-columns:1fr;gap:.8rem}.st-team-go{justify-self:start}}
 
-/* Competences : grille directe, filtres et acces aux projets */
-.sk-tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.6rem}
-.sk-tab{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grey-light);background:rgba(255,255,255,.03);border:1px solid var(--border);padding:.55rem 1.1rem;cursor:pointer;transition:all .2s}
-.sk-tab:hover{color:var(--white);border-color:rgba(255,255,255,.3)}
-.sk-tab.active{color:var(--bg);background:var(--red);border-color:var(--red)}
-.sk-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
-.sk-grid .skill-card{padding:1.4rem;display:flex;flex-direction:column;gap:.25rem}
-.sk-grid .skill-card[hidden]{display:none}
-.sk-grid .skill-icon{margin-bottom:.5rem}
-.sk-grid .skill-desc{flex:1}
-.sk-uses{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin-top:.9rem;padding-top:.8rem;border-top:1px dashed rgba(255,255,255,.1)}
-.sk-uses-l{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
-.sk-use{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.06em;color:var(--grey-light);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:.22rem .55rem;cursor:pointer;transition:all .2s}
-.sk-use:hover{color:var(--bg);background:var(--red);border-color:var(--red)}
-
 /* Competences : trois affichages (cartes, tableau, logos) */
 .vw[hidden]{display:none}
 .vw-switch{display:flex;gap:.4rem;align-items:center;margin:0 0 1.6rem;flex-wrap:wrap}
@@ -1133,22 +1118,6 @@ body.modal-open #bg-canvas{visibility:hidden}
 .vw-logo{display:inline-flex;align-items:center;justify-content:center;height:34px;min-width:34px;border-radius:6px;overflow:hidden;flex-shrink:0}
 .vw-logo img{height:100%;width:auto;max-width:90px;display:block}
 .vw-light{background:#f4f4f6;padding:.15rem .35rem}
-/* tableau */
-.mx-wrap{overflow-x:auto;border:1px solid var(--border);background:var(--bg3)}
-.mx{border-collapse:collapse;width:100%;min-width:760px}
-.mx th,.mx td{border-bottom:1px solid var(--border);text-align:center}
-.mx thead th{height:150px;vertical-align:bottom;padding:.4rem 0;background:rgba(255,255,255,.02)}
-.mx-pbtn{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:none;border:0;cursor:pointer;padding:.4rem .2rem;white-space:nowrap;transition:color .2s}
-.mx-col:hover .mx-pbtn{color:var(--pc)}
-.mx-row{text-align:left!important;padding:.6rem 1rem!important;white-space:nowrap}
-.mx-row .vw-logo{margin-right:.8rem;vertical-align:middle}
-.mx-name{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--white);vertical-align:middle}
-.mx-cell{width:64px;height:58px;position:relative;transition:background .2s}
-.mx tbody tr:hover{background:rgba(255,255,255,.03)}
-.mx-dot{width:18px;height:18px;border-radius:50%;background:var(--pc);border:0;cursor:pointer;box-shadow:0 0 0 0 var(--pc);transition:transform .2s,box-shadow .2s}
-.mx-dot:hover{transform:scale(1.5);box-shadow:0 0 16px var(--pc)}
-.mx-count{font-family:var(--font-mono);font-size:.7rem;color:var(--grey-light);width:70px}
-.mx-sum{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);vertical-align:bottom!important}
 /* logos */
 .wl-tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem;margin-bottom:1.2rem}
 .wl-tool{display:flex;flex-direction:column;align-items:center;gap:.6rem;padding:1.1rem .6rem;background:var(--bg3);border:1px solid var(--border);cursor:pointer;transition:all .25s;color:var(--grey-light)}
@@ -1168,3 +1137,9 @@ body.modal-open #bg-canvas{visibility:hidden}
 .wl-proj.on .wl-pname{color:var(--white)}
 .wl-tools.has-sel .wl-tool:not(.on){opacity:.35}
 @media(max-width:700px){.wl-tools{grid-template-columns:repeat(2,1fr)}}
+
+.wl-status-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+.wl-status-row .wl-status{margin:0}
+.wl-detail{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:transparent;border:1px solid var(--red);padding:.4rem .9rem;cursor:pointer;transition:all .2s}
+.wl-detail:hover{background:var(--red);color:#0a0a0a}
+.wl-detail[hidden]{display:none}
