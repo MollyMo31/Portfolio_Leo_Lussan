@@ -47,6 +47,7 @@
  "DAW en ligne pour la production de compositions musicales et de sound design. Crée des ambiances sonores qui enrichissent les projets de game design.": "Online DAW for producing musical compositions and sound design. Creates soundscapes that enrich game design projects.",
  "Terrain d'expérimentation pour le level design. Construction de maps, architectures thématiques, parkour et hubs immersifs avec 32 références jeux vidéo.": "Experimentation ground for level design. Map building, themed architecture, parkour and immersive hubs with 32 video game references.",
  "Projets d'école": "School Projects",
+ "Clique sur un outil pour le détail, ou sur un projet pour l'ouvrir directement.": "Click a tool for details, or a project to open it directly.",
  "Affichage": "View",
  "Cartes": "Cards",
  "Tableau": "Table",
