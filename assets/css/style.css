@@ -907,3 +907,29 @@ body.modal-open #bg-canvas{visibility:hidden}
 .sel-unj-logo{order:-1;max-height:15%}
 .sel-unj-statue{max-height:76%}
 .un-hero-img{height:112%;top:52%}
+
+/* City Rider : logo au-dessus du chef */
+.sel-cr{flex-direction:column;justify-content:flex-start;gap:0;padding:2% 3% 8% 0;box-sizing:border-box}
+.sel-cr-logo{width:78%;max-height:20%;object-fit:contain;position:relative;z-index:2;margin-bottom:-4%;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6))}
+.sel-cr-chef{max-height:74%;width:auto;max-width:70%;object-fit:contain;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(0deg,transparent,#000 16%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(0deg,transparent,#000 16%,#000 88%,transparent);mask-composite:intersect}
+.cr-hero-art{position:absolute;right:3%;top:50%;transform:translateY(-50%);height:118%;display:flex;flex-direction:column;align-items:center;opacity:.5;pointer-events:none;z-index:0}
+.cr-hero-logo{width:240px;max-width:100%;position:relative;z-index:1;margin-bottom:-14px}
+.cr-hero-chef{flex:1;min-height:0;width:auto;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(0deg,transparent,#000 16%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(0deg,transparent,#000 16%,#000 88%,transparent);mask-composite:intersect}
+#pm-city .proj-modal-hero>*:not(.cr-hero-art):not(.proj-modal-close){position:relative;z-index:1}
+@media(max-width:700px){.cr-hero-art{opacity:.25;right:-5%}}
+
+/* Typographie propre a chaque projet dans le selecteur (reprise des titres des fiches) */
+.sel-item[data-id=unjudged] .sel-name,.sel-info[data-id=unjudged] .sel-title,.sel-item[data-id=draconium] .sel-name,.sel-info[data-id=draconium] .sel-title{font-family:'Cinzel Decorative',serif;letter-spacing:.03em}
+.sel-item[data-id=priest] .sel-name,.sel-info[data-id=priest] .sel-title{font-family:'Nosifer',cursive;letter-spacing:.02em}
+.sel-item[data-id=city] .sel-name,.sel-info[data-id=city] .sel-title,.sel-item[data-id=juiceup] .sel-name,.sel-info[data-id=juiceup] .sel-title{font-family:'Orbitron',sans-serif;letter-spacing:.06em}
+.sel-item[data-id=tower] .sel-name,.sel-info[data-id=tower] .sel-title{font-family:'Macondo',serif}
+.sel-item[data-id=silence] .sel-name,.sel-info[data-id=silence] .sel-title{font-family:'Uncial Antiqua',serif;letter-spacing:.06em}
+.sel-item[data-id=unjudged] .sel-name,.sel-item[data-id=draconium] .sel-name,.sel-item[data-id=silence] .sel-name{font-size:clamp(1.1rem,1.9vw,1.6rem)}
+.sel-item[data-id=priest] .sel-name{font-size:clamp(.95rem,1.5vw,1.25rem)}
+.sel-item[data-id=city] .sel-name,.sel-item[data-id=juiceup] .sel-name{font-size:clamp(1.1rem,1.8vw,1.5rem)}
+.sel-info[data-id=unjudged] .sel-title,.sel-info[data-id=draconium] .sel-title,.sel-info[data-id=silence] .sel-title{font-size:clamp(2rem,3.8vw,3.4rem);line-height:1.05}
+.sel-info[data-id=priest] .sel-title{font-size:clamp(1.6rem,3vw,2.6rem);line-height:1.2}
+.sel-info[data-id=city] .sel-title,.sel-info[data-id=juiceup] .sel-title{font-size:clamp(1.9rem,3.6vw,3.2rem);line-height:1.05}
+.sel-info[data-id=tower] .sel-title{font-size:clamp(2.2rem,4.4vw,4rem)}
+.cr-hero-art{top:0;transform:none;height:100%;padding-top:14px;box-sizing:border-box;opacity:.65}
+.cr-hero-logo{width:210px;margin-bottom:-10px}
