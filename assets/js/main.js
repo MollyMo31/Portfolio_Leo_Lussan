@@ -1984,7 +1984,7 @@ document.addEventListener('keydown',function(e){
 /* == AUDIO FEEDBACK ON INTERACTIONS == */
 (function(){
   // Hover feedback sur les project rows
-  document.querySelectorAll('.project-row,.lvl-card').forEach(function(el){
+  document.querySelectorAll('.project-row,.sel-item,.sel-go').forEach(function(el){
     el.addEventListener('mouseenter',function(){ _audio.playHover(); });
     el.addEventListener('click',function(){ _audio.playClick(); });
   });
@@ -2229,7 +2229,7 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   }
   animateRing();
 
-  var sel='a,button,[onclick],.skill-card,.project-row,.lvl-card,.lvl-tab,.sm-project-row,.carousel-btn,.nav-cta,.proj-modal-close,.skill-modal-close,.acc-header,.music-nav-btn,.flip-card-wrapper,.contact-row';
+  var sel='a,button,[onclick],.skill-card,.project-row,.sel-item,.sel-go,.sm-project-row,.carousel-btn,.nav-cta,.proj-modal-close,.skill-modal-close,.acc-header,.music-nav-btn,.flip-card-wrapper,.contact-row';
   document.addEventListener('mouseover',function(e){if(e.target.closest(sel))document.body.classList.add('ch-hover')});
   document.addEventListener('mouseout', function(e){if(e.target.closest(sel))document.body.classList.remove('ch-hover')});
 })();
@@ -2380,44 +2380,37 @@ window.addEventListener('load',function(){
   render();
 })();
 
-/* == SELECTEUR DE NIVEAUX (liste des projets) : filtres + navigation clavier == */
+/* == SELECTEUR DE PROJETS : survol / clavier pour choisir, clic pour entrer == */
 (function(){
-  var cards=[].slice.call(document.querySelectorAll('.lvl-card')), tabs=[].slice.call(document.querySelectorAll('.lvl-tab'));
-  if(!cards.length) return;
-  tabs.forEach(function(t){
-    t.addEventListener('click',function(){
-      tabs.forEach(function(x){x.classList.toggle('active',x===t);});
-      var f=t.getAttribute('data-f');
-      cards.forEach(function(c){ c.hidden=!(f==='all'||c.getAttribute('data-cat')===f); });
-    });
-  });
-  function visible(){ return cards.filter(function(c){return !c.hidden;}); }
-  cards.forEach(function(c){
-    c.addEventListener('keydown',function(e){
-      var v=visible(), i=v.indexOf(c), cols=getComputedStyle(c.parentNode).gridTemplateColumns.split(' ').length, n=-1;
-      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.click(); return; }
-      if(e.key==='ArrowRight') n=i+1; else if(e.key==='ArrowLeft') n=i-1; else if(e.key==='ArrowDown') n=i+cols; else if(e.key==='ArrowUp') n=i-cols; else return;
-      e.preventDefault(); if(v[n]) v[n].focus();
-    });
-  });
-})();
-
-/* == Cartes : faisceau qui suit le curseur + origine de l'onde de choc a l'ouverture == */
-(function(){
-  [].forEach.call(document.querySelectorAll('.lvl-card'),function(c){
-    var art=c.querySelector('.lvl-art');
-    c.addEventListener('mousemove',function(e){
-      var r=art.getBoundingClientRect();
-      art.style.setProperty('--mx',(e.clientX-r.left)+'px'); art.style.setProperty('--my',(e.clientY-r.top)+'px');
-    });
-  });
-  document.addEventListener('click',function(e){
-    var c=e.target.closest&&e.target.closest('.lvl-card'); if(!c) return;
-    var m=(c.getAttribute('onclick')||'').match(/openProj\('(\w+)'\)/); if(!m) return;
-    var o=document.getElementById('pm-'+m[1]); if(!o) return;
-    var x=e.clientX, y=e.clientY;
-    if(!x&&!y){ var r=c.getBoundingClientRect(); x=r.left+r.width/2; y=r.top+r.height/2; }
+  var root=document.getElementById('sel'); if(!root) return;
+  var stage=document.getElementById('sel-stage'), items=[].slice.call(root.querySelectorAll('.sel-item')), cur=null;
+  [].forEach.call(root.querySelectorAll('.ln'),function(n){ n.setAttribute('pathLength','1'); });
+  function select(id,focus){
+    if(cur===id) return; cur=id;
+    items.forEach(function(it){ var on=it.getAttribute('data-id')===id; it.classList.toggle('active',on); it.setAttribute('aria-selected',on?'true':'false'); if(on){ stage.style.setProperty('--c',it.style.getPropertyValue('--c')); stage.style.setProperty('--c2',it.style.getPropertyValue('--c2')); if(focus) it.focus({preventScroll:true}); } });
+    [].forEach.call(stage.querySelectorAll('.sel-info'),function(n){ n.hidden=n.getAttribute('data-id')!==id; });
+    [].forEach.call(stage.querySelectorAll('.sel-emblem'),function(n){ n.classList.toggle('on',n.getAttribute('data-id')===id); });
+  }
+  function open(id,ev){
+    var o=document.getElementById('pm-'+id); if(!o) return;
+    var x=ev&&ev.clientX, y=ev&&ev.clientY;
+    if(!x&&!y){ var r=stage.getBoundingClientRect(); x=r.left+r.width/2; y=r.top+r.height/2; }
     o.style.setProperty('--ox',x+'px'); o.style.setProperty('--oy',y+'px');
     [].forEach.call(o.querySelectorAll('.proj-modal-tags .tag'),function(t,i){ t.style.setProperty('--i',i); });
-  },true);
+    openProj(id);
+  }
+  var canHover=window.matchMedia&&matchMedia('(hover:hover)').matches;
+  items.forEach(function(it,i){
+    var id=it.getAttribute('data-id');
+    it.addEventListener('mouseenter',function(){ if(canHover) select(id); });
+    it.addEventListener('focus',function(){ select(id); });
+    it.addEventListener('click',function(e){ if(canHover||cur===id&&!canHover&&false) open(id,e); else select(id); });
+    it.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(id,null); }
+      else if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); var n=items[i+(e.key==='ArrowDown'?1:-1)]; if(n) n.focus(); }
+    });
+  });
+  [].forEach.call(stage.querySelectorAll('.sel-go'),function(b){ b.addEventListener('click',function(e){ open(b.getAttribute('data-id'),e); }); });
+  stage.addEventListener('mousemove',function(e){ var r=stage.getBoundingClientRect(); stage.style.setProperty('--mx',(e.clientX-r.left)+'px'); stage.style.setProperty('--my',(e.clientY-r.top)+'px'); });
+  select(items[0].getAttribute('data-id'));
 })();
