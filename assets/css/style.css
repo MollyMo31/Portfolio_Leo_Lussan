@@ -1027,20 +1027,20 @@ body.modal-open #bg-canvas{visibility:hidden}
 #pm-silence .proj-modal-hero>*:not(.lg-hero-art):not(.proj-modal-close),#pm-musiques .proj-modal-hero>*:not(.lg-hero-art):not(.proj-modal-close){position:relative;z-index:1}
 @media(max-width:700px){.lg-hero-art{opacity:.22;width:58%}}
 
-/* Typographies : Streaming (Chakra Petch), Coaching (Teko), Musiques (Monoton) */
+/* Typographies : Streaming (Chakra Petch), Coaching (Saira Condensed), Musiques (Monoton) */
 #pm-streaming .proj-modal-title,#pm-streaming .pm-section-title,#pm-streaming .pm-label,#pm-streaming .acc-header{font-family:'Chakra Petch','Bebas Neue',sans-serif!important;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 #pm-streaming .acc-header{font-size:1.25rem!important}
-#pm-coaching .proj-modal-title,#pm-coaching .pm-section-title,#pm-coaching .pm-label{font-family:'Teko','Bebas Neue',sans-serif!important;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
-#pm-coaching .proj-modal-title{font-size:clamp(3.4rem,7.5vw,6.6rem)!important;line-height:.9}
+#pm-coaching .proj-modal-title,#pm-coaching .pm-section-title,#pm-coaching .pm-label{font-family:'Saira Condensed','Bebas Neue',sans-serif!important;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+#pm-coaching .proj-modal-title{font-size:clamp(2.4rem,4.6vw,4rem)!important;line-height:1}
 #pm-musiques .proj-modal-title,#pm-musiques .pm-section-title,#pm-musiques .pm-label{font-family:'Monoton','Righteous',sans-serif!important;font-weight:400;letter-spacing:.06em}
 #pm-musiques .proj-modal-title{font-size:clamp(2rem,4.6vw,4rem)!important;line-height:1.1}
 #pm-musiques .pm-section-title{font-size:1.5rem}
 .sel-item[data-id=streaming] .sel-name,.sel-info[data-id=streaming] .sel-title{font-family:'Chakra Petch',sans-serif;font-weight:700;letter-spacing:.03em}
-.sel-item[data-id=coaching] .sel-name,.sel-info[data-id=coaching] .sel-title{font-family:'Teko',sans-serif;font-weight:700;letter-spacing:.05em}
+.sel-item[data-id=coaching] .sel-name,.sel-info[data-id=coaching] .sel-title{font-family:'Saira Condensed',sans-serif;font-weight:700;letter-spacing:.05em}
 .sel-item[data-id=musiques] .sel-name,.sel-info[data-id=musiques] .sel-title{font-family:'Monoton',sans-serif;font-weight:400;letter-spacing:.05em}
 .sel-item[data-id=streaming] .sel-name{font-size:clamp(1.05rem,1.6vw,1.35rem)}
-.sel-item[data-id=coaching] .sel-name{font-size:clamp(1.4rem,2.3vw,1.9rem)}
+.sel-item[data-id=coaching] .sel-name{font-size:clamp(1.15rem,1.8vw,1.5rem)}
 .sel-item[data-id=musiques] .sel-name{font-size:clamp(1rem,1.7vw,1.4rem)}
 .sel-info[data-id=streaming] .sel-title{font-size:clamp(1.9rem,3.6vw,3.2rem);line-height:1.1}
-.sel-info[data-id=coaching] .sel-title{font-size:clamp(2.8rem,5.4vw,4.8rem);line-height:.95}
+.sel-info[data-id=coaching] .sel-title{font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.05}
 .sel-info[data-id=musiques] .sel-title{font-size:clamp(1.6rem,3.2vw,2.8rem);line-height:1.15}
