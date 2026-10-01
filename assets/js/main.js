@@ -25,7 +25,7 @@ var FX_CONFIGS = {
   silence: { type:'darkness',  color:'#6b7280', glow:'rgba(107,114,128,' },
   musiques:{ type:'music',     color:'#d070f0', glow:'rgba(208,112,240,' },
   juiceup: { type:'juice',     color:'#c084fc', glow:'rgba(192,132,252,' },
-  draconium:{ type:'flames',   color:'#ff8c38', glow:'rgba(255,140,56,' },
+  draconium:{ type:'flames',   color:'#e9a23b', glow:'rgba(233,162,59,' },
   coaching:{ type:'neon',      color:'#f4a033', glow:'rgba(244,160,51,' },
   mira:    { type:'garden',    color:'#34d399', glow:'rgba(52,211,153,' },
   streaming:{ type:'stream',   color:'#9b72d0', glow:'rgba(155,114,208,' },

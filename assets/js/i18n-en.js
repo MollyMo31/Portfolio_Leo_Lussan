@@ -54,7 +54,7 @@
  "Accompagner des joueurs sur League of Legends, Valorant et Dead by Daylight.": "Coaching players on League of Legends, Valorant and Dead by Daylight.",
  "Un projet collaboratif Minecraft : architecture, level design et builds immersifs.": "A collaborative Minecraft project: architecture, level design and immersive builds.",
  "Prendre un platformer 2D fade et le transformer en expérience jouissive grâce au game feel.": "Take a dull 2D platformer and turn it into a thrilling experience through game feel.",
- "Un platformer 2D médiéval fantastique, entre dragons et alchimie.": "A medieval fantasy 2D platformer, with dragons and alchemy.",
+ "Un jeune dragon traverse les périlleuses expériences d'un alchimiste pour retrouver sa famille perdue.": "A young dragon's quest through the alchemist's perilous experiments to find its lost family.",
  "Platformer 2D · Medieval Fantasy": "2D Platformer · Medieval Fantasy",
  "Un jeu d'horreur d'exploration où le son fait peur autant que ce que l'on voit.": "An exploration horror game where sound scares as much as what you see.",
  "Horreur · Exploration": "Horror · Exploration",
