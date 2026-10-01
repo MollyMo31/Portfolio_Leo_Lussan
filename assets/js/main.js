@@ -2496,3 +2496,21 @@ window.addEventListener('load',function(){
     });
   });
 })();
+
+/* == Competences : filtres et ouverture directe des projets == */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.sk-tab')), cards=[].slice.call(document.querySelectorAll('.sk-grid .skill-card'));
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      var f=t.getAttribute('data-sk');
+      tabs.forEach(function(x){ x.classList.toggle('active',x===t); });
+      cards.forEach(function(c){ c.hidden=!(f==='all'||c.getAttribute('data-cat')===f); });
+    });
+  });
+  [].forEach.call(document.querySelectorAll('.sk-use'),function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault(); var id=b.getAttribute('data-go');
+      if(document.getElementById('pm-'+id)) openProj(id);
+    });
+  });
+})();
