@@ -1267,3 +1267,11 @@ body.modal-open #bg-canvas{visibility:hidden}
 .ba-row3 .ba-fig:nth-child(2) img{background:#fff}
 .ba-row3 .ba-fig-final img{background:#9fe3f0}
 @media(max-width:900px){.ba-row3 .ba-fig img{height:360px}}
+
+/* Avant / apres : croquis papier */
+.ba-stage{margin:1.6rem 0 .8rem}
+.ba-tag-inline{position:static;display:inline-block}
+.ba-sketches{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:.6rem}
+.ba-sk{background:#fff}
+.ba-sk img{width:100%;height:auto;display:block}
+@media(max-width:900px){.ba-sketches{grid-template-columns:1fr 1fr}}
