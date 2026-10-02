@@ -1,7 +1,7 @@
 /* == SYSTEME I18N - FR / EN == */
 var _LANGS = {
   fr: {
-    nav_about:'Profil', nav_skills:'Comp\u00E9tences', nav_projects:'Projets',
+    nav_about:'Profil', nav_skills:'Comp\u00E9tences', nav_method:'M\u00E9thode', nav_projects:'Projets',
     nav_cv:'CV', nav_contact:'Contact', nav_cta:'Me contacter',
     hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
     hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
@@ -20,7 +20,7 @@ var _LANGS = {
     cv_btn:'\u2192 Voir le CV styli\u00E9',
   },
   en: {
-    nav_about:'Profile', nav_skills:'Skills', nav_projects:'Projects',
+    nav_about:'Profile', nav_skills:'Skills', nav_method:'Method', nav_projects:'Projects',
     nav_cv:'Resume', nav_contact:'Contact', nav_cta:'Contact me',
     hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
     hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
@@ -111,7 +111,7 @@ function setLang(lang) {
       'about-p2': "Ich entdeckte Videospiele 2016 zum ersten Mal auf dem Laptop meiner Eltern und erkunde Universen wie <a href=\"https://www.leagueoflegends.com/en-us/\" target=\"_blank\" style=\"color:var(--red);text-decoration:underline;text-underline-offset:3px\">League of Legends</a> und <a href=\"https://www.minecraft.net/en-us\" target=\"_blank\" style=\"color:var(--red);text-decoration:underline;text-underline-offset:3px\">Minecraft</a>. Ich begeisterte mich schnell f\u00FCr League of Legends \u2014 Mechaniken, Wettkampf und Lore \u2014 und f\u00FCr Minecraft durch das Bauen und Erstellen von <a href=\"https://minecraft.fr/categorie/maps/map-parkour/\" target=\"_blank\" style=\"color:var(--red);text-decoration:underline;text-underline-offset:3px\">Parkour-Karten</a>.",
       'about-p3': "Ich liebte es, Levels zu erstellen, Universen zu erkunden und ihre Umgebungen zu erforschen. Ich bin leidenschaftlich f\u00FCr Videospiele und besonders f\u00FCr Level Design. Musik ist ebenfalls meine Leidenschaft \u2014 ich spiele Klavier und Trompete.",
       'about-p4': "Dieser Bereich erm\u00F6glicht es Ihnen, einige meiner Projekte zu entdecken.",
-      'skills-hint': 'Clique sur un outil pour voir ses projets, ou sur un projet pour voir ses outils \u2192',
+      'skills-hint': 'Clique sur un outil pour voir sa description et ses projets \u2192',
       'sk-cat-engines': 'Moteurs de jeu',
       'contact-heading': 'TRAVAILLONS<br/>ENSEMBLE',
       'contact-desc': "Disponible pour des opportunit\u00e9s de stage, des collaborations cr\u00e9atives ou des \u00e9changes autour du jeu vid\u00e9o.",
@@ -155,7 +155,7 @@ function setLang(lang) {
       'about-p2': "I first discovered video games in 2016 and never stopped. Passionate about level design, game design and world-building.",
       'about-p3': "I loved creating levels, exploring universes and researching environments to craft coherent, immersive experiences.",
       'about-p4': "This space will let you discover some of my projects.",
-      'skills-hint': 'Click a tool to see its projects, or a project to see its tools \u2192',
+      'skills-hint': 'Click a tool to see its description and projects \u2192',
       'sk-cat-engines': 'Game Engines',
       'contact-desc': "Available for internship opportunities, creative collaborations or exchanges around video games.",
       'cv-desc': "Game Designer specialized in Level Design, with experience in project management and world creation.",

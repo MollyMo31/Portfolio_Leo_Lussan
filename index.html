@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&family=Nosifer&family=Creepster&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Uncial+Antiqua&family=Press+Start+2P&family=Rye&family=Chakra+Petch:wght@500;700&family=Saira+Condensed:wght@500;700&family=Monoton&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261002b">
 </head>
 <body>
 
@@ -54,6 +54,7 @@
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav_about">Profil</a></li>
     <li><a href="#competences" data-i18n="nav_skills">Compétences</a></li>
+    <li><a href="#process" data-i18n="nav_method">Méthode</a></li>
     <li><a href="#projets" data-i18n="nav_projects">Projets</a></li>
     <li><a href="#cv" data-i18n="nav_cv">CV</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
@@ -73,6 +74,7 @@
 <div id="mobile-menu" style="display:none;position:fixed;top:56px;left:0;right:0;z-index:99;background:rgba(10,10,11,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:1.5rem;flex-direction:column;gap:1.2rem">
   <a href="#about" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Profil</a>
   <a href="#competences" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Compétences</a>
+  <a href="#process" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Méthode</a>
   <a href="#projets" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Projets</a>
   <a href="#cv" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">CV</a>
   <a href="#contact" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Contact</a>
@@ -93,11 +95,6 @@
       <h1 class="hero-name">LÉO<br/><span class="red">LUSSAN</span></h1>
       <p class="hero-role" data-i18n="hero_role">Level Design · Game Design · Unity · Unreal Engine</p>
       <p class="hero-desc" data-i18n="hero_desc" id="hero-desc">Passionné par le level design depuis 2016, je conçois des niveaux comme on dessine des plans — avec rigueur, intention narrative et ambition créative constante.</p>
-      <div class="hero-stats" style="position:relative;bottom:auto;left:auto;margin-top:3rem">
-        <div class="stat"><div class="stat-num">3</div><div class="stat-label" data-i18n="stat_brassart">Ans à Brassart</div></div>
-        <div class="stat"><div class="stat-num">6<span class="red">+</span></div><div class="stat-label" data-i18n="stat_projects">Projets réalisés</div></div>
-        <div class="stat"><div class="stat-num">2016</div><div class="stat-label" data-i18n="stat_start">Début de l'aventure</div></div>
-      </div>
     </div>
     <!-- PHOTO PROFIL — DROITE -->
     <div class="hero-photo-col" style="display:flex;flex-direction:column;align-items:center;padding-top:1rem;flex-shrink:0">
@@ -167,6 +164,36 @@
 </section>
 <div class="divider"></div>
 
+<section id="chiffres" class="kn" aria-label="Chiffres clés">
+  <div class="kn-grid">
+    <div class="kn-cell">
+      <div class="kn-num" data-to="9">9</div>
+      <div class="kn-l">projets de jeu</div>
+      <div class="kn-d">Du premier niveau Unreal au jeu complet</div>
+    </div>
+    <div class="kn-cell">
+      <div class="kn-num" data-to="2">2</div>
+      <div class="kn-l">moteurs de jeu</div>
+      <div class="kn-d">Unity et Unreal Engine</div>
+    </div>
+    <div class="kn-cell">
+      <div class="kn-num" data-to="9">9</div>
+      <div class="kn-l">outils utilisés</div>
+      <div class="kn-d">Moteurs, narration, design, gestion de projet</div>
+    </div>
+    <div class="kn-cell">
+      <div class="kn-num" data-to="3">3</div>
+      <div class="kn-l">ans de formation</div>
+      <div class="kn-d">Bachelor Game Design à Brassart</div>
+    </div>
+    <div class="kn-cell" id="kn-play" hidden>
+      <div class="kn-num" data-to="0">0</div>
+      <div class="kn-l">jeux jouables</div>
+      <div class="kn-d">À télécharger ou à jouer dans le navigateur</div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-num" data-i18n="label_about">//&nbsp;001 — Profil</div>
@@ -196,11 +223,11 @@
 <section id="competences">
   <div class="section-num"><span data-i18n="label_skills">// 002 — Outils & Moteurs</span></div>
   <h2 class="section-title" data-i18n="title_skills">COMPÉTENCES</h2>
-  <p class="" style="font-family:var(--font-mono);font-size:.65rem;color:var(--grey);letter-spacing:.1em;margin-top:-2.5rem;margin-bottom:2.5rem" id="skills-hint">Clique sur un outil pour voir ses projets, ou sur un projet pour voir ses outils →</p>
+  <p class="" style="font-family:var(--font-mono);font-size:.65rem;color:var(--grey);letter-spacing:.1em;margin-top:-2.5rem;margin-bottom:2.5rem" id="skills-hint">Clique sur un outil pour voir sa description et ses projets →</p>
 
   <div class="vw vw-wall" data-view="wall">
-    <div class="wl-tools"><button type="button" class="wl-tool" data-tool="unity" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/unity.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Unity</span></button><button type="button" class="wl-tool" data-tool="unreal" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/unreal.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Unreal Engine</span></button><button type="button" class="wl-tool" data-tool="inky" aria-pressed="false"><span class="vw-logo vw-light"><img src="assets/img/logos/inky.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Inky</span></button><button type="button" class="wl-tool" data-tool="twine" aria-pressed="false"><span class="vw-logo vw-light"><img src="assets/img/logos/twine.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Twine</span></button><button type="button" class="wl-tool" data-tool="miro" aria-pressed="false"><span class="vw-logo vw-light"><img src="assets/img/logos/miro.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Miro</span></button><button type="button" class="wl-tool" data-tool="adobe" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/adobe-photoshop.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Suite Adobe</span></button><button type="button" class="wl-tool" data-tool="ldtk" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/ldtk.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">LDtk</span></button><button type="button" class="wl-tool" data-tool="hacknplan" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/hacknplan.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Hack'n'Plan</span></button><button type="button" class="wl-tool" data-tool="git" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/git.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Git / SVN</span></button></div>
-    <div class="wl-status-row"><div class="wl-status" id="wl-status">Tout est affiché.</div></div>
+    <div class="wl-tools"><button type="button" class="wl-tool" data-tool="unity" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/unity.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Unity</span></button><button type="button" class="wl-tool" data-tool="unreal" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/unreal.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Unreal Engine</span></button><button type="button" class="wl-tool" data-tool="inky" aria-pressed="false"><span class="vw-logo vw-light"><img src="assets/img/logos/inky.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Inky</span></button><button type="button" class="wl-tool" data-tool="twine" aria-pressed="false"><span class="vw-logo vw-light"><img src="assets/img/logos/twine.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Twine</span></button><button type="button" class="wl-tool" data-tool="miro" aria-pressed="false"><span class="vw-logo vw-light"><img src="assets/img/logos/miro.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Miro</span></button><button type="button" class="wl-tool" data-tool="adobe" aria-pressed="false"><span class="vw-logo vw-adobe"><span class="adobe-grid"><img class="adobe-i" src="assets/img/logos/adobe-photoshop.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-encore.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-aftereffects.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-premiere.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-indesign.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-flash.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-flashbuilder.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-illustrator.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-bridge.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-fireworks.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-dreamweaver.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-audition.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-speedgrade.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-prelude.webp" alt="" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-lightroom.webp" alt="" loading="lazy" decoding="async"/></span></span><span class="wl-n">Suite Adobe</span></button><button type="button" class="wl-tool" data-tool="ldtk" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/ldtk.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">LDtk</span></button><button type="button" class="wl-tool" data-tool="hacknplan" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/hacknplan.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Hack'n'Plan</span></button><button type="button" class="wl-tool" data-tool="git" aria-pressed="false"><span class="vw-logo"><img src="assets/img/logos/git.webp" alt="" loading="lazy" decoding="async"/></span><span class="wl-n">Git / SVN</span></button></div>
+    <div class="wl-status-row"><div class="wl-status" id="wl-status"></div></div>
     <div class="wl-projs"><div class="wl-proj" data-proj="unjudged" style="--pc:#4ade80"><button type="button" class="wl-pname" data-pick="unjudged">Unjudged</button><button type="button" class="wl-open" data-go="unjudged" aria-label="Ouvrir Unjudged" title="Ouvrir">▶</button></div><div class="wl-proj" data-proj="priest" style="--pc:#ef4444"><button type="button" class="wl-pname" data-pick="priest">Devouring Priest</button><button type="button" class="wl-open" data-go="priest" aria-label="Ouvrir Devouring Priest" title="Ouvrir">▶</button></div><div class="wl-proj" data-proj="city" style="--pc:#a78bfa"><button type="button" class="wl-pname" data-pick="city">City Rider</button><button type="button" class="wl-open" data-go="city" aria-label="Ouvrir City Rider" title="Ouvrir">▶</button></div><div class="wl-proj" data-proj="tower" style="--pc:#a3e635"><button type="button" class="wl-pname" data-pick="tower">Tower Defense</button><button type="button" class="wl-open" data-go="tower" aria-label="Ouvrir Tower Defense" title="Ouvrir">▶</button></div><div class="wl-proj" data-proj="silence" style="--pc:#9ca3af"><button type="button" class="wl-pname" data-pick="silence">The Silence</button><button type="button" class="wl-open" data-go="silence" aria-label="Ouvrir The Silence" title="Ouvrir">▶</button></div><div class="wl-proj" data-proj="entretien" style="--pc:#fbbf24"><button type="button" class="wl-pname" data-pick="entretien">Entretien</button><button type="button" class="wl-open" data-go="entretien" aria-label="Ouvrir Entretien" title="Ouvrir">▶</button></div><div class="wl-proj" data-proj="draconium" style="--pc:#e9a23b"><button type="button" class="wl-pname" data-pick="draconium">Draconium</button><button type="button" class="wl-open" data-go="draconium" aria-label="Ouvrir Draconium" title="Ouvrir">▶</button></div><div class="wl-proj" data-proj="juiceup" style="--pc:#c084fc"><button type="button" class="wl-pname" data-pick="juiceup">JuiceUp</button><button type="button" class="wl-open" data-go="juiceup" aria-label="Ouvrir JuiceUp" title="Ouvrir">▶</button></div><div class="wl-proj" data-proj="mira" style="--pc:#34d399"><button type="button" class="wl-pname" data-pick="mira">Mira</button><button type="button" class="wl-open" data-go="mira" aria-label="Ouvrir Mira" title="Ouvrir">▶</button></div></div>
     <div class="wl-panel" id="wl-panel" aria-live="polite" hidden></div>
   </div>
@@ -285,6 +312,33 @@
 
 <div class="divider"></div>
 
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-num"><span>// Méthode</span></div>
+  <h2 class="section-title">PROCESS DE LEVEL DESIGN</h2>
+  <p class="pr-intro">De l'idée au premier niveau jouable : voici comment je travaille.</p>
+  <div class="ps" id="ps">
+    <ol class="ps-rail">
+<li class="ps-g" style="--pc:#c8a96e"><span class="ps-gh">Idée</span><ol><li><button type="button" class="ps-n" data-i="0" style="--pc:#c8a96e"><span class="ps-c">1</span><span class="ps-t">Mots-clés</span></button></li><li><button type="button" class="ps-n" data-i="1" style="--pc:#c8a96e"><span class="ps-c">2</span><span class="ps-t">Recherches & moodboard</span></button></li></ol></li>
+<li class="ps-g" style="--pc:#60a5fa"><span class="ps-gh">Papier & équipe</span><ol><li><button type="button" class="ps-n" data-i="2" style="--pc:#60a5fa"><span class="ps-c">3</span><span class="ps-t">Schéma sur papier</span></button></li><li><button type="button" class="ps-n" data-i="3" style="--pc:#60a5fa"><span class="ps-c">4</span><span class="ps-t">Validation avec l'équipe</span></button></li><li><button type="button" class="ps-n" data-i="4" style="--pc:#60a5fa"><span class="ps-c">5</span><span class="ps-t">Slides de présentation</span></button></li></ol></li>
+<li class="ps-g" style="--pc:#34d399"><span class="ps-gh">Moteur</span><ol><li><button type="button" class="ps-n" data-i="5" style="--pc:#34d399"><span class="ps-c">6</span><span class="ps-t">Tests dans le moteur</span></button></li><li><button type="button" class="ps-n" data-i="6" style="--pc:#34d399"><span class="ps-c">7</span><span class="ps-t">Niveau de test</span></button></li><li><button type="button" class="ps-n" data-i="7" style="--pc:#34d399"><span class="ps-c">8</span><span class="ps-t">Premiers niveaux</span></button></li></ol></li>
+    </ol>
+    <div class="ps-card">
+<article class="ps-p" data-i="0" style="--pc:#c8a96e" hidden><div class="ps-main"><div class="ps-top"><span class="ps-big">1</span><div><span class="ps-ph">Idée</span><h3 class="ps-h">Mots-clés</h3></div></div><p class="pc-d">Tout part de mots-clés : le thème, l'intention et l'ambiance du niveau, posés en quelques mots.</p><ul class="pc-l"><li>Choisir les mots qui définissent le niveau</li><li>Les traduire en intentions de level design</li></ul><div class="pc-o"><span class="pc-ol">Résultat</span><span class="pc-ot">Un petit vocabulaire commun pour tout le projet</span></div></div></article>
+<article class="ps-p" data-i="1" style="--pc:#c8a96e" hidden><div class="ps-main"><div class="ps-top"><span class="ps-big">2</span><div><span class="ps-ph">Idée</span><h3 class="ps-h">Recherches & moodboard</h3></div></div><p class="pc-d">Je développe ces mots par des recherches et un moodboard, pour comprendre comment bien utiliser les mots en level design.</p><ul class="pc-l"><li>Références, images, ambiances</li><li>Faire le lien entre un mot et ce qu'il devient dans l'espace</li></ul><div class="pc-o"><span class="pc-ol">Résultat</span><span class="pc-ot">Un moodboard et des références</span></div></div></article>
+<article class="ps-p" data-i="2" style="--pc:#60a5fa" hidden><div class="ps-main"><div class="ps-top"><span class="ps-big">3</span><div><span class="ps-ph">Papier & équipe</span><h3 class="ps-h">Schéma sur papier</h3></div></div><p class="pc-d">Je schématise d'abord à la main : le papier permet d'essayer des idées vite, sans s'enfermer dans un outil.</p><ul class="pc-l"><li>Plan du niveau, parcours du joueur</li><li>Zones, passages, points d'intérêt</li></ul><div class="pc-o"><span class="pc-ol">Résultat</span><span class="pc-ot">Des schémas papier du niveau</span></div></div><figure class="tl-ex" tabindex="0"><img src="assets/img/process/avant.webp" alt="Schéma d'Unjudged vu du dessus" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure></article>
+<article class="ps-p" data-i="3" style="--pc:#60a5fa" hidden><div class="ps-main"><div class="ps-top"><span class="ps-big">4</span><div><span class="ps-ph">Papier & équipe</span><h3 class="ps-h">Validation avec l'équipe</h3></div></div><p class="pc-d">Je vois avec l'équipe si ce level design peut correspondre au jeu, avant d'investir du temps dans le moteur.</p><ul class="pc-l"><li>Confronter le schéma aux contraintes du jeu</li><li>Ajuster selon les retours</li></ul><div class="pc-o"><span class="pc-ol">Résultat</span><span class="pc-ot">Un schéma validé ensemble</span></div></div></article>
+<article class="ps-p" data-i="4" style="--pc:#60a5fa" hidden><div class="ps-main"><div class="ps-top"><span class="ps-big">5</span><div><span class="ps-ph">Papier & équipe</span><h3 class="ps-h">Slides de présentation</h3></div></div><p class="pc-d">Je fais des slides pour partager mes idées à tout le monde : chacun comprend la direction avant la production.</p><ul class="pc-l"><li>Présenter le niveau, son intention et son parcours</li><li>Aligner toute l'équipe</li></ul><div class="pc-o"><span class="pc-ol">Résultat</span><span class="pc-ot">Des slides partagées avec l'équipe</span></div></div></article>
+<article class="ps-p" data-i="5" style="--pc:#34d399" hidden><div class="ps-main"><div class="ps-top"><span class="ps-big">6</span><div><span class="ps-ph">Moteur</span><h3 class="ps-h">Tests dans le moteur</h3></div></div><p class="pc-d">Je passe sur le moteur et je teste directement en jeu, du point de vue du joueur.</p><ul class="pc-l"><li>Selon le contenu du jeu, je choisis ce qu'il faut tester (par exemple le nombre d'ennemis par salle)</li><li>Les dimensions, pour adapter mon level design à l'environnement du jeu (trop petit, trop grand…)</li></ul><div class="pc-o"><span class="pc-ol">Résultat</span><span class="pc-ot">Des mesures et des repères pris en jeu</span></div></div><figure class="tl-ex" tabindex="0"><img src="assets/img/process/apres.webp" alt="Plan d'Unjudged avec ennemis et objectifs placés" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure></article>
+<article class="ps-p" data-i="6" style="--pc:#34d399" hidden><div class="ps-main"><div class="ps-top"><span class="ps-big">7</span><div><span class="ps-ph">Moteur</span><h3 class="ps-h">Niveau de test</h3></div></div><p class="pc-d">Avant de construire quoi que ce soit, je fais un niveau de test pour valider les bases techniques.</p><ul class="pc-l"><li>Dimensions et collisions</li><li>Gravité et mouvements</li></ul><div class="pc-o"><span class="pc-ol">Résultat</span><span class="pc-ot">Un niveau de test qui fixe les règles</span></div></div></article>
+<article class="ps-p" data-i="7" style="--pc:#34d399" hidden><div class="ps-main"><div class="ps-top"><span class="ps-big">8</span><div><span class="ps-ph">Moteur</span><h3 class="ps-h">Premiers niveaux</h3></div></div><p class="pc-d">Une fois les bases validées, je commence mes premiers niveaux, puis j'itère.</p><ul class="pc-l"><li>Blockout du niveau</li><li>Itérations selon les tests</li></ul><div class="pc-o"><span class="pc-ol">Résultat</span><span class="pc-ot">Les premiers niveaux jouables</span></div></div><figure class="tl-ex" tabindex="0"><img src="assets/img/process/final.webp" alt="Niveau final d'Unjudged dans le moteur" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure></article>
+      <div class="ps-nav"><button type="button" class="ps-prev" aria-label="Étape précédente">←</button><span class="ps-bar"><i></i></span><button type="button" class="ps-next" aria-label="Étape suivante">→</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- PROJETS -->
 <section id="projets">
   <div class="section-num"><span data-i18n="label_projects">// 003 — Portfolio</span></div>
@@ -316,7 +370,7 @@
         <h3 class="sel-title" data-i18n="proj_unjudged">UNJUDGED</h3>
         <div class="sel-genre">Level Design · Narratif</div>
         <p class="sel-pitch">Mort et jugé coupable par les anges, Simon refuse son verdict : dix zones à traverser pour s'en sortir.</p>
-        <div class="sel-tools"><span class="sel-tool " title="Unreal Engine"><img src="assets/img/logos/unreal.webp" alt="Unreal Engine" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Miro"><img src="assets/img/logos/miro.webp" alt="Miro" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Inky"><img src="assets/img/logos/inky.webp" alt="Inky" loading="lazy" decoding="async"/></span><span class="sel-tool " title="Git"><img src="assets/img/logos/git.webp" alt="Git" loading="lazy" decoding="async"/></span></div>
+        <div class="sel-tools"><span class="sel-tool " title="Unreal Engine"><img src="assets/img/logos/unreal.webp" alt="Unreal Engine" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Miro"><img src="assets/img/logos/miro.webp" alt="Miro" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Inky"><img src="assets/img/logos/inky.webp" alt="Inky" loading="lazy" decoding="async"/></span><span class="sel-tool " title="Git"><img src="assets/img/logos/git.webp" alt="Git" loading="lazy" decoding="async"/></span><span class="sel-tool " title="Suite Adobe"><img src="assets/img/logos/adobe-photoshop.webp" alt="Suite Adobe" loading="lazy" decoding="async"/></span></div>
         <button type="button" class="sel-go" data-id="unjudged">▶ Entrer</button>
       </div>
       <div class="sel-info" data-id="priest" hidden>
@@ -348,7 +402,7 @@
         <h3 class="sel-title" data-i18n="proj_silence">THE SILENCE</h3>
         <div class="sel-genre">Horreur · Exploration</div>
         <p class="sel-pitch">Un jeu d'horreur d'exploration où le son fait peur autant que ce que l'on voit.</p>
-        <div class="sel-tools"><span class="sel-tool " title="Unreal Engine"><img src="assets/img/logos/unreal.webp" alt="Unreal Engine" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Inky"><img src="assets/img/logos/inky.webp" alt="Inky" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Twine"><img src="assets/img/logos/twine.webp" alt="Twine" loading="lazy" decoding="async"/></span></div>
+        <div class="sel-tools"><span class="sel-tool " title="Unreal Engine"><img src="assets/img/logos/unreal.webp" alt="Unreal Engine" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Inky"><img src="assets/img/logos/inky.webp" alt="Inky" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Twine"><img src="assets/img/logos/twine.webp" alt="Twine" loading="lazy" decoding="async"/></span><span class="sel-tool " title="Suite Adobe"><img src="assets/img/logos/adobe-photoshop.webp" alt="Suite Adobe" loading="lazy" decoding="async"/></span></div>
         <button type="button" class="sel-go" data-id="silence">▶ Entrer</button>
       </div>
       <div class="sel-info" data-id="entretien" hidden>
@@ -422,7 +476,7 @@
       <div class="proj-modal-num" id="pm-num-unjudged">// 01 — Projet d'école · 3ème Année</div>
       <div class="proj-modal-title">UN<span>JUDGED</span></div>
       <button class="proj-modal-close" onclick="closeProj('unjudged')">✕ Fermer</button>
-      <div class="proj-modal-tags"><span class="tag">Level Design</span><span class="tag">Narrative</span><span class="tag tag-logo tl-unreal" title="Unreal Engine" role="img" aria-label="Unreal Engine"><img src="assets/img/logos/unreal.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-light tl-miro" title="Miro" role="img" aria-label="Miro"><img src="assets/img/logos/miro.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-light tl-inky" title="Inky" role="img" aria-label="Inky"><img src="assets/img/logos/inky.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-git" title="Git" role="img" aria-label="Git"><img src="assets/img/logos/git.webp" alt="" loading="lazy" decoding="async"/></span></div>
+      <div class="proj-modal-tags"><span class="tag">Level Design</span><span class="tag">Narrative</span><span class="tag tag-logo tl-unreal" title="Unreal Engine" role="img" aria-label="Unreal Engine"><img src="assets/img/logos/unreal.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-light tl-miro" title="Miro" role="img" aria-label="Miro"><img src="assets/img/logos/miro.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-light tl-inky" title="Inky" role="img" aria-label="Inky"><img src="assets/img/logos/inky.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-git" title="Git" role="img" aria-label="Git"><img src="assets/img/logos/git.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-adobe" title="Suite Adobe" role="img" aria-label="Suite Adobe"><span class="adobe-grid"><img class="adobe-i" src="assets/img/logos/adobe-photoshop.webp" alt="" title="Photoshop" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-encore.webp" alt="" title="Encore" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-aftereffects.webp" alt="" title="After Effects" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-premiere.webp" alt="" title="Premiere Pro" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-indesign.webp" alt="" title="InDesign" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-flash.webp" alt="" title="Flash" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-flashbuilder.webp" alt="" title="Flash Builder" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-illustrator.webp" alt="" title="Illustrator" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-bridge.webp" alt="" title="Bridge" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-fireworks.webp" alt="" title="Fireworks" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-dreamweaver.webp" alt="" title="Dreamweaver" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-audition.webp" alt="" title="Audition" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-speedgrade.webp" alt="" title="SpeedGrade" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-prelude.webp" alt="" title="Prelude" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-lightroom.webp" alt="" title="Lightroom" loading="lazy" decoding="async"/></span></span></div>
     </div>
     <div class="proj-modal-body">
       <a class="modal-link dl-zip" data-asset="Unjudged.zip" href="#" rel="noopener" hidden style="margin:0 0 1.4rem"><span class="dl-label">⬇ Télécharger le projet (.zip)</span><span class="dl-size"></span></a>
@@ -1148,7 +1202,7 @@
       <div class="proj-modal-num">// 05 — Projet · Game Design Narratif</div>
       <div class="proj-modal-title">THE<br/><span>SILENCE</span></div>
       <button class="proj-modal-close" onclick="closeProj('silence')">✕ Fermer</button>
-      <div class="proj-modal-tags"><span class="tag">Horreur</span><span class="tag">Exploration</span><span class="tag">Son & Ambiance</span><span class="tag tag-logo tl-unreal" title="Unreal Engine" role="img" aria-label="Unreal Engine"><img src="assets/img/logos/unreal.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-light tl-inky" title="Inky" role="img" aria-label="Inky"><img src="assets/img/logos/inky.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-light tl-twine" title="Twine" role="img" aria-label="Twine"><img src="assets/img/logos/twine.webp" alt="" loading="lazy" decoding="async"/></span></div>
+      <div class="proj-modal-tags"><span class="tag">Horreur</span><span class="tag">Exploration</span><span class="tag">Son & Ambiance</span><span class="tag tag-logo tl-unreal" title="Unreal Engine" role="img" aria-label="Unreal Engine"><img src="assets/img/logos/unreal.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-light tl-inky" title="Inky" role="img" aria-label="Inky"><img src="assets/img/logos/inky.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-light tl-twine" title="Twine" role="img" aria-label="Twine"><img src="assets/img/logos/twine.webp" alt="" loading="lazy" decoding="async"/></span><span class="tag tag-logo tl-adobe" title="Suite Adobe" role="img" aria-label="Suite Adobe"><span class="adobe-grid"><img class="adobe-i" src="assets/img/logos/adobe-photoshop.webp" alt="" title="Photoshop" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-encore.webp" alt="" title="Encore" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-aftereffects.webp" alt="" title="After Effects" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-premiere.webp" alt="" title="Premiere Pro" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-indesign.webp" alt="" title="InDesign" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-flash.webp" alt="" title="Flash" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-flashbuilder.webp" alt="" title="Flash Builder" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-illustrator.webp" alt="" title="Illustrator" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-bridge.webp" alt="" title="Bridge" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-fireworks.webp" alt="" title="Fireworks" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-dreamweaver.webp" alt="" title="Dreamweaver" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-audition.webp" alt="" title="Audition" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-speedgrade.webp" alt="" title="SpeedGrade" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-prelude.webp" alt="" title="Prelude" loading="lazy" decoding="async"/><img class="adobe-i" src="assets/img/logos/adobe-lightroom.webp" alt="" title="Lightroom" loading="lazy" decoding="async"/></span></span></div>
     </div>
     <div class="proj-modal-body">
       <a class="modal-link dl-zip" data-asset="TheSilence.zip" href="#" rel="noopener" hidden style="margin:0 0 1.4rem"><span class="dl-label">⬇ Télécharger le projet (.zip)</span><span class="dl-size"></span></a>
@@ -1276,6 +1330,7 @@
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Inky</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Twine</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Soundtrap</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Suite Adobe</div>
       </div>
     </div>
   </div>
@@ -2088,10 +2143,10 @@
   </div>
 </footer>
 
-<script src="assets/js/i18n.js" defer></script>
-<script src="assets/js/i18n-en.js" defer></script>
+<script src="assets/js/i18n.js?v=20261002b" defer></script>
+<script src="assets/js/i18n-en.js?v=20261002b" defer></script>
 
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=20261002b" defer></script>
 
 <!-- THREE.JS 3D BACKGROUND -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
