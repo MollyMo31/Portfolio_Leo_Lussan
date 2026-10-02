@@ -1168,3 +1168,18 @@ body.modal-open #bg-canvas{visibility:hidden}
 .wl-projs.has-sel .wl-proj.on{opacity:1}
 .wl-proj.sel{border-color:var(--pc);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
 .wl-proj.sel .wl-pname{color:var(--white)}
+
+/* Logos des competences : proportions d'origine respectees (plus d'etirement) */
+.vw-logo{height:auto;min-width:0;overflow:visible}
+.vw-logo img{height:auto;width:auto;max-width:none;object-fit:contain;display:block}
+.vw-light{padding:.4rem .7rem}
+.wl-tool .vw-logo{min-height:60px}
+.wl-tool .vw-logo img{max-height:46px;max-width:130px}
+.wl-tdesc .vw-logo{height:auto;min-width:0}
+.wl-tdesc .vw-logo img{max-height:56px;max-width:150px}
+.vw-logo.vw-light img{max-height:38px}
+.wl-tdesc .vw-logo.vw-light img{max-height:46px}
+.wl-tool .vw-logo img,.wl-tool .vw-logo.vw-light img{max-width:112px;max-height:54px}
+.wl-tool .vw-logo{min-height:66px}
+.wl-tool .vw-logo.tl-ldtk img{max-width:118px}
+.vw-logo img{border-radius:9px}
