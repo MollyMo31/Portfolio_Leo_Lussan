@@ -93,7 +93,7 @@
  "Résultat": "Outcome",
  "// Méthode": "// Method",
  "PROCESS DE LEVEL DESIGN": "LEVEL DESIGN PROCESS",
- "De l'idée au premier niveau jouable : voici comment je travaille. Clique sur une étape pour la découvrir.": "From the idea to the first playable level: this is how I work. Click a step to discover it.",
+ "De l'idée au premier niveau jouable : voici comment je travaille.": "From the idea to the first playable level: this is how I work.",
  "← Étape précédente": "← Previous step",
  "Étape suivante →": "Next step →",
  "Voir le détail →": "See details →",
