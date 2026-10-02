@@ -2543,39 +2543,6 @@ window.addEventListener('load',function(){
   }
 })();
 
-/* == Process de level design : apparition des etapes au defilement == */
-(function(){
-  var items=[].slice.call(document.querySelectorAll('#process .tl-item'));
-  if(!items.length) return;
-  if(!('IntersectionObserver' in window)){ items.forEach(function(x){ x.classList.add('in'); }); return; }
-  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.15});
-  items.forEach(function(x){ io.observe(x); });
-})();
-
-/* == Chiffres cles : compteurs animes + nombre de jeux jouables (calcule a partir des boutons de telechargement) == */
-(function(){
-  var cells=[].slice.call(document.querySelectorAll('#chiffres .kn-num')); if(!cells.length) return;
-  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function run(el){
-    var to=parseInt(el.getAttribute('data-to'),10)||0; if(reduce||!to){ el.textContent=to; return; }
-    var t0=null, dur=1100;
-    function f(t){ if(t0===null) t0=t; var k=Math.min(1,(t-t0)/dur), v=Math.round(to*(1-Math.pow(1-k,3))); el.textContent=v; if(k<1) requestAnimationFrame(f); }
-    el.textContent='0'; requestAnimationFrame(f);
-  }
-  var started=false, root=document.getElementById('chiffres');
-  function start(){ if(started) return; started=true; cells.forEach(run); }
-  if('IntersectionObserver' in window){ new IntersectionObserver(function(es,o){ if(es[0].isIntersecting){ start(); o.disconnect(); } },{threshold:.3}).observe(root); } else { start(); }
-  // jeux jouables : le mini-jeu en ligne + chaque zip effectivement publie sur la Release
-  var play=document.getElementById('kn-play'), pn=play&&play.querySelector('.kn-num');
-  function count(){
-    var zips=[].filter.call(document.querySelectorAll('.dl-zip'),function(a){ return !a.hidden; }).length;
-    var n=zips+(document.querySelector('.ent-play')?1:0);
-    if(play&&pn){ pn.setAttribute('data-to',String(n)); pn.textContent=String(n); play.hidden=n<1; }
-  }
-  [].forEach.call(document.querySelectorAll('.dl-zip'),function(a){ new MutationObserver(count).observe(a,{attributes:true,attributeFilter:['hidden']}); });
-  count();
-})();
-
 /* == Process : agrandissement des exemples au clic == */
 (function(){
   [].forEach.call(document.querySelectorAll('#process .tl-ex'),function(f){

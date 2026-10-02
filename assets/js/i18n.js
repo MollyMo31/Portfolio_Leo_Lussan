@@ -1,7 +1,7 @@
 /* == SYSTEME I18N - FR / EN == */
 var _LANGS = {
   fr: {
-    nav_about:'Profil', nav_skills:'Comp\u00E9tences', nav_projects:'Projets',
+    nav_about:'Profil', nav_skills:'Comp\u00E9tences', nav_method:'M\u00E9thode', nav_projects:'Projets',
     nav_cv:'CV', nav_contact:'Contact', nav_cta:'Me contacter',
     hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
     hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',
@@ -20,7 +20,7 @@ var _LANGS = {
     cv_btn:'\u2192 Voir le CV styli\u00E9',
   },
   en: {
-    nav_about:'Profile', nav_skills:'Skills', nav_projects:'Projects',
+    nav_about:'Profile', nav_skills:'Skills', nav_method:'Method', nav_projects:'Projects',
     nav_cv:'Resume', nav_contact:'Contact', nav_cta:'Contact me',
     hero_tag:'// Level Designer \u00B7 Game Designer \u00B7 Brassart Toulouse',
     hero_role:'Level Design \u00B7 Game Design \u00B7 Unity \u00B7 Unreal Engine',

@@ -54,6 +54,7 @@
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav_about">Profil</a></li>
     <li><a href="#competences" data-i18n="nav_skills">Compétences</a></li>
+    <li><a href="#process" data-i18n="nav_method">Méthode</a></li>
     <li><a href="#projets" data-i18n="nav_projects">Projets</a></li>
     <li><a href="#cv" data-i18n="nav_cv">CV</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
@@ -73,6 +74,7 @@
 <div id="mobile-menu" style="display:none;position:fixed;top:56px;left:0;right:0;z-index:99;background:rgba(10,10,11,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:1.5rem;flex-direction:column;gap:1.2rem">
   <a href="#about" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Profil</a>
   <a href="#competences" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Compétences</a>
+  <a href="#process" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Méthode</a>
   <a href="#projets" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Projets</a>
   <a href="#cv" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">CV</a>
   <a href="#contact" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Contact</a>
@@ -315,94 +317,89 @@
   <div class="section-num"><span>// Méthode</span></div>
   <h2 class="section-title">PROCESS DE LEVEL DESIGN</h2>
   <p class="pr-intro">De l'idée au premier niveau jouable : voici comment je travaille.</p>
-  <div class="pr-legend"><span class="pr-leg" style="--pc:#c8a96e">Idée</span><span class="pr-leg" style="--pc:#60a5fa">Papier & équipe</span><span class="pr-leg" style="--pc:#34d399">Moteur</span></div>
-  <ol class="tl">
-    <li class="tl-item tl-l" style="--pc:#c8a96e">
-      <span class="tl-node">1</span>
-      <div class="tl-card">
-        <div class="tl-n">01</div>
-        <h3 class="tl-t">Mots-clés</h3>
-        <p class="tl-d">Tout part de mots-clés : le thème, l'intention et l'ambiance du niveau, posés en quelques mots.</p>
-        <ul class="tl-l"><li>Choisir les mots qui définissent le niveau</li><li>Les traduire en intentions de level design</li></ul>
-        <div class="tl-o"><span class="tl-ol">Résultat</span>Un petit vocabulaire commun pour tout le projet</div>
-      </div>
-    </li>
-    <li class="tl-item tl-r" style="--pc:#c8a96e">
-      <span class="tl-node">2</span>
-      <div class="tl-card">
-        <div class="tl-n">02</div>
-        <h3 class="tl-t">Recherches & moodboard</h3>
-        <p class="tl-d">Je développe ces mots par des recherches et un moodboard, pour comprendre comment bien utiliser les mots en level design.</p>
-        <ul class="tl-l"><li>Références, images, ambiances</li><li>Faire le lien entre un mot et ce qu'il devient dans l'espace</li></ul>
-        <div class="tl-o"><span class="tl-ol">Résultat</span>Un moodboard et des références</div>
-      </div>
-    </li>
-    <li class="tl-phase" style="--pc:#60a5fa"><span>Papier & équipe</span></li>
-    <li class="tl-item tl-l" style="--pc:#60a5fa">
-      <span class="tl-node">3</span>
-      <div class="tl-card">
-        <div class="tl-n">03</div>
-        <h3 class="tl-t">Schéma sur papier</h3>
-        <p class="tl-d">Je schématise d'abord à la main : le papier permet d'essayer des idées vite, sans s'enfermer dans un outil.</p>
-        <ul class="tl-l"><li>Plan du niveau, parcours du joueur</li><li>Zones, passages, points d'intérêt</li></ul>
-        <div class="tl-o"><span class="tl-ol">Résultat</span>Des schémas papier du niveau</div>
-        <figure class="tl-ex" tabindex="0"><img src="assets/img/process/avant.webp" alt="Schéma d'Unjudged vu du dessus" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure>
-      </div>
-    </li>
-    <li class="tl-item tl-r" style="--pc:#60a5fa">
-      <span class="tl-node">4</span>
-      <div class="tl-card">
-        <div class="tl-n">04</div>
-        <h3 class="tl-t">Validation avec l'équipe</h3>
-        <p class="tl-d">Je vois avec l'équipe si ce level design peut correspondre au jeu, avant d'investir du temps dans le moteur.</p>
-        <ul class="tl-l"><li>Confronter le schéma aux contraintes du jeu</li><li>Ajuster selon les retours</li></ul>
-        <div class="tl-o"><span class="tl-ol">Résultat</span>Un schéma validé ensemble</div>
-      </div>
-    </li>
-    <li class="tl-item tl-l" style="--pc:#60a5fa">
-      <span class="tl-node">5</span>
-      <div class="tl-card">
-        <div class="tl-n">05</div>
-        <h3 class="tl-t">Slides de présentation</h3>
-        <p class="tl-d">Je fais des slides pour partager mes idées à tout le monde : chacun comprend la direction avant la production.</p>
-        <ul class="tl-l"><li>Présenter le niveau, son intention et son parcours</li><li>Aligner toute l'équipe</li></ul>
-        <div class="tl-o"><span class="tl-ol">Résultat</span>Des slides partagées avec l'équipe</div>
-      </div>
-    </li>
-    <li class="tl-phase" style="--pc:#34d399"><span>Moteur</span></li>
-    <li class="tl-item tl-r" style="--pc:#34d399">
-      <span class="tl-node">6</span>
-      <div class="tl-card">
-        <div class="tl-n">06</div>
-        <h3 class="tl-t">Tests dans le moteur</h3>
-        <p class="tl-d">Je passe sur le moteur et je teste directement en jeu, du point de vue du joueur.</p>
-        <ul class="tl-l"><li>Selon le contenu du jeu, je choisis ce qu'il faut tester (par exemple le nombre d'ennemis par salle)</li><li>Les dimensions, pour adapter mon level design à l'environnement du jeu (trop petit, trop grand…)</li></ul>
-        <div class="tl-o"><span class="tl-ol">Résultat</span>Des mesures et des repères pris en jeu</div>
-        <figure class="tl-ex" tabindex="0"><img src="assets/img/process/apres.webp" alt="Plan d'Unjudged avec ennemis et objectifs placés" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure>
-      </div>
-    </li>
-    <li class="tl-item tl-l" style="--pc:#34d399">
-      <span class="tl-node">7</span>
-      <div class="tl-card">
-        <div class="tl-n">07</div>
-        <h3 class="tl-t">Niveau de test</h3>
-        <p class="tl-d">Avant de construire quoi que ce soit, je fais un niveau de test pour valider les bases techniques.</p>
-        <ul class="tl-l"><li>Dimensions et collisions</li><li>Gravité et mouvements</li></ul>
-        <div class="tl-o"><span class="tl-ol">Résultat</span>Un niveau de test qui fixe les règles</div>
-      </div>
-    </li>
-    <li class="tl-item tl-r" style="--pc:#34d399">
-      <span class="tl-node">8</span>
-      <div class="tl-card">
-        <div class="tl-n">08</div>
-        <h3 class="tl-t">Premiers niveaux</h3>
-        <p class="tl-d">Une fois les bases validées, je commence mes premiers niveaux, puis j'itère.</p>
-        <ul class="tl-l"><li>Blockout du niveau</li><li>Itérations selon les tests</li></ul>
-        <div class="tl-o"><span class="tl-ol">Résultat</span>Les premiers niveaux jouables</div>
-        <figure class="tl-ex" tabindex="0"><img src="assets/img/process/final.webp" alt="Niveau final d'Unjudged dans le moteur" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure>
-      </div>
-    </li>
-  </ol>
+  <div class="pc-grid">
+    <div class="pc-col" style="--pc:#c8a96e">
+      <div class="pc-head">Idée</div>
+      <details class="pc-item" style="--pc:#c8a96e">
+        <summary><span class="pc-num">1</span><span class="pc-t">Mots-clés</span><span class="pc-plus" aria-hidden="true"></span></summary>
+        <div class="pc-body">
+          <p class="pc-d">Tout part de mots-clés : le thème, l'intention et l'ambiance du niveau, posés en quelques mots.</p>
+          <ul class="pc-l"><li>Choisir les mots qui définissent le niveau</li><li>Les traduire en intentions de level design</li></ul>
+          <div class="pc-o"><span class="pc-ol">Résultat</span>Un petit vocabulaire commun pour tout le projet</div>
+          
+        </div>
+      </details>
+      <details class="pc-item" style="--pc:#c8a96e">
+        <summary><span class="pc-num">2</span><span class="pc-t">Recherches & moodboard</span><span class="pc-plus" aria-hidden="true"></span></summary>
+        <div class="pc-body">
+          <p class="pc-d">Je développe ces mots par des recherches et un moodboard, pour comprendre comment bien utiliser les mots en level design.</p>
+          <ul class="pc-l"><li>Références, images, ambiances</li><li>Faire le lien entre un mot et ce qu'il devient dans l'espace</li></ul>
+          <div class="pc-o"><span class="pc-ol">Résultat</span>Un moodboard et des références</div>
+          
+        </div>
+      </details>
+    </div>
+    <div class="pc-col" style="--pc:#60a5fa">
+      <div class="pc-head">Papier & équipe</div>
+      <details class="pc-item" style="--pc:#60a5fa">
+        <summary><span class="pc-num">3</span><span class="pc-t">Schéma sur papier</span><span class="pc-plus" aria-hidden="true"></span></summary>
+        <div class="pc-body">
+          <p class="pc-d">Je schématise d'abord à la main : le papier permet d'essayer des idées vite, sans s'enfermer dans un outil.</p>
+          <ul class="pc-l"><li>Plan du niveau, parcours du joueur</li><li>Zones, passages, points d'intérêt</li></ul>
+          <div class="pc-o"><span class="pc-ol">Résultat</span>Des schémas papier du niveau</div>
+          <figure class="tl-ex" tabindex="0"><img src="assets/img/process/avant.webp" alt="Schéma d'Unjudged vu du dessus" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure>
+        </div>
+      </details>
+      <details class="pc-item" style="--pc:#60a5fa">
+        <summary><span class="pc-num">4</span><span class="pc-t">Validation avec l'équipe</span><span class="pc-plus" aria-hidden="true"></span></summary>
+        <div class="pc-body">
+          <p class="pc-d">Je vois avec l'équipe si ce level design peut correspondre au jeu, avant d'investir du temps dans le moteur.</p>
+          <ul class="pc-l"><li>Confronter le schéma aux contraintes du jeu</li><li>Ajuster selon les retours</li></ul>
+          <div class="pc-o"><span class="pc-ol">Résultat</span>Un schéma validé ensemble</div>
+          
+        </div>
+      </details>
+      <details class="pc-item" style="--pc:#60a5fa">
+        <summary><span class="pc-num">5</span><span class="pc-t">Slides de présentation</span><span class="pc-plus" aria-hidden="true"></span></summary>
+        <div class="pc-body">
+          <p class="pc-d">Je fais des slides pour partager mes idées à tout le monde : chacun comprend la direction avant la production.</p>
+          <ul class="pc-l"><li>Présenter le niveau, son intention et son parcours</li><li>Aligner toute l'équipe</li></ul>
+          <div class="pc-o"><span class="pc-ol">Résultat</span>Des slides partagées avec l'équipe</div>
+          
+        </div>
+      </details>
+    </div>
+    <div class="pc-col" style="--pc:#34d399">
+      <div class="pc-head">Moteur</div>
+      <details class="pc-item" style="--pc:#34d399">
+        <summary><span class="pc-num">6</span><span class="pc-t">Tests dans le moteur</span><span class="pc-plus" aria-hidden="true"></span></summary>
+        <div class="pc-body">
+          <p class="pc-d">Je passe sur le moteur et je teste directement en jeu, du point de vue du joueur.</p>
+          <ul class="pc-l"><li>Selon le contenu du jeu, je choisis ce qu'il faut tester (par exemple le nombre d'ennemis par salle)</li><li>Les dimensions, pour adapter mon level design à l'environnement du jeu (trop petit, trop grand…)</li></ul>
+          <div class="pc-o"><span class="pc-ol">Résultat</span>Des mesures et des repères pris en jeu</div>
+          <figure class="tl-ex" tabindex="0"><img src="assets/img/process/apres.webp" alt="Plan d'Unjudged avec ennemis et objectifs placés" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure>
+        </div>
+      </details>
+      <details class="pc-item" style="--pc:#34d399">
+        <summary><span class="pc-num">7</span><span class="pc-t">Niveau de test</span><span class="pc-plus" aria-hidden="true"></span></summary>
+        <div class="pc-body">
+          <p class="pc-d">Avant de construire quoi que ce soit, je fais un niveau de test pour valider les bases techniques.</p>
+          <ul class="pc-l"><li>Dimensions et collisions</li><li>Gravité et mouvements</li></ul>
+          <div class="pc-o"><span class="pc-ol">Résultat</span>Un niveau de test qui fixe les règles</div>
+          
+        </div>
+      </details>
+      <details class="pc-item" style="--pc:#34d399">
+        <summary><span class="pc-num">8</span><span class="pc-t">Premiers niveaux</span><span class="pc-plus" aria-hidden="true"></span></summary>
+        <div class="pc-body">
+          <p class="pc-d">Une fois les bases validées, je commence mes premiers niveaux, puis j'itère.</p>
+          <ul class="pc-l"><li>Blockout du niveau</li><li>Itérations selon les tests</li></ul>
+          <div class="pc-o"><span class="pc-ol">Résultat</span>Les premiers niveaux jouables</div>
+          <figure class="tl-ex" tabindex="0"><img src="assets/img/process/final.webp" alt="Niveau final d'Unjudged dans le moteur" loading="lazy" decoding="async"/><figcaption>Exemple : Unjudged</figcaption></figure>
+        </div>
+      </details>
+    </div>
+  </div>
 </section>
 
 <div class="divider"></div>
