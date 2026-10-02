@@ -77,7 +77,7 @@
  "Des slides partagées avec l'équipe": "Slides shared with the team",
  "Tests dans le moteur": "Engine tests",
  "Je passe sur le moteur et je teste directement en jeu, du point de vue du joueur.": "I move to the engine and test directly in game, from the player's point of view.",
- "Combien d'ennemis par salle, et s'il y en a dans le jeu": "How many enemies per room, and whether there are any in the game",
+ "Selon le contenu du jeu, je choisis ce qu'il faut tester (par exemple le nombre d'ennemis par salle)": "Depending on the game's content, I decide what needs testing (for example the number of enemies per room)",
  "Les dimensions, vues depuis la caméra du joueur": "The dimensions, seen from the player's camera",
  "Des mesures et des repères pris en jeu": "Measurements and references taken in game",
  "Niveau de test": "Test level",
