@@ -1190,3 +1190,33 @@ body.modal-open #bg-canvas{visibility:hidden}
 .wl-tool .vw-logo.vw-adobe{min-height:66px}
 .wl-tdesc .vw-logo.vw-adobe .adobe-grid{grid-template-columns:repeat(5,32px);gap:5px}
 .wl-tdesc .vw-logo.vw-adobe img.adobe-i{width:32px;height:32px}
+
+/* Process de level design */
+.pr-intro{font-size:1rem;color:var(--grey-light);max-width:60ch;margin:-1.4rem 0 1.6rem;line-height:1.8}
+.pr-legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.pr-leg{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--pc);display:inline-flex;align-items:center;gap:.5rem}
+.pr-leg::before{content:'';width:.7rem;height:.7rem;border-radius:50%;background:var(--pc)}
+.pr-track{display:grid;grid-template-columns:repeat(8,1fr);gap:.4rem;position:relative;margin-bottom:1.6rem}
+.pr-track::before{content:'';position:absolute;left:3%;right:3%;top:1.35rem;height:2px;background:linear-gradient(90deg,#c8a96e 0 25%,#60a5fa 25% 62%,#34d399 62%);opacity:.45}
+.pr-node{position:relative;display:flex;flex-direction:column;align-items:center;gap:.6rem;background:none;border:0;cursor:pointer;padding:0 .2rem;color:var(--grey-light)}
+.pr-dot{position:relative;z-index:1;width:2.7rem;height:2.7rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.8rem;color:var(--pc);background:var(--bg);border:2px solid var(--pc);transition:all .25s}
+.pr-nt{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:1.4;transition:color .2s}
+.pr-node:hover .pr-dot{transform:scale(1.1);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 55%,transparent)}
+.pr-node.active .pr-dot{background:var(--pc);color:#0a0a0a;box-shadow:0 0 24px color-mix(in srgb,var(--pc) 60%,transparent);transform:scale(1.12)}
+.pr-node.active .pr-nt{color:var(--white)}
+.pr-panel{--pc:#c8a96e;padding:2rem 2.2rem;border:1px solid color-mix(in srgb,var(--pc) 45%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--pc) 11%,transparent),rgba(0,0,0,.25));animation:selIn .4s cubic-bezier(.2,.75,.2,1) both}
+.pr-panel[hidden]{display:none}
+.pr-ph{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pc);margin-bottom:.8rem}
+.pr-title{margin:0 0 .8rem;font-family:var(--font-title);font-weight:400;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1;color:var(--white);display:flex;align-items:baseline;gap:1rem}
+.pr-big{font-size:1.2em;color:var(--pc);opacity:.85}
+.pr-desc{font-size:1.05rem;line-height:1.85;color:#e1dad2;max-width:62ch;margin:0 0 1.2rem}
+.pr-list{list-style:none;margin:0 0 1.4rem;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.pr-list li{position:relative;padding:.55rem .9rem .55rem 1.6rem;border-left:2px solid var(--pc);background:rgba(0,0,0,.25);font-family:'DM Sans',sans-serif;font-size:.9rem;color:#d6cfc6}
+.pr-out{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;padding-top:1rem;border-top:1px dashed rgba(255,255,255,.14);font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--white)}
+.pr-out-l{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:#0a0a0a;background:var(--pc);padding:.25rem .6rem}
+.pr-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:1rem}
+.pr-nav button{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);background:transparent;border:1px solid var(--border);padding:.65rem 1.2rem;cursor:pointer;transition:all .2s}
+.pr-nav button:hover{color:var(--white);border-color:rgba(255,255,255,.35)}
+.pr-nav button:disabled{opacity:.3;cursor:default}
+@media(max-width:900px){.pr-track{grid-template-columns:repeat(4,1fr);row-gap:1.2rem}.pr-track::before{display:none}.pr-panel{padding:1.4rem}}
+@media(max-width:520px){.pr-track{grid-template-columns:repeat(2,1fr)}}

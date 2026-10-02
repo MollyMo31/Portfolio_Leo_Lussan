@@ -2542,3 +2542,18 @@ window.addEventListener('load',function(){
     d.appendChild(art); d.appendChild(body); show(d);
   }
 })();
+
+/* == Process de level design : etapes cliquables == */
+(function(){
+  var root=document.getElementById('process'); if(!root) return;
+  var nodes=[].slice.call(root.querySelectorAll('.pr-node')), panels=[].slice.call(root.querySelectorAll('.pr-panel')), prev=root.querySelector('.pr-prev'), next=root.querySelector('.pr-next'), cur=0;
+  function go(i){
+    cur=Math.max(0,Math.min(nodes.length-1,i));
+    nodes.forEach(function(n,k){ n.classList.toggle('active',k===cur); });
+    panels.forEach(function(p,k){ p.hidden=k!==cur; });
+    prev.disabled=cur===0; next.disabled=cur===nodes.length-1;
+  }
+  nodes.forEach(function(n,k){ n.addEventListener('click',function(){ go(k); }); });
+  prev.addEventListener('click',function(){ go(cur-1); }); next.addEventListener('click',function(){ go(cur+1); });
+  go(0);
+})();
