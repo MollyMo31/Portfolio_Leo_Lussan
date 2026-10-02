@@ -47,6 +47,15 @@
  "DAW en ligne pour la production de compositions musicales et de sound design. Crée des ambiances sonores qui enrichissent les projets de game design.": "Online DAW for producing musical compositions and sound design. Creates soundscapes that enrich game design projects.",
  "Terrain d'expérimentation pour le level design. Construction de maps, architectures thématiques, parkour et hubs immersifs avec 32 références jeux vidéo.": "Experimentation ground for level design. Map building, themed architecture, parkour and immersive hubs with 32 video game references.",
  "Projets d'école": "School Projects",
+ "1 · Schéma": "1 · Sketch",
+ "2 · Plan": "2 · Plan",
+ "3 · Niveau": "3 · Level",
+ "Un exemple concret sur Unjudged : le schéma de départ vu du dessus, le plan une fois ennemis et objectifs placés, puis le niveau terminé dans le moteur. Clique sur une image pour l'agrandir.": "A concrete example on Unjudged: the starting top-down sketch, the plan once enemies and objectives are placed, then the finished level in the engine. Click an image to enlarge it.",
+ "Schéma": "Sketch",
+ "Plan": "Plan",
+ "Ennemis et objectifs placés": "Enemies and objectives placed",
+ "Niveau final dans le moteur": "Final level in the engine",
+ "Voir le projet Unjudged →": "See the Unjudged project →",
  "De l'esquisse au niveau final": "From sketch to final level",
  "Un exemple concret : à gauche, le schéma de départ vu du dessus ; à droite, le niveau terminé. Clique sur une image pour l'agrandir.": "A concrete example: on the left, the starting top-down sketch; on the right, the finished level. Click an image to enlarge it.",
  "Avant": "Before",
@@ -969,6 +978,8 @@
  "<strong>Sons :</strong> rire diabolique au lancement, compteur « 1, 2, 3 — Survive! », moteur du kart (roulage et dérapage), « bonk » à la collision, bruit de la glue, rire des fantômes et du prêtre, musique entraînante au thème d'Halloween. <strong>Menus :</strong> intro (titre, prêtre qui tourne, Play / Leave, contrôles avec Tab), écran de défaite (« You got Eaten ») et de victoire (« Good Job! You escaped the priest »).": "<strong>Sounds:</strong> diabolical laugh at launch, \"1, 2, 3 — Survive!\" counter, kart engine (driving and drifting), \"bonk\" on collision, glue sound, ghost and priest laughter, upbeat Halloween-themed music. <strong>Menus:</strong> intro (title, rotating priest, Play / Leave, in-game controls with Tab), defeat screen (\"You got Eaten\") and victory screen (\"Good Job! You escaped the priest\")."
 };
   var ATTR = {
+ "Plan du niveau avec ennemis et objectifs placés": "Level plan with enemies and objectives placed",
+ "Niveau final dans le moteur, vu du dessus": "Final level in the engine, top view",
  "Schéma de départ du niveau, vu du dessus": "Starting top-down sketch of the level",
  "Niveau final avec ennemis et objectifs placés": "Final level with enemies and objectives placed",
  "Léo Lussan": "Léo Lussan",
