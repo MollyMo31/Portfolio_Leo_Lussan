@@ -402,14 +402,22 @@
   </ol>
   <div class="ba">
     <div class="pm-section-title ba-title">De l'esquisse au niveau final</div>
-    <p class="ba-lead">Un exemple concret sur Unjudged, en quatre temps : des croquis sur papier, le schéma vu du dessus, le plan une fois ennemis et objectifs placés, puis le niveau terminé dans le moteur. Clique sur une image pour l'agrandir.</p>
-    <div class="ba-stage"><span class="ba-tag ba-tag-inline">1 · Croquis papier</span></div>
-    <div class="ba-sketches"><figure class="ba-fig ba-sk" tabindex="0"><img src="assets/img/process/croquis-1.webp" alt="Croquis papier de la pyramide 1 (Unjudged)" loading="lazy" decoding="async"/><figcaption>Pyramide 1</figcaption></figure><figure class="ba-fig ba-sk" tabindex="0"><img src="assets/img/process/croquis-2.webp" alt="Croquis papier de la pyramide 2 (Unjudged)" loading="lazy" decoding="async"/><figcaption>Pyramide 2</figcaption></figure><figure class="ba-fig ba-sk" tabindex="0"><img src="assets/img/process/croquis-3.webp" alt="Croquis papier de la pyramide 3 (Unjudged)" loading="lazy" decoding="async"/><figcaption>Pyramide 3</figcaption></figure><figure class="ba-fig ba-sk" tabindex="0"><img src="assets/img/process/croquis-4.webp" alt="Croquis papier de la pyramide 4 (Unjudged)" loading="lazy" decoding="async"/><figcaption>Pyramide 4</figcaption></figure></div>
-    <div class="ba-stage"><span class="ba-tag ba-tag-inline ba-tag-mid">2 → 4 · Du schéma au niveau</span></div>
-    <div class="ba-row ba-row3">
-      <figure class="ba-fig" tabindex="0"><div class="ba-tag">2 · Schéma</div><img src="assets/img/process/avant.webp" alt="Schéma du niveau vu du dessus" loading="lazy" decoding="async"/><figcaption>Schéma vu du dessus</figcaption></figure>
-      <figure class="ba-fig" tabindex="0"><div class="ba-tag ba-tag-mid">3 · Plan</div><img src="assets/img/process/apres.webp" alt="Plan du niveau avec ennemis et objectifs placés" loading="lazy" decoding="async"/><figcaption>Ennemis et objectifs placés</figcaption></figure>
-      <figure class="ba-fig ba-fig-final" tabindex="0"><div class="ba-tag ba-tag-after">4 · Niveau</div><img src="assets/img/process/final.webp" alt="Niveau final dans le moteur, vu du dessus" loading="lazy" decoding="async"/><figcaption>Niveau final dans le moteur</figcaption></figure>
+    <p class="ba-lead">Un exemple concret sur Unjudged : le même niveau à trois stades, du schéma vu du dessus au niveau terminé dans le moteur. Choisis une étape, ou laisse défiler.</p>
+    <div class="bs">
+      <div class="bs-tabs" role="tablist"><button type="button" class="bs-tab active" data-i="0" style="--bc:#9ca3af"><span class="bs-n">1</span>Schéma</button><button type="button" class="bs-tab" data-i="1" style="--bc:#f59e0b"><span class="bs-n">2</span>Plan</button><button type="button" class="bs-tab" data-i="2" style="--bc:#22c55e"><span class="bs-n">3</span>Niveau</button></div>
+      <div class="bs-bar"><i></i></div>
+      <div class="bs-panel" data-i="0" style="--bc:#9ca3af">
+        <button type="button" class="bs-img" aria-label="Agrandir"><img src="assets/img/process/avant.webp" alt="Schéma du niveau vu du dessus" loading="lazy" decoding="async"/></button>
+        <div class="bs-txt"><div class="bs-step">Étape 1 / 3</div><h4 class="bs-h">Schéma</h4><p>Je pose le plan vu du dessus : la forme des salles et la circulation entre elles.</p><ul><li>Forme et enchaînement des salles</li><li>Passages et portes entre les zones</li></ul></div>
+      </div>
+      <div class="bs-panel" hidden data-i="1" style="--bc:#f59e0b">
+        <button type="button" class="bs-img" aria-label="Agrandir"><img src="assets/img/process/apres.webp" alt="Plan du niveau avec ennemis et objectifs placés" loading="lazy" decoding="async"/></button>
+        <div class="bs-txt"><div class="bs-step">Étape 2 / 3</div><h4 class="bs-h">Plan</h4><p>Je place ce qui fait vivre le niveau : les ennemis, les objectifs et le point de départ.</p><ul><li>Placement des ennemis par salle</li><li>Départ, objectifs et sortie repérés</li></ul></div>
+      </div>
+      <div class="bs-panel" hidden data-i="2" style="--bc:#22c55e">
+        <button type="button" class="bs-img" aria-label="Agrandir"><img src="assets/img/process/final.webp" alt="Niveau final dans le moteur, vu du dessus" loading="lazy" decoding="async"/></button>
+        <div class="bs-txt"><div class="bs-step">Étape 3 / 3</div><h4 class="bs-h">Niveau</h4><p>Le plan prend forme dans le moteur : le niveau jouable, avec ses volumes et son décor.</p><ul><li>Volumes et architecture en 3D</li><li>Le niveau terminé, prêt à être testé</li></ul></div>
+      </div>
     </div>
     <button type="button" class="ba-go" onclick="openProj('unjudged')">Voir le projet Unjudged →</button>
   </div>
