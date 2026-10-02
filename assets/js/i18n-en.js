@@ -993,6 +993,8 @@
  "<strong>Sons :</strong> rire diabolique au lancement, compteur « 1, 2, 3 — Survive! », moteur du kart (roulage et dérapage), « bonk » à la collision, bruit de la glue, rire des fantômes et du prêtre, musique entraînante au thème d'Halloween. <strong>Menus :</strong> intro (titre, prêtre qui tourne, Play / Leave, contrôles avec Tab), écran de défaite (« You got Eaten ») et de victoire (« Good Job! You escaped the priest »).": "<strong>Sounds:</strong> diabolical laugh at launch, \"1, 2, 3 — Survive!\" counter, kart engine (driving and drifting), \"bonk\" on collision, glue sound, ghost and priest laughter, upbeat Halloween-themed music. <strong>Menus:</strong> intro (title, rotating priest, Play / Leave, in-game controls with Tab), defeat screen (\"You got Eaten\") and victory screen (\"Good Job! You escaped the priest\")."
 };
   var ATTR = {
+ "Étape précédente": "Previous step",
+ "Étape suivante": "Next step",
  "Niveau final d'Unjudged dans le moteur": "Final Unjudged level in the engine",
  "Plan d'Unjudged avec ennemis et objectifs placés": "Unjudged plan with enemies and objectives placed",
  "Schéma d'Unjudged vu du dessus": "Unjudged top-down layout",
@@ -1102,7 +1104,7 @@
       var html = el.innerHTML, en = EN[norm(html)];
       if (en !== undefined){ changed.push([el, html]); el.innerHTML = en; }
     }
-    ['alt','title'].forEach(function(a){
+    ['alt','title','aria-label'].forEach(function(a){
       document.querySelectorAll('['+a+']').forEach(function(el){
         var v = el.getAttribute(a), en = ATTR[v];
         if (en !== undefined){ changedAttr.push([el,a,v]); el.setAttribute(a,en); }
