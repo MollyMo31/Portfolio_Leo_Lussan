@@ -1228,3 +1228,13 @@ body.modal-open #bg-canvas{visibility:hidden}
   .tl-card::before,.tl-r .tl-card::before{left:-2rem;right:auto;width:2rem}
 }
 @media(prefers-reduced-motion:reduce){.tl-item{opacity:1;transform:none;transition:none}}
+
+/* Chiffres cles sous l'accueil */
+.kn{padding:3.2rem 4rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(200,169,110,.05),rgba(0,0,0,0))}
+.kn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.6rem;max-width:1200px;margin:0 auto}
+.kn-cell{position:relative;padding:.4rem 0 .4rem 1.3rem;border-left:2px solid var(--red)}
+.kn-cell[hidden]{display:none}
+.kn-num{font-family:var(--font-title);font-size:clamp(3rem,5vw,4.6rem);line-height:1;color:var(--white);text-shadow:0 0 30px rgba(200,169,110,.25);font-variant-numeric:tabular-nums}
+.kn-l{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-top:.4rem}
+.kn-d{font-family:'DM Sans',sans-serif;font-size:.8rem;line-height:1.5;color:var(--grey-light);margin-top:.35rem;max-width:22ch}
+@media(max-width:900px){.kn{padding:2.4rem 1.5rem}.kn-grid{grid-template-columns:1fr 1fr;gap:1.4rem 1rem}}
