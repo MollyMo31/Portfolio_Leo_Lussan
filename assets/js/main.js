@@ -2504,22 +2504,21 @@ window.addEventListener('load',function(){
   });
   var USES={unity:['priest','draconium','juiceup'],unreal:['unjudged','city','silence','tower'],inky:['unjudged','silence'],twine:['silence','entretien'],miro:['unjudged','priest'],adobe:['mira'],ldtk:['tower'],hacknplan:['tower'],git:['unjudged','mira']};
   var tools=[].slice.call(document.querySelectorAll('.wl-tool')), projs=[].slice.call(document.querySelectorAll('.wl-proj')), pw=document.querySelector('.wl-projs'), tw=document.querySelector('.wl-tools'), st=document.getElementById('wl-status'), panel=document.getElementById('wl-panel'), cur=null;
-  function clear(){ cur=null; if(panel){ panel.hidden=true; panel.innerHTML=''; } tools.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-pressed','false'); }); projs.forEach(function(p){ p.classList.remove('on'); }); pw.classList.remove('has-sel'); tw.classList.remove('has-sel'); st.textContent=(document.documentElement.lang==='en')?'Everything is shown.':'Tout est affiché.'; }
+  function clear(){ cur=null; if(panel){ panel.hidden=true; panel.innerHTML=''; } tools.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-pressed','false'); }); projs.forEach(function(p){ p.classList.remove('on','sel'); }); pw.classList.remove('has-sel'); tw.classList.remove('has-sel'); st.textContent=''; }
   function lbl(t){ return t.querySelector('.wl-n').textContent; }
   tools.forEach(function(t){ t.addEventListener('click',function(){
     if(t.classList.contains('on')){ clear(); return; }
     clear(); var id=t.getAttribute('data-tool'), list=USES[id]||[];
     cur=id; showTool(t,id); t.classList.add('on'); t.setAttribute('aria-pressed','true'); tw.classList.add('has-sel'); pw.classList.add('has-sel');
     projs.forEach(function(p){ p.classList.toggle('on',list.indexOf(p.getAttribute('data-proj'))>-1); });
-    st.textContent=lbl(t)+' → '+list.length+((document.documentElement.lang==='en')?' project(s)':' projet(s)');
+    st.textContent=lbl(t)+' → '+list.length+((document.documentElement.lang==='en')?' project(s) — click one for a preview':' projet(s) — clique sur l\'un d\'eux pour un aperçu');
   }); });
+  // un clic sur un projet affiche son apercu ; un second clic revient a la description de l'outil
   [].forEach.call(document.querySelectorAll('.wl-pname'),function(b){ b.addEventListener('click',function(){
-    var id=b.getAttribute('data-pick'), pr=b.parentNode;
-    if(pr.classList.contains('on')&&pw.classList.contains('has-sel')&&!tools.some(function(t){return t.classList.contains('on');})){ clear(); return; }
-    clear(); pr.classList.add('on'); pw.classList.add('has-sel'); tw.classList.add('has-sel'); var n=0;
-    tools.forEach(function(t){ var on=(USES[t.getAttribute('data-tool')]||[]).indexOf(id)>-1; t.classList.toggle('on',on); if(on) n++; t.setAttribute('aria-pressed',on?'true':'false'); });
-    st.textContent=b.textContent+' → '+n+((document.documentElement.lang==='en')?' tool(s)':' outil(s)');
-    showProject(id);
+    var id=b.getAttribute('data-pick'), pr=b.parentNode, active=pr.classList.contains('sel');
+    projs.forEach(function(p){ p.classList.remove('sel'); });
+    if(active){ var t=document.querySelector('.wl-tool.on'); if(t) showTool(t,cur); return; }
+    pr.classList.add('sel'); showProject(id);
   }); });
   // le contenu du panneau est copie dans la langue du moment : on le referme si la langue change
   new MutationObserver(function(){ clear(); }).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});

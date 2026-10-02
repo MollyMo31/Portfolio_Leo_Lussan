@@ -1158,3 +1158,13 @@ body.modal-open #bg-canvas{visibility:hidden}
 .wl-prev-body{padding:1.8rem 2rem;display:flex;flex-direction:column;gap:.55rem;justify-content:center}
 .wl-prev-body .sel-title{font-size:clamp(1.8rem,3.2vw,2.8rem)}
 @media(max-width:800px){.wl-prev{grid-template-columns:1fr}.wl-prev-art{min-height:220px}.wl-tdesc{flex-direction:column}}
+
+/* Competences : les projets n'apparaissent qu'apres le choix d'un outil, et seuls ses projets */
+.wl-projs,.wl-status-row{display:none}
+.wl-projs.has-sel{display:flex}
+.wl-projs.has-sel+.wl-panel{margin-top:1.2rem}
+.wl-status-row:has(.wl-status:not(:empty)){display:flex}
+.wl-projs.has-sel .wl-proj:not(.on){display:none}
+.wl-projs.has-sel .wl-proj.on{opacity:1}
+.wl-proj.sel{border-color:var(--pc);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
+.wl-proj.sel .wl-pname{color:var(--white)}
