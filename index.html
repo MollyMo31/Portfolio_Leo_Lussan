@@ -291,66 +291,91 @@
   <h2 class="section-title">PROCESS DE LEVEL DESIGN</h2>
   <p class="pr-intro">De l'idée au premier niveau jouable : voici comment je travaille. Clique sur une étape pour la découvrir.</p>
   <div class="pr-legend"><span class="pr-leg" style="--pc:#c8a96e">Idée</span><span class="pr-leg" style="--pc:#60a5fa">Papier & équipe</span><span class="pr-leg" style="--pc:#34d399">Moteur</span></div>
-  <div class="pr-track" role="tablist"><button type="button" class="pr-node active" data-i="0" style="--pc:#c8a96e"><span class="pr-dot">1</span><span class="pr-nt">Mots-clés</span></button><button type="button" class="pr-node" data-i="1" style="--pc:#c8a96e"><span class="pr-dot">2</span><span class="pr-nt">Recherches & moodboard</span></button><button type="button" class="pr-node" data-i="2" style="--pc:#60a5fa"><span class="pr-dot">3</span><span class="pr-nt">Schéma sur papier</span></button><button type="button" class="pr-node" data-i="3" style="--pc:#60a5fa"><span class="pr-dot">4</span><span class="pr-nt">Validation avec l'équipe</span></button><button type="button" class="pr-node" data-i="4" style="--pc:#60a5fa"><span class="pr-dot">5</span><span class="pr-nt">Slides de présentation</span></button><button type="button" class="pr-node" data-i="5" style="--pc:#34d399"><span class="pr-dot">6</span><span class="pr-nt">Tests dans le moteur</span></button><button type="button" class="pr-node" data-i="6" style="--pc:#34d399"><span class="pr-dot">7</span><span class="pr-nt">Niveau de test</span></button><button type="button" class="pr-node" data-i="7" style="--pc:#34d399"><span class="pr-dot">8</span><span class="pr-nt">Premiers niveaux</span></button></div>
-  <div class="pr-panels">
-      <div class="pr-panel" data-i="0" style="--pc:#c8a96e">
-        <div class="pr-ph">Idée</div>
-        <h3 class="pr-title"><span class="pr-big">01</span>Mots-clés</h3>
-        <p class="pr-desc">Tout part de mots-clés : le thème, l'intention et l'ambiance du niveau, posés en quelques mots.</p>
-        <ul class="pr-list"><li>Choisir les mots qui définissent le niveau</li><li>Les traduire en intentions de level design</li></ul>
-        <div class="pr-out"><span class="pr-out-l">Résultat</span>Un petit vocabulaire commun pour tout le projet</div>
+  <ol class="tl">
+    <li class="tl-phase" style="--pc:#c8a96e"><span>Idée</span></li>
+    <li class="tl-item tl-l" style="--pc:#c8a96e">
+      <span class="tl-node">1</span>
+      <div class="tl-card">
+        <div class="tl-n">01</div>
+        <h3 class="tl-t">Mots-clés</h3>
+        <p class="tl-d">Tout part de mots-clés : le thème, l'intention et l'ambiance du niveau, posés en quelques mots.</p>
+        <ul class="tl-l"><li>Choisir les mots qui définissent le niveau</li><li>Les traduire en intentions de level design</li></ul>
+        <div class="tl-o"><span class="tl-ol">Résultat</span>Un petit vocabulaire commun pour tout le projet</div>
       </div>
-      <div class="pr-panel" hidden data-i="1" style="--pc:#c8a96e">
-        <div class="pr-ph">Idée</div>
-        <h3 class="pr-title"><span class="pr-big">02</span>Recherches & moodboard</h3>
-        <p class="pr-desc">Je développe ces mots par des recherches et un moodboard, pour comprendre comment bien utiliser les mots en level design.</p>
-        <ul class="pr-list"><li>Références, images, ambiances</li><li>Faire le lien entre un mot et ce qu'il devient dans l'espace</li></ul>
-        <div class="pr-out"><span class="pr-out-l">Résultat</span>Un moodboard et des références</div>
+    </li>
+    <li class="tl-item tl-r" style="--pc:#c8a96e">
+      <span class="tl-node">2</span>
+      <div class="tl-card">
+        <div class="tl-n">02</div>
+        <h3 class="tl-t">Recherches & moodboard</h3>
+        <p class="tl-d">Je développe ces mots par des recherches et un moodboard, pour comprendre comment bien utiliser les mots en level design.</p>
+        <ul class="tl-l"><li>Références, images, ambiances</li><li>Faire le lien entre un mot et ce qu'il devient dans l'espace</li></ul>
+        <div class="tl-o"><span class="tl-ol">Résultat</span>Un moodboard et des références</div>
       </div>
-      <div class="pr-panel" hidden data-i="2" style="--pc:#60a5fa">
-        <div class="pr-ph">Papier & équipe</div>
-        <h3 class="pr-title"><span class="pr-big">03</span>Schéma sur papier</h3>
-        <p class="pr-desc">Je schématise d'abord à la main : le papier permet d'essayer des idées vite, sans s'enfermer dans un outil.</p>
-        <ul class="pr-list"><li>Plan du niveau, parcours du joueur</li><li>Zones, passages, points d'intérêt</li></ul>
-        <div class="pr-out"><span class="pr-out-l">Résultat</span>Des schémas papier du niveau</div>
+    </li>
+    <li class="tl-phase" style="--pc:#60a5fa"><span>Papier & équipe</span></li>
+    <li class="tl-item tl-l" style="--pc:#60a5fa">
+      <span class="tl-node">3</span>
+      <div class="tl-card">
+        <div class="tl-n">03</div>
+        <h3 class="tl-t">Schéma sur papier</h3>
+        <p class="tl-d">Je schématise d'abord à la main : le papier permet d'essayer des idées vite, sans s'enfermer dans un outil.</p>
+        <ul class="tl-l"><li>Plan du niveau, parcours du joueur</li><li>Zones, passages, points d'intérêt</li></ul>
+        <div class="tl-o"><span class="tl-ol">Résultat</span>Des schémas papier du niveau</div>
       </div>
-      <div class="pr-panel" hidden data-i="3" style="--pc:#60a5fa">
-        <div class="pr-ph">Papier & équipe</div>
-        <h3 class="pr-title"><span class="pr-big">04</span>Validation avec l'équipe</h3>
-        <p class="pr-desc">Je vois avec l'équipe si ce level design peut correspondre au jeu, avant d'investir du temps dans le moteur.</p>
-        <ul class="pr-list"><li>Confronter le schéma aux contraintes du jeu</li><li>Ajuster selon les retours</li></ul>
-        <div class="pr-out"><span class="pr-out-l">Résultat</span>Un schéma validé ensemble</div>
+    </li>
+    <li class="tl-item tl-r" style="--pc:#60a5fa">
+      <span class="tl-node">4</span>
+      <div class="tl-card">
+        <div class="tl-n">04</div>
+        <h3 class="tl-t">Validation avec l'équipe</h3>
+        <p class="tl-d">Je vois avec l'équipe si ce level design peut correspondre au jeu, avant d'investir du temps dans le moteur.</p>
+        <ul class="tl-l"><li>Confronter le schéma aux contraintes du jeu</li><li>Ajuster selon les retours</li></ul>
+        <div class="tl-o"><span class="tl-ol">Résultat</span>Un schéma validé ensemble</div>
       </div>
-      <div class="pr-panel" hidden data-i="4" style="--pc:#60a5fa">
-        <div class="pr-ph">Papier & équipe</div>
-        <h3 class="pr-title"><span class="pr-big">05</span>Slides de présentation</h3>
-        <p class="pr-desc">Je fais des slides pour partager mes idées à tout le monde : chacun comprend la direction avant la production.</p>
-        <ul class="pr-list"><li>Présenter le niveau, son intention et son parcours</li><li>Aligner toute l'équipe</li></ul>
-        <div class="pr-out"><span class="pr-out-l">Résultat</span>Des slides partagées avec l'équipe</div>
+    </li>
+    <li class="tl-item tl-l" style="--pc:#60a5fa">
+      <span class="tl-node">5</span>
+      <div class="tl-card">
+        <div class="tl-n">05</div>
+        <h3 class="tl-t">Slides de présentation</h3>
+        <p class="tl-d">Je fais des slides pour partager mes idées à tout le monde : chacun comprend la direction avant la production.</p>
+        <ul class="tl-l"><li>Présenter le niveau, son intention et son parcours</li><li>Aligner toute l'équipe</li></ul>
+        <div class="tl-o"><span class="tl-ol">Résultat</span>Des slides partagées avec l'équipe</div>
       </div>
-      <div class="pr-panel" hidden data-i="5" style="--pc:#34d399">
-        <div class="pr-ph">Moteur</div>
-        <h3 class="pr-title"><span class="pr-big">06</span>Tests dans le moteur</h3>
-        <p class="pr-desc">Je passe sur le moteur et je teste directement en jeu, du point de vue du joueur.</p>
-        <ul class="pr-list"><li>Selon le contenu du jeu, je choisis ce qu'il faut tester (par exemple le nombre d'ennemis par salle)</li><li>Les dimensions, pour adapter mon level design à l'environnement du jeu (trop petit, trop grand…)</li></ul>
-        <div class="pr-out"><span class="pr-out-l">Résultat</span>Des mesures et des repères pris en jeu</div>
+    </li>
+    <li class="tl-phase" style="--pc:#34d399"><span>Moteur</span></li>
+    <li class="tl-item tl-r" style="--pc:#34d399">
+      <span class="tl-node">6</span>
+      <div class="tl-card">
+        <div class="tl-n">06</div>
+        <h3 class="tl-t">Tests dans le moteur</h3>
+        <p class="tl-d">Je passe sur le moteur et je teste directement en jeu, du point de vue du joueur.</p>
+        <ul class="tl-l"><li>Selon le contenu du jeu, je choisis ce qu'il faut tester (par exemple le nombre d'ennemis par salle)</li><li>Les dimensions, pour adapter mon level design à l'environnement du jeu (trop petit, trop grand…)</li></ul>
+        <div class="tl-o"><span class="tl-ol">Résultat</span>Des mesures et des repères pris en jeu</div>
       </div>
-      <div class="pr-panel" hidden data-i="6" style="--pc:#34d399">
-        <div class="pr-ph">Moteur</div>
-        <h3 class="pr-title"><span class="pr-big">07</span>Niveau de test</h3>
-        <p class="pr-desc">Avant de construire quoi que ce soit, je fais un niveau de test pour valider les bases techniques.</p>
-        <ul class="pr-list"><li>Dimensions et collisions</li><li>Gravité et mouvements</li></ul>
-        <div class="pr-out"><span class="pr-out-l">Résultat</span>Un niveau de test qui fixe les règles</div>
+    </li>
+    <li class="tl-item tl-l" style="--pc:#34d399">
+      <span class="tl-node">7</span>
+      <div class="tl-card">
+        <div class="tl-n">07</div>
+        <h3 class="tl-t">Niveau de test</h3>
+        <p class="tl-d">Avant de construire quoi que ce soit, je fais un niveau de test pour valider les bases techniques.</p>
+        <ul class="tl-l"><li>Dimensions et collisions</li><li>Gravité et mouvements</li></ul>
+        <div class="tl-o"><span class="tl-ol">Résultat</span>Un niveau de test qui fixe les règles</div>
       </div>
-      <div class="pr-panel" hidden data-i="7" style="--pc:#34d399">
-        <div class="pr-ph">Moteur</div>
-        <h3 class="pr-title"><span class="pr-big">08</span>Premiers niveaux</h3>
-        <p class="pr-desc">Une fois les bases validées, je commence mes premiers niveaux, puis j'itère.</p>
-        <ul class="pr-list"><li>Blockout du niveau</li><li>Itérations selon les tests</li></ul>
-        <div class="pr-out"><span class="pr-out-l">Résultat</span>Les premiers niveaux jouables</div>
+    </li>
+    <li class="tl-item tl-r" style="--pc:#34d399">
+      <span class="tl-node">8</span>
+      <div class="tl-card">
+        <div class="tl-n">08</div>
+        <h3 class="tl-t">Premiers niveaux</h3>
+        <p class="tl-d">Une fois les bases validées, je commence mes premiers niveaux, puis j'itère.</p>
+        <ul class="tl-l"><li>Blockout du niveau</li><li>Itérations selon les tests</li></ul>
+        <div class="tl-o"><span class="tl-ol">Résultat</span>Les premiers niveaux jouables</div>
       </div>
-    <div class="pr-nav"><button type="button" class="pr-prev">← Étape précédente</button><button type="button" class="pr-next">Étape suivante →</button></div>
-  </div>
+    </li>
+  </ol>
 </section>
 
 <div class="divider"></div>
