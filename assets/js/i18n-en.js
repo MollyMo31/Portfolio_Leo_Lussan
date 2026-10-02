@@ -78,7 +78,7 @@
  "Tests dans le moteur": "Engine tests",
  "Je passe sur le moteur et je teste directement en jeu, du point de vue du joueur.": "I move to the engine and test directly in game, from the player's point of view.",
  "Selon le contenu du jeu, je choisis ce qu'il faut tester (par exemple le nombre d'ennemis par salle)": "Depending on the game's content, I decide what needs testing (for example the number of enemies per room)",
- "Les dimensions, vues depuis la caméra du joueur": "The dimensions, seen from the player's camera",
+ "Les dimensions, pour adapter mon level design à l'environnement du jeu (trop petit, trop grand…)": "The dimensions, to adapt my level design to the game's environment (too small, too big…)",
  "Des mesures et des repères pris en jeu": "Measurements and references taken in game",
  "Niveau de test": "Test level",
  "Avant de construire quoi que ce soit, je fais un niveau de test pour valider les bases techniques.": "Before building anything, I make a test level to validate the technical basics.",
