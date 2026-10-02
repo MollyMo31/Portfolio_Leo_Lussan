@@ -2575,3 +2575,13 @@ window.addEventListener('load',function(){
   [].forEach.call(document.querySelectorAll('.dl-zip'),function(a){ new MutationObserver(count).observe(a,{attributes:true,attributeFilter:['hidden']}); });
   count();
 })();
+
+/* == Avant / apres : agrandissement au clic == */
+(function(){
+  [].forEach.call(document.querySelectorAll('.ba-fig'),function(f){
+    function open(){ var z=document.createElement('div'); z.className='ba-zoom'; var i=document.createElement('img'); i.src=f.querySelector('img').src; i.alt=f.querySelector('img').alt; z.appendChild(i);
+      function close(){ z.remove(); document.removeEventListener('keydown',k); } function k(e){ if(e.key==='Escape') close(); }
+      z.addEventListener('click',close); document.addEventListener('keydown',k); document.body.appendChild(z); }
+    f.addEventListener('click',open); f.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+  });
+})();
