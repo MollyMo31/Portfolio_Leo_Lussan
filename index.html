@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&family=Nosifer&family=Creepster&family=Special+Elite&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Uncial+Antiqua&family=Press+Start+2P&family=Rye&family=Chakra+Petch:wght@500;700&family=Saira+Condensed:wght@500;700&family=Monoton&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/style.css?v=20261008c">
+<link rel="stylesheet" href="assets/css/style.css?v=20261009a">
 </head>
 <body>
 
@@ -1460,11 +1460,12 @@
 
       <div class="pm-label">Galerie du projet</div>
       <div class="carousel"><div class="carousel-track" id="ct-draconium">
-        <div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon"></div><div class="carousel-placeholder-text">Concept art — Dragon protagoniste — à venir</div></div></div>
-        <div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon"></div><div class="carousel-placeholder-text">Laboratoire de l'alchimiste — à venir</div></div></div>
-        <div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon"></div><div class="carousel-placeholder-text">Monstres / expériences ratées — à venir</div></div></div>
-        <div class="carousel-slide"><div class="carousel-placeholder"><div class="carousel-placeholder-icon"></div><div class="carousel-placeholder-text">Level design — à venir</div></div></div>
-      </div><div class="car-controls"><div class="carousel-dots" id="cd-draconium"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('draconium',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('draconium',1)">Suiv →</button></div></div></div>
+        <div class="carousel-slide"><img loading="lazy" decoding="async" src="assets/img/projets/draconium/menu.webp" alt="Menu principal du jeu : Jouer, Options, Crédits, Quitter"/></div>
+        <div class="carousel-slide"><img loading="lazy" decoding="async" src="assets/img/projets/draconium/tuto-saut.webp" alt="Tutoriel : « Saute avec Espace ! »"/></div>
+        <div class="carousel-slide"><img loading="lazy" decoding="async" src="assets/img/projets/draconium/tuto-statue.webp" alt="Tutoriel : activer une statue avec la touche E"/></div>
+        <div class="carousel-slide"><img loading="lazy" decoding="async" src="assets/img/projets/draconium/checkpoints.webp" alt="Touche M : récapitulatif des statues (checkpoints) activées, avec leur nom"/></div>
+      </div><div class="car-controls"><div class="carousel-dots" id="cd-draconium"></div><div class="carousel-nav"><button class="carousel-btn" onclick="carNav('draconium',-1)">← Préc</button><button class="carousel-btn" onclick="carNav('draconium',1)">Suiv →</button></div></div>
+      <p class="car-cap" id="cc-draconium" aria-live="polite"></p></div>
 
       <div class="pm-section-title" id="proj-draco-title-lore">Le Lore</div>
       <p>Dans un royaume médiéval imprégné de magie, un <strong>alchimiste sans scrupules</strong> cherche à percer les secrets du dragon — la créature la plus puissante du monde. Il s'empare de tes parents, des dragons anciens, et te capture toi aussi. Tu te retrouves prisonnier de son laboratoire souterrain, transformé en <strong>cobaye malgré toi</strong>.</p>
@@ -1478,12 +1479,14 @@
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(233,162,59,.04)">Niveaux en zones distinctes (laboratoire, donjons, forêts)</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(233,162,59,.04)">Boss = expériences ratées de l'alchimiste</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(233,162,59,.04)">Platformer exigeant — mort = recommencer</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(233,162,59,.04)">Tutoriel intégré — les commandes s'apprennent en jouant</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(233,162,59,.04)">Statues de repos = checkpoints — touche M pour le récapitulatif</div>
       </div>
 
       <div class="pm-section-title" id="proj-draco-title-visual">Univers visuel</div>
       <p>L'esthétique mélange le <strong>pixel art medieval</strong> avec des touches alchimiques — flacons lumineux, runes gravées, donjons de pierre, forêts enchantées. Les flammes du dragon contrastent avec le vert acide des potions de l'alchimiste. Chaque zone a sa propre palette de couleurs et son atmosphère unique.</p>
       <div style="border-left:3px solid var(--th-acc2,#e9a23b);padding-left:1.2rem;margin-top:1.5rem">
-        <p style="font-size:.88rem;color:var(--grey);font-style:italic">"Projet en cours de développement — concepts en phase de design. Les premières images arriveront prochainement."</p>
+        <p style="font-size:.88rem;color:var(--grey);font-style:italic">"Projet en cours de développement — d'autres images arriveront prochainement."</p>
       </div>
 
       <div class="pm-section-title" id="draco-title-team">Équipe</div>
@@ -2156,10 +2159,10 @@
   </div>
 </footer>
 
-<script src="assets/js/i18n.js?v=20261008c" defer></script>
-<script src="assets/js/i18n-en.js?v=20261008c" defer></script>
+<script src="assets/js/i18n.js?v=20261009a" defer></script>
+<script src="assets/js/i18n-en.js?v=20261009a" defer></script>
 
-<script src="assets/js/main.js?v=20261008c" defer></script>
+<script src="assets/js/main.js?v=20261009a" defer></script>
 
 <!-- THREE.JS 3D BACKGROUND -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>

@@ -2107,6 +2107,7 @@ function initCar(id){
   var d=document.getElementById('cd-'+id);if(!d)return;
   var adapt=Array.prototype.every.call(slides,function(sl){return sl.children.length===1&&sl.firstElementChild.tagName==='IMG';});
   CS[id]={cur:0,n:slides.length,adapt:adapt};
+  carCap(id);
   if(adapt){
     t.classList.add('car-adapt');
     Array.prototype.forEach.call(t.querySelectorAll('img'),function(im){im.addEventListener('load',function(){carFit(id);});});
@@ -2133,7 +2134,14 @@ function carTo(id,i){
   t.style.setProperty('--car-i',s.cur);
   carFit(id);
   document.querySelectorAll('#cd-'+id+' .carousel-dot').forEach(function(d,j){return d.classList.toggle('active',j===s.cur);});
+  carCap(id);
 }
+/* Legende sous le carrousel : reprend le texte alt de l'image affichee */
+function carCap(id){
+  var cap=document.getElementById('cc-'+id),t=document.getElementById('ct-'+id),s=CS[id];if(!cap||!t||!s)return;
+  var im=t.querySelectorAll('.carousel-slide')[s.cur];im=im&&im.querySelector('img');cap.textContent=im?im.alt:'';
+}
+new MutationObserver(function(){for(var id in CS)carCap(id);}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 function carNav(id,dir){var s=CS[id];if(s)carTo(id,s.cur+dir)}
 window.addEventListener('resize',function(){for(var id in CS)carFit(id);});
 

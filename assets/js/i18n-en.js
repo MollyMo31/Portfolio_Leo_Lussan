@@ -775,6 +775,9 @@
  "Les vidéos démarrent sans le son.": "Videos start without sound.",
  "Présentation du hub": "Hub presentation",
  "Autres builds du jeu": "Other builds of the game",
+ "Tutoriel intégré — les commandes s'apprennent en jouant": "Built-in tutorial — controls are learned by playing",
+ "Statues de repos = checkpoints — touche M pour le récapitulatif": "Resting statues = checkpoints — press M for the summary",
+ "\"Projet en cours de développement — d'autres images arriveront prochainement.\"": "\"Project under development — more images coming soon.\"",
  "Avant / Après game feel — à venir": "Before / After game feel — coming soon",
  "VFX de gameplay — à venir": "Gameplay VFX — coming soon",
  "Gameplay complet — à venir": "Full gameplay — coming soon",
@@ -1012,6 +1015,10 @@
  "<strong>Sons :</strong> rire diabolique au lancement, compteur « 1, 2, 3 — Survive! », moteur du kart (roulage et dérapage), « bonk » à la collision, bruit de la glue, rire des fantômes et du prêtre, musique entraînante au thème d'Halloween. <strong>Menus :</strong> intro (titre, prêtre qui tourne, Play / Leave, contrôles avec Tab), écran de défaite (« You got Eaten ») et de victoire (« Good Job! You escaped the priest »).": "<strong>Sounds:</strong> diabolical laugh at launch, \"1, 2, 3 — Survive!\" counter, kart engine (driving and drifting), \"bonk\" on collision, glue sound, ghost and priest laughter, upbeat Halloween-themed music. <strong>Menus:</strong> intro (title, rotating priest, Play / Leave, in-game controls with Tab), defeat screen (\"You got Eaten\") and victory screen (\"Good Job! You escaped the priest\")."
 };
   var ATTR = {
+ "Menu principal du jeu : Jouer, Options, Crédits, Quitter": "Game main menu: Play, Options, Credits, Quit",
+ "Tutoriel : « Saute avec Espace ! »": "Tutorial: \"Jump with Space!\"",
+ "Tutoriel : activer une statue avec la touche E": "Tutorial: activate a statue with the E key",
+ "Touche M : récapitulatif des statues (checkpoints) activées, avec leur nom": "M key: summary of the activated statues (checkpoints), with their names",
  "Présentation du hub": "Hub presentation",
  "Autres builds du jeu": "Other builds of the game",
  "Étape précédente": "Previous step",

@@ -1398,3 +1398,5 @@ body.modal-open #bg-canvas{visibility:hidden}
 #pm-draconium.dx .dr-hero-logo{transform:translate(calc(var(--px,0)*-16px),-50%);transition:transform .35s ease-out}
 @media(max-width:700px){.dx-rail{left:5px}.dx-torch{width:46vw}}
 @media(prefers-reduced-motion:reduce){.dx-tl,.dx-tr{animation:none}.dx-rv{opacity:1;transform:none}}
+
+.car-cap{margin:.7rem 0 0;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);min-height:1.2em}
