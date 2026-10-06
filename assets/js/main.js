@@ -2539,7 +2539,7 @@ window.addEventListener('load',function(){
   [].forEach.call(document.querySelectorAll('.wl-open'),function(b){
     b.addEventListener('click',function(){ var id=b.getAttribute('data-go'); if(document.getElementById('pm-'+id)) openProj(id); });
   });
-  var USES={unity:['priest','draconium','juiceup'],unreal:['unjudged','city','silence','tower'],inky:['unjudged','silence'],twine:['silence','entretien'],miro:['unjudged','priest'],adobe:['unjudged','silence','mira'],ldtk:['tower'],hacknplan:['tower'],git:['unjudged','mira']};
+  var USES={unity:['priest','draconium','juiceup'],unreal:['unjudged','city','silence','tower'],inky:['unjudged','silence'],twine:['silence','entretien'],miro:['unjudged','priest','draconium'],adobe:['unjudged','silence','mira'],ldtk:['tower','draconium'],hacknplan:['tower'],git:['unjudged','mira','draconium']};
   var tools=[].slice.call(document.querySelectorAll('.wl-tool')), projs=[].slice.call(document.querySelectorAll('.wl-proj')), pw=document.querySelector('.wl-projs'), tw=document.querySelector('.wl-tools'), st=document.getElementById('wl-status'), panel=document.getElementById('wl-panel'), cur=null;
   function clear(){ cur=null; if(panel){ panel.hidden=true; panel.innerHTML=''; } tools.forEach(function(t){ t.classList.remove('on'); t.setAttribute('aria-pressed','false'); }); projs.forEach(function(p){ p.classList.remove('on','sel'); }); pw.classList.remove('has-sel'); tw.classList.remove('has-sel'); st.textContent=''; }
   function lbl(t){ return t.querySelector('.wl-n').textContent; }
@@ -2745,7 +2745,7 @@ window.addEventListener('load',function(){
     function prog(){ var m=ov.scrollHeight-ov.clientHeight, p=m>0?Math.min(1,ov.scrollTop/m):0; fill.style.transform='scaleY('+p.toFixed(3)+')'; tint.style.opacity=(p*.9).toFixed(2); }
     ov.addEventListener('scroll',prog,{passive:true}); prog();
     // apparition des sections, comme un livre qui s'ecrit
-    var targets=[].slice.call(ov.querySelectorAll('.pm-section-title,.pm-label,.proj-modal-body > p,.proj-modal-body > div[style*="grid-template-columns"] > div,.proj-modal-body > div[style*="border-left"]')), io=null;
+    var targets=[].slice.call(ov.querySelectorAll('.pm-section-title,.pm-label,.proj-modal-body > p,.proj-modal-body > div[style*="grid-template-columns"] > div,.proj-modal-body > div[style*="border-left"],.dr-card,.dr-mob,.dr-tl li,.dr-lead,.dr-key')), io=null;
     if('IntersectionObserver' in window && !RM){
       io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('dx-in'); io.unobserve(en.target); } }); },{root:ov,threshold:.1});
       targets.forEach(function(t,i){ t.classList.add('dx-rv'); t.style.setProperty('--d',((i%4)*70)+'ms'); io.observe(t); });

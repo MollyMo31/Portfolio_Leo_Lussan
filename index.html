@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&family=Nosifer&family=Creepster&family=Special+Elite&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Uncial+Antiqua&family=Press+Start+2P&family=Rye&family=Chakra+Petch:wght@500;700&family=Saira+Condensed:wght@500;700&family=Monoton&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/style.css?v=20261009a">
+<link rel="stylesheet" href="assets/css/style.css?v=20261009b">
 </head>
 <body>
 
@@ -418,7 +418,7 @@
         <h3 class="sel-title" data-i18n="proj_draconium">DRACONIUM</h3>
         <div class="sel-genre">Platformer 2D · Medieval Fantasy</div>
         <p class="sel-pitch">Un jeune dragon traverse les périlleuses expériences d'un alchimiste pour retrouver sa famille perdue.</p>
-        <div class="sel-tools"><span class="sel-tool " title="Unity"><img src="assets/img/logos/unity.webp" alt="Unity" loading="lazy" decoding="async"/></span></div>
+        <div class="sel-tools"><span class="sel-tool " title="Unity"><img src="assets/img/logos/unity.webp" alt="Unity" loading="lazy" decoding="async"/></span><span class="sel-tool tl-light" title="Miro"><img src="assets/img/logos/miro.webp" alt="Miro" loading="lazy" decoding="async"/></span><span class="sel-tool " title="LDtk"><img src="assets/img/logos/ldtk.webp" alt="LDtk" loading="lazy" decoding="async"/></span><span class="sel-tool " title="Git"><img src="assets/img/logos/git.webp" alt="Git" loading="lazy" decoding="async"/></span></div>
         <button type="button" class="sel-go" data-id="draconium">▶ Entrer</button>
       </div>
       <div class="sel-info" data-id="juiceup" hidden>
@@ -1471,6 +1471,22 @@
       <p>Dans un royaume médiéval imprégné de magie, un <strong>alchimiste sans scrupules</strong> cherche à percer les secrets du dragon — la créature la plus puissante du monde. Il s'empare de tes parents, des dragons anciens, et te capture toi aussi. Tu te retrouves prisonnier de son laboratoire souterrain, transformé en <strong>cobaye malgré toi</strong>.</p>
       <p id='proj-draco-p3'>Tout au long de l'aventure, l'alchimiste t'injectera des substances, te plongera dans des épreuves et observera tes réactions. Mais il a oublié une chose : <strong>les dragons apprennent vite</strong>. Chaque expérience te rend plus fort. Chaque monstre affronté était autrefois une de ses créations ratées — des dragons corrompus, des chimères, des créatures hybrides nées de ses expériences.</p>
 
+      <div class="pm-section-title" id="proj-draco-title-chrono">Chronologie</div>
+      <ol class="dr-tl">
+        <li><div class="dr-ct">Ère ancienne — l'âge des dragons</div><div class="dr-cp">Les dragons coexistent pacifiquement avec les humains. Leur magie préserve l'équilibre du royaume.</div></li>
+        <li><div class="dr-ct">Ère de la décadence — naissance de l'alchimiste</div><div class="dr-cp">Un alchimiste obsédé par la longévité commence à étudier la biologie magique sur les plantes et les insectes.</div></li>
+        <li><div class="dr-ct">Année 0 du laboratoire</div><div class="dr-cp">L'alchimiste creuse son laboratoire sous une forêt enchantée. Les premières créatures corrompues voient le jour.</div></li>
+        <li><div class="dr-ct">Année 12 — première capture</div><div class="dr-cp">L'alchimiste piège les deux dragons anciens et les expériences commencent. Les chimères dans les couloirs sont ses échecs.</div></li>
+        <li><div class="dr-ct">Présent — début du jeu</div><div class="dr-cp">Tu es capturé pendant ton sommeil et enfermé dans la première cellule. L'aventure commence ici.</div></li>
+      </ol>
+      <div class="pm-section-title" id="proj-draco-title-chars">Personnages</div>
+      <div class="dr-cards ">
+        <div class="dr-card gold"><div class="dr-ct">Le Dragon</div><div class="dr-cs">Protagoniste</div><div class="dr-cp">Jeune dragon capturé alors qu'il dormait. Naïf au début, il apprend vite à utiliser chaque expérience à son avantage. Son feu grandit à mesure qu'il affronte les épreuves.</div></div>
+        <div class="dr-card tox"><div class="dr-ct">L'Alchimiste</div><div class="dr-cs">Antagoniste principal · boss final</div><div class="dr-cp">Vieux savant déshumanisé : méthodique, froid, obsessionnel. Il te parle depuis la puce électronique qu'il t'a implantée.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Les Parents</div><div class="dr-cs">Dragons anciens · objectif narratif</div><div class="dr-cp">Capturés avant toi et affaiblis, quelque part dans les profondeurs. Tu entends leurs rugissements à travers les murs. Les libérer est ton but ultime.</div></div>
+      </div>
+      <div class="pm-label">Capacités du dragon</div>
+      <div class="dr-tags dr-caps"><span>Dégâts de feu améliorés</span><span>Saut amélioré (en restant appuyé sur Espace)</span><span>Plus de mana</span><span>Plus de vitesse</span><span>Régénération de vie</span></div>
       <div class="pm-section-title" id="proj-draco-title-gameplay">Gameplay</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem">
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(233,162,59,.04)">Cracher des flammes — attaque principale</div>
@@ -1483,12 +1499,61 @@
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(233,162,59,.04)">Statues de repos = checkpoints — touche M pour le récapitulatif</div>
       </div>
 
+      <div class="pm-section-title" id="proj-draco-title-mec">Mécaniques de jeu</div>
+      <div class="dr-cards ">
+        <div class="dr-card gold"><div class="dr-ct">Boule de feu</div><div class="dr-cp">Clic gauche pour tirer des boules de feu, en quantité illimitée tant qu'il te reste du mana. Elles infligent des dégâts instantanés à leur cible.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Vie et mana</div><div class="dr-cp">En haut à gauche, deux jauges : une boule rouge pour les points de vie, une barre pour le mana. La vie sert à encaisser les coups, le mana à tirer tes projectiles.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Marchand et capacités</div><div class="dr-cp">Des marchands sont placés tout au long du niveau : approche-toi et appuie sur E. Ils échangent des capacités contre des fragments de bouteille.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Course rapide</div><div class="dr-cp">À force de te déplacer et de récupérer des collectibles, tu peux les échanger avec un ancien cobaye, présent à plusieurs endroits, pour améliorer définitivement ta vitesse de déplacement de base.</div></div>
+        <div class="dr-card tox"><div class="dr-ct">Statues et sauvegarde</div><div class="dr-cp">Approche-toi d'une statue et appuie sur E : elle devient bleue à ton contact. La partie se sauvegarde alors automatiquement, sur 3 emplacements indépendants. Un bouton Continuer apparaît dans le menu si une sauvegarde existe.</div></div>
+        <div class="dr-card tox"><div class="dr-ct">Téléportation aux sanctuaires</div><div class="dr-cp">La touche M ouvre la liste des statues du niveau. Les statues découvertes sont dorées et cliquables, les autres sont grises. La téléportation s'accompagne d'un fondu noir et d'un texte de lore aléatoire.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Mort et réapparition</div><div class="dr-cp">À la mort, un fondu noir affiche un message aléatoire. Tu réapparais à la dernière statue activée avec tous tes points de vie.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Secrets et exploration</div><div class="dr-cp">Des zones optionnelles et des fragments de lore sont disséminés dans chaque niveau. L'exploration est récompensée.</div></div>
+      </div>
+      <div class="pm-label">Commandes</div>
+      <div class="dr-keys"><div class="dr-key"><b>Espace</b> <span>Sauter</span></div><div class="dr-key"><b>E</b> <span>Interagir</span></div><div class="dr-key"><b>M</b> <span>Statues et téléportation</span></div><div class="dr-key"><b>Clic gauche</b> <span>Boule de feu</span></div><div class="dr-key"><b>Échap</b> <span>Menu en jeu</span></div></div>
+      <div class="pm-section-title" id="proj-draco-title-zones">Zones &amp; niveaux</div>
+      <div class="dr-lead">Le jeu est prévu en 4 zones progressives, chacune avec sa palette de couleurs, ses ennemis et son ambiance. Pour l'instant, seule une zone « bêta » est jouable ; les 4 zones sont pour une suite potentielle.</div>
+      <div class="dr-cards ">
+        <div class="dr-card gold"><div class="dr-ct">Zone bêta — La forêt</div><div class="dr-cs">Jouable actuellement</div><div class="dr-cp">Une forêt sombre de l'alchimiste, vestige d'une ancienne civilisation : une boîte où il te teste en notant tes faits et gestes. Son laboratoire, et tes parents, se trouvent à la fin.</div></div>
+        <div class="dr-card tox"><div class="dr-ct">Zone 1 — Le laboratoire</div><div class="dr-cs">Prévu</div><div class="dr-cp">Couloirs de pierre humide, flacons luminescents, tables d'expérimentation en fer rouillé. L'alchimiste parle pendant que tu apprends à jouer.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Zone 2 — Les donjons profonds</div><div class="dr-cs">Prévu</div><div class="dr-cp">Obscurité quasi totale : le feu du dragon est souvent la seule lumière. Pièces mécaniques et chimères résistantes.</div></div>
+        <div class="dr-card tox"><div class="dr-ct">Zone 3 — Les forêts enchantées</div><div class="dr-cs">Prévu</div><div class="dr-cp">Première zone en extérieur : forêt magique corrompue, couleurs anormales, végétation hybride. Zone de respiration narrative.</div></div>
+        <div class="dr-card tox"><div class="dr-ct">Zone 4 — Le cœur du laboratoire</div><div class="dr-cs">Prévu</div><div class="dr-cp">Le sanctuaire de l'alchimiste : machines gigantesques, archives gravées, flacons géants. La confrontation finale approche.</div></div>
+      </div>
+      <div class="pm-section-title" id="proj-draco-title-bestiaire">Bestiaire — Ennemis</div>
+      <div class="dr-lead">Chaque ennemi est une expérience ratée de l'alchimiste. Ils ne sont pas malveillants par nature : ils souffrent. Mais ils attaquent tout ce qui bouge.</div>
+      <div class="dr-mobs">
+        <div class="dr-mob tox"><div class="dr-mimg"><img src="assets/img/projets/draconium/gobelin.webp" alt="Gobelin du jeu, en pixel art" loading="lazy" decoding="async"/></div><div class="dr-mbody"><div class="dr-ct">Gobelin</div><div class="dr-tags"><span>Zone 1</span><span>HP faible</span><span>Danger : le nombre</span></div><div class="dr-cp">D'après leurs histoires, ce sont des enfants capturés par l'alchimiste et transformés en horribles créatures prêtes à tout pour tuer. Rapides, ils attaquent au contact. Faibles en HP, mais dangereux en grand nombre.</div><ul class="dr-ul"><li>Vitesse : rapide</li><li>Danger : les groupes</li></ul></div></div>
+        <div class="dr-mob gold"><div class="dr-mimg"><img src="assets/img/projets/draconium/flyingeye.webp" alt="Flyingeye du jeu, en pixel art" loading="lazy" decoding="async"/></div><div class="dr-mbody"><div class="dr-ct">Flyingeye</div><div class="dr-tags"><span>Zones 1-2</span><span>HP moyen</span><span>Danger : mobilité</span></div><div class="dr-cp">Un aigle génétiquement modifié : des ailes plus solides, des crocs acérés et une vue perçante. Il te repère de loin et peut te surprendre rapidement. Croisé avec les pattes d'une taupe, ses coups sont plus douloureux.</div><ul class="dr-ul"><li>Vitesse : haute</li><li>Faiblesse : immobile pendant l'attaque</li></ul></div></div>
+        <div class="dr-mob gold"><div class="dr-mimg"><img src="assets/img/projets/draconium/skeleton.webp" alt="Skeleton du jeu, en pixel art" loading="lazy" decoding="async"/></div><div class="dr-mbody"><div class="dr-ct">Skeleton</div><div class="dr-tags"><span>Zone 2</span><span>HP très élevé</span><span>Danger : résistance</span></div><div class="dr-cp">Un cadavre sur pattes : d'anciens paysans de divers villages, réanimés pour que l'alchimiste teste la limite de résistance du corps humain. Leur bouclier pare tes coups (40 % de chances) et leurs os sont plus résistants que la normale.</div><ul class="dr-ul"><li>Résistance : feu frontal inefficace</li><li>Faiblesse : dos et sommet du crâne</li><li>Vitesse : très lente</li></ul></div></div>
+        <div class="dr-mob tox"><div class="dr-mimg"><img src="assets/img/projets/draconium/mushroom.webp" alt="Mushroom du jeu, en pixel art" loading="lazy" decoding="async"/></div><div class="dr-mbody"><div class="dr-ct">Mushroom</div><div class="dr-tags"><span>Zone 3</span><span>HP moyen à élevé</span><span>Danger : surprise</span></div><div class="dr-cp">Un mélange d'être humanoïde et de végétation de la forêt, récupérée par l'alchimiste sur son chemin. Peu vifs, ils mettent du temps à attaquer, mais renforcés par la nature, ils résistent étonnamment bien au feu…</div><ul class="dr-ul"><li>Résistance : feu frontal inefficace</li><li>Faiblesse : lent à attaquer</li></ul></div></div>
+      </div>
+      <div class="pm-section-title" id="proj-draco-title-boss">Bestiaire — Boss</div>
+      <div class="dr-lead">Les expériences les plus abouties de l'alchimiste. Chaque victoire débloque une nouvelle capacité pour le dragon.</div>
+      <div class="dr-cards dr-cards-2">
+        <div class="dr-card tox"><div class="dr-ct">L'Alchimiste — boss de la zone de test</div><div class="dr-cs">Jouable actuellement · 500 PV</div><div class="dr-cp">Sprite statique. Il patrouille et attaque en cycles de 3 : jet de fiole, nuage toxique, invocation. Il peut faire apparaître des gobelins (3 points d'apparition dans sa zone) et te lancer des tonneaux. Sa barre de vie s'affiche à proximité, avec son portrait. Sa mort déclenche la cinématique de fin.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Gorak — Le dragon de métal</div><div class="dr-cs">Zone 1 · prévu</div><div class="dr-cp">Corps renforcé d'armatures métalliques. Trois phases : charge frontale, vapeur brûlante, explosion de métal. Faiblesse : la ventilation dorsale. Récompense : souffle renforcé.</div></div>
+        <div class="dr-card gold"><div class="dr-ct">Arachnis — La tisseuse</div><div class="dr-cs">Zone 2 · prévu</div><div class="dr-cp">Hybride araignée et dragon. Toiles depuis le plafond, œufs qui éclosent en plein combat, plongeons directs en phase 3. Récompense : double saut.</div></div>
+        <div class="dr-card tox"><div class="dr-ct">Phylox — Le dragon des marais</div><div class="dr-cs">Zone 3 · prévu</div><div class="dr-cp">Corps en partie végétal. Souffle toxique, régénération dans l'eau, lianes-tentacules en phase 3. Récompense : vol court.</div></div>
+        <div class="dr-card tox"><div class="dr-ct">L'Alchimiste — boss final</div><div class="dr-cs">Zone 4 · prévu</div><div class="dr-cp">Combat indirect via ses machines : trois générateurs à détruire dans l'ordre, avec des injections forcées entre les phases. Récompense : la libération des parents.</div></div>
+      </div>
       <div class="pm-section-title" id="proj-draco-title-visual">Univers visuel</div>
       <p>L'esthétique mélange le <strong>pixel art medieval</strong> avec des touches alchimiques — flacons lumineux, runes gravées, donjons de pierre, forêts enchantées. Les flammes du dragon contrastent avec le vert acide des potions de l'alchimiste. Chaque zone a sa propre palette de couleurs et son atmosphère unique.</p>
+      <div class="pm-label">Musique &amp; son</div>
+      <div class="dr-lead">Des compositions originales réalisées par moi et mon père ; certains sons viennent de sites comme Pixabay ou Mixkit. 4 sons en jeu et 1 son de menu (sans compter ceux directement dans le jeu).</div>
+      <div class="pm-label">Inspirations</div>
+      <div class="dr-tags dr-caps"><span>Hollow Knight : ambiance souterraine, narration environnementale</span><span>Celeste : level design exigeant, mécanique progressive</span><span>Ori and the Blind Forest : fluidité et émotion</span><span>Dragon's Lair : iconographie médiévale et dragon</span></div>
       <div style="border-left:3px solid var(--th-acc2,#e9a23b);padding-left:1.2rem;margin-top:1.5rem">
         <p style="font-size:.88rem;color:var(--grey);font-style:italic">"Projet en cours de développement — d'autres images arriveront prochainement."</p>
       </div>
 
+      <div class="pm-section-title" id="proj-draco-title-devlog">Devlog</div>
+      <ol class="dr-tl dr-phases">
+        <li class="done"><div class="dr-ct">Phase concept</div><div class="dr-cp">Première version du pitch. Définition des 3 piliers : progression du personnage, alchimie, narration environnementale. Choix d'Unity 2D et d'Aseprite.</div></li>
+        <li class="done"><div class="dr-ct">Phase pré-production</div><div class="dr-cp">Écriture du lore, carte mentale des zones sur Miro, premiers concept arts, tableau d'équilibrage des substances.</div></li>
+        <li class="now"><div class="dr-ct">Phase prototype — en cours</div><div class="dr-cp">Mouvement de base sous Unity 2D, système de feu, premiers ennemis, statues, sauvegarde et boutiques. Système d'alchimie en conception.</div></li>
+      </ol>
       <div class="pm-section-title" id="draco-title-team">Équipe</div>
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2rem">
         <div style="padding:1rem;border:1px solid rgba(233,162,59,.2);background:rgba(233,162,59,.04)">
@@ -1499,10 +1564,13 @@
 
       <div class="pm-label">Outils utilisés</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Aseprite</div>
         <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Unity 2D</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Miro</div>
-        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Soundtrap</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">LDtk — schématisation du level design</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Miro — level design, mind maps, wireframing</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Aseprite — pixel art</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">GitHub et GitHub Desktop — versionnage et sauvegarde</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Audacity — voix narrative (ma propre voix)</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--grey-light);padding:.7rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">Suite Google — plan, wiki, FSO</div>
       </div>
     </div>
   </div>
@@ -2159,10 +2227,10 @@
   </div>
 </footer>
 
-<script src="assets/js/i18n.js?v=20261009a" defer></script>
-<script src="assets/js/i18n-en.js?v=20261009a" defer></script>
+<script src="assets/js/i18n.js?v=20261009b" defer></script>
+<script src="assets/js/i18n-en.js?v=20261009b" defer></script>
 
-<script src="assets/js/main.js?v=20261009a" defer></script>
+<script src="assets/js/main.js?v=20261009b" defer></script>
 
 <!-- THREE.JS 3D BACKGROUND -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
