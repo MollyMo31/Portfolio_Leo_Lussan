@@ -25,7 +25,6 @@ var FX_CONFIGS = {
   silence: { type:'darkness',  color:'#6b7280', glow:'rgba(107,114,128,' },
   musiques:{ type:'music',     color:'#d070f0', glow:'rgba(208,112,240,' },
   juiceup: { type:'juice',     color:'#c084fc', glow:'rgba(192,132,252,' },
-  draconium:{ type:'flames',   color:'#e9a23b', glow:'rgba(233,162,59,' },
   coaching:{ type:'neon',      color:'#f4a033', glow:'rgba(244,160,51,' },
   mira:    { type:'garden',    color:'#34d399', glow:'rgba(52,211,153,' },
   streaming:{ type:'stream',   color:'#9b72d0', glow:'rgba(155,114,208,' },
@@ -2724,6 +2723,19 @@ window.addEventListener('load',function(){
     };
   }
 
+  /* ---------- Draconium : le grimoire, entre le dragon (or) et l'alchimiste (vert acide) ---------- */
+  function startDraco(ov){
+    var hero=ov.querySelector('.proj-modal-hero'), fx=el('div','dx-fx',hero), raf=0, mx=.5;
+    if(!RM){
+      for(var i=0;i<8;i++){ var e=el('i','dx-ember',fx); e.style.cssText='left:'+rnd(2,46)+'%;--s:'+rnd(3,7).toFixed(1)+'px;--d:'+rnd(4,8).toFixed(1)+'s;--w:'+rnd(-24,24).toFixed(0)+'px;animation-delay:'+(-rnd(0,8)).toFixed(1)+'s'; }
+      for(var j=0;j<7;j++){ var b=el('i','dx-bubble',fx); b.style.cssText='left:'+rnd(54,98)+'%;--s:'+rnd(6,15).toFixed(0)+'px;--d:'+rnd(5,9).toFixed(1)+'s;--w:'+rnd(-14,14).toFixed(0)+'px;animation-delay:'+(-rnd(0,9)).toFixed(1)+'s'; }
+    }
+    function mv(e){ mx=e.clientX/window.innerWidth; if(!raf) raf=requestAnimationFrame(function(){ raf=0; hero.style.setProperty('--mx',(mx*100).toFixed(1)+'%'); }); }
+    ov.addEventListener('mousemove',mv);
+    ov.classList.add('dx');
+    return function(){ ov.removeEventListener('mousemove',mv); if(raf) cancelAnimationFrame(raf); fx.remove(); hero.style.removeProperty('--mx'); ov.classList.remove('dx'); };
+  }
+
   /* ---------- Cycle de vie ---------- */
   function stop(){ if(cur){ try{ cur.off(); }catch(e){} cur=null; } }
   var _open=openProj, _close=closeProj;
@@ -2733,6 +2745,7 @@ window.addEventListener('load',function(){
     try{
       if(id==='juiceup') cur={id:id,ov:ov,off:startJuice(ov)};
       else if(id==='priest') cur={id:id,ov:ov,off:startHorror(ov)};
+      else if(id==='draconium') cur={id:id,ov:ov,off:startDraco(ov)};
     }catch(e){ console.warn('page fx',e); }
   };
   closeProj=function(id){ _close(id); if(cur&&cur.id===id) stop(); };

@@ -1345,3 +1345,36 @@ body.modal-open #bg-canvas{visibility:hidden}
 /* Retour visuel au clic sur le menu (meme si on reclique sur la section deja affichee) */
 .nav-links a.nav-pop{display:inline-block;animation:navPop .3s ease-out}
 @keyframes navPop{0%{transform:scale(1)}35%{transform:scale(.9);color:var(--gold,#c8a96e)}100%{transform:scale(1)}}
+
+/* ===== Draconium : un grimoire ou le dragon (or, gentil) fait face a l'alchimiste (vert acide) ===== */
+#pm-draconium{--dx-gold:#e9a23b;--dx-ember:#ff8a2a;--dx-toxic:#7bd34a;--dx-ink:#d9c8a2}
+#pm-draconium.dx .proj-modal-hero{background:radial-gradient(ellipse 55% 120% at var(--mx,30%) 110%,rgba(233,120,40,.38),transparent 70%),radial-gradient(ellipse 45% 100% at 100% 100%,rgba(123,211,74,.22),transparent 70%),linear-gradient(160deg,#0e0905 0%,#1a1209 100%) !important}
+#pm-draconium.dx .proj-modal-hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;z-index:2;background:linear-gradient(90deg,transparent,var(--dx-ember) 22%,var(--dx-gold) 48%,var(--dx-toxic) 74%,transparent)}
+.dx-fx{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.dx-ember,.dx-bubble{position:absolute;bottom:-14px;width:var(--s);height:var(--s);border-radius:50%;opacity:0;will-change:transform,opacity}
+.dx-ember{background:radial-gradient(circle,#ffd27a,#ff7a1a 60%,transparent 72%);animation:dxUp var(--d) linear infinite}
+.dx-bubble{border:1.5px solid rgba(160,240,110,.75);background:radial-gradient(circle at 30% 30%,rgba(210,255,170,.55),rgba(123,211,74,.12) 60%);animation:dxUp var(--d) ease-in infinite}
+@keyframes dxUp{0%{opacity:0;transform:translate(0,0) scale(1)}12%{opacity:.95}100%{opacity:0;transform:translate(var(--w),-230px) scale(.4)}}
+#pm-draconium.dx .proj-modal{background:#0d0904 !important}
+#pm-draconium.dx .proj-modal-body{background:radial-gradient(ellipse 60% 40% at 8% 4%,rgba(233,162,59,.1),transparent 70%),radial-gradient(ellipse 50% 35% at 96% 55%,rgba(123,211,74,.07),transparent 70%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .7 0 0 0 0 .45 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23p)' opacity='.07'/%3E%3C/svg%3E"),#0d0904}
+#pm-draconium.dx p,#pm-draconium.dx .proj-modal-body div[style*="DM Sans"]{font-family:'Palatino Linotype',Palatino,'Book Antiqua','URW Palladio L',Georgia,serif !important}
+#pm-draconium.dx .proj-modal-body p{color:#e3d6bb;font-size:1.02rem;line-height:1.85}
+#pm-draconium.dx .proj-modal-body strong{color:var(--dx-toxic)}
+#pm-draconium.dx #proj-draco-p3 strong,#pm-draconium.dx .pm-section-title#proj-draco-title-visual + p strong{color:var(--dx-gold)}
+#pm-draconium.dx .pm-section-title{color:var(--dx-ink) !important;border-bottom:1px solid rgba(233,162,59,.28);padding-bottom:.5rem;display:flex;align-items:center;gap:.7rem}
+#pm-draconium.dx .pm-section-title::before{content:'';flex:0 0 auto;width:.5em;height:.5em;background:var(--dx-gold);transform:rotate(45deg);box-shadow:0 0 10px var(--dx-gold)}
+#pm-draconium.dx #proj-draco-title-lore + p::first-letter{font-family:'Cinzel Decorative',serif;font-size:3.4em;float:left;line-height:.82;padding:.06em .12em 0 0;color:var(--dx-gold);text-shadow:0 0 16px rgba(233,162,59,.5)}
+/* la parole de l'alchimiste */
+#pm-draconium.dx .proj-modal-body > div[style*="border-left"]:first-of-type,#pm-draconium.dx .dl-zip + div[style*="border-left"]{border-left:3px solid var(--dx-toxic) !important;background:linear-gradient(100deg,rgba(123,211,74,.13),rgba(123,211,74,.02)) !important;box-shadow:0 0 34px -12px rgba(123,211,74,.5)}
+#pm-draconium.dx .dl-zip + div[style*="border-left"] p:first-child{color:var(--dx-toxic) !important}
+/* cartes de gameplay : l'or du dragon, le vert de l'alchimiste */
+#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div{border:1px solid rgba(233,162,59,.3) !important;border-left:3px solid var(--dx-gold) !important;background:rgba(233,162,59,.06) !important;color:#e3d6bb !important;font-size:.95rem !important;transition:transform .25s,box-shadow .25s,border-color .25s}
+#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:nth-child(3),#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:nth-child(5){border-color:rgba(123,211,74,.35) !important;border-left-color:var(--dx-toxic) !important;background:rgba(123,211,74,.07) !important}
+#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:hover{transform:translateY(-3px);box-shadow:0 10px 26px -12px var(--dx-gold)}
+#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:nth-child(3):hover,#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:nth-child(5):hover{box-shadow:0 10px 26px -12px var(--dx-toxic)}
+#pm-draconium.dx .proj-modal-tags .tag:nth-child(4){border-color:var(--dx-ember);color:#ffb15c}
+#pm-draconium.dx .proj-modal-tags .tag:nth-child(5){border-color:var(--dx-toxic);color:#a8e87c}
+#pm-draconium.dx .carousel-placeholder{border:1px dashed rgba(233,162,59,.4);background:repeating-linear-gradient(45deg,rgba(233,162,59,.03) 0 10px,transparent 10px 20px)}
+#pm-draconium.dx .carousel-placeholder-text{font-family:'Cinzel Decorative',serif;color:rgba(217,200,162,.7)}
+#pm-draconium.dx .proj-modal-body [style*="border-left:3px solid var(--th-acc2"][style*="margin-top:1.5rem"] p{color:#bfae8a !important}
+@media(prefers-reduced-motion:reduce){.dx-ember,.dx-bubble{animation:none;opacity:0}}
