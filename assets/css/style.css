@@ -1166,8 +1166,8 @@ body.modal-open #bg-canvas{visibility:hidden}
 .wl-status-row:has(.wl-status:not(:empty)){display:flex}
 .wl-projs.has-sel .wl-proj:not(.on){display:none}
 .wl-projs.has-sel .wl-proj.on{opacity:1}
-.wl-proj.sel{border-color:var(--pc);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
-.wl-proj.sel .wl-pname{color:var(--white)}
+.wl-proj.is-pick{border-color:var(--pc);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
+.wl-proj.is-pick .wl-pname{color:var(--white)}
 
 /* Logos des competences : proportions d'origine respectees (plus d'etirement) */
 .vw-logo{height:auto;min-width:0;overflow:visible}
@@ -1341,3 +1341,7 @@ body.modal-open #bg-canvas{visibility:hidden}
 @media(max-width:700px){.jx-combo{font-size:2.2rem;top:4.5rem;right:1rem}.jx-toggle{right:.8rem;bottom:.8rem}#pm-priest.hx p{font-size:.84rem !important}}
 
 @media(max-width:700px){.hx-hud{left:46px;top:64px;font-size:.7rem}}
+
+/* Retour visuel au clic sur le menu (meme si on reclique sur la section deja affichee) */
+.nav-links a.nav-pop{display:inline-block;animation:navPop .3s ease-out}
+@keyframes navPop{0%{transform:scale(1)}35%{transform:scale(.9);color:var(--gold,#c8a96e)}100%{transform:scale(1)}}

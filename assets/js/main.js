@@ -1182,7 +1182,7 @@ function _ambTargetVol() {
 function _ambFadeEl(a, stillValid) {
   var v = 0, fi = setInterval(function() {
     if (!stillValid()) { clearInterval(fi); return; }
-    var t = _ambTargetVol();
+    var t = _ambTargetVol() * (a._k || 1);
     v = Math.min(v + 0.018, t); a.volume = v;
     if (v >= t) clearInterval(fi);
   }, 60);
@@ -1305,7 +1305,7 @@ var _AMBIENCES = {
       _ambNodes._cityEl = null;
     }
     var a = document.createElement('audio');
-    a.loop = true; a.preload = 'auto'; a.volume = 0;
+    a.loop = true; a.preload = 'auto'; a.volume = 0; a._k = 0.55; // mp3 plus fort que les autres ambiances
     document.body.appendChild(a);
     _ambNodes._cityEl = a;
     var token = {};
@@ -1350,7 +1350,7 @@ var _AMBIENCES = {
     var a = document.createElement('audio');
     a.loop = true;
     a.preload = 'auto';
-    a.volume = 0;
+    a.volume = 0; a._k = 0.55; // mp3 plus fort que les autres ambiances
     document.body.appendChild(a);
     _ambNodes._towerEl = a;
 
@@ -1739,6 +1739,15 @@ _AMBIENCES.juiceup = function() {
 };
 
 
+/* Contexte audio partage pour les sons d'interface : un seul, cree a la demande (en creer un par clic finit par etre refuse par le navigateur) */
+var _uiAudioCtx = null;
+function _uiCtx() {
+  var c = _ambCtx;
+  if (!c) { if (!_uiAudioCtx) _uiAudioCtx = new (window.AudioContext||window.webkitAudioContext)(); c = _uiAudioCtx; }
+  if (c.state === 'suspended' && c.resume) c.resume();
+  return c;
+}
+
 /* == API publique == */
 var _audio = {
   muted: false,
@@ -1764,7 +1773,7 @@ var _audio = {
     if (_ambGain) _ambGain.gain.value = this.muted ? 0 : 0.28 * (vol / 0.5);
     // Mute elements HTML audio (tower + draco)
     ['_towerEl','_dracEl','_cityEl'].forEach(function(k) {
-      if (_ambNodes[k]) _ambNodes[k].volume = this.muted ? 0 : Math.min(0.45, 0.9 * vol);
+      if (_ambNodes[k]) _ambNodes[k].volume = this.muted ? 0 : Math.min(0.45, 0.9 * vol) * (_ambNodes[k]._k || 1);
     }.bind(this));
     var btn = document.getElementById('audio-btn');
     if (btn) btn.textContent = this.muted ? '\uD83D\uDD07' : '\uD83D\uDD0A';
@@ -1780,13 +1789,13 @@ var _audio = {
     if (_ambGain) _ambGain.gain.value = 0.28 * (val / 0.5);
     // HTML audio elements
     ['_towerEl','_dracEl','_cityEl'].forEach(function(k) {
-      if (_ambNodes[k]) _ambNodes[k].volume = Math.min(0.45, 0.9 * val);
+      if (_ambNodes[k]) _ambNodes[k].volume = Math.min(0.45, 0.9 * val) * (_ambNodes[k]._k || 1);
     });
   },
   playClick: function() {
     if (this.muted) return;
     try {
-      var ctx = _ambCtx || new (window.AudioContext||window.webkitAudioContext)();
+      var ctx = _uiCtx();
       var o=ctx.createOscillator(), g=ctx.createGain();
       o.connect(g); g.connect(ctx.destination);
       o.type='sine'; o.frequency.setValueAtTime(720,ctx.currentTime);
@@ -1799,7 +1808,7 @@ var _audio = {
   playHover: function() {
     if (this.muted) return;
     try {
-      var ctx = _ambCtx || new (window.AudioContext||window.webkitAudioContext)();
+      var ctx = _uiCtx();
       var o=ctx.createOscillator(), g=ctx.createGain();
       o.connect(g); g.connect(ctx.destination);
       o.type='sine'; o.frequency.value=540;
@@ -1811,7 +1820,7 @@ var _audio = {
   playModalOpen: function() {
     if (this.muted) return;
     try {
-      var ctx = _ambCtx || new (window.AudioContext||window.webkitAudioContext)();
+      var ctx = _uiCtx();
       [220,330,440,550].forEach(function(f,i){
         var o=ctx.createOscillator(),g=ctx.createGain();
         o.connect(g); g.connect(ctx.destination);
@@ -1826,7 +1835,7 @@ var _audio = {
   playModalClose: function() {
     if (this.muted) return;
     try {
-      var ctx = _ambCtx || new (window.AudioContext||window.webkitAudioContext)();
+      var ctx = _uiCtx();
       var o=ctx.createOscillator(),g=ctx.createGain();
       o.connect(g); g.connect(ctx.destination);
       o.type='sine';
@@ -2024,7 +2033,7 @@ document.addEventListener('keydown',function(e){
   // Hover sur les nav links
   document.querySelectorAll('.nav-links a').forEach(function(el){
     el.addEventListener('mouseenter',function(){ _audio.playHover(); });
-    el.addEventListener('click',function(){ _audio.playClick(); });
+    el.addEventListener('click',function(){ _audio.playClick(); el.classList.remove('nav-pop'); void el.offsetWidth; el.classList.add('nav-pop'); });
   });
   
   // CTA button
@@ -2489,10 +2498,10 @@ window.addEventListener('load',function(){
   }); });
   // un clic sur un projet affiche son apercu ; un second clic revient a la description de l'outil
   [].forEach.call(document.querySelectorAll('.wl-pname'),function(b){ b.addEventListener('click',function(){
-    var id=b.getAttribute('data-pick'), pr=b.parentNode, active=pr.classList.contains('sel');
-    projs.forEach(function(p){ p.classList.remove('sel'); });
+    var id=b.getAttribute('data-pick'), pr=b.parentNode, active=pr.classList.contains('is-pick');
+    projs.forEach(function(p){ p.classList.remove('is-pick'); });
     if(active){ var t=document.querySelector('.wl-tool.on'); if(t) showTool(t,cur); return; }
-    pr.classList.add('sel'); showProject(id);
+    pr.classList.add('is-pick'); showProject(id);
   }); });
   // le contenu du panneau est copie dans la langue du moment : on le referme si la langue change
   new MutationObserver(function(){ clear(); }).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
