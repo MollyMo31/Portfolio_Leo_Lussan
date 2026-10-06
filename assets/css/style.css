@@ -1432,3 +1432,50 @@ body.modal-open #bg-canvas{visibility:hidden}
 .dr-ul{margin:.5rem 0 0;padding-left:1.1rem;font-family:'Palatino Linotype',Palatino,Georgia,serif;font-size:.88rem;line-height:1.6;color:#bfae8a}
 .dr-ul li::marker{color:#e9a23b}
 @media(max-width:700px){.dr-mobs{grid-template-columns:1fr}.dr-mob{grid-template-columns:90px 1fr}.dr-cards-2{grid-template-columns:1fr}}
+
+/* ===== Mobile : audit (menu, accueil, CV, contact) ===== */
+html{overflow-x:clip}
+@media(max-width:900px){
+  #contact{grid-template-columns:1fr!important;gap:2rem!important}
+}
+@media(max-width:700px){
+  .nav-cta{display:none}
+  #hero > div[style*="grid-template-columns:1fr auto"]{grid-template-columns:1fr!important;gap:1.2rem!important}
+  .hero-photo-col{order:-1;align-items:flex-start!important;padding-top:0!important}
+  .hero-photo-col > div:first-child{width:112px!important;height:112px!important}
+  #cv div[style*="grid-template-columns:1fr auto"]{grid-template-columns:1fr!important;gap:1.2rem!important}
+  #cv div[style*="grid-template-columns:1fr auto"] > div:nth-child(2){order:-1}
+}
+@media(max-width:800px){
+  #cv div[style*="grid-template-columns:1fr 1.5fr"]{grid-template-columns:1fr!important}
+  #cv div[style*="padding:2rem"]{padding:1.3rem!important}
+}
+@media(max-width:700px){
+  #cv div[style*="padding:2.5rem"]{padding:1.5rem 1.2rem 1.5rem 1.6rem!important}
+}
+@media(max-width:600px){
+  .section-title{font-size:clamp(1.8rem,10.5vw,3.5rem)}
+}
+@media(max-width:700px){
+  /* bouton de volume discret (le volume se regle avec le telephone) */
+  #audio-panel{bottom:.7rem!important;right:.7rem!important;padding:.15rem!important;flex-direction:row!important;gap:0!important}
+  #audio-panel > *:not(#audio-btn){display:none!important}
+  /* selecteur de langue et bouton Fermer sur une meme bande en haut, sans masquer le titre */
+  #modal-lang-bar{top:.6rem;left:.6rem;transform:none}
+  .proj-modal-overlay .proj-modal-hero{padding-top:3.4rem}
+  .hx-hud{top:auto!important;bottom:14px;left:46px}
+}
+@media(max-width:900px){
+  section{scroll-margin-top:20px}
+}
+@media(max-width:700px){
+  /* zones tactiles plus confortables */
+  #lang-selector button{padding:.55rem .55rem!important}
+  .footer-links a{display:inline-block;padding:.55rem 0}
+  .hero-socials a{padding:.65rem .9rem!important}
+  .contact-val a{display:inline-block;padding:.35rem 0}
+}
+@media(max-width:700px){
+  #skills-hint{margin-top:-1rem!important;margin-bottom:1.6rem!important}
+  .pr-intro{margin-top:-.6rem}
+}
