@@ -2725,15 +2725,66 @@ window.addEventListener('load',function(){
 
   /* ---------- Draconium : le grimoire, entre le dragon (or) et l'alchimiste (vert acide) ---------- */
   function startDraco(ov){
-    var hero=ov.querySelector('.proj-modal-hero'), fx=el('div','dx-fx',hero), raf=0, mx=.5;
+    var hero=ov.querySelector('.proj-modal-hero'), fx=el('div','dx-fx',hero), layer=el('div','dx-layer',ov), dead=false, raf=0, mx=.5, timers=[];
+    // lumieres de la salle : torche du dragon a gauche, lampe de l'alchimiste a droite, teinte qui vire au vert quand on descend
+    el('div','dx-tint',layer); el('div','dx-torch dx-tl',layer); el('div','dx-torch dx-tr',layer); el('div','dx-vig',layer);
+    var rail=el('div','dx-rail',layer); var fill=el('i','',rail), tint=layer.querySelector('.dx-tint');
     if(!RM){
       for(var i=0;i<8;i++){ var e=el('i','dx-ember',fx); e.style.cssText='left:'+rnd(2,46)+'%;--s:'+rnd(3,7).toFixed(1)+'px;--d:'+rnd(4,8).toFixed(1)+'s;--w:'+rnd(-24,24).toFixed(0)+'px;animation-delay:'+(-rnd(0,8)).toFixed(1)+'s'; }
       for(var j=0;j<7;j++){ var b=el('i','dx-bubble',fx); b.style.cssText='left:'+rnd(54,98)+'%;--s:'+rnd(6,15).toFixed(0)+'px;--d:'+rnd(5,9).toFixed(1)+'s;--w:'+rnd(-14,14).toFixed(0)+'px;animation-delay:'+(-rnd(0,9)).toFixed(1)+'s'; }
     }
-    function mv(e){ mx=e.clientX/window.innerWidth; if(!raf) raf=requestAnimationFrame(function(){ raf=0; hero.style.setProperty('--mx',(mx*100).toFixed(1)+'%'); }); }
-    ov.addEventListener('mousemove',mv);
+    // progression : la page descend du dragon vers le laboratoire
+    function prog(){ var m=ov.scrollHeight-ov.clientHeight, p=m>0?Math.min(1,ov.scrollTop/m):0; fill.style.transform='scaleY('+p.toFixed(3)+')'; tint.style.opacity=(p*.9).toFixed(2); }
+    ov.addEventListener('scroll',prog,{passive:true}); prog();
+    // apparition des sections, comme un livre qui s'ecrit
+    var targets=[].slice.call(ov.querySelectorAll('.pm-section-title,.pm-label,.proj-modal-body > p,.proj-modal-body > div[style*="grid-template-columns"] > div,.proj-modal-body > div[style*="border-left"]')), io=null;
+    if('IntersectionObserver' in window && !RM){
+      io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('dx-in'); io.unobserve(en.target); } }); },{root:ov,threshold:.1});
+      targets.forEach(function(t,i){ t.classList.add('dx-rv'); t.style.setProperty('--d',((i%4)*70)+'ms'); io.observe(t); });
+    }
+    // souris : lueur du bandeau, logo en parallaxe, braises qui suivent le curseur
+    var COL=['#ffd27a','#ff9a2e','#ff6a1a'], GRN=['#c8ff9a','#7bd34a','#a8e87c'], lastM=0;
+    function isToxic(t){ var n=t&&t.closest&&t.closest('[class*="dx-"],.proj-modal-body > div,.proj-modal-body strong,.proj-modal-tags .tag'); if(!n) return false; if(n.matches('strong')) return getComputedStyle(n).color.indexOf('123')>=0; var c=getComputedStyle(n).borderLeftColor||''; return c.indexOf('123, 211')>=0||c.indexOf('123,211')>=0||(n.matches('.tag')&&getComputedStyle(n).color.indexOf('168')>=0); }
+    function spark(x,y,tox,big){
+      if(RM) return; var p=el('i','dx-s',layer), sz=big?rnd(6,12):rnd(3,6), cs=tox?GRN:COL;
+      p.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;background:'+cs[Math.floor(Math.random()*cs.length)]+(tox?';border:1px solid rgba(220,255,190,.7)':';box-shadow:0 0 8px #ff8a2a');
+      var dx=big?rnd(-70,70):rnd(-14,14), dy=big?rnd(-80,30):rnd(-34,-8);
+      var an=p.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:.95},{transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) scale(.2)',opacity:0}],{duration:big?rnd(500,850):rnd(500,800),easing:'ease-out'}); an.onfinish=function(){ p.remove(); };
+    }
+    function mv(e){
+      mx=e.clientX/window.innerWidth;
+      if(!raf) raf=requestAnimationFrame(function(){ raf=0; hero.style.setProperty('--mx',(mx*100).toFixed(1)+'%'); hero.style.setProperty('--px',((mx-.5)*2).toFixed(2)); });
+      var n=Date.now(); if(n-lastM>55){ lastM=n; spark(e.clientX,e.clientY,isToxic(e.target),false); }
+    }
+    function sfx(tox){
+      try{
+        if(typeof _ambCtx==='undefined'||!_ambCtx||!_ambGain||(typeof _audio!=='undefined'&&_audio.muted)) return;
+        var c=_ambCtx, t=c.currentTime, g=c.createGain();
+        if(tox){ var o=c.createOscillator(); o.type='sine'; o.frequency.setValueAtTime(260,t); o.frequency.exponentialRampToValueAtTime(620,t+.09); g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.16,t+.01); g.gain.exponentialRampToValueAtTime(.0001,t+.18); o.connect(g); g.connect(_ambGain); o.start(t); o.stop(t+.2); }
+        else { var nb=c.createBuffer(1,c.sampleRate*.5,c.sampleRate), d=nb.getChannelData(0); for(var k=0;k<d.length;k++) d[k]=Math.random()*2-1; var s=c.createBufferSource(), f=c.createBiquadFilter(); s.buffer=nb; f.type='bandpass'; f.Q.value=.9; f.frequency.setValueAtTime(500,t); f.frequency.exponentialRampToValueAtTime(2200,t+.28); g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.2,t+.05); g.gain.exponentialRampToValueAtTime(.0001,t+.4); s.connect(f); f.connect(g); g.connect(_ambGain); s.start(t); s.stop(t+.5); }
+      }catch(err){}
+    }
+    function clk(e){
+      if(e.target.closest('.proj-modal-close,#modal-lang-bar,.carousel-btn')) return;
+      var tox=isToxic(e.target); sfx(tox);
+      for(var k=0;k<(tox?12:16);k++) spark(e.clientX,e.clientY,tox,true);
+    }
+    ov.addEventListener('mousemove',mv); ov.addEventListener('click',clk);
+    // ambiance sonore de la salle : bulles de potion, gouttes, crepitement, rare grondement de dragon
+    function ready(){ return !dead && typeof _ambCtx!=='undefined' && _ambCtx && _ambGain && _ambCurrentId==='draconium'; }
+    function loop(fn,a,b){ (function go(){ var t=setTimeout(function(){ if(dead) return; if(ready()) try{ fn(); }catch(err){} go(); },rnd(a,b)); timers.push(t); })(); }
+    function env(g,t,pk,dur){ g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(pk,t+.01); g.gain.exponentialRampToValueAtTime(.0001,t+dur); }
+    loop(function(){ var c=_ambCtx,t=c.currentTime,o=c.createOscillator(),g=c.createGain(),f=180+Math.random()*260; o.type='sine'; o.frequency.setValueAtTime(f,t); o.frequency.exponentialRampToValueAtTime(f*1.8,t+.07); env(g,t,.05,.12); o.connect(g); g.connect(_ambGain); o.start(t); o.stop(t+.15); },350,1300);
+    loop(function(){ var c=_ambCtx,t=c.currentTime,f=1100+Math.random()*900; [0,.28].forEach(function(dl,i){ var o=c.createOscillator(),g=c.createGain(); o.type='sine'; o.frequency.setValueAtTime(f,t+dl); o.frequency.exponentialRampToValueAtTime(f*.8,t+dl+.2); env(g,t+dl,.05/(i+1),.35); o.connect(g); g.connect(_ambGain); o.start(t+dl); o.stop(t+dl+.4); }); },3500,8000);
+    loop(function(){ var c=_ambCtx,t=c.currentTime,nb=c.createBuffer(1,c.sampleRate*.08,c.sampleRate),d=nb.getChannelData(0); for(var k=0;k<d.length;k++) d[k]=(Math.random()*2-1)*Math.exp(-k/(c.sampleRate*.02)); var s=c.createBufferSource(),f=c.createBiquadFilter(),g=c.createGain(); s.buffer=nb; f.type='bandpass'; f.frequency.value=1800+Math.random()*2500; f.Q.value=.7; g.gain.value=.12; s.connect(f); f.connect(g); g.connect(_ambGain); s.start(t); },120,520);
+    loop(function(){ var c=_ambCtx,t=c.currentTime,o=c.createOscillator(),g=c.createGain(),f=c.createBiquadFilter(),l=c.createOscillator(),lg=c.createGain(); o.type='sawtooth'; o.frequency.setValueAtTime(70,t); o.frequency.exponentialRampToValueAtTime(42,t+1.8); f.type='lowpass'; f.frequency.setValueAtTime(260,t); f.frequency.exponentialRampToValueAtTime(110,t+1.8); l.frequency.value=14; lg.gain.value=.05; l.connect(lg); lg.connect(g.gain); g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.1,t+.35); g.gain.exponentialRampToValueAtTime(.0001,t+2); o.connect(f); f.connect(g); g.connect(_ambGain); o.start(t); l.start(t); o.stop(t+2.1); l.stop(t+2.1); },28000,50000);
     ov.classList.add('dx');
-    return function(){ ov.removeEventListener('mousemove',mv); if(raf) cancelAnimationFrame(raf); fx.remove(); hero.style.removeProperty('--mx'); ov.classList.remove('dx'); };
+    return function(){
+      dead=true; timers.forEach(clearTimeout); if(io) io.disconnect(); if(raf) cancelAnimationFrame(raf);
+      ov.removeEventListener('mousemove',mv); ov.removeEventListener('click',clk); ov.removeEventListener('scroll',prog);
+      targets.forEach(function(t){ t.classList.remove('dx-rv','dx-in'); t.style.removeProperty('--d'); });
+      fx.remove(); layer.remove(); hero.style.removeProperty('--mx'); hero.style.removeProperty('--px'); ov.classList.remove('dx');
+    };
   }
 
   /* ---------- Cycle de vie ---------- */

@@ -1378,3 +1378,23 @@ body.modal-open #bg-canvas{visibility:hidden}
 #pm-draconium.dx .carousel-placeholder-text{font-family:'Cinzel Decorative',serif;color:rgba(217,200,162,.7)}
 #pm-draconium.dx .proj-modal-body [style*="border-left:3px solid var(--th-acc2"][style*="margin-top:1.5rem"] p{color:#bfae8a !important}
 @media(prefers-reduced-motion:reduce){.dx-ember,.dx-bubble{animation:none;opacity:0}}
+
+/* ===== Draconium immersif : lumieres de la salle, descente vers le laboratoire, braises au curseur ===== */
+.dx-layer{position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden}
+.dx-s{position:absolute;border-radius:50%;pointer-events:none;will-change:transform,opacity}
+.dx-tint{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse 80% 60% at 50% 105%,rgba(123,211,74,.16),transparent 70%),linear-gradient(180deg,rgba(40,90,20,.06),rgba(60,140,30,.1))}
+.dx-torch{position:absolute;top:18%;width:min(34vw,420px);height:64%;will-change:opacity}
+.dx-tl{left:0;background:radial-gradient(ellipse 100% 55% at 0 50%,rgba(255,138,42,.3),rgba(255,100,20,.1) 45%,transparent 72%);animation:dxFlick 2.3s ease-in-out infinite alternate}
+.dx-tr{right:0;background:radial-gradient(ellipse 100% 50% at 100% 50%,rgba(123,211,74,.2),rgba(80,170,50,.07) 45%,transparent 72%);animation:dxFlick 3.1s ease-in-out -1s infinite alternate}
+@keyframes dxFlick{0%{opacity:.55}30%{opacity:1}55%{opacity:.7}80%{opacity:.95}100%{opacity:.6}}
+.dx-vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(5,3,0,.55) 100%)}
+.dx-rail{position:absolute;left:12px;top:12%;bottom:12%;width:3px;background:rgba(233,162,59,.14);border-radius:2px;overflow:hidden}
+.dx-rail i{display:block;height:100%;transform-origin:50% 0;transform:scaleY(0);background:linear-gradient(180deg,#ffb04a,#e9a23b 40%,#7bd34a);box-shadow:0 0 10px rgba(233,162,59,.7)}
+.dx-rv{opacity:0;transform:translateY(22px)}
+.dx-rv.dx-in{opacity:1;transform:none;animation:dxIn .75s var(--d,0ms) cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes dxIn{0%{opacity:0;transform:translateY(26px)}100%{opacity:1;transform:none}}
+#pm-draconium.dx .pm-section-title.dx-in{animation-name:dxTitle}
+@keyframes dxTitle{0%{opacity:0;transform:translateX(-24px);clip-path:inset(0 100% 0 0)}100%{opacity:1;transform:none;clip-path:inset(0 0 0 0)}}
+#pm-draconium.dx .dr-hero-logo{transform:translate(calc(var(--px,0)*-16px),-50%);transition:transform .35s ease-out}
+@media(max-width:700px){.dx-rail{left:5px}.dx-torch{width:46vw}}
+@media(prefers-reduced-motion:reduce){.dx-tl,.dx-tr{animation:none}.dx-rv{opacity:1;transform:none}}
