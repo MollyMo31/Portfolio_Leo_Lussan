@@ -1259,54 +1259,85 @@ var _AMBIENCES = {
   },
 
   priest: function() {
-    var ctx=_ambCtx,out=_ambGain;
-    [[55,0.07],[82.4,0.05]].forEach(function(p){
-      var o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
-      f.type='lowpass';f.frequency.value=280;o.type='sawtooth';o.frequency.value=p[0];g.gain.value=p[1];
-      o.connect(f);f.connect(g);g.connect(out);o.start();_ambNodes.push(o);
-    });
-    var buf=ctx.createBuffer(1,ctx.sampleRate*4,ctx.sampleRate);
-    var d=buf.getChannelData(0);
-    for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;
-    var ns=ctx.createBufferSource(),ng=ctx.createGain(),nf=ctx.createBiquadFilter();
-    nf.type='bandpass';nf.frequency.value=180;nf.Q.value=0.4;ng.gain.value=0.04;
-    ns.buffer=buf;ns.loop=true;ns.connect(nf);nf.connect(ng);ng.connect(out);ns.start();_ambNodes.push(ns);
+    /* Cassette hantee : nappe dissonante qui ondule, souffle de bande, coeur qui s'accelere, cloche lointaine, boite a musique desaccordee */
+    var ctx=_ambCtx,out=_ambGain,tok=(window._pxTok=(window._pxTok||0)+1);
+    function alive(){ return _ambCurrentId==='priest' && tok===window._pxTok; }
+    function later(fn,a,b){ setTimeout(function(){ if(alive()) fn(); },a+Math.random()*(b-a)); }
+    function osc(type,f,dest,gain){ var o=ctx.createOscillator(),g=ctx.createGain(); o.type=type; o.frequency.value=f; g.gain.value=gain; o.connect(g); g.connect(dest); o.start(); _ambNodes.push(o); return o; }
+    function lfo(f,depth,param){ var o=ctx.createOscillator(),g=ctx.createGain(); o.frequency.value=f; g.gain.value=depth; o.connect(g); g.connect(param); o.start(); _ambNodes.push(o); }
+    // -- nappe grave : trois dents de scie desaccordees (seconde mineure et triton), filtre qui respire, pitch qui flotte comme une vieille bande
+    var dflt=ctx.createBiquadFilter(); dflt.type='lowpass'; dflt.frequency.value=230; dflt.Q.value=2; dflt.connect(out);
+    lfo(0.06,110,dflt.frequency);
+    [55,58.27,77.78].forEach(function(f,i){ var o=osc('sawtooth',f,dflt,0.05); lfo(0.5+i*0.17,9,o.detune); });
+    osc('sine',36.7,out,0.09);
+    // -- voix lointaines : deux sinus legerement desaccordes dans un filtre de voyelle, qui gonflent et retombent
+    var vf=ctx.createBiquadFilter(); vf.type='bandpass'; vf.frequency.value=700; vf.Q.value=5; var vg=ctx.createGain(); vg.gain.value=0.012; vf.connect(vg); vg.connect(out);
+    lfo(0.045,0.011,vg.gain); lfo(0.03,260,vf.frequency);
+    [220,233.1,261.6].forEach(function(f){ osc('sawtooth',f,vf,0.5); });
+    // -- souffle de bande + grondement
+    var nb=ctx.createBuffer(1,ctx.sampleRate*4,ctx.sampleRate), nd=nb.getChannelData(0); for(var i=0;i<nd.length;i++) nd[i]=Math.random()*2-1;
+    function noiseSrc(type,freq,gain,q){ var s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain(); s.buffer=nb; s.loop=true; f.type=type; f.frequency.value=freq; if(q) f.Q.value=q; g.gain.value=gain; s.connect(f); f.connect(g); g.connect(out); s.start(); _ambNodes.push(s); }
+    noiseSrc('highpass',4200,0.007); noiseSrc('bandpass',130,0.035,0.4);
+    // -- coeur : s'accelere quand le visiteur descend dans la page
     function heart(){
-      if(_ambCurrentId!=='priest')return;
-      var o=ctx.createOscillator(),g=ctx.createGain();
-      o.type='sine';o.frequency.setValueAtTime(55,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(30,ctx.currentTime+0.12);
-      g.gain.setValueAtTime(0.28,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.18);
-      o.connect(g);g.connect(out);o.start();o.stop(ctx.currentTime+0.2);
-      setTimeout(function(){
-        var o2=ctx.createOscillator(),g2=ctx.createGain();
-        o2.type='sine';o2.frequency.value=48;
-        g2.gain.setValueAtTime(0.32,ctx.currentTime);g2.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.14);
-        o2.connect(g2);g2.connect(out);o2.start();o2.stop(ctx.currentTime+0.16);
-      },160);
-      _ambLoop=setTimeout(heart,1100+Math.random()*400);
+      if(!alive()) return;
+      var m=document.getElementById('pm-priest'), p=0; if(m){ var mx=m.scrollHeight-m.clientHeight; p=mx>0?Math.min(1,m.scrollTop/mx):0; }
+      var t=ctx.currentTime, vol=0.26+p*0.1;
+      [[t,55,vol],[t+0.16-p*0.05,46,vol*1.1]].forEach(function(b){ var o=ctx.createOscillator(),g=ctx.createGain(); o.type='sine'; o.frequency.setValueAtTime(b[1],b[0]); o.frequency.exponentialRampToValueAtTime(28,b[0]+0.12); g.gain.setValueAtTime(b[2],b[0]); g.gain.exponentialRampToValueAtTime(0.001,b[0]+0.2); o.connect(g); g.connect(out); o.start(b[0]); o.stop(b[0]+0.22); });
+      setTimeout(heart,(1500-p*800)+Math.random()*120);
     }
     heart();
+    // -- cloche lointaine, inharmonique
+    function bell(){
+      var t=ctx.currentTime, base=[174.6,185,164.8][Math.floor(Math.random()*3)], lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=2200; lp.connect(out);
+      [[1,1],[2.0,.6],[2.76,.45],[5.4,.25],[8.9,.12]].forEach(function(r){ var o=ctx.createOscillator(),g=ctx.createGain(); o.type='sine'; o.frequency.value=base*r[0]; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.045*r[1],t+0.015); g.gain.exponentialRampToValueAtTime(0.0001,t+7/r[0]+1.5); o.connect(g); g.connect(lp); o.start(t); o.stop(t+9); });
+      later(bell,24000,42000);
+    }
+    later(bell,6000,12000);
+    // -- boite a musique desaccordee : une berceuse qui deraille
+    function box(){
+      var t=ctx.currentTime, notes=[659.25,587.33,523.25,587.33,659.25,659.25,659.25], n=4+Math.floor(Math.random()*4), lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=3200; lp.connect(out);
+      for(var i=0;i<n;i++){
+        var f=notes[i]*Math.pow(2,(Math.random()*30-18)/1200), tt=t+i*0.52+(i>3?Math.random()*0.12:0), o=ctx.createOscillator(),g=ctx.createGain(), o2=ctx.createOscillator();
+        o.type='sine'; o.frequency.value=f; o2.type='triangle'; o2.frequency.value=f*2.01; g.gain.setValueAtTime(0.0001,tt); g.gain.exponentialRampToValueAtTime(0.04,tt+0.008); g.gain.exponentialRampToValueAtTime(0.0001,tt+0.9);
+        o.connect(g); o2.connect(g); g.connect(lp); o.start(tt); o2.start(tt); o.stop(tt+1); o2.stop(tt+1);
+      }
+      later(box,20000,38000);
+    }
+    later(box,9000,16000);
+    // -- souffle a l'envers : une vague de bruit qui monte et se coupe net
+    function breath(){
+      var t=ctx.currentTime, s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain(); s.buffer=nb; s.loop=true; f.type='bandpass'; f.Q.value=1.5; f.frequency.setValueAtTime(500,t); f.frequency.exponentialRampToValueAtTime(2600,t+2.4);
+      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.06,t+2.3); g.gain.setValueAtTime(0.0001,t+2.35);
+      s.connect(f); f.connect(g); g.connect(out); s.start(t); s.stop(t+2.5);
+      later(breath,18000,34000);
+    }
+    later(breath,12000,20000);
+    // -- coups sourds et grincements
+    function knock(){
+      var t=ctx.currentTime, k=1+Math.floor(Math.random()*3);
+      for(var i=0;i<k;i++){ var o=ctx.createOscillator(),g=ctx.createGain(),tt=t+i*(0.35+Math.random()*0.2); o.type='sine'; o.frequency.setValueAtTime(95,tt); o.frequency.exponentialRampToValueAtTime(40,tt+0.1); g.gain.setValueAtTime(0.3,tt); g.gain.exponentialRampToValueAtTime(0.001,tt+0.25); o.connect(g); g.connect(out); o.start(tt); o.stop(tt+0.3); }
+      later(knock,26000,55000);
+    }
+    later(knock,15000,30000);
     function creak(){
-      if(_ambCurrentId!=='priest')return;
-      var o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
-      f.type='bandpass';f.frequency.value=200+Math.random()*300;f.Q.value=2;
-      o.type='sawtooth';o.frequency.value=150+Math.random()*200;
-      g.gain.setValueAtTime(0,ctx.currentTime);g.gain.linearRampToValueAtTime(0.025,ctx.currentTime+0.15);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+1.0);
-      o.connect(f);f.connect(g);g.connect(out);o.start();o.stop(ctx.currentTime+1.1);
-      setTimeout(creak,7000+Math.random()*10000);
+      var t=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+      f.type='bandpass'; f.frequency.value=200+Math.random()*300; f.Q.value=2; o.type='sawtooth'; o.frequency.setValueAtTime(150+Math.random()*200,t); o.frequency.linearRampToValueAtTime(110+Math.random()*120,t+1);
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.03,t+0.2); g.gain.exponentialRampToValueAtTime(0.001,t+1.1);
+      o.connect(f); f.connect(g); g.connect(out); o.start(t); o.stop(t+1.2);
+      later(creak,7000,17000);
     }
-    creak();
+    later(creak,4000,9000);
     function whisper(){
-      if(_ambCurrentId!=='priest')return;
-      var wb=ctx.createBuffer(1,ctx.sampleRate*0.5,ctx.sampleRate);
-      var wd=wb.getChannelData(0);
-      for(var j=0;j<wd.length;j++)wd[j]=(Math.random()*2-1)*Math.exp(-j/(ctx.sampleRate*0.12));
-      var ws=ctx.createBufferSource(),wg=ctx.createGain(),wf=ctx.createBiquadFilter();
-      wf.type='highpass';wf.frequency.value=2500;wg.gain.value=0.035;
-      ws.buffer=wb;ws.connect(wf);wf.connect(wg);wg.connect(out);ws.start();
-      setTimeout(whisper,9000+Math.random()*14000);
+      var wb=ctx.createBuffer(1,ctx.sampleRate*0.6,ctx.sampleRate), wd=wb.getChannelData(0);
+      for(var j=0;j<wd.length;j++) wd[j]=(Math.random()*2-1)*Math.sin(Math.PI*j/wd.length)*Math.exp(-j/(ctx.sampleRate*0.2));
+      var ws=ctx.createBufferSource(),wg=ctx.createGain(),wf=ctx.createBiquadFilter(),pn=ctx.createStereoPanner?ctx.createStereoPanner():null;
+      wf.type='bandpass'; wf.frequency.value=3000; wf.Q.value=0.8; wg.gain.value=0.05; ws.buffer=wb; ws.connect(wf); wf.connect(wg);
+      if(pn){ pn.pan.value=Math.random()*2-1; wg.connect(pn); pn.connect(out); } else wg.connect(out);
+      ws.start();
+      later(whisper,9000,22000);
     }
-    whisper();
+    later(whisper,7000,14000);
   },
 
   city: function() {
