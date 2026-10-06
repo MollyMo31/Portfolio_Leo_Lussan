@@ -778,15 +778,15 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 @media(max-width:700px){.proj-modal-tags .tl-adobe .adobe-grid{grid-template-columns:repeat(8,22px)}}
 
 /* == Ouverture d'un projet : onde de choc depuis la carte + titre qui se revele == */
-.proj-modal-overlay.open{animation:pmReveal .75s cubic-bezier(.2,.75,.2,1) backwards}
-@keyframes pmReveal{from{clip-path:circle(0 at var(--ox,50%) var(--oy,50%))}to{clip-path:circle(150% at var(--ox,50%) var(--oy,50%))}}
+.proj-modal-overlay.open{animation:pmReveal .6s cubic-bezier(.2,.75,.2,1) backwards;transform-origin:var(--ox,50%) var(--oy,50%)}
+@keyframes pmReveal{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
 .proj-modal-overlay.open::after{content:'';position:fixed;left:var(--ox,50%);top:var(--oy,50%);width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;
-  border:2px solid var(--th-acc2,#fff);box-shadow:0 0 40px var(--th-acc2,#fff),inset 0 0 30px var(--th-acc2,#fff);pointer-events:none;z-index:5;opacity:0;animation:pmShock .9s ease-out both}
-@keyframes pmShock{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(48)}}
-.proj-modal-overlay.open .proj-modal{animation:pmRise .8s cubic-bezier(.2,.75,.2,1) .12s backwards}
+  background:radial-gradient(circle,transparent 52%,var(--th-acc2,#fff) 56%,transparent 66%);pointer-events:none;z-index:5;opacity:0;will-change:transform,opacity;animation:pmShock .8s ease-out both}
+@keyframes pmShock{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(32)}}
+.proj-modal-overlay.open .proj-modal{animation:pmRise .7s cubic-bezier(.2,.75,.2,1) .08s backwards}
 @keyframes pmRise{from{transform:translateY(40px) scale(.96);opacity:0}to{transform:none;opacity:1}}
-.proj-modal-overlay.open .proj-modal-title{animation:pmTitle 1s cubic-bezier(.2,.75,.2,1) .35s backwards}
-@keyframes pmTitle{from{letter-spacing:.32em;opacity:0;filter:blur(16px)}to{letter-spacing:normal;opacity:1;filter:blur(0)}}
+.proj-modal-overlay.open .proj-modal-title{animation:pmTitle .7s cubic-bezier(.2,.75,.2,1) .25s backwards}
+@keyframes pmTitle{from{opacity:0;transform:translateY(14px) scale(1.06)}to{opacity:1;transform:none}}
 .proj-modal-overlay.open .proj-modal-num{animation:pmUp .6s ease .3s backwards}
 .proj-modal-overlay.open .proj-modal-tags .tag{animation:pmUp .5s ease backwards;animation-delay:calc(.7s + var(--i,0) * .07s)}
 @keyframes pmUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}

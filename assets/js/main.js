@@ -2030,7 +2030,11 @@ function openProj(id){
       if(b) b.style.opacity=(_currentLang===l)?'1':'.35';
     });
   }
-  setTimeout(function(){ drawIso(id); startFx(id); _audio.startAmbient(id); }, 80);
+  // Le travail lourd (canvas, musique) attend la fin de l'animation d'ouverture pour ne pas la faire saccader
+  var _op=document.getElementById('pm-'+id), _still=function(){ return _op.classList.contains('open'); };
+  setTimeout(function(){ if(_still()) drawIso(id); }, 80);
+  setTimeout(function(){ if(_still()) _audio.startAmbient(id); }, 350);
+  setTimeout(function(){ if(_still()) startFx(id); }, 650);
 }
 function closeProj(id){
   document.getElementById('pm-'+id).classList.remove('open');
