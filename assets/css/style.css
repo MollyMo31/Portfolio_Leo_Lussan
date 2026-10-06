@@ -1330,3 +1330,11 @@ body.modal-open #bg-canvas{visibility:hidden}
 @keyframes hxTrem{0%,100%{transform:translate(0,0)}25%{transform:translate(-2px,1px)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,-1px)}}
 @media(prefers-reduced-motion:reduce){.jx-l,.jx .proj-modal-hero,.hx-pulse,.hx .proj-modal-title,.hx .proj-modal-body [style*="grid-template-columns"] > div{animation:none}.jx-rv{opacity:1;transform:none}}
 @media(max-width:700px){.jx-combo{font-size:2.2rem;top:4.5rem;right:1rem}.jx-toggle{right:.8rem;bottom:.8rem}.hx-dark{background:radial-gradient(circle 170px at var(--x,50%) var(--y,35%),rgba(0,0,0,0) 0,rgba(0,0,0,.18) 55%,rgba(0,0,0,.6) 100%)}}
+
+/* Coaching : bandeau compose de visuels reels */
+.co-banner{position:relative;display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:3px;height:clamp(180px,26vw,300px);margin:1.4rem 0 1rem;border:1px solid rgba(244,160,51,.25);overflow:hidden;background:#0a0806}
+.co-banner img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95) contrast(1.02)}
+.co-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,4,.1) 30%,rgba(8,6,4,.88) 100%);pointer-events:none}
+.co-banner-t{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:.2rem}
+.co-banner-t span{font-family:var(--font-title);font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:.06em;color:var(--white);line-height:1}
+.co-banner-t em{font-style:normal;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#f4a033}
