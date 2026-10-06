@@ -2009,6 +2009,7 @@ function openProj(id){
 }
 function closeProj(id){
   document.getElementById('pm-'+id).classList.remove('open');
+  [].forEach.call(document.querySelectorAll('#pm-'+id+' iframe.mira-yt'),function(f){ f.src=f.src; });
   document.body.style.overflow='';
   document.body.classList.remove('modal-open');
   stopFx();

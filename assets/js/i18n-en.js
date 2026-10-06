@@ -771,6 +771,10 @@
  "<strong>Jeu à la manette.</strong> Unjudged se joue avec deux joysticks : c'est le seul jeu de ce portfolio à la manette, tous les autres se jouent au clavier et à la souris.": "<strong>Controller game.</strong> Unjudged is played with two joysticks: it is the only game in this portfolio played with a controller, all the others use keyboard and mouse.",
  "Level Design · Narratif · Manette": "Level Design · Narrative · Controller",
  "Manette": "Controller",
+ "En vidéo": "On video",
+ "Les vidéos démarrent sans le son.": "Videos start without sound.",
+ "Présentation du hub": "Hub presentation",
+ "Autres builds du jeu": "Other builds of the game",
  "Avant / Après game feel — à venir": "Before / After game feel — coming soon",
  "VFX de gameplay — à venir": "Gameplay VFX — coming soon",
  "Gameplay complet — à venir": "Full gameplay — coming soon",
@@ -1008,6 +1012,8 @@
  "<strong>Sons :</strong> rire diabolique au lancement, compteur « 1, 2, 3 — Survive! », moteur du kart (roulage et dérapage), « bonk » à la collision, bruit de la glue, rire des fantômes et du prêtre, musique entraînante au thème d'Halloween. <strong>Menus :</strong> intro (titre, prêtre qui tourne, Play / Leave, contrôles avec Tab), écran de défaite (« You got Eaten ») et de victoire (« Good Job! You escaped the priest »).": "<strong>Sounds:</strong> diabolical laugh at launch, \"1, 2, 3 — Survive!\" counter, kart engine (driving and drifting), \"bonk\" on collision, glue sound, ghost and priest laughter, upbeat Halloween-themed music. <strong>Menus:</strong> intro (title, rotating priest, Play / Leave, in-game controls with Tab), defeat screen (\"You got Eaten\") and victory screen (\"Good Job! You escaped the priest\")."
 };
   var ATTR = {
+ "Présentation du hub": "Hub presentation",
+ "Autres builds du jeu": "Other builds of the game",
  "Étape précédente": "Previous step",
  "Étape suivante": "Next step",
  "Niveau final d'Unjudged dans le moteur": "Final Unjudged level in the engine",
