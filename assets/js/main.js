@@ -2639,39 +2639,32 @@ window.addEventListener('load',function(){
     };
   }
 
-  /* ---------- Devouring Priest ---------- */
-  var WHISPERS={fr:['il est derrière toi','tu l\'entends rire ?','ne te retourne pas','il a faim','tu ne cours pas assez vite','il sait où tu es'],en:['he is behind you','can you hear him laughing?','do not turn around','he is hungry','you are not running fast enough','he knows where you are']};
+  /* ---------- Devouring Priest : cassette VHS / found footage ---------- */
   function startHorror(ov){
-    var layer=el('div','hx-layer',ov), dark=el('div','hx-dark',layer), pulse=el('div','hx-pulse',layer), timers=[], x=window.innerWidth*.5, y=window.innerHeight*.35;
-    function setPos(){ layer.style.setProperty('--x',x+'px'); layer.style.setProperty('--y',y+'px'); }
-    setPos();
-    function mv(e){ var p=e.touches?e.touches[0]:e; x=p.clientX; y=p.clientY; setPos(); }
-    ov.addEventListener('mousemove',mv); ov.addEventListener('touchmove',mv,{passive:true}); ov.addEventListener('touchstart',mv,{passive:true});
+    var layer=el('div','hx-layer',ov), timers=[], t0=Date.now(), modal=ov.querySelector('.proj-modal');
+    el('div','hx-grain',layer); el('div','hx-scan',layer); el('div','hx-vig',layer); var bar=el('div','hx-bar',layer);
+    ['tl','tr','bl','br'].forEach(function(c){ el('i','hx-br hx-p'+c,layer); });
+    var hud=el('div','hx-hud',layer); hud.innerHTML='<b></b>REC <span class="hx-tc">00:00:00</span>';
+    var tc=hud.querySelector('.hx-tc');
+    function pad(n){ return (n<10?'0':'')+n; }
+    function tick(){ var s=Math.floor((Date.now()-t0)/1000); tc.textContent=pad(Math.floor(s/3600))+':'+pad(Math.floor(s/60)%60)+':'+pad(s%60); }
+    timers.push(setInterval(tick,1000));
+    // le coeur s'accelere quand on descend dans la page
+    function prog(){ var m=ov.scrollHeight-ov.clientHeight, p=m>0?ov.scrollTop/m:0; layer.style.setProperty('--beat',(1.5-p*0.9).toFixed(2)+'s'); }
+    ov.addEventListener('scroll',prog,{passive:true}); prog();
     function later(fn,a,b){ var t=setTimeout(function(){ fn(); later(fn,a,b); },rnd(a,b)); timers.push(t); }
     if(!RM){
-      later(function(){ layer.classList.add('hx-flick'); setTimeout(function(){ layer.classList.remove('hx-flick'); },rnd(160,420)); },4000,9000);
+      // defaut de bande : barre de tracking + decalage
       later(function(){
-        var side=Math.random()<.5, w=el('div','hx-eyes',layer);
-        w.style.left=(side?rnd(2,14):rnd(84,96))+'%'; w.style.top=rnd(12,82)+'%';
-        w.innerHTML='<i></i><i></i>';
-        var an=w.animate([{opacity:0},{opacity:.95,offset:.25},{opacity:.95,offset:.55},{opacity:.95,transform:'scaleY(.08)',offset:.6},{opacity:.95,transform:'scaleY(1)',offset:.66},{opacity:0}],{duration:3200});
-        an.onfinish=function(){ w.remove(); };
-      },9000,17000);
-      later(function(){
-        var l=WHISPERS[lang()], w=el('div','hx-whisper',layer); w.textContent=l[Math.floor(Math.random()*l.length)];
-        w.style.left=Math.max(10,Math.min(window.innerWidth-260,x+rnd(-120,120)))+'px'; w.style.top=Math.max(60,Math.min(window.innerHeight-60,y+rnd(40,120)))+'px';
-        var an=w.animate([{opacity:0},{opacity:.8,offset:.3},{opacity:.8,offset:.7},{opacity:0}],{duration:3000}); an.onfinish=function(){ w.remove(); };
-      },11000,20000);
-      later(function(){
-        var s=ov.querySelectorAll('.proj-modal-body strong'); if(!s.length) return;
-        var t=s[Math.floor(Math.random()*s.length)]; t.classList.add('hx-trem'); setTimeout(function(){ t.classList.remove('hx-trem'); },900);
-      },4500,8000);
+        bar.animate([{top:'-12%',opacity:.9},{top:'105%',opacity:.9}],{duration:rnd(500,900),easing:'linear'});
+        if(modal) modal.animate([{transform:'translateX(0)'},{transform:'translateX(-7px) skewX(-.6deg)'},{transform:'translateX(5px)'},{transform:'translateX(-3px)'},{transform:'translateX(0)'}],{duration:260,easing:'steps(5)'});
+        layer.classList.add('hx-tear'); setTimeout(function(){ layer.classList.remove('hx-tear'); },260);
+      },6000,13000);
     }
     ov.classList.add('hx');
     return function(){
-      ov.removeEventListener('mousemove',mv); ov.removeEventListener('touchmove',mv); ov.removeEventListener('touchstart',mv);
-      timers.forEach(clearTimeout); layer.remove(); ov.classList.remove('hx');
-      [].forEach.call(ov.querySelectorAll('.hx-trem'),function(t){ t.classList.remove('hx-trem'); });
+      ov.removeEventListener('scroll',prog);
+      timers.forEach(function(t){ clearTimeout(t); clearInterval(t); }); layer.remove(); ov.classList.remove('hx');
     };
   }
 
