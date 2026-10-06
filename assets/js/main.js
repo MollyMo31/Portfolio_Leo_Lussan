@@ -62,7 +62,7 @@ function startFx(projId) {
   var BB = H * 0.72;  // bord bas    (BB -> H)
 
   // Cadre lumineux permanent sur les bords de la fenetre modale
-  function drawBorderFrame(ctx, W, H, color, alpha) {
+  function drawBorderFrameRaw(ctx, W, H, color, alpha) {
     var thickness = 2;
     var cornerSize = 60;
     var grad = ctx.createLinearGradient(0,0,W,0);
@@ -104,6 +104,17 @@ function startFx(projId) {
     // Scan lines horizontales animees
     ctx.shadowBlur = 0;
     ctx.restore();
+  }
+
+  // Le cadre ne change pas d'une image a l'autre : on le dessine une fois (flous couteux), puis on le recopie
+  var _frameCv = null, _frameKey = '';
+  function drawBorderFrame(ctx, W, H, color, alpha) {
+    var key = W+'x'+H+color+alpha;
+    if (_frameKey !== key) {
+      _frameCv = document.createElement('canvas'); _frameCv.width = W; _frameCv.height = H;
+      drawBorderFrameRaw(_frameCv.getContext('2d'), W, H, color, alpha); _frameKey = key;
+    }
+    ctx.drawImage(_frameCv, 0, 0);
   }
 
   // Position aleatoire sur les bords UNIQUEMENT
@@ -700,8 +711,22 @@ function startFx(projId) {
   else if (cfg.type === 'flames') {
     var particles = [];
     var syms2=['\uD83D\uDD25','\u2694\uFE0F','\uD83D\uDC09','\uD83E\uDDEA','\u2620\uFE0F','\u2697\uFE0F','\uD83D\uDDE1\uFE0F','\u26A1'];
+    // Sprites pre-rendus : braises, emojis lumineux, colonnes de flammes, halo
+    function mk(w,h,fn){ var c=document.createElement('canvas'); c.width=w; c.height=h; fn(c.getContext('2d'),w,h); return c; }
+    var emberSpr={};
+    ['rgba(255,140,56,','rgba(255,60,10,'].forEach(function(col){
+      emberSpr[col]=mk(64,64,function(g,w,h){ var r=g.createRadialGradient(32,32,0,32,32,32); r.addColorStop(0,col+'1)'); r.addColorStop(.35,col+'.75)'); r.addColorStop(1,col+'0)'); g.fillStyle=r; g.fillRect(0,0,w,h); });
+    });
+    var colSpr=mk(110,512,function(g,w,h){ var r=g.createLinearGradient(0,h,0,0); r.addColorStop(0,'rgba(255,80,0,.75)'); r.addColorStop(.4,'rgba(255,150,50,.42)'); r.addColorStop(1,'rgba(255,150,50,0)'); g.fillStyle=r; g.fillRect(0,0,w,h); });
+    var haloSpr=mk(4,256,function(g,w,h){ var r=g.createLinearGradient(0,0,0,h); r.addColorStop(0,'rgba(160,40,0,0)'); r.addColorStop(1,'rgba(160,40,0,.14)'); g.fillStyle=r; g.fillRect(0,0,w,h); });
+    var emoSpr={};
+    function emo(e,sz){
+      var k=e+sz; if(emoSpr[k]) return emoSpr[k];
+      var pad=14; return emoSpr[k]=mk(Math.ceil(sz*1.3)+pad*2,Math.ceil(sz*1.3)+pad*2,function(g,w,h){ g.font=sz+'px serif'; g.textBaseline='alphabetic'; g.fillStyle=cfg.color; g.shadowBlur=6; g.shadowColor=cfg.color; g.fillText(e,pad,pad+sz); });
+    }
+    function drawEmo(e,sz,x,y,al){ var sp=emo(e,sz); ctx.globalAlpha=al; ctx.drawImage(sp,x-14,y-14-sz); }
     // Braises - depuis le bas et les cotes
-    for(var i=0;i<55;i++){
+    for(var i=0;i<40;i++){
       var pb=Math.random()<.6?
         {x:Math.random()<.5?Math.random()*BL:BR+Math.random()*(W-BR), y:H+Math.random()*80}:
         {x:Math.random()*W, y:H+Math.random()*80};
@@ -711,17 +736,17 @@ function startFx(projId) {
         col:Math.random()>.5?'rgba(255,140,56,':'rgba(255,60,10,'});
     }
     // Symboles medievaux - bords gauche et droit
-    for(var i=0;i<14;i++){
+    for(var i=0;i<10;i++){
       var ps3=bpSide();
       particles.push({kind:'sym',x:ps3.x,y:ps3.y,
-        s:30+Math.random()*55, al:.1+Math.random()*.25,
+        s:Math.round((30+Math.random()*55)/5)*5, al:.1+Math.random()*.25,
         e:syms2[Math.floor(Math.random()*syms2.length)],
         fl:Math.random()*Math.PI*2, fsp:.012+Math.random()*.03});
     }
     // Colonnes de flammes - exclusivement sur les bords gauche/droit
     var cols=[];
-    for(var i=0;i<12;i++) cols.push({
-      x:i<5?Math.random()*BL:(BR+Math.random()*(W-BR)),
+    for(var i=0;i<9;i++) cols.push({
+      x:i<4?Math.random()*BL:(BR+Math.random()*(W-BR)),
       phase:Math.random()*Math.PI*2, sp:.025+Math.random()*.035
     });
 
@@ -740,24 +765,16 @@ function startFx(projId) {
 
       cornerIcons.forEach(function(ic){
         ic.ph+=ic.sp;
-        var ial=ic.al*(Math.sin(ic.ph)*.25+.75);
-        ctx.save(); ctx.globalAlpha=ial;
-        ctx.font=ic.s+'px serif';
-        ctx.shadowBlur=5; ctx.shadowColor=cfg.color;
-        ctx.fillText(ic.e,ic.x,ic.y); ctx.shadowBlur=0;
-        ctx.globalAlpha=1; ctx.restore();
+        drawEmo(ic.e,ic.s,ic.x,ic.y,ic.al*(Math.sin(ic.ph)*.25+.75));
       });
+      ctx.globalAlpha=1;
       // Halo de braise en bas
-      var bg=ctx.createLinearGradient(0,H*.65,0,H);
-      bg.addColorStop(0,'transparent'); bg.addColorStop(1,'rgba(160,40,0,.14)');
-      ctx.fillStyle=bg; ctx.fillRect(0,H*.65,W,H*.35);
+      ctx.drawImage(haloSpr,0,H*.65,W,H*.35);
       // Colonnes de flammes sur les bords
       cols.forEach(function(c){
         c.phase+=c.sp;
         var h=280+Math.sin(c.phase)*180;
-        var g=ctx.createLinearGradient(c.x,H,c.x,H-h);
-        g.addColorStop(0,'rgba(255,80,0,.75)'); g.addColorStop(.4,'rgba(255,150,50,.42)'); g.addColorStop(1,'transparent');
-        ctx.fillStyle=g; ctx.fillRect(c.x-55+Math.sin(c.phase*1.4)*18,H-h,110,h);
+        ctx.drawImage(colSpr,c.x-55+Math.sin(c.phase*1.4)*18,H-h,110,h);
       });
       particles.forEach(function(p){
         if(p.kind==='ember'){
@@ -769,20 +786,15 @@ function startFx(projId) {
             p.y=H+Math.random()*60;
             p.vx=(Math.random()-.5)*2.8; p.vy=-(1.8+Math.random()*4); p.life=.8+Math.random()*.2;
           }
-          var r2=Math.max(0,p.r*p.life);
-          ctx.beginPath(); ctx.arc(p.x,p.y,r2,0,Math.PI*2);
-          ctx.fillStyle=p.col+(p.life*.9)+')';
-          ctx.shadowBlur=5; ctx.shadowColor='#ff6020'; ctx.fill(); ctx.shadowBlur=0;
+          var r2=Math.max(0,p.r*p.life)*2.2;
+          ctx.globalAlpha=Math.min(1,p.life*.9);
+          ctx.drawImage(emberSpr[p.col],p.x-r2,p.y-r2,r2*2,r2*2);
         } else {
           p.fl+=p.fsp;
-          var fal=p.al*(Math.sin(p.fl)*.28+.72);
-          ctx.save(); ctx.globalAlpha=fal;
-          ctx.font=p.s+'px serif'; ctx.fillStyle=cfg.color;
-          ctx.shadowBlur=6; ctx.shadowColor=cfg.color;
-          ctx.fillText(p.e,p.x,p.y); ctx.shadowBlur=0;
-          ctx.globalAlpha=1; ctx.restore();
+          drawEmo(p.e,p.s,p.x,p.y,p.al*(Math.sin(p.fl)*.28+.72));
         }
       });
+      ctx.globalAlpha=1;
       _fxRaf=requestAnimationFrame(draw);
     }; draw();
   }
