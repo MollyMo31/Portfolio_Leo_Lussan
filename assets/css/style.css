@@ -1274,3 +1274,70 @@ body.modal-open #bg-canvas{visibility:hidden}
 /* Agrandissement des images (Process) */
 .ba-zoom{position:fixed;inset:0;z-index:2147483100;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out}
 .ba-zoom img{max-width:100%;max-height:100%;background:#f4f4f6;box-shadow:0 0 80px rgba(0,0,0,.6)}
+
+/* ===== JuiceUp : une page qui reagit a tout ===== */
+.jx-layer,.hx-layer{position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden}
+.jx-p,.jx-s{position:absolute;pointer-events:none}
+.jx-s{width:7px;height:7px;border-radius:50%}
+.jx-combo{position:absolute;right:2.2rem;top:6rem;font-family:var(--font-title);font-size:3.2rem;line-height:1;color:hsl(calc(285 - var(--h,0)) 95% 68%);text-shadow:0 0 22px currentColor;opacity:0}
+.jx-combo.hot{opacity:1;animation:jxCombo .38s cubic-bezier(.2,1.8,.4,1)}
+@keyframes jxCombo{0%{transform:scale(.4) rotate(-14deg)}60%{transform:scale(1.35) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+.jx .proj-modal-hero{background:linear-gradient(120deg,#1a0636,#3b0a6e,#6d1fb0,#b0207a,#3b0a6e,#1a0636) !important;background-size:300% 300% !important;animation:jxGrad 9s ease-in-out infinite}
+@keyframes jxGrad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.jx .proj-modal-title{text-shadow:0 0 28px rgba(192,132,252,.7),0 4px 0 rgba(139,0,255,.5)}
+.jx-l{display:inline-block}.jx .jx-l{animation:jxBounce 1.9s cubic-bezier(.3,1.6,.5,1) infinite;animation-delay:calc(var(--i,0)*.09s);transform-origin:50% 100%}
+@keyframes jxBounce{0%,55%,100%{transform:translateY(0) scale(1,1)}62%{transform:translateY(0) scale(1.25,.75)}74%{transform:translateY(-.22em) scale(.88,1.18)}86%{transform:translateY(0) scale(1.1,.9)}}
+.jx .proj-modal-tags .tag{transition:transform .3s cubic-bezier(.2,1.9,.4,1)}
+.jx .proj-modal-tags .tag:hover{transform:scale(1.2) rotate(-4deg)}
+.jx-toggle{position:absolute;right:1.5rem;bottom:1.2rem;z-index:3;display:flex;align-items:center;gap:.6rem;padding:.45rem .8rem;background:rgba(0,0,0,.45);border:1px solid rgba(192,132,252,.6);color:#fff;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.18em;cursor:pointer;pointer-events:auto;transition:transform .25s cubic-bezier(.2,1.9,.4,1),background .2s}
+.jx-toggle:hover{transform:scale(1.08) rotate(-2deg);background:rgba(139,0,255,.35)}
+.jx-sw{width:2.1rem;height:1.1rem;border-radius:1rem;background:#8b00ff;position:relative;transition:background .25s}
+.jx-sw i{position:absolute;top:.15rem;left:1.1rem;width:.8rem;height:.8rem;border-radius:50%;background:#fff;transition:left .3s cubic-bezier(.2,1.9,.4,1)}
+.jx-off .jx-sw{background:#555}.jx-off .jx-sw i{left:.15rem}
+.jx-rv{opacity:0;transform:translateY(28px) scale(.9)}
+.jx-rv.jx-in{opacity:1;transform:none;animation:jxIn .65s var(--d,0ms) cubic-bezier(.2,1.5,.4,1) backwards}
+@keyframes jxIn{0%{opacity:0;transform:translateY(34px) scale(.82) rotate(-1.5deg)}100%{opacity:1;transform:none}}
+.jx .proj-modal-body [style*="grid-template-columns"] > div,.jx .proj-modal-body figure > div{transition:transform .38s cubic-bezier(.2,1.9,.4,1),box-shadow .3s,border-color .3s}
+.jx .proj-modal-body [style*="grid-template-columns"] > div:hover,.jx .proj-modal-body figure > div:hover{transform:translateY(-6px) scale(1.04) rotate(-.6deg);box-shadow:0 14px 34px -10px rgba(192,132,252,.7);border-color:#c084fc !important}
+.jx .pm-section-title{text-shadow:0 0 18px rgba(192,132,252,.45)}
+.jx .proj-modal-body strong{color:#e9d5ff}
+/* Juice coupe : le meme contenu, plat et sans reaction */
+.jx-off .proj-modal-body,.jx-off .proj-modal-hero > :not(.jx-toggle){filter:grayscale(1) brightness(.92)}
+.jx-off .proj-modal-hero{animation:none !important;background:#1b1b1b !important}
+.jx-off .jx-l,.jx-off .jx-rv.jx-in{animation:none}
+.jx-off .jx-rv{opacity:1;transform:none}
+.jx-off .proj-modal-body [style*="grid-template-columns"] > div:hover,.jx-off .proj-modal-body figure > div:hover,.jx-off .proj-modal-tags .tag:hover{transform:none;box-shadow:none}
+.jx-off .proj-modal-title,.jx-off .pm-section-title{text-shadow:none}
+
+/* ===== Devouring Priest : cassette VHS retrouvee ===== */
+.hx-grain{position:absolute;inset:-20%;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.2 -.1'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");animation:hxGrain .6s steps(1) infinite}
+@keyframes hxGrain{0%{transform:translate(0,0)}20%{transform:translate(-6%,4%)}40%{transform:translate(5%,-7%)}60%{transform:translate(-4%,-3%)}80%{transform:translate(7%,6%)}}
+.hx-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.32) 0 1px,transparent 1px 3px);opacity:.55}
+.hx-vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 45%,rgba(0,0,0,.65) 100%);box-shadow:inset 0 0 150px 20px rgba(140,0,16,.5);animation:hxBeat var(--beat,1.5s) infinite}
+@keyframes hxBeat{0%,100%{opacity:.55}10%{opacity:1}22%{opacity:.7}34%{opacity:.95}55%{opacity:.55}}
+.hx-bar{position:absolute;left:0;right:0;top:-12%;height:9%;background:linear-gradient(180deg,transparent,rgba(255,255,255,.14),rgba(255,255,255,.04),transparent);opacity:0}
+.hx-tear .hx-grain{opacity:.5}
+.hx-br{position:absolute;width:30px;height:30px;border:0 solid rgba(255,255,255,.7)}
+.hx-ptl{left:16px;top:16px;border-width:2px 0 0 2px}.hx-ptr{right:16px;top:16px;border-width:2px 2px 0 0}
+.hx-pbl{left:16px;bottom:16px;border-width:0 0 2px 2px}.hx-pbr{right:16px;bottom:16px;border-width:0 2px 2px 0}
+.hx-hud{position:absolute;left:58px;top:20px;display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.85rem;letter-spacing:.14em;color:#fff;text-shadow:0 0 6px rgba(0,0,0,.9),2px 0 rgba(255,0,0,.5),-2px 0 rgba(0,255,255,.35)}
+.hx-hud b{width:.8rem;height:.8rem;border-radius:50%;background:#e11;box-shadow:0 0 10px #e11;animation:hxRec 1.2s steps(1) infinite}
+@keyframes hxRec{0%,55%{opacity:1}56%,100%{opacity:0}}
+#pm-priest.hx .proj-modal{background:#070304 !important;border:1px solid rgba(190,20,35,.35);box-shadow:0 0 0 1px #000,0 0 140px rgba(150,0,16,.35)}
+#pm-priest.hx .proj-modal-body{background:radial-gradient(ellipse at 50% 0,rgba(110,0,14,.28),transparent 60%),#070304}
+#pm-priest.hx .proj-modal-hero{background:#050102 !important}
+.hx .pr-hero-img{opacity:.55;filter:grayscale(.55) contrast(1.35) brightness(.85) sepia(.45) hue-rotate(-25deg)}
+.hx .proj-modal-hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,#070304 100%)}
+.hx .proj-modal-title{animation:hxGlitch 7s infinite}
+@keyframes hxGlitch{0%,90%,100%{transform:none;text-shadow:0 0 30px rgba(200,0,0,.5),0 0 60px rgba(200,0,0,.2)}91%{transform:translate(-4px,1px) skewX(-4deg);text-shadow:3px 0 #0ff,-3px 0 #f00}93%{transform:translate(5px,-1px) skewX(3deg);text-shadow:-3px 0 #0ff,3px 0 #f00}95%{transform:translate(-2px,0);text-shadow:2px 0 #f00}97%{transform:none}}
+#pm-priest.hx p,#pm-priest.hx .proj-modal-body div[style*="DM Sans"],#pm-priest.hx .proj-modal-body span[style*="DM Sans"],#pm-priest.hx .chase,#pm-priest.hx .proj-modal-body li{font-family:'Special Elite','Courier New',Courier,monospace !important;color:#d9d0c4}
+#pm-priest.hx .pm-section-title{color:#d11a24 !important;text-shadow:0 0 14px rgba(200,0,0,.5);border-bottom:1px solid rgba(209,26,36,.4);padding-bottom:.3rem}
+#pm-priest.hx .pm-section-title::before{content:'';display:inline-block;width:.42em;height:.42em;border-radius:50%;background:#e11;margin-right:.5em;vertical-align:middle;animation:hxRec 1.2s steps(1) infinite}
+#pm-priest.hx .proj-modal-body [style*="grid-template-columns"] > div{background:rgba(255,255,255,.025) !important;border:1px solid rgba(255,255,255,.07) !important;border-left:3px solid #b3121f !important;border-radius:0}
+#pm-priest.hx .proj-modal-body strong{color:#ff5a4e}
+#pm-priest.hx .pm-img{filter:grayscale(.45) contrast(1.15) sepia(.3) hue-rotate(-30deg) brightness(.92);transition:filter .5s;border-color:rgba(255,255,255,.12)}
+#pm-priest.hx .pm-img:hover{filter:none}
+@media(prefers-reduced-motion:reduce){.jx-l,.jx .proj-modal-hero,.hx-grain,.hx-vig,.hx-hud b,.hx .proj-modal-title{animation:none}.jx-rv{opacity:1;transform:none}}
+@media(max-width:700px){.jx-combo{font-size:2.2rem;top:4.5rem;right:1rem}.jx-toggle{right:.8rem;bottom:.8rem}#pm-priest.hx p{font-size:.84rem !important}}
+
+@media(max-width:700px){.hx-hud{left:46px;top:64px;font-size:.7rem}}
