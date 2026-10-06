@@ -1274,3 +1274,59 @@ body.modal-open #bg-canvas{visibility:hidden}
 /* Agrandissement des images (Process) */
 .ba-zoom{position:fixed;inset:0;z-index:2147483100;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out}
 .ba-zoom img{max-width:100%;max-height:100%;background:#f4f4f6;box-shadow:0 0 80px rgba(0,0,0,.6)}
+
+/* ===== JuiceUp : une page qui reagit a tout ===== */
+.jx-layer,.hx-layer{position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden}
+.jx-p,.jx-s{position:absolute;pointer-events:none}
+.jx-s{width:7px;height:7px;border-radius:50%}
+.jx-combo{position:absolute;right:2.2rem;top:6rem;font-family:var(--font-title);font-size:3.2rem;line-height:1;color:hsl(calc(285 - var(--h,0)) 95% 68%);text-shadow:0 0 22px currentColor;opacity:0}
+.jx-combo.hot{opacity:1;animation:jxCombo .38s cubic-bezier(.2,1.8,.4,1)}
+@keyframes jxCombo{0%{transform:scale(.4) rotate(-14deg)}60%{transform:scale(1.35) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
+.jx .proj-modal-hero{background:linear-gradient(120deg,#1a0636,#3b0a6e,#6d1fb0,#b0207a,#3b0a6e,#1a0636) !important;background-size:300% 300% !important;animation:jxGrad 9s ease-in-out infinite}
+@keyframes jxGrad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.jx .proj-modal-title{text-shadow:0 0 28px rgba(192,132,252,.7),0 4px 0 rgba(139,0,255,.5)}
+.jx-l{display:inline-block}.jx .jx-l{animation:jxBounce 1.9s cubic-bezier(.3,1.6,.5,1) infinite;animation-delay:calc(var(--i,0)*.09s);transform-origin:50% 100%}
+@keyframes jxBounce{0%,55%,100%{transform:translateY(0) scale(1,1)}62%{transform:translateY(0) scale(1.25,.75)}74%{transform:translateY(-.22em) scale(.88,1.18)}86%{transform:translateY(0) scale(1.1,.9)}}
+.jx .proj-modal-tags .tag{transition:transform .3s cubic-bezier(.2,1.9,.4,1)}
+.jx .proj-modal-tags .tag:hover{transform:scale(1.2) rotate(-4deg)}
+.jx-toggle{position:absolute;right:1.5rem;bottom:1.2rem;z-index:3;display:flex;align-items:center;gap:.6rem;padding:.45rem .8rem;background:rgba(0,0,0,.45);border:1px solid rgba(192,132,252,.6);color:#fff;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.18em;cursor:pointer;pointer-events:auto;transition:transform .25s cubic-bezier(.2,1.9,.4,1),background .2s}
+.jx-toggle:hover{transform:scale(1.08) rotate(-2deg);background:rgba(139,0,255,.35)}
+.jx-sw{width:2.1rem;height:1.1rem;border-radius:1rem;background:#8b00ff;position:relative;transition:background .25s}
+.jx-sw i{position:absolute;top:.15rem;left:1.1rem;width:.8rem;height:.8rem;border-radius:50%;background:#fff;transition:left .3s cubic-bezier(.2,1.9,.4,1)}
+.jx-off .jx-sw{background:#555}.jx-off .jx-sw i{left:.15rem}
+.jx-rv{opacity:0;transform:translateY(28px) scale(.9)}
+.jx-rv.jx-in{opacity:1;transform:none;animation:jxIn .65s var(--d,0ms) cubic-bezier(.2,1.5,.4,1) backwards}
+@keyframes jxIn{0%{opacity:0;transform:translateY(34px) scale(.82) rotate(-1.5deg)}100%{opacity:1;transform:none}}
+.jx .proj-modal-body [style*="grid-template-columns"] > div,.jx .proj-modal-body figure > div{transition:transform .38s cubic-bezier(.2,1.9,.4,1),box-shadow .3s,border-color .3s}
+.jx .proj-modal-body [style*="grid-template-columns"] > div:hover,.jx .proj-modal-body figure > div:hover{transform:translateY(-6px) scale(1.04) rotate(-.6deg);box-shadow:0 14px 34px -10px rgba(192,132,252,.7);border-color:#c084fc !important}
+.jx .pm-section-title{text-shadow:0 0 18px rgba(192,132,252,.45)}
+.jx .proj-modal-body strong{color:#e9d5ff}
+/* Juice coupe : le meme contenu, plat et sans reaction */
+.jx-off .proj-modal-body,.jx-off .proj-modal-hero > :not(.jx-toggle){filter:grayscale(1) brightness(.92)}
+.jx-off .proj-modal-hero{animation:none !important;background:#1b1b1b !important}
+.jx-off .jx-l,.jx-off .jx-rv.jx-in{animation:none}
+.jx-off .jx-rv{opacity:1;transform:none}
+.jx-off .proj-modal-body [style*="grid-template-columns"] > div:hover,.jx-off .proj-modal-body figure > div:hover,.jx-off .proj-modal-tags .tag:hover{transform:none;box-shadow:none}
+.jx-off .proj-modal-title,.jx-off .pm-section-title{text-shadow:none}
+
+/* ===== Devouring Priest : une page qui met mal a l'aise ===== */
+.hx-dark{position:absolute;inset:0;background:radial-gradient(circle 250px at var(--x,50%) var(--y,35%),rgba(0,0,0,0) 0,rgba(0,0,0,.14) 55%,rgba(0,0,0,.55) 100%)}
+.hx-pulse{position:absolute;inset:0;box-shadow:inset 0 0 170px 34px rgba(150,0,18,.6);animation:hxBeat 1.3s infinite}
+@keyframes hxBeat{0%,100%{opacity:.22}10%{opacity:.9}20%{opacity:.35}32%{opacity:.75}50%{opacity:.22}}
+.hx-flick .hx-dark{animation:hxF .3s steps(1) 2}
+@keyframes hxF{0%{opacity:1}25%{opacity:.05}50%{opacity:1}72%{opacity:.3}100%{opacity:1}}
+.hx-eyes{position:absolute;display:flex;gap:16px;transform-origin:50% 50%}
+.hx-eyes i{position:relative;width:24px;height:12px;border-radius:50%;background:#f1e6cf;box-shadow:0 0 14px 3px rgba(255,30,30,.7)}
+.hx-eyes i::after{content:'';position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:#900}
+.hx-whisper{position:absolute;font-family:'Creepster',cursive;font-size:1.5rem;letter-spacing:.12em;color:#b3121f;text-shadow:0 0 10px #000,0 0 3px #000;white-space:nowrap}
+.hx .proj-modal-hero::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:46px;z-index:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='46'%3E%3Cpath fill='%23700010' d='M0 0H360V10C350 10 346 12 344 22C342 34 337 34 335 22C333 12 320 12 312 10C300 10 296 14 294 30C292 46 284 46 282 30C280 14 268 12 250 10C236 10 230 12 228 20C226 28 220 28 218 20C216 12 200 10 180 10C170 10 164 13 162 26C160 38 154 38 152 26C150 13 140 10 120 10C106 10 100 12 98 24C96 36 90 36 88 24C86 12 70 10 50 10C36 10 30 12 28 18C26 24 20 24 18 18C16 12 8 10 0 10Z'/%3E%3C/svg%3E") repeat-x 0 0/360px 46px}
+.hx .proj-modal-title{animation:hxGlitch 7s infinite}
+@keyframes hxGlitch{0%,90%,100%{transform:none;text-shadow:0 0 30px rgba(200,0,0,.5),0 0 60px rgba(200,0,0,.2)}91%{transform:translate(-4px,1px) skewX(-4deg);text-shadow:3px 0 #0ff,-3px 0 #f00}93%{transform:translate(5px,-1px) skewX(3deg);text-shadow:-3px 0 #0ff,3px 0 #f00}95%{transform:translate(-2px,0);text-shadow:2px 0 #f00}97%{transform:none}}
+.hx .pm-section-title{color:#c4161f !important;text-shadow:0 0 16px rgba(200,0,0,.55);transform:skewX(-2deg)}
+.hx .proj-modal-body [style*="grid-template-columns"] > div{animation:hxBorder 5.2s ease-in-out infinite}
+@keyframes hxBorder{0%,100%{border-color:rgba(239,68,68,.16)}50%{border-color:rgba(239,68,68,.55)}}
+.hx .proj-modal-body strong{color:#ff6b6b}
+.hx-trem{display:inline-block;animation:hxTrem .12s linear 7}
+@keyframes hxTrem{0%,100%{transform:translate(0,0)}25%{transform:translate(-2px,1px)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,-1px)}}
+@media(prefers-reduced-motion:reduce){.jx-l,.jx .proj-modal-hero,.hx-pulse,.hx .proj-modal-title,.hx .proj-modal-body [style*="grid-template-columns"] > div{animation:none}.jx-rv{opacity:1;transform:none}}
+@media(max-width:700px){.jx-combo{font-size:2.2rem;top:4.5rem;right:1rem}.jx-toggle{right:.8rem;bottom:.8rem}.hx-dark{background:radial-gradient(circle 170px at var(--x,50%) var(--y,35%),rgba(0,0,0,0) 0,rgba(0,0,0,.18) 55%,rgba(0,0,0,.6) 100%)}}
