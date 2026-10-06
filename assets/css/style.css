@@ -778,15 +778,15 @@ footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify
 @media(max-width:700px){.proj-modal-tags .tl-adobe .adobe-grid{grid-template-columns:repeat(8,22px)}}
 
 /* == Ouverture d'un projet : onde de choc depuis la carte + titre qui se revele == */
-.proj-modal-overlay.open{animation:pmReveal .75s cubic-bezier(.2,.75,.2,1) backwards}
-@keyframes pmReveal{from{clip-path:circle(0 at var(--ox,50%) var(--oy,50%))}to{clip-path:circle(150% at var(--ox,50%) var(--oy,50%))}}
+.proj-modal-overlay.open{animation:pmReveal .6s cubic-bezier(.2,.75,.2,1) backwards;transform-origin:var(--ox,50%) var(--oy,50%)}
+@keyframes pmReveal{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
 .proj-modal-overlay.open::after{content:'';position:fixed;left:var(--ox,50%);top:var(--oy,50%);width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;
-  border:2px solid var(--th-acc2,#fff);box-shadow:0 0 40px var(--th-acc2,#fff),inset 0 0 30px var(--th-acc2,#fff);pointer-events:none;z-index:5;opacity:0;animation:pmShock .9s ease-out both}
-@keyframes pmShock{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(48)}}
-.proj-modal-overlay.open .proj-modal{animation:pmRise .8s cubic-bezier(.2,.75,.2,1) .12s backwards}
+  background:radial-gradient(circle,transparent 52%,var(--th-acc2,#fff) 56%,transparent 66%);pointer-events:none;z-index:5;opacity:0;will-change:transform,opacity;animation:pmShock .8s ease-out both}
+@keyframes pmShock{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(32)}}
+.proj-modal-overlay.open .proj-modal{animation:pmRise .7s cubic-bezier(.2,.75,.2,1) .08s backwards}
 @keyframes pmRise{from{transform:translateY(40px) scale(.96);opacity:0}to{transform:none;opacity:1}}
-.proj-modal-overlay.open .proj-modal-title{animation:pmTitle 1s cubic-bezier(.2,.75,.2,1) .35s backwards}
-@keyframes pmTitle{from{letter-spacing:.32em;opacity:0;filter:blur(16px)}to{letter-spacing:normal;opacity:1;filter:blur(0)}}
+.proj-modal-overlay.open .proj-modal-title{animation:pmTitle .7s cubic-bezier(.2,.75,.2,1) .25s backwards}
+@keyframes pmTitle{from{opacity:0;transform:translateY(14px) scale(1.06)}to{opacity:1;transform:none}}
 .proj-modal-overlay.open .proj-modal-num{animation:pmUp .6s ease .3s backwards}
 .proj-modal-overlay.open .proj-modal-tags .tag{animation:pmUp .5s ease backwards;animation-delay:calc(.7s + var(--i,0) * .07s)}
 @keyframes pmUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -1166,8 +1166,8 @@ body.modal-open #bg-canvas{visibility:hidden}
 .wl-status-row:has(.wl-status:not(:empty)){display:flex}
 .wl-projs.has-sel .wl-proj:not(.on){display:none}
 .wl-projs.has-sel .wl-proj.on{opacity:1}
-.wl-proj.sel{border-color:var(--pc);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
-.wl-proj.sel .wl-pname{color:var(--white)}
+.wl-proj.is-pick{border-color:var(--pc);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 45%,transparent)}
+.wl-proj.is-pick .wl-pname{color:var(--white)}
 
 /* Logos des competences : proportions d'origine respectees (plus d'etirement) */
 .vw-logo{height:auto;min-width:0;overflow:visible}
@@ -1341,3 +1341,60 @@ body.modal-open #bg-canvas{visibility:hidden}
 @media(max-width:700px){.jx-combo{font-size:2.2rem;top:4.5rem;right:1rem}.jx-toggle{right:.8rem;bottom:.8rem}#pm-priest.hx p{font-size:.84rem !important}}
 
 @media(max-width:700px){.hx-hud{left:46px;top:64px;font-size:.7rem}}
+
+/* Retour visuel au clic sur le menu (meme si on reclique sur la section deja affichee) */
+.nav-links a.nav-pop{display:inline-block;animation:navPop .3s ease-out}
+@keyframes navPop{0%{transform:scale(1)}35%{transform:scale(.9);color:var(--gold,#c8a96e)}100%{transform:scale(1)}}
+
+/* ===== Draconium : un grimoire ou le dragon (or, gentil) fait face a l'alchimiste (vert acide) ===== */
+#pm-draconium{--dx-gold:#e9a23b;--dx-ember:#ff8a2a;--dx-toxic:#7bd34a;--dx-ink:#d9c8a2}
+#pm-draconium.dx .proj-modal-hero{background:radial-gradient(ellipse 55% 120% at var(--mx,30%) 110%,rgba(233,120,40,.38),transparent 70%),radial-gradient(ellipse 45% 100% at 100% 100%,rgba(123,211,74,.22),transparent 70%),linear-gradient(160deg,#0e0905 0%,#1a1209 100%) !important}
+#pm-draconium.dx .proj-modal-hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;z-index:2;background:linear-gradient(90deg,transparent,var(--dx-ember) 22%,var(--dx-gold) 48%,var(--dx-toxic) 74%,transparent)}
+.dx-fx{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.dx-ember,.dx-bubble{position:absolute;bottom:-14px;width:var(--s);height:var(--s);border-radius:50%;opacity:0;will-change:transform,opacity}
+.dx-ember{background:radial-gradient(circle,#ffd27a,#ff7a1a 60%,transparent 72%);animation:dxUp var(--d) linear infinite}
+.dx-bubble{border:1.5px solid rgba(160,240,110,.75);background:radial-gradient(circle at 30% 30%,rgba(210,255,170,.55),rgba(123,211,74,.12) 60%);animation:dxUp var(--d) ease-in infinite}
+@keyframes dxUp{0%{opacity:0;transform:translate(0,0) scale(1)}12%{opacity:.95}100%{opacity:0;transform:translate(var(--w),-230px) scale(.4)}}
+#pm-draconium.dx .proj-modal{background:#0d0904 !important}
+#pm-draconium.dx .proj-modal-body{background:radial-gradient(ellipse 60% 40% at 8% 4%,rgba(233,162,59,.1),transparent 70%),radial-gradient(ellipse 50% 35% at 96% 55%,rgba(123,211,74,.07),transparent 70%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .7 0 0 0 0 .45 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23p)' opacity='.07'/%3E%3C/svg%3E"),#0d0904}
+#pm-draconium.dx p,#pm-draconium.dx .proj-modal-body div[style*="DM Sans"]{font-family:'Palatino Linotype',Palatino,'Book Antiqua','URW Palladio L',Georgia,serif !important}
+#pm-draconium.dx .proj-modal-body p{color:#e3d6bb;font-size:1.02rem;line-height:1.85}
+#pm-draconium.dx .proj-modal-body strong{color:var(--dx-toxic)}
+#pm-draconium.dx #proj-draco-p3 strong,#pm-draconium.dx .pm-section-title#proj-draco-title-visual + p strong{color:var(--dx-gold)}
+#pm-draconium.dx .pm-section-title{color:var(--dx-ink) !important;border-bottom:1px solid rgba(233,162,59,.28);padding-bottom:.5rem;display:flex;align-items:center;gap:.7rem}
+#pm-draconium.dx .pm-section-title::before{content:'';flex:0 0 auto;width:.5em;height:.5em;background:var(--dx-gold);transform:rotate(45deg);box-shadow:0 0 10px var(--dx-gold)}
+#pm-draconium.dx #proj-draco-title-lore + p::first-letter{font-family:'Cinzel Decorative',serif;font-size:3.4em;float:left;line-height:.82;padding:.06em .12em 0 0;color:var(--dx-gold);text-shadow:0 0 16px rgba(233,162,59,.5)}
+/* la parole de l'alchimiste */
+#pm-draconium.dx .proj-modal-body > div[style*="border-left"]:first-of-type,#pm-draconium.dx .dl-zip + div[style*="border-left"]{border-left:3px solid var(--dx-toxic) !important;background:linear-gradient(100deg,rgba(123,211,74,.13),rgba(123,211,74,.02)) !important;box-shadow:0 0 34px -12px rgba(123,211,74,.5)}
+#pm-draconium.dx .dl-zip + div[style*="border-left"] p:first-child{color:var(--dx-toxic) !important}
+/* cartes de gameplay : l'or du dragon, le vert de l'alchimiste */
+#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div{border:1px solid rgba(233,162,59,.3) !important;border-left:3px solid var(--dx-gold) !important;background:rgba(233,162,59,.06) !important;color:#e3d6bb !important;font-size:.95rem !important;transition:transform .25s,box-shadow .25s,border-color .25s}
+#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:nth-child(3),#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:nth-child(5){border-color:rgba(123,211,74,.35) !important;border-left-color:var(--dx-toxic) !important;background:rgba(123,211,74,.07) !important}
+#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:hover{transform:translateY(-3px);box-shadow:0 10px 26px -12px var(--dx-gold)}
+#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:nth-child(3):hover,#pm-draconium.dx .proj-modal-body [style*="grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem"] > div:nth-child(5):hover{box-shadow:0 10px 26px -12px var(--dx-toxic)}
+#pm-draconium.dx .proj-modal-tags .tag:nth-child(4){border-color:var(--dx-ember);color:#ffb15c}
+#pm-draconium.dx .proj-modal-tags .tag:nth-child(5){border-color:var(--dx-toxic);color:#a8e87c}
+#pm-draconium.dx .carousel-placeholder{border:1px dashed rgba(233,162,59,.4);background:repeating-linear-gradient(45deg,rgba(233,162,59,.03) 0 10px,transparent 10px 20px)}
+#pm-draconium.dx .carousel-placeholder-text{font-family:'Cinzel Decorative',serif;color:rgba(217,200,162,.7)}
+#pm-draconium.dx .proj-modal-body [style*="border-left:3px solid var(--th-acc2"][style*="margin-top:1.5rem"] p{color:#bfae8a !important}
+@media(prefers-reduced-motion:reduce){.dx-ember,.dx-bubble{animation:none;opacity:0}}
+
+/* ===== Draconium immersif : lumieres de la salle, descente vers le laboratoire, braises au curseur ===== */
+.dx-layer{position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden}
+.dx-s{position:absolute;border-radius:50%;pointer-events:none;will-change:transform,opacity}
+.dx-tint{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse 80% 60% at 50% 105%,rgba(123,211,74,.16),transparent 70%),linear-gradient(180deg,rgba(40,90,20,.06),rgba(60,140,30,.1))}
+.dx-torch{position:absolute;top:18%;width:min(34vw,420px);height:64%;will-change:opacity}
+.dx-tl{left:0;background:radial-gradient(ellipse 100% 55% at 0 50%,rgba(255,138,42,.3),rgba(255,100,20,.1) 45%,transparent 72%);animation:dxFlick 2.3s ease-in-out infinite alternate}
+.dx-tr{right:0;background:radial-gradient(ellipse 100% 50% at 100% 50%,rgba(123,211,74,.2),rgba(80,170,50,.07) 45%,transparent 72%);animation:dxFlick 3.1s ease-in-out -1s infinite alternate}
+@keyframes dxFlick{0%{opacity:.55}30%{opacity:1}55%{opacity:.7}80%{opacity:.95}100%{opacity:.6}}
+.dx-vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(5,3,0,.55) 100%)}
+.dx-rail{position:absolute;left:12px;top:12%;bottom:12%;width:3px;background:rgba(233,162,59,.14);border-radius:2px;overflow:hidden}
+.dx-rail i{display:block;height:100%;transform-origin:50% 0;transform:scaleY(0);background:linear-gradient(180deg,#ffb04a,#e9a23b 40%,#7bd34a);box-shadow:0 0 10px rgba(233,162,59,.7)}
+.dx-rv{opacity:0;transform:translateY(22px)}
+.dx-rv.dx-in{opacity:1;transform:none;animation:dxIn .75s var(--d,0ms) cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes dxIn{0%{opacity:0;transform:translateY(26px)}100%{opacity:1;transform:none}}
+#pm-draconium.dx .pm-section-title.dx-in{animation-name:dxTitle}
+@keyframes dxTitle{0%{opacity:0;transform:translateX(-24px);clip-path:inset(0 100% 0 0)}100%{opacity:1;transform:none;clip-path:inset(0 0 0 0)}}
+#pm-draconium.dx .dr-hero-logo{transform:translate(calc(var(--px,0)*-16px),-50%);transition:transform .35s ease-out}
+@media(max-width:700px){.dx-rail{left:5px}.dx-torch{width:46vw}}
+@media(prefers-reduced-motion:reduce){.dx-tl,.dx-tr{animation:none}.dx-rv{opacity:1;transform:none}}
