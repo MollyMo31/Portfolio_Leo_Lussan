@@ -1491,3 +1491,4 @@ html.has-modal::-webkit-scrollbar{display:none}
 .proj-modal-overlay::-webkit-scrollbar,.skill-modal-overlay::-webkit-scrollbar{width:8px}
 .proj-modal-overlay::-webkit-scrollbar-track,.skill-modal-overlay::-webkit-scrollbar-track{background:rgba(0,0,0,.35)}
 .proj-modal-overlay::-webkit-scrollbar-thumb,.skill-modal-overlay::-webkit-scrollbar-thumb{background:rgba(200,169,110,.45);border-radius:4px}
+.proj-modal-overlay,.skill-modal-overlay{overscroll-behavior:contain}

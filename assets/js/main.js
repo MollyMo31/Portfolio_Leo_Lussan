@@ -2809,9 +2809,27 @@ window.addEventListener('load',function(){
   setInterval(function(){ if(cur && !cur.ov.classList.contains('open')) stop(); },600);
 })();
 
-/* Fiche ouverte : on masque la barre de defilement de la page derriere (il ne reste que celle de la fiche) */
+/* Fiche ouverte : la page derriere est figee (plus de defilement a la molette, au clavier ou au doigt)
+   et sa barre de defilement est masquee. A la fermeture, on revient exactement a la meme position. */
 (function(){
-  function sync(){ document.documentElement.classList.toggle('has-modal', document.body.classList.contains('modal-open')); }
+  var saved = null;
+  function lock(){
+    if (saved !== null) return;
+    saved = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var b = document.body;
+    b.style.position = 'fixed'; b.style.top = (-saved) + 'px'; b.style.left = '0'; b.style.right = '0'; b.style.width = '100%';
+  }
+  function unlock(){
+    if (saved === null) return;
+    var b = document.body, y = saved; saved = null;
+    b.style.position = ''; b.style.top = ''; b.style.left = ''; b.style.right = ''; b.style.width = '';
+    window.scrollTo({top: y, left: 0, behavior: 'instant'});
+  }
+  function sync(){
+    var open = document.body.classList.contains('modal-open');
+    document.documentElement.classList.toggle('has-modal', open);
+    if (open) lock(); else unlock();
+  }
   new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
   sync();
 })();
