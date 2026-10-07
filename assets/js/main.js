@@ -2782,6 +2782,7 @@ window.addEventListener('load',function(){
     // lumieres de la salle : torche du dragon a gauche, lampe de l'alchimiste a droite, teinte qui vire au vert quand on descend
     el('div','dx-tint',layer); el('div','dx-torch dx-tl',layer); el('div','dx-torch dx-tr',layer); el('div','dx-vig',layer);
     var rail=el('div','dx-rail',layer); var fill=el('i','',rail), tint=layer.querySelector('.dx-tint');
+    makeDraggable(rail,ov);
     if(!RM){
       for(var i=0;i<8;i++){ var e=el('i','dx-ember',fx); e.style.cssText='left:'+rnd(2,46)+'%;--s:'+rnd(3,7).toFixed(1)+'px;--d:'+rnd(4,8).toFixed(1)+'s;--w:'+rnd(-24,24).toFixed(0)+'px;animation-delay:'+(-rnd(0,8)).toFixed(1)+'s'; }
       for(var j=0;j<7;j++){ var b=el('i','dx-bubble',fx); b.style.cssText='left:'+rnd(54,98)+'%;--s:'+rnd(6,15).toFixed(0)+'px;--d:'+rnd(5,9).toFixed(1)+'s;--w:'+rnd(-14,14).toFixed(0)+'px;animation-delay:'+(-rnd(0,9)).toFixed(1)+'s'; }
@@ -2824,6 +2825,19 @@ window.addEventListener('load',function(){
     };
   }
 
+  /* Glisser la barre (souris ou doigt) fait defiler la fiche, comme une barre de defilement */
+  function makeDraggable(rail,ov){
+    var down=false;
+    function go(e){ var r=rail.getBoundingClientRect(), p=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height)); ov.scrollTo({top:p*(ov.scrollHeight-ov.clientHeight),behavior:'instant'}); }
+    rail.addEventListener('pointerdown',function(e){ down=true; rail.classList.add('drag'); try{ rail.setPointerCapture(e.pointerId); }catch(err){} go(e); e.preventDefault(); });
+    rail.addEventListener('pointermove',function(e){ if(down) go(e); });
+    function up(e){ down=false; rail.classList.remove('drag'); try{ rail.releasePointerCapture(e.pointerId); }catch(err){} }
+    rail.addEventListener('pointerup',up); rail.addEventListener('pointercancel',up);
+    rail.addEventListener('mouseenter',function(){ document.body.classList.add('ch-hover'); });
+    rail.addEventListener('mouseleave',function(){ document.body.classList.remove('ch-hover'); });
+    rail.setAttribute('role','scrollbar'); rail.title='';
+  }
+
   /* ---------- Barre de progression a gauche, aux couleurs de chaque projet ---------- */
   function startRail(ov,id){
     var layer=el('div','pr-layer',document.body), rail=el('div','pr-rail pr-'+id,layer), zig=(id==='tower'), raf=0, H=0;
@@ -2832,6 +2846,8 @@ window.addEventListener('load',function(){
       rail.insertAdjacentHTML('afterbegin','<svg aria-hidden="true"><path class="pr-zt"/><path class="pr-zf" pathLength="1"/></svg>');
       svg=rail.querySelector('svg'); zt=rail.querySelector('.pr-zt'); fill=rail.querySelector('.pr-zf');
     } else { fill=el('i','pr-fill',rail); rail.insertBefore(fill,mark); }
+    var bars=null;
+    if(id==='musiques'){ bars=[]; for(var q=0;q<44;q++){ var u=document.createElement('u'); u.style.width=(6+Math.abs(Math.sin(q*1.7)*9+Math.cos(q*.6)*5)).toFixed(1)+'px'; u.style.setProperty('--d',(q%7)*.13+'s'); rail.appendChild(u); bars.push(u); } rail.classList.add('pr-bars'); }
     function build(){ // zigzag aux dimensions reelles de la barre
       var pts='M10 0'; for(var k=1;k<=10;k++) pts+=' L'+(k%2?2:18)+' '+(k*H/10).toFixed(1);
       svg.setAttribute('viewBox','0 0 20 '+H); zt.setAttribute('d',pts); fill.setAttribute('d',pts);
@@ -2842,8 +2858,10 @@ window.addEventListener('load',function(){
       raf=0; var m=ov.scrollHeight-ov.clientHeight, p=m>0?Math.min(1,Math.max(0,ov.scrollTop/m)):0; H=rail.clientHeight;
       if(zig){ if(H!==lastH){ lastH=H; build(); } fill.style.strokeDashoffset=(1-p).toFixed(3); mark.style.transform='translate('+(zx(p)-10).toFixed(1)+'px,'+(p*H).toFixed(1)+'px)'; }
       else { rail.style.setProperty('--p',p.toFixed(3)); mark.style.transform='translate(0,'+(p*H).toFixed(1)+'px)'; }
+      if(bars){ var n=Math.round(p*bars.length); for(var q=0;q<bars.length;q++) bars[q].classList.toggle('on',q<n); }
     }
     function onS(){ if(!raf) raf=requestAnimationFrame(upd); }
+    makeDraggable(rail,ov);
     ov.addEventListener('scroll',onS,{passive:true}); window.addEventListener('resize',onS); upd();
     return function(){ ov.removeEventListener('scroll',onS); window.removeEventListener('resize',onS); if(raf) cancelAnimationFrame(raf); layer.remove(); };
   }
