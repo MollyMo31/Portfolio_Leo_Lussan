@@ -2342,10 +2342,13 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   }
   // Masque tant que la souris n'est pas dans la page
   document.body.classList.add('ch-out');
-  document.addEventListener('mousemove',function(e){
+  function follow(e){
     if(document.body.classList.contains('ch-out')){ringX=e.clientX;ringY=e.clientY;document.body.classList.remove('ch-out');}
     place(e);
-  });
+  }
+  document.addEventListener('mousemove',follow);
+  // Pendant un glisser (barre de progression des fiches) le navigateur n'envoie plus mousemove : on suit aussi les pointermove souris
+  document.addEventListener('pointermove',function(e){ if(e.pointerType==='mouse') follow(e); });
   // Souris qui quitte la fenetre (2e ecran) : on masque le curseur du site, il revient a l'entree
   document.documentElement.addEventListener('mouseleave',function(){document.body.classList.add('ch-out');});
   document.documentElement.addEventListener('mouseenter',function(e){ringX=e.clientX;ringY=e.clientY;place(e);document.body.classList.remove('ch-out');});
@@ -2831,7 +2834,7 @@ window.addEventListener('load',function(){
     function go(e){ var r=rail.getBoundingClientRect(), p=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height)); ov.scrollTo({top:p*(ov.scrollHeight-ov.clientHeight),behavior:'instant'}); }
     rail.addEventListener('pointerdown',function(e){ down=true; rail.classList.add('drag'); try{ rail.setPointerCapture(e.pointerId); }catch(err){} go(e); e.preventDefault(); });
     rail.addEventListener('pointermove',function(e){ if(down) go(e); });
-    function up(e){ down=false; rail.classList.remove('drag'); try{ rail.releasePointerCapture(e.pointerId); }catch(err){} }
+    function up(e){ down=false; rail.classList.remove('drag'); try{ rail.releasePointerCapture(e.pointerId); }catch(err){} if(!rail.matches(':hover')) document.body.classList.remove('ch-hover'); }
     rail.addEventListener('pointerup',up); rail.addEventListener('pointercancel',up);
     rail.addEventListener('mouseenter',function(){ document.body.classList.add('ch-hover'); });
     rail.addEventListener('mouseleave',function(){ document.body.classList.remove('ch-hover'); });
