@@ -28,6 +28,7 @@ var FX_CONFIGS = {
   coaching:{ type:'neon',      color:'#f4a033', glow:'rgba(244,160,51,' },
   mira:    { type:'garden',    color:'#34d399', glow:'rgba(52,211,153,' },
   streaming:{ type:'stream',   color:'#9b72d0', glow:'rgba(155,114,208,' },
+  entretien:{ type:'circus',   color:'#fbbf24', glow:'rgba(251,191,36,' },
 };
 
 var _fxCanvas = document.createElement('canvas');
@@ -798,6 +799,36 @@ function startFx(projId) {
     }; draw();
   }
 
+  // -- CIRQUE / ENTRETIEN D'EMBAUCHE : projecteurs, guirlande de fanions, confettis et ballons --
+  else if (cfg.type === 'circus') {
+    var CC=['#be123c','#fbbf24','#fde68a','#2dd4bf','#f472b6'];
+    function mkc(w,h,fn){ var c=document.createElement('canvas'); c.width=w; c.height=h; fn(c.getContext('2d'),w,h); return c; }
+    function coneSpr(rgb){ return mkc(380,900,function(g,w,h){ var gr=g.createLinearGradient(0,0,0,h); gr.addColorStop(0,'rgba('+rgb+',.6)'); gr.addColorStop(1,'rgba('+rgb+',0)'); g.fillStyle=gr; g.beginPath(); g.moveTo(w/2-10,0); g.lineTo(w/2+10,0); g.lineTo(w,h); g.lineTo(0,h); g.closePath(); g.fill(); }); }
+    var coneG=coneSpr('255,236,170'), coneR=coneSpr('255,120,150');
+    var beams=[{x:BL*.12,spr:coneG,ph:0,sp:.011,base:.35},{x:W-BL*.12,spr:coneR,ph:2.2,sp:.014,base:-.35},{x:BL*.5,spr:coneR,ph:4,sp:.009,base:.2},{x:W-BL*.5,spr:coneG,ph:1,sp:.012,base:-.2}];
+    var balloonSpr=CC.slice(0,3).concat(['#2dd4bf']).map(function(col){ return mkc(46,96,function(g,w,h){ g.strokeStyle='rgba(255,255,255,.45)'; g.lineWidth=1.2; g.beginPath(); g.moveTo(w/2,60); g.quadraticCurveTo(w/2-8,78,w/2,h-2); g.stroke(); g.fillStyle=col; g.beginPath(); g.ellipse(w/2,30,19,26,0,0,Math.PI*2); g.fill(); g.beginPath(); g.moveTo(w/2,55); g.lineTo(w/2-4,62); g.lineTo(w/2+4,62); g.fill(); g.fillStyle='rgba(255,255,255,.35)'; g.beginPath(); g.ellipse(w/2-7,20,5,9,-.5,0,Math.PI*2); g.fill(); }); });
+    var balloons=[]; for(var i=0;i<6;i++){ var bx=bpSide(); balloons.push({x:i%2?BR+Math.random()*(W-BR):Math.random()*BL,y:H*Math.random(),vy:.35+Math.random()*.5,ph:Math.random()*6,spr:balloonSpr[i%balloonSpr.length],al:.55+Math.random()*.25}); }
+    var confetti=[]; for(var i=0;i<60;i++){ confetti.push({x:Math.random()<.65?(Math.random()<.5?Math.random()*BL:BR+Math.random()*(W-BR)):Math.random()*W,y:Math.random()*H,vy:.7+Math.random()*1.5,vx:(Math.random()-.5)*.6,rot:Math.random()*6,vr:(Math.random()-.5)*.12,w:5+Math.random()*6,h:3+Math.random()*3,col:CC[i%CC.length],ph:Math.random()*6}); }
+    var draw=function(){
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.35); t+=.016;
+      // projecteurs qui balaient
+      beams.forEach(function(b){ b.ph+=b.sp; ctx.save(); ctx.translate(b.x,-10); ctx.rotate(b.base+Math.sin(b.ph)*.45); ctx.globalAlpha=.55; ctx.drawImage(b.spr,-190,0); ctx.restore(); });
+      // guirlande de fanions en haut
+      var N=Math.max(10,Math.round(W/46));
+      for(var k=0;k<N;k++){ var u=(k+.5)/N, fx=u*W, fy=14+Math.sin(u*Math.PI)*26+Math.sin(u*9+t*2)*2.5;
+        ctx.fillStyle=CC[k%CC.length]; ctx.globalAlpha=.8; ctx.beginPath(); ctx.moveTo(fx-14,fy); ctx.lineTo(fx+14,fy); ctx.lineTo(fx+Math.sin(t*2+k)*2,fy+30); ctx.closePath(); ctx.fill(); }
+      ctx.globalAlpha=1;
+      // confettis
+      confetti.forEach(function(c){ c.y+=c.vy; c.x+=c.vx+Math.sin(t*1.5+c.ph)*.5; c.rot+=c.vr; if(c.y>H+10){ c.y=-10; c.x=Math.random()<.65?(Math.random()<.5?Math.random()*BL:BR+Math.random()*(W-BR)):Math.random()*W; }
+        ctx.save(); ctx.translate(c.x,c.y); ctx.rotate(c.rot); ctx.fillStyle=c.col; ctx.globalAlpha=.85; ctx.fillRect(-c.w/2,-c.h/2,c.w,c.h); ctx.restore(); });
+      // ballons qui montent
+      balloons.forEach(function(b){ b.y-=b.vy; b.ph+=.015; if(b.y<-100){ b.y=H+60; b.x=Math.random()<.5?Math.random()*BL:BR+Math.random()*(W-BR); }
+        ctx.globalAlpha=b.al; ctx.drawImage(b.spr,b.x+Math.sin(b.ph)*14,b.y); });
+      ctx.globalAlpha=1;
+      _fxRaf=requestAnimationFrame(draw);
+    }; draw();
+  }
+
   // -- STREAM / TWITCH -----------------------------------------
   else if (cfg.type === 'stream') {
     var particles = [];
@@ -1075,7 +1106,10 @@ function _ambInit() {
   _ambCtx = new (window.AudioContext || window.webkitAudioContext)();
   _ambGain = _ambCtx.createGain();
   _ambGain.gain.value = 0;
-  _ambGain.connect(_ambCtx.destination);
+  // Limiteur : evite la saturation quand on remonte le volume des ambiances rehaussees
+  var _lim = _ambCtx.createDynamicsCompressor();
+  _lim.threshold.value = -8; _lim.knee.value = 4; _lim.ratio.value = 20; _lim.attack.value = 0.003; _lim.release.value = 0.2;
+  _ambGain.connect(_lim); _lim.connect(_ambCtx.destination);
 }
 
 function _ambStop() {
@@ -1124,7 +1158,7 @@ function _ambFadeIn() {
     if (!isFinite(now)) return;
     _ambGain.gain.cancelScheduledValues(now);
     _ambGain.gain.setValueAtTime(0.001, now);
-    _ambGain.gain.linearRampToValueAtTime(_ambMuted ? 0.001 : 0.28, now + 2.0);
+    _ambGain.gain.linearRampToValueAtTime((_ambMuted || (typeof _audio !== 'undefined' && _audio.muted)) ? 0.001 : Math.max(0.001, _ambGainTarget()), now + 2.0);
   } catch(e) { console.warn('ambFadeIn error:', e); }
 }
 
@@ -1188,8 +1222,19 @@ function _ambTargetVol() {
   var v = _audio.volume;
   if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
   if (v === undefined || isNaN(v)) v = 0.5;
-  return Math.min(0.45, 0.9 * v);
+  return 0.45 * (v / 0.5) * _AMB_MASTER;
 }
+/* Egalisation : chaque ambiance est calee sur le meme niveau percu (mesure ponderee K, cible -32 dB)
+   pour un reglage de volume identique. Valeurs = multiplicateurs du gain de base (0.28). */
+var _AMB_MASTER = 0.7; // niveau general des ambiances (environ -3 dB)
+var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6};
+function _ambGainTarget() {
+  var v = _audio.volume;
+  if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
+  if (v === undefined || isNaN(v)) v = 0.5;
+  return 0.28 * (v / 0.5) * _AMB_MASTER * (_AMB_TRIM[_ambCurrentId] || 1);
+}
+function _ambElVol(a) { return Math.min(1, _ambTargetVol() * (a._k || 1)); }
 function _ambFadeEl(a, stillValid) {
   var v = 0, fi = setInterval(function() {
     if (!stillValid()) { clearInterval(fi); return; }
@@ -1347,7 +1392,7 @@ var _AMBIENCES = {
       _ambNodes._cityEl = null;
     }
     var a = document.createElement('audio');
-    a.loop = true; a.preload = 'auto'; a.volume = 0; a._k = 0.55; // mp3 plus fort que les autres ambiances
+    a.loop = true; a.preload = 'auto'; a.volume = 0; a._k = 0.18; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
     _ambNodes._cityEl = a;
     var token = {};
@@ -1392,7 +1437,7 @@ var _AMBIENCES = {
     var a = document.createElement('audio');
     a.loop = true;
     a.preload = 'auto';
-    a.volume = 0; a._k = 0.55; // mp3 plus fort que les autres ambiances
+    a.volume = 0; a._k = 0.53; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
     _ambNodes._towerEl = a;
 
@@ -1529,7 +1574,7 @@ var _AMBIENCES = {
     var a = document.createElement('audio');
     a.loop = true;
     a.preload = 'auto';
-    a.volume = 0;
+    a.volume = 0; a._k = 0.25; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
     _ambNodes._dracEl = a;
 
@@ -1812,10 +1857,10 @@ var _audio = {
     this.muted = !this.muted;
     var vol = this.muted ? 0 : (this.volume !== undefined ? this.volume : 0.5);
     // Mute Web Audio API
-    if (_ambGain) _ambGain.gain.value = this.muted ? 0 : 0.28 * (vol / 0.5);
+    if (_ambGain) _ambGain.gain.value = this.muted ? 0 : _ambGainTarget();
     // Mute elements HTML audio (tower + draco)
     ['_towerEl','_dracEl','_cityEl'].forEach(function(k) {
-      if (_ambNodes[k]) _ambNodes[k].volume = this.muted ? 0 : Math.min(0.45, 0.9 * vol) * (_ambNodes[k]._k || 1);
+      if (_ambNodes[k]) _ambNodes[k].volume = this.muted ? 0 : _ambElVol(_ambNodes[k]);
     }.bind(this));
     var btn = document.getElementById('audio-btn');
     if (btn) btn.textContent = this.muted ? '\uD83D\uDD07' : '\uD83D\uDD0A';
@@ -1828,10 +1873,10 @@ var _audio = {
     try { localStorage.setItem('portfolio_volume', val); } catch(e) {}
     if (this.muted) return;
     // Web Audio API
-    if (_ambGain) _ambGain.gain.value = 0.28 * (val / 0.5);
+    if (_ambGain) _ambGain.gain.value = _ambGainTarget();
     // HTML audio elements
     ['_towerEl','_dracEl','_cityEl'].forEach(function(k) {
-      if (_ambNodes[k]) _ambNodes[k].volume = Math.min(0.45, 0.9 * val) * (_ambNodes[k]._k || 1);
+      if (_ambNodes[k]) _ambNodes[k].volume = _ambElVol(_ambNodes[k]);
     });
   },
   playClick: function() {
@@ -2053,7 +2098,7 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
     document.querySelectorAll('.proj-modal-overlay.open,.skill-modal-overlay.open').forEach(function(o){
       var id = o.id ? o.id.replace('pm-','').replace('sm-','') : null;
-      o.classList.remove('open'); document.body.style.overflow='';
+      o.classList.remove('open'); document.body.style.overflow=''; document.body.classList.remove('modal-open');
       stopFx();
       _audio.stopAmbient();
       var btn=document.getElementById('audio-panel');
@@ -2297,10 +2342,13 @@ document.querySelectorAll('.fade-in').forEach((el,i)=>{el.style.transitionDelay=
   }
   // Masque tant que la souris n'est pas dans la page
   document.body.classList.add('ch-out');
-  document.addEventListener('mousemove',function(e){
+  function follow(e){
     if(document.body.classList.contains('ch-out')){ringX=e.clientX;ringY=e.clientY;document.body.classList.remove('ch-out');}
     place(e);
-  });
+  }
+  document.addEventListener('mousemove',follow);
+  // Pendant un glisser (barre de progression des fiches) le navigateur n'envoie plus mousemove : on suit aussi les pointermove souris
+  document.addEventListener('pointermove',function(e){ if(e.pointerType==='mouse') follow(e); });
   // Souris qui quitte la fenetre (2e ecran) : on masque le curseur du site, il revient a l'entree
   document.documentElement.addEventListener('mouseleave',function(){document.body.classList.add('ch-out');});
   document.documentElement.addEventListener('mouseenter',function(e){ringX=e.clientX;ringY=e.clientY;place(e);document.body.classList.remove('ch-out');});
@@ -2704,7 +2752,7 @@ window.addEventListener('load',function(){
 
   /* ---------- Devouring Priest : cassette VHS / found footage ---------- */
   function startHorror(ov){
-    var layer=el('div','hx-layer',ov), timers=[], t0=Date.now(), modal=ov.querySelector('.proj-modal');
+    var layer=el('div','hx-layer',document.body), timers=[], t0=Date.now(), modal=ov.querySelector('.proj-modal');
     el('div','hx-grain',layer); el('div','hx-scan',layer); el('div','hx-vig',layer); var bar=el('div','hx-bar',layer);
     ['tl','tr','bl','br'].forEach(function(c){ el('i','hx-br hx-p'+c,layer); });
     var hud=el('div','hx-hud',layer); hud.innerHTML='<b></b>REC <span class="hx-tc">00:00:00</span>';
@@ -2733,10 +2781,11 @@ window.addEventListener('load',function(){
 
   /* ---------- Draconium : le grimoire, entre le dragon (or) et l'alchimiste (vert acide) ---------- */
   function startDraco(ov){
-    var hero=ov.querySelector('.proj-modal-hero'), fx=el('div','dx-fx',hero), layer=el('div','dx-layer',ov), dead=false, raf=0, mx=.5, timers=[];
+    var hero=ov.querySelector('.proj-modal-hero'), fx=el('div','dx-fx',hero), layer=el('div','dx-layer',document.body), dead=false, raf=0, mx=.5, timers=[];
     // lumieres de la salle : torche du dragon a gauche, lampe de l'alchimiste a droite, teinte qui vire au vert quand on descend
     el('div','dx-tint',layer); el('div','dx-torch dx-tl',layer); el('div','dx-torch dx-tr',layer); el('div','dx-vig',layer);
     var rail=el('div','dx-rail',layer); var fill=el('i','',rail), tint=layer.querySelector('.dx-tint');
+    makeDraggable(rail,ov);
     if(!RM){
       for(var i=0;i<8;i++){ var e=el('i','dx-ember',fx); e.style.cssText='left:'+rnd(2,46)+'%;--s:'+rnd(3,7).toFixed(1)+'px;--d:'+rnd(4,8).toFixed(1)+'s;--w:'+rnd(-24,24).toFixed(0)+'px;animation-delay:'+(-rnd(0,8)).toFixed(1)+'s'; }
       for(var j=0;j<7;j++){ var b=el('i','dx-bubble',fx); b.style.cssText='left:'+rnd(54,98)+'%;--s:'+rnd(6,15).toFixed(0)+'px;--d:'+rnd(5,9).toFixed(1)+'s;--w:'+rnd(-14,14).toFixed(0)+'px;animation-delay:'+(-rnd(0,9)).toFixed(1)+'s'; }
@@ -2779,6 +2828,47 @@ window.addEventListener('load',function(){
     };
   }
 
+  /* Glisser la barre (souris ou doigt) fait defiler la fiche, comme une barre de defilement */
+  function makeDraggable(rail,ov){
+    var down=false;
+    function go(e){ var r=rail.getBoundingClientRect(), p=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height)); ov.scrollTo({top:p*(ov.scrollHeight-ov.clientHeight),behavior:'instant'}); }
+    rail.addEventListener('pointerdown',function(e){ down=true; rail.classList.add('drag'); try{ rail.setPointerCapture(e.pointerId); }catch(err){} go(e); e.preventDefault(); });
+    rail.addEventListener('pointermove',function(e){ if(down) go(e); });
+    function up(e){ down=false; rail.classList.remove('drag'); try{ rail.releasePointerCapture(e.pointerId); }catch(err){} if(!rail.matches(':hover')) document.body.classList.remove('ch-hover'); }
+    rail.addEventListener('pointerup',up); rail.addEventListener('pointercancel',up);
+    rail.addEventListener('mouseenter',function(){ document.body.classList.add('ch-hover'); });
+    rail.addEventListener('mouseleave',function(){ document.body.classList.remove('ch-hover'); });
+    rail.setAttribute('role','scrollbar'); rail.title='';
+  }
+
+  /* ---------- Barre de progression a gauche, aux couleurs de chaque projet ---------- */
+  function startRail(ov,id){
+    var layer=el('div','pr-layer',document.body), rail=el('div','pr-rail pr-'+id,layer), zig=(id==='tower'), raf=0, H=0;
+    var fill, mark=el('b','pr-mark',rail), svg=null, zt=null; el('i','',mark);
+    if(zig){
+      rail.insertAdjacentHTML('afterbegin','<svg aria-hidden="true"><path class="pr-zt"/><path class="pr-zf" pathLength="1"/></svg>');
+      svg=rail.querySelector('svg'); zt=rail.querySelector('.pr-zt'); fill=rail.querySelector('.pr-zf');
+    } else { fill=el('i','pr-fill',rail); rail.insertBefore(fill,mark); }
+    var bars=null;
+    if(id==='musiques'){ bars=[]; for(var q=0;q<44;q++){ var u=document.createElement('u'); u.style.width=(6+Math.abs(Math.sin(q*1.7)*9+Math.cos(q*.6)*5)).toFixed(1)+'px'; u.style.setProperty('--d',(q%7)*.13+'s'); rail.appendChild(u); bars.push(u); } rail.classList.add('pr-bars'); }
+    function build(){ // zigzag aux dimensions reelles de la barre
+      var pts='M10 0'; for(var k=1;k<=10;k++) pts+=' L'+(k%2?2:18)+' '+(k*H/10).toFixed(1);
+      svg.setAttribute('viewBox','0 0 20 '+H); zt.setAttribute('d',pts); fill.setAttribute('d',pts);
+    }
+    function zx(p){ var u=p*10, k=Math.min(9,Math.floor(u)), f=u-k, x0=k===0?10:(k%2?2:18), x1=(k+1)%2?2:18; return x0+(x1-x0)*f; }
+    var lastH=0;
+    function upd(){
+      raf=0; var m=ov.scrollHeight-ov.clientHeight, p=m>0?Math.min(1,Math.max(0,ov.scrollTop/m)):0; H=rail.clientHeight;
+      if(zig){ if(H!==lastH){ lastH=H; build(); } fill.style.strokeDashoffset=(1-p).toFixed(3); mark.style.transform='translate('+(zx(p)-10).toFixed(1)+'px,'+(p*H).toFixed(1)+'px)'; }
+      else { rail.style.setProperty('--p',p.toFixed(3)); mark.style.transform='translate(0,'+(p*H).toFixed(1)+'px)'; }
+      if(bars){ var n=Math.round(p*bars.length); for(var q=0;q<bars.length;q++) bars[q].classList.toggle('on',q<n); }
+    }
+    function onS(){ if(!raf) raf=requestAnimationFrame(upd); }
+    makeDraggable(rail,ov);
+    ov.addEventListener('scroll',onS,{passive:true}); window.addEventListener('resize',onS); upd();
+    return function(){ ov.removeEventListener('scroll',onS); window.removeEventListener('resize',onS); if(raf) cancelAnimationFrame(raf); layer.remove(); };
+  }
+
   /* ---------- Cycle de vie ---------- */
   function stop(){ if(cur){ try{ cur.off(); }catch(e){} cur=null; } }
   var _open=openProj, _close=closeProj;
@@ -2786,12 +2876,40 @@ window.addEventListener('load',function(){
     _open(id); stop();
     var ov=document.getElementById('pm-'+id); if(!ov) return;
     try{
-      if(id==='juiceup') cur={id:id,ov:ov,off:startJuice(ov)};
-      else if(id==='priest') cur={id:id,ov:ov,off:startHorror(ov)};
-      else if(id==='draconium') cur={id:id,ov:ov,off:startDraco(ov)};
+      var offs=[];
+      if(id==='juiceup') offs.push(startJuice(ov));
+      else if(id==='priest') offs.push(startHorror(ov));
+      else if(id==='draconium') offs.push(startDraco(ov));
+      if(id!=='draconium') offs.push(startRail(ov,id));   // Draconium a deja sa propre barre
+      cur={id:id,ov:ov,off:function(){ offs.forEach(function(f){ try{ f(); }catch(e){} }); }};
     }catch(e){ console.warn('page fx',e); }
   };
   closeProj=function(id){ _close(id); if(cur&&cur.id===id) stop(); };
   // fermeture par Echap ou autre : on surveille l'etat du modal
   setInterval(function(){ if(cur && !cur.ov.classList.contains('open')) stop(); },600);
+})();
+
+/* Fiche ouverte : la page derriere est figee (plus de defilement a la molette, au clavier ou au doigt)
+   et sa barre de defilement est masquee. A la fermeture, on revient exactement a la meme position. */
+(function(){
+  var saved = null;
+  function lock(){
+    if (saved !== null) return;
+    saved = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var b = document.body;
+    b.style.position = 'fixed'; b.style.top = (-saved) + 'px'; b.style.left = '0'; b.style.right = '0'; b.style.width = '100%';
+  }
+  function unlock(){
+    if (saved === null) return;
+    var b = document.body, y = saved; saved = null;
+    b.style.position = ''; b.style.top = ''; b.style.left = ''; b.style.right = ''; b.style.width = '';
+    window.scrollTo({top: y, left: 0, behavior: 'instant'});
+  }
+  function sync(){
+    var open = document.body.classList.contains('modal-open');
+    document.documentElement.classList.toggle('has-modal', open);
+    if (open) lock(); else unlock();
+  }
+  new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
+  sync();
 })();
