@@ -28,6 +28,7 @@ var FX_CONFIGS = {
   coaching:{ type:'neon',      color:'#f4a033', glow:'rgba(244,160,51,' },
   mira:    { type:'garden',    color:'#34d399', glow:'rgba(52,211,153,' },
   streaming:{ type:'stream',   color:'#9b72d0', glow:'rgba(155,114,208,' },
+  entretien:{ type:'circus',   color:'#fbbf24', glow:'rgba(251,191,36,' },
 };
 
 var _fxCanvas = document.createElement('canvas');
@@ -798,6 +799,36 @@ function startFx(projId) {
     }; draw();
   }
 
+  // -- CIRQUE / ENTRETIEN D'EMBAUCHE : projecteurs, guirlande de fanions, confettis et ballons --
+  else if (cfg.type === 'circus') {
+    var CC=['#be123c','#fbbf24','#fde68a','#2dd4bf','#f472b6'];
+    function mkc(w,h,fn){ var c=document.createElement('canvas'); c.width=w; c.height=h; fn(c.getContext('2d'),w,h); return c; }
+    function coneSpr(rgb){ return mkc(380,900,function(g,w,h){ var gr=g.createLinearGradient(0,0,0,h); gr.addColorStop(0,'rgba('+rgb+',.6)'); gr.addColorStop(1,'rgba('+rgb+',0)'); g.fillStyle=gr; g.beginPath(); g.moveTo(w/2-10,0); g.lineTo(w/2+10,0); g.lineTo(w,h); g.lineTo(0,h); g.closePath(); g.fill(); }); }
+    var coneG=coneSpr('255,236,170'), coneR=coneSpr('255,120,150');
+    var beams=[{x:BL*.12,spr:coneG,ph:0,sp:.011,base:.35},{x:W-BL*.12,spr:coneR,ph:2.2,sp:.014,base:-.35},{x:BL*.5,spr:coneR,ph:4,sp:.009,base:.2},{x:W-BL*.5,spr:coneG,ph:1,sp:.012,base:-.2}];
+    var balloonSpr=CC.slice(0,3).concat(['#2dd4bf']).map(function(col){ return mkc(46,96,function(g,w,h){ g.strokeStyle='rgba(255,255,255,.45)'; g.lineWidth=1.2; g.beginPath(); g.moveTo(w/2,60); g.quadraticCurveTo(w/2-8,78,w/2,h-2); g.stroke(); g.fillStyle=col; g.beginPath(); g.ellipse(w/2,30,19,26,0,0,Math.PI*2); g.fill(); g.beginPath(); g.moveTo(w/2,55); g.lineTo(w/2-4,62); g.lineTo(w/2+4,62); g.fill(); g.fillStyle='rgba(255,255,255,.35)'; g.beginPath(); g.ellipse(w/2-7,20,5,9,-.5,0,Math.PI*2); g.fill(); }); });
+    var balloons=[]; for(var i=0;i<6;i++){ var bx=bpSide(); balloons.push({x:i%2?BR+Math.random()*(W-BR):Math.random()*BL,y:H*Math.random(),vy:.35+Math.random()*.5,ph:Math.random()*6,spr:balloonSpr[i%balloonSpr.length],al:.55+Math.random()*.25}); }
+    var confetti=[]; for(var i=0;i<60;i++){ confetti.push({x:Math.random()<.65?(Math.random()<.5?Math.random()*BL:BR+Math.random()*(W-BR)):Math.random()*W,y:Math.random()*H,vy:.7+Math.random()*1.5,vx:(Math.random()-.5)*.6,rot:Math.random()*6,vr:(Math.random()-.5)*.12,w:5+Math.random()*6,h:3+Math.random()*3,col:CC[i%CC.length],ph:Math.random()*6}); }
+    var draw=function(){
+      ctx.clearRect(0,0,W,H); drawBorderFrame(ctx,W,H,cfg.color,0.35); t+=.016;
+      // projecteurs qui balaient
+      beams.forEach(function(b){ b.ph+=b.sp; ctx.save(); ctx.translate(b.x,-10); ctx.rotate(b.base+Math.sin(b.ph)*.45); ctx.globalAlpha=.55; ctx.drawImage(b.spr,-190,0); ctx.restore(); });
+      // guirlande de fanions en haut
+      var N=Math.max(10,Math.round(W/46));
+      for(var k=0;k<N;k++){ var u=(k+.5)/N, fx=u*W, fy=14+Math.sin(u*Math.PI)*26+Math.sin(u*9+t*2)*2.5;
+        ctx.fillStyle=CC[k%CC.length]; ctx.globalAlpha=.8; ctx.beginPath(); ctx.moveTo(fx-14,fy); ctx.lineTo(fx+14,fy); ctx.lineTo(fx+Math.sin(t*2+k)*2,fy+30); ctx.closePath(); ctx.fill(); }
+      ctx.globalAlpha=1;
+      // confettis
+      confetti.forEach(function(c){ c.y+=c.vy; c.x+=c.vx+Math.sin(t*1.5+c.ph)*.5; c.rot+=c.vr; if(c.y>H+10){ c.y=-10; c.x=Math.random()<.65?(Math.random()<.5?Math.random()*BL:BR+Math.random()*(W-BR)):Math.random()*W; }
+        ctx.save(); ctx.translate(c.x,c.y); ctx.rotate(c.rot); ctx.fillStyle=c.col; ctx.globalAlpha=.85; ctx.fillRect(-c.w/2,-c.h/2,c.w,c.h); ctx.restore(); });
+      // ballons qui montent
+      balloons.forEach(function(b){ b.y-=b.vy; b.ph+=.015; if(b.y<-100){ b.y=H+60; b.x=Math.random()<.5?Math.random()*BL:BR+Math.random()*(W-BR); }
+        ctx.globalAlpha=b.al; ctx.drawImage(b.spr,b.x+Math.sin(b.ph)*14,b.y); });
+      ctx.globalAlpha=1;
+      _fxRaf=requestAnimationFrame(draw);
+    }; draw();
+  }
+
   // -- STREAM / TWITCH -----------------------------------------
   else if (cfg.type === 'stream') {
     var particles = [];
@@ -1191,16 +1222,17 @@ function _ambTargetVol() {
   var v = _audio.volume;
   if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
   if (v === undefined || isNaN(v)) v = 0.5;
-  return 0.45 * (v / 0.5);
+  return 0.45 * (v / 0.5) * _AMB_MASTER;
 }
 /* Egalisation : chaque ambiance est calee sur le meme niveau percu (mesure ponderee K, cible -32 dB)
    pour un reglage de volume identique. Valeurs = multiplicateurs du gain de base (0.28). */
+var _AMB_MASTER = 0.7; // niveau general des ambiances (environ -3 dB)
 var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6};
 function _ambGainTarget() {
   var v = _audio.volume;
   if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
   if (v === undefined || isNaN(v)) v = 0.5;
-  return 0.28 * (v / 0.5) * (_AMB_TRIM[_ambCurrentId] || 1);
+  return 0.28 * (v / 0.5) * _AMB_MASTER * (_AMB_TRIM[_ambCurrentId] || 1);
 }
 function _ambElVol(a) { return Math.min(1, _ambTargetVol() * (a._k || 1)); }
 function _ambFadeEl(a, stillValid) {
