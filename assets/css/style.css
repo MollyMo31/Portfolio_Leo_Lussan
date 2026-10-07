@@ -1545,3 +1545,87 @@ html.has-modal::-webkit-scrollbar{display:none}
 .pr-bars{--rgf:drop-shadow(0 0 4px rgba(208,112,240,.6))}
 .pr-bars .pr-mark{left:0;width:30px;height:2px;margin:-1px 0 0 -3px}
 .pr-bars .pr-mark i{width:100%;height:2px;border-radius:1px;background:#fff;box-shadow:0 0 10px #d070f0,0 0 3px #fff;animation:none}
+
+/* ===================================================================
+   Effets de page propres a chaque projet (assets/js/page-themes.js)
+   =================================================================== */
+.pt-layer{position:fixed;top:0;left:0;width:100vw;height:100vh;height:100dvh;pointer-events:none;z-index:298;overflow:hidden}
+.pt-layer i,.pt-layer u,.pt-layer b{display:block;text-decoration:none;font-style:normal;font-weight:400}
+.pt-layer>i,.pt-layer>div{position:absolute}
+.pt-fall,.pt-rise{position:absolute;left:var(--x);will-change:transform,opacity}
+.pt-fall{top:-60px;animation:ptFall var(--d) linear var(--dl) infinite}
+.pt-rise{bottom:-60px;animation:ptRise var(--d) linear var(--dl) infinite}
+@keyframes ptFall{0%{transform:translate3d(0,0,0) rotate(0);opacity:0}8%{opacity:var(--o,.8)}92%{opacity:var(--o,.8)}100%{transform:translate3d(var(--w,0px),112vh,0) rotate(var(--r,360deg));opacity:0}}
+@keyframes ptRise{0%{transform:translate3d(0,0,0) rotate(0);opacity:0}10%{opacity:var(--o,.7)}90%{opacity:var(--o,.7)}100%{transform:translate3d(var(--w,0px),-112vh,0) rotate(var(--r,0deg));opacity:0}}
+.pt-follow{position:absolute;left:0;top:0;will-change:transform}
+.pt-b{position:absolute}
+.pt-ring{position:absolute;border-radius:50%;border:2px solid currentColor}
+@media(prefers-reduced-motion:reduce){.pt-layer *{animation:none!important}}
+
+/* ---- The Silence : brume, poussiere, sonar ---- */
+.pt-fog{width:80vw;height:70vh;background:radial-gradient(ellipse,rgba(190,195,205,.13),transparent 68%);will-change:transform}
+.pt-fog1{left:-20vw;top:5vh;animation:ptFog1 38s ease-in-out infinite alternate}
+.pt-fog2{right:-25vw;bottom:-5vh;animation:ptFog2 46s ease-in-out infinite alternate}
+@keyframes ptFog1{to{transform:translate3d(55vw,12vh,0)}}
+@keyframes ptFog2{to{transform:translate3d(-50vw,-14vh,0)}}
+.pt-dark{inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(0,0,0,.7) 100%);animation:ptBreath 7s ease-in-out infinite}
+@keyframes ptBreath{0%,100%{opacity:.7}50%{opacity:1}}
+.pt-noise{inset:-10%;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 -.1'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");animation:ptGrainS 1s steps(1) infinite}
+@keyframes ptGrainS{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(3%,3%)}}
+.pt-dust{width:var(--s);height:var(--s);border-radius:50%;background:#e5e7eb}
+.pt-ring-s{color:rgba(229,231,235,.65)}
+#pm-silence.pt .pm-section-title{letter-spacing:.3em;font-weight:400;color:#d1d5db;text-shadow:none}
+#pm-silence.pt .proj-modal{box-shadow:0 0 120px rgba(0,0,0,.9)}
+
+/* ---- Entretien d'embauche : le chapiteau ---- */
+.pt-tent{left:0;right:0;top:0;height:46px;background:repeating-linear-gradient(90deg,#be123c 0 34px,#fde68a 34px 68px);filter:drop-shadow(0 4px 6px rgba(0,0,0,.5));opacity:.9}
+.pt-tent::after{content:'';position:absolute;left:0;right:0;top:100%;height:17px;background:repeating-linear-gradient(90deg,#be123c 0 34px,#fde68a 34px 68px);-webkit-mask-image:radial-gradient(circle at 17px 0,#000 16px,transparent 17px);-webkit-mask-size:34px 17px;mask-image:radial-gradient(circle at 17px 0,#000 16px,transparent 17px);mask-size:34px 17px}
+.pt-bulbs{top:64px;bottom:20px;width:14px;background:radial-gradient(circle,#fff6c9 0 3px,rgba(251,191,36,.5) 4px,transparent 6px) 50% 0/14px 28px repeat-y}
+.pt-bl-a,.pt-br-a{animation:ptBulb 1s steps(1) infinite}
+.pt-bl-b,.pt-br-b{background-position:50% 14px;animation:ptBulb 1s steps(1) -.5s infinite}
+.pt-bl-a,.pt-bl-b{left:36px}.pt-br-a,.pt-br-b{right:36px}
+@keyframes ptBulb{0%{opacity:1}50%{opacity:.2}}
+.pt-entretien .pt-spot{width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,140,.2),rgba(190,18,60,.06) 50%,transparent 72%)}
+.pt-conf{width:7px;height:4px}
+.pt-star{font-size:30px;color:#fbbf24;text-shadow:0 0 14px #fbbf24;line-height:1}
+#pm-entretien.pt .pm-section-title{color:#fbbf24;text-shadow:0 2px 0 #7f1d1d;border-bottom:3px double rgba(251,191,36,.45);padding-bottom:.3rem}
+#pm-entretien.pt .proj-modal{box-shadow:0 0 100px rgba(190,18,60,.3)}
+
+/* ---- Streaming : ambiance de live ---- */
+.pt-live{left:70px;top:14px;display:flex;align-items:center;gap:.45rem;padding:.3rem .65rem;background:rgba(100,65,165,.85);color:#fff;font:700 .62rem/1 var(--font-mono),monospace;letter-spacing:.18em;box-shadow:0 0 16px rgba(155,114,208,.6)}
+.pt-live b{width:.5rem;height:.5rem;border-radius:50%;background:#ef4444;animation:ptLive 1.3s infinite}
+@keyframes ptLive{0%,60%{opacity:1}61%,100%{opacity:.2}}
+.pt-chat{right:14px;bottom:70px;width:170px;height:38vh;overflow:hidden;opacity:.45;-webkit-mask-image:linear-gradient(0deg,#000 60%,transparent);mask-image:linear-gradient(0deg,#000 60%,transparent)}
+.pt-chat-in{animation:ptChat 36s linear infinite}
+@keyframes ptChat{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.pt-msg{display:flex;align-items:center;gap:.4rem;height:26px}
+.pt-msg i{width:10px;height:10px;border-radius:50%;flex:none}
+.pt-msg u{height:8px;border-radius:4px;background:rgba(255,255,255,.35)}
+.pt-heart{font-size:var(--fs);color:var(--c);text-shadow:0 0 8px currentColor;line-height:1}
+.pt-hrt{line-height:1;text-shadow:0 0 8px currentColor}
+#pm-streaming.pt .pm-section-title{text-shadow:0 0 16px rgba(155,114,208,.5)}
+#pm-streaming.pt .proj-modal{box-shadow:0 0 100px rgba(100,65,165,.3),0 0 0 1px rgba(155,114,208,.25) inset}
+
+@media(max-width:700px){.pt-live{left:112px}.pt-chat{width:120px;height:26vh}}
+
+/* ===== Bandeaux animes : City Rider (skyline) et Mira (ciel de blocs) ===== */
+/* City Rider : skyline dans le bandeau */
+#pm-city.pt .proj-modal-hero{overflow:hidden}
+.pt-sky{position:absolute;left:0;bottom:0;width:100%;height:58%;pointer-events:none;overflow:hidden}
+.pt-sky svg{position:absolute;left:0;bottom:0;width:200%;height:100%;transform:translateX(var(--px,0px));animation:ptSkyMove 90s linear infinite;will-change:transform}
+@keyframes ptSkyMove{to{margin-left:-100%}}
+.pt-win{animation:ptWin 5s steps(1) infinite}
+@keyframes ptWin{0%,70%{opacity:.9}72%,78%{opacity:.1}80%,100%{opacity:.9}}
+/* Mira : ciel de blocs dans le bandeau */
+#pm-mira.pt .proj-modal-hero{overflow:hidden}
+.pt-mc{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pt-sun{position:absolute;left:-60px;top:14%;width:34px;height:34px;background:#fde68a;box-shadow:0 0 0 4px rgba(253,230,138,.35),0 0 30px rgba(253,230,138,.5);animation:ptSun 70s steps(120) infinite}
+@keyframes ptSun{to{transform:translateX(calc(100vw + 120px))}}
+.pt-cloud{position:absolute;left:-120px;width:12px;height:12px;background:rgba(255,255,255,.55);box-shadow:12px 0 rgba(255,255,255,.55),24px 0 rgba(255,255,255,.55),36px 0 rgba(255,255,255,.55),6px -12px rgba(255,255,255,.55),18px -12px rgba(255,255,255,.55),30px -12px rgba(255,255,255,.55),12px 12px rgba(255,255,255,.55),24px 12px rgba(255,255,255,.55);animation:ptCloud var(--d) steps(80) var(--dl) infinite}
+@keyframes ptCloud{to{transform:translateX(calc(100vw + 220px))}}
+.pt-ground{position:absolute;left:0;right:0;bottom:0;height:14px;background:linear-gradient(#4ade80 0 5px,#16a34a 5px 7px,#92400e 7px);box-shadow:0 -2px 0 #14532d}
+/* scenes toujours derriere le texte, meme si une regle du projet force les enfants du bandeau */
+.proj-modal-hero>.pt-sky,.proj-modal-hero>.pt-mc{position:absolute!important;z-index:-1!important}
+/* decor derriere la fiche (Entretien d'embauche) */
+.pt-layer.pt-under{z-index:199}
+@media(max-width:700px){.pt-sky{height:48%}}
