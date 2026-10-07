@@ -59,38 +59,92 @@
 
   var T = {};
 
-  /* ---------- Unjudged : le jugement, rayons de lumiere et plumes ---------- */
+  /* --- apparition des textes : chaque theme choisit son animation (classe pt-in ajoutee quand l'element entre a l'ecran) --- */
+  function reveal(ov, sel){
+    if(RM || !('IntersectionObserver' in window)) return function(){};
+    var t=[].slice.call(ov.querySelectorAll(sel)), io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('pt-in'); io.unobserve(en.target); } }); },{root:ov,threshold:.12});
+    t.forEach(function(e,i){ e.classList.add('pt-rv'); e.style.setProperty('--d',((i%4)*70)+'ms'); io.observe(e); });
+    return function(){ io.disconnect(); t.forEach(function(e){ e.classList.remove('pt-rv','pt-in'); e.style.removeProperty('--d'); }); };
+  }
+  var RV_ALL='.pm-section-title,.pm-label,.proj-modal-body > p,.proj-modal-body > div[style*="grid-template-columns"] > div,.proj-modal-body figure';
+  function svgNS(tag,attrs,parent){ var e=document.createElementNS('http://www.w3.org/2000/svg',tag); for(var k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
+
+  /* ---------- Unjudged : le corps et l'ame, le verdict ---------- */
   T.unjudged = function(ov){
-    var L=mkLayer('unjudged'); el('div','pt-rays',L);
-    spawn(L,13,'pt-fall pt-feather',function(i){ return {'--x':rnd(2,98)+'%','--d':rnd(11,20)+'s','--dl':-rnd(0,18)+'s','--w':rnd(-90,90)+'px','--r':rnd(120,420)+'deg','--o':rnd(.35,.7).toFixed(2),'--s':rnd(.7,1.3).toFixed(2)}; });
-    var off=wire(ov,L,{follow:'pt-glow',click:function(e){ ring(L,e.clientX,e.clientY,'pt-ring-g',240,1100); burst(L,e.clientX,e.clientY,14,'pt-mote',{max:120,up:20}); }});
+    var L=mkLayer('unjudged'); el('div','pt-edge pt-edge-l',L); el('div','pt-edge pt-edge-r',L);
+    var rv=reveal(ov,RV_ALL), raf=0, gx=0, gy=0;
+    function mv(e){ gx=(e.clientX/window.innerWidth-.5)*14; gy=(e.clientY/window.innerHeight-.5)*8; if(!raf) raf=requestAnimationFrame(function(){ raf=0; ov.style.setProperty('--gx',gx.toFixed(1)+'px'); ov.style.setProperty('--gy',gy.toFixed(1)+'px'); }); }
+    ov.addEventListener('mousemove',mv);
     ov.classList.add('pt','pt-unjudged');
-    return function(){ off(); L.remove(); ov.classList.remove('pt','pt-unjudged'); };
+    return function(){ ov.removeEventListener('mousemove',mv); if(raf) cancelAnimationFrame(raf); rv(); L.remove(); ov.style.removeProperty('--gx'); ov.style.removeProperty('--gy'); ov.classList.remove('pt','pt-unjudged'); };
   };
 
-  /* ---------- City Rider : pluie de neon et grille synthwave ---------- */
+  /* ---------- City Rider : la ville la nuit, depuis la moto ---------- */
   T.city = function(ov){
-    var L=mkLayer('city'), g=el('div','pt-floor',L); el('div','',g);
-    spawn(L,30,'pt-fall pt-streak',function(i){ return {'--x':rnd(-5,100)+'%','--d':rnd(.9,1.9)+'s','--dl':-rnd(0,2)+'s','--w':'-70px','--r':'0deg','--o':rnd(.25,.6).toFixed(2),'--len':rnd(50,130)+'px','--c':pick(['#00d4ff','#a78bfa','#ff2fd1'])}; });
-    var off=wire(ov,L,{follow:'pt-glow',click:function(e){
-      burst(L,e.clientX,e.clientY,12,'pt-zap',{max:140,end:.1,style:function(q,i){ q.style.setProperty('--c',pick(['#00d4ff','#ff2fd1','#a78bfa'])); q.style.height=rnd(10,26)+'px'; }}); ring(L,e.clientX,e.clientY,'pt-ring-c',180,700); }});
+    var hero=ov.querySelector('.proj-modal-hero'), sky=el('div','pt-sky',hero), W=1200, H=200;
+    var svg=svgNS('svg',{viewBox:'0 0 '+(W*2)+' '+H,preserveAspectRatio:'none','aria-hidden':'true'},sky);
+    [['#2b1a70',.7,60,130],['#140a3c',1,40,170]].forEach(function(lay,li){
+      var g=svgNS('g',{},svg), x=0, k=0;
+      while(x<W*2){ var w=rnd(24,62), h=rnd(lay[2],lay[3]), d=li?0:0; svgNS('rect',{x:x,y:H-h,width:w,height:h,fill:lay[0],opacity:lay[1]},g);
+        if(li){ for(var wy=H-h+10;wy<H-8;wy+=14){ for(var wx=x+6;wx<x+w-8;wx+=11){ if(Math.random()<.32){ var r=svgNS('rect',{x:wx,y:wy,width:4,height:6,fill:pick(['#fde68a','#00d4ff','#ff2fd1']),opacity:rnd(.5,.95).toFixed(2)},g); if(Math.random()<.18){ r.setAttribute('class','pt-win'); r.style.animationDelay=(-rnd(0,6)).toFixed(1)+'s'; } } } } }
+        x+=w+rnd(2,10); k++; }
+    });
+    var L=mkLayer('city'); el('div','pt-lane pt-lane-l',L); el('div','pt-lane pt-lane-r',L);
+    var rv=reveal(ov,RV_ALL), raf=0;
+    function mv(e){ var p=(e.clientX/window.innerWidth-.5)*-40; if(!raf) raf=requestAnimationFrame(function(){ raf=0; sky.style.setProperty('--px',p.toFixed(1)+'px'); }); }
+    ov.addEventListener('mousemove',mv);
     ov.classList.add('pt','pt-city');
-    return function(){ off(); L.remove(); ov.classList.remove('pt','pt-city'); };
+    return function(){ ov.removeEventListener('mousemove',mv); if(raf) cancelAnimationFrame(raf); rv(); sky.remove(); L.remove(); ov.classList.remove('pt','pt-city'); };
   };
 
-  /* ---------- Tower Defense : jardin enchante, lucioles et tours qu'on pose au clic ---------- */
+  /* ---------- Tower Defense : une carte de tower defense dans le bandeau ---------- */
   T.tower = function(ov){
-    var L=mkLayer('tower'); el('div','pt-vig',L);
-    spawn(L,18,'pt-firefly',function(){ return {'--x':rnd(2,98)+'%','--y':rnd(8,92)+'%','--d':rnd(5,10)+'s','--dl':-rnd(0,10)+'s','--dx':rnd(-60,60)+'px','--dy':rnd(-60,60)+'px'}; });
-    spawn(L,9,'pt-fall pt-leaf',function(){ return {'--x':rnd(2,98)+'%','--d':rnd(13,24)+'s','--dl':-rnd(0,22)+'s','--w':rnd(-120,120)+'px','--r':rnd(180,540)+'deg','--o':rnd(.4,.75).toFixed(2),'--c':pick(['#65a30d','#a3e635','#4d7c0f','#84cc16'])}; });
-    var placed=[];
-    var off=wire(ov,L,{click:function(e){
-      var t=el('i','pt-tw',L); t.style.left=e.clientX+'px'; t.style.top=e.clientY+'px'; placed.push(t);
-      ring(L,e.clientX,e.clientY,'pt-ring-t',200,1000); burst(L,e.clientX,e.clientY,7,'pt-seed',{max:60,end:.3});
-      t.animate([{transform:'translate(-50%,-50%) scale(0)'},{transform:'translate(-50%,-50%) scale(1.2)',offset:.4},{transform:'translate(-50%,-50%) scale(1)',offset:.55},{transform:'translate(-50%,-50%) scale(1)',offset:.85,opacity:1},{transform:'translate(-50%,-50%) scale(.8)',opacity:0}],{duration:2200}).onfinish=function(){ t.remove(); };
-    }});
+    var hero=ov.querySelector('.proj-modal-hero'), sc=el('div','pt-td',hero);
+    var svg=svgNS('svg',{viewBox:'0 0 600 170',preserveAspectRatio:'xMaxYMax slice','aria-hidden':'true'},sc);
+    var path='M-10 130 C60 130 90 60 170 70 S250 140 320 120 S400 40 470 60 S560 120 620 90';
+    svgNS('path',{d:path,fill:'none',stroke:'rgba(101,163,13,.28)','stroke-width':'22','stroke-linecap':'round'},svg);
+    svgNS('path',{d:path,fill:'none',stroke:'rgba(190,242,100,.5)','stroke-width':'2','stroke-dasharray':'3 7','stroke-linecap':'round'},svg);
+    [[120,118],[260,60],[370,150],[500,110]].forEach(function(t,i){
+      var g=svgNS('g',{},svg); var c=svgNS('circle',{cx:t[0],cy:t[1],r:46,fill:'rgba(163,230,53,.05)',stroke:'rgba(163,230,53,.4)','stroke-width':'1','stroke-dasharray':'4 4'},g);
+      var a=svgNS('animate',{attributeName:'r',values:'38;50;38',dur:(4+i)+'s',repeatCount:'indefinite'},c);
+      svgNS('rect',{x:t[0]-8,y:t[1]-8,width:16,height:16,rx:3,fill:'#a3e635',stroke:'#365314','stroke-width':'2'},g);
+      svgNS('rect',{x:t[0]-3,y:t[1]-13,width:6,height:8,rx:2,fill:'#d9f99d'},g);
+    });
+    if(!RM) for(var i=0;i<5;i++){ var d=svgNS('g',{},svg); svgNS('circle',{r:6,fill:'#ef4444',stroke:'#7f1d1d','stroke-width':'2'},d); svgNS('animateMotion',{path:path,dur:'16s',begin:(-i*3.2)+'s',repeatCount:'indefinite'},d); }
+    var L=mkLayer('tower'); el('div','pt-vine pt-vine-l',L); el('div','pt-vine pt-vine-r',L);
+    var rv=reveal(ov,RV_ALL);
     ov.classList.add('pt','pt-tower');
-    return function(){ off(); L.remove(); ov.classList.remove('pt','pt-tower'); };
+    return function(){ rv(); sc.remove(); L.remove(); ov.classList.remove('pt','pt-tower'); };
+  };
+
+  /* ---------- Mira : le monde de blocs, tout se construit bloc par bloc ---------- */
+  T.mira = function(ov){
+    var hero=ov.querySelector('.proj-modal-hero'), sc=el('div','pt-mc',hero);
+    el('i','pt-sun',sc); for(var i=0;i<4;i++){ var c=el('i','pt-cloud',sc); c.style.cssText='top:'+rnd(8,46).toFixed(0)+'%;--d:'+rnd(70,120).toFixed(0)+'s;--dl:-'+rnd(0,100).toFixed(0)+'s;scale:'+rnd(.8,1.5).toFixed(2); }
+    el('i','pt-ground',sc);
+    var rv=reveal(ov,RV_ALL);
+    ov.classList.add('pt','pt-mira');
+    return function(){ rv(); sc.remove(); ov.classList.remove('pt','pt-mira'); };
+  };
+
+  /* ---------- Coaching : l'analyse de replay ---------- */
+  T.coaching = function(ov){
+    var hero=ov.querySelector('.proj-modal-hero'), tl=el('div','pt-vod',hero); el('i','pt-vod-track',tl); el('i','pt-vod-play',tl);
+    [12,27,41,58,73,88].forEach(function(p,i){ var m=el('i','pt-vod-mark',tl); m.style.left=p+'%'; m.style.setProperty('--k',i%2?'#f4a033':'#ffd9a0'); });
+    var rv=reveal(ov,RV_ALL+',.proj-modal-body strong');
+    var L=mkLayer('coaching');
+    // au clic : un cercle d'annotation trace a la main, comme un coach sur un replay
+    function ck(e){
+      if(RM||e.target.closest('.proj-modal-close,#modal-lang-bar,.carousel-btn,.pr-rail,.dx-rail,a,button')) return;
+      var s=svgNS('svg',{width:110,height:80,viewBox:'0 0 110 80','aria-hidden':'true'},L); s.style.cssText='position:absolute;left:'+(e.clientX-55)+'px;top:'+(e.clientY-40)+'px;overflow:visible';
+      var pth=svgNS('path',{d:'M55 6 C95 4 108 30 96 52 C84 74 30 78 14 54 C0 32 22 8 62 8 C80 8 92 14 92 14',fill:'none',stroke:'#f4a033','stroke-width':'3.5','stroke-linecap':'round',pathLength:'1','stroke-dasharray':'1','stroke-dashoffset':'1'},s);
+      pth.style.filter='drop-shadow(0 0 5px rgba(244,160,51,.8))';
+      pth.animate([{strokeDashoffset:1},{strokeDashoffset:0}],{duration:420,fill:'forwards',easing:'ease-out'});
+      s.animate([{opacity:1},{opacity:1,offset:.7},{opacity:0}],{duration:1700}).onfinish=function(){ s.remove(); };
+    }
+    ov.addEventListener('click',ck);
+    ov.classList.add('pt','pt-coaching');
+    return function(){ ov.removeEventListener('click',ck); rv(); tl.remove(); L.remove(); ov.classList.remove('pt','pt-coaching'); };
   };
 
   /* ---------- The Silence : brume, poussiere, sonar au clic ---------- */
@@ -112,30 +166,6 @@
       burst(L,e.clientX,e.clientY,1,'pt-star',{max:1,end:2.4,html:'★'}); }});
     ov.classList.add('pt','pt-entretien');
     return function(){ off(); L.remove(); U.remove(); ov.classList.remove('pt','pt-entretien'); };
-  };
-
-  /* ---------- Mira : monde de blocs, cubes flottants, blocs poses au clic ---------- */
-  T.mira = function(ov){
-    var L=mkLayer('mira'); el('div','pt-grass',L);
-    spawn(L,14,'pt-rise pt-cube',function(i){ var s=rnd(12,26); return {'--x':rnd(2,98)+'%','--d':rnd(12,24)+'s','--dl':-rnd(0,22)+'s','--w':rnd(-40,40)+'px','--r':pick(['0deg','90deg','180deg']),'--o':rnd(.3,.6).toFixed(2),'--sz':s.toFixed(0)+'px','--c1':pick(['#34d399','#a3a3a3','#e9b44c','#60a5fa','#92400e']),'--c2':pick(['#065f46','#525252','#92400e','#1e3a8a','#451a03'])}; });
-    var off=wire(ov,L,{click:function(e){
-      var gx=Math.round(e.clientX/20)*20, gy=Math.round(e.clientY/20)*20, b=el('i','pt-block',L);
-      b.style.left=gx+'px'; b.style.top=gy+'px'; b.style.setProperty('--c1',pick(['#34d399','#a3a3a3','#e9b44c','#60a5fa','#92400e']));
-      b.animate([{transform:'translate(-50%,-50%) scale(0)'},{transform:'translate(-50%,-50%) scale(1.25)',offset:.3},{transform:'translate(-50%,-50%) scale(1)',offset:.45},{transform:'translate(-50%,-50%) scale(1)',offset:.8},{transform:'translate(-50%,-50%) scale(1.15)',offset:.9,opacity:1},{transform:'translate(-50%,-50%) scale(.6)',opacity:0}],{duration:1700,easing:'steps(8)'}).onfinish=function(){ b.remove(); };
-      setTimeout(function(){ burst(L,gx,gy,8,'pt-frag',{max:70,end:.5,t0:400,t1:700,style:function(q){ q.style.background=pick(['#34d399','#065f46','#a3a3a3','#e9b44c']); }}); },1400);
-    }});
-    ov.classList.add('pt','pt-mira');
-    return function(){ off(); L.remove(); ov.classList.remove('pt','pt-mira'); };
-  };
-
-  /* ---------- Coaching : interface de visee, reticule, marqueurs de touche ---------- */
-  T.coaching = function(ov){
-    var L=mkLayer('coaching'); ['tl','tr','bl','br'].forEach(function(c){ el('i','pt-hud pt-hud-'+c,L); }); el('div','pt-scan',L); el('div','pt-stripes pt-st-l',L); el('div','pt-stripes pt-st-r',L);
-    var off=wire(ov,L,{follow:'pt-reticle',click:function(e){
-      var h=el('i','pt-hit',L); h.style.left=e.clientX+'px'; h.style.top=e.clientY+'px'; h.animate([{transform:'translate(-50%,-50%) scale(.5) rotate(45deg)',opacity:1},{transform:'translate(-50%,-50%) scale(1.5) rotate(45deg)',opacity:0}],{duration:420,easing:'ease-out'}).onfinish=function(){ h.remove(); };
-      ring(L,e.clientX,e.clientY,'pt-ring-o',120,600); }});
-    ov.classList.add('pt','pt-coaching');
-    return function(){ off(); L.remove(); ov.classList.remove('pt','pt-coaching'); };
   };
 
   /* ---------- Streaming : ambiance de live, chat fantome, coeurs ---------- */
@@ -179,7 +209,9 @@
   var _open=openProj, _close=closeProj;
   openProj=function(id){
     _open(id); stop();
-    var ov=document.getElementById('pm-'+id); if(!ov||!T[id]) return;
+    var ov=document.getElementById('pm-'+id);
+    if(ov) [].forEach.call(ov.querySelectorAll('img[loading="lazy"]'),function(i){ i.loading='eager'; });
+    if(!ov||!T[id]) return;
     try{ SMALL=window.innerWidth<700; cur={id:id,ov:ov,off:T[id](ov)}; }catch(e){ console.warn('page theme',e); }
   };
   closeProj=function(id){ _close(id); if(cur&&cur.id===id) stop(); };

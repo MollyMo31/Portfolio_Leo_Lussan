@@ -2857,16 +2857,21 @@ window.addEventListener('load',function(){
     }
     function zx(p){ var u=p*10, k=Math.min(9,Math.floor(u)), f=u-k, x0=k===0?10:(k%2?2:18), x1=(k+1)%2?2:18; return x0+(x1-x0)*f; }
     var lastH=0;
+    var shown=0, first=true;
     function upd(){
-      raf=0; var m=ov.scrollHeight-ov.clientHeight, p=m>0?Math.min(1,Math.max(0,ov.scrollTop/m)):0; H=rail.clientHeight;
+      raf=0; var m=ov.scrollHeight-ov.clientHeight, tgt=m>0?Math.min(1,Math.max(0,ov.scrollTop/m)):0; H=rail.clientHeight;
+      // adoucit les petits sauts quand la hauteur de la fiche change (images qui se chargent)
+      shown = first ? tgt : shown+(tgt-shown)*.35; if(Math.abs(tgt-shown)<.0015) shown=tgt; first=false;
+      var p=shown; if(shown!==tgt) raf=requestAnimationFrame(upd);
       if(zig){ if(H!==lastH){ lastH=H; build(); } fill.style.strokeDashoffset=(1-p).toFixed(3); mark.style.transform='translate('+(zx(p)-10).toFixed(1)+'px,'+(p*H).toFixed(1)+'px)'; }
       else { rail.style.setProperty('--p',p.toFixed(3)); mark.style.transform='translate(0,'+(p*H).toFixed(1)+'px)'; }
       if(bars){ var n=Math.round(p*bars.length); for(var q=0;q<bars.length;q++) bars[q].classList.toggle('on',q<n); }
     }
     function onS(){ if(!raf) raf=requestAnimationFrame(upd); }
     makeDraggable(rail,ov);
+    var ro=null; if(window.ResizeObserver){ ro=new ResizeObserver(onS); var mb=ov.querySelector('.proj-modal'); if(mb) ro.observe(mb); }
     ov.addEventListener('scroll',onS,{passive:true}); window.addEventListener('resize',onS); upd();
-    return function(){ ov.removeEventListener('scroll',onS); window.removeEventListener('resize',onS); if(raf) cancelAnimationFrame(raf); layer.remove(); };
+    return function(){ ov.removeEventListener('scroll',onS); window.removeEventListener('resize',onS); if(ro) ro.disconnect(); if(raf) cancelAnimationFrame(raf); layer.remove(); };
   }
 
   /* ---------- Cycle de vie ---------- */
