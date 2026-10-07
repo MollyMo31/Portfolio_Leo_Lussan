@@ -119,30 +119,6 @@
     return function(){ off(); L.remove(); ov.classList.remove('pt','pt-streaming'); };
   };
 
-  /* ---------- Musiques : egaliseur qui suit vraiment la musique, vinyle, notes ---------- */
-  T.musiques = function(ov){
-    var L=mkLayer('musiques'), eq=el('div','pt-eq',L), bars=[], N=SMALL?24:44, raf=0, an=null, data=null, dead=false, lastT=0;
-    for(var i=0;i<N;i++){ bars.push(el('i','',eq)); }
-    el('div','pt-vinyl',L);
-    spawn(L,11,'pt-rise pt-note',function(){ return {'--x':rnd(2,98)+'%','--d':rnd(10,20)+'s','--dl':-rnd(0,18)+'s','--w':rnd(-60,60)+'px','--r':rnd(-30,30)+'deg','--o':rnd(.3,.6).toFixed(2),'--fs':rnd(16,32).toFixed(0)+'px','--c':pick(['#d070f0','#f0a8ff','#9b3fb5','#c084fc'])}; },function(){ return pick(['♪','♫','♩','♬']); });
-    function loop(ts){
-      if(dead) return; raf=requestAnimationFrame(loop);
-      if(ts-lastT<33) return; lastT=ts;
-      if(!an && typeof _ambCtx!=='undefined' && _ambCtx && typeof _ambGain!=='undefined' && _ambGain){ try{ an=_ambCtx.createAnalyser(); an.fftSize=128; an.smoothingTimeConstant=.78; _ambGain.connect(an); data=new Uint8Array(an.frequencyBinCount); }catch(e){ an=null; } }
-      var t=ts/1000;
-      if(an) an.getByteFrequencyData(data);
-      for(var i=0;i<N;i++){
-        var v=an?data[Math.floor(i*data.length*.7/N)]/255:0; // bas et moyens de la musique
-        var idle=.08+.06*Math.sin(t*2+i*.7);
-        bars[i].style.transform='scaleY('+Math.max(idle,Math.min(1,v*1.5)).toFixed(3)+')';
-      }
-    }
-    if(!RM) raf=requestAnimationFrame(loop);
-    var off=wire(ov,L,{click:function(e){ burst(L,e.clientX,e.clientY,10,'pt-bnote',{max:130,up:60,end:.6,t0:700,t1:1300,html:function(){ return pick(['♪','♫','♩','♬']); },style:function(q){ q.style.color=pick(['#d070f0','#f0a8ff','#c084fc']); q.style.fontSize=rnd(16,30)+'px'; }}); }});
-    ov.classList.add('pt','pt-musiques');
-    return function(){ dead=true; if(raf) cancelAnimationFrame(raf); if(an){ try{ _ambGain.disconnect(an); }catch(e){} } off(); L.remove(); ov.classList.remove('pt','pt-musiques'); };
-  };
-
   /* ---------- Cycle de vie ---------- */
   var cur=null;
   function stop(){ if(cur){ try{ cur.off(); }catch(e){} cur=null; } }

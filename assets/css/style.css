@@ -1606,15 +1606,7 @@ html.has-modal::-webkit-scrollbar{display:none}
 #pm-streaming.pt .pm-section-title{text-shadow:0 0 16px rgba(155,114,208,.5)}
 #pm-streaming.pt .proj-modal{box-shadow:0 0 100px rgba(100,65,165,.3),0 0 0 1px rgba(155,114,208,.25) inset}
 
-/* ---- Musiques : egaliseur, vinyle, notes ---- */
-.pt-eq{left:0;right:0;bottom:0;height:24vh;display:flex;align-items:flex-end;gap:5px;padding:0 14px;opacity:.42;-webkit-mask-image:linear-gradient(0deg,#000 40%,transparent);mask-image:linear-gradient(0deg,#000 40%,transparent)}
-.pt-eq i{flex:1;height:100%;background:linear-gradient(0deg,#9b3fb5,#f0a8ff);border-radius:3px 3px 0 0;transform-origin:50% 100%;transform:scaleY(.1);will-change:transform}
-.pt-vinyl{left:-110px;bottom:-110px;width:300px;height:300px;border-radius:50%;opacity:.28;background:radial-gradient(circle,#150a1f 0 14%,#d070f0 14% 17%,#150a1f 17% 36%,repeating-radial-gradient(circle,#2a1238 0 3px,#150a1f 3px 6px) 36%);box-shadow:0 0 0 3px rgba(208,112,240,.5);animation:ptSpin 9s linear infinite;will-change:transform}
-.pt-note{font-size:var(--fs);color:var(--c);text-shadow:0 0 10px currentColor;line-height:1}
-.pt-bnote{line-height:1;text-shadow:0 0 10px currentColor}
-#pm-musiques.pt .pm-section-title{text-shadow:0 0 18px rgba(208,112,240,.6)}
-#pm-musiques.pt .proj-modal{box-shadow:0 0 110px rgba(155,63,181,.3)}
-@media(max-width:700px){.pt-live{left:112px}.pt-chat{width:120px;height:26vh}.pt-vinyl{width:200px;height:200px;left:-80px;bottom:-80px}}
+@media(max-width:700px){.pt-live{left:112px}.pt-chat{width:120px;height:26vh}}
 
 /* ===== Bandeaux animes : City Rider (skyline) et Mira (ciel de blocs) ===== */
 /* City Rider : skyline dans le bandeau */
