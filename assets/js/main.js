@@ -1075,7 +1075,10 @@ function _ambInit() {
   _ambCtx = new (window.AudioContext || window.webkitAudioContext)();
   _ambGain = _ambCtx.createGain();
   _ambGain.gain.value = 0;
-  _ambGain.connect(_ambCtx.destination);
+  // Limiteur : evite la saturation quand on remonte le volume des ambiances rehaussees
+  var _lim = _ambCtx.createDynamicsCompressor();
+  _lim.threshold.value = -8; _lim.knee.value = 4; _lim.ratio.value = 20; _lim.attack.value = 0.003; _lim.release.value = 0.2;
+  _ambGain.connect(_lim); _lim.connect(_ambCtx.destination);
 }
 
 function _ambStop() {
@@ -1124,7 +1127,7 @@ function _ambFadeIn() {
     if (!isFinite(now)) return;
     _ambGain.gain.cancelScheduledValues(now);
     _ambGain.gain.setValueAtTime(0.001, now);
-    _ambGain.gain.linearRampToValueAtTime(_ambMuted ? 0.001 : 0.28, now + 2.0);
+    _ambGain.gain.linearRampToValueAtTime((_ambMuted || (typeof _audio !== 'undefined' && _audio.muted)) ? 0.001 : Math.max(0.001, _ambGainTarget()), now + 2.0);
   } catch(e) { console.warn('ambFadeIn error:', e); }
 }
 
@@ -1188,8 +1191,18 @@ function _ambTargetVol() {
   var v = _audio.volume;
   if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
   if (v === undefined || isNaN(v)) v = 0.5;
-  return Math.min(0.45, 0.9 * v);
+  return 0.45 * (v / 0.5);
 }
+/* Egalisation : chaque ambiance est calee sur le meme niveau percu (mesure ponderee K, cible -32 dB)
+   pour un reglage de volume identique. Valeurs = multiplicateurs du gain de base (0.28). */
+var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6};
+function _ambGainTarget() {
+  var v = _audio.volume;
+  if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
+  if (v === undefined || isNaN(v)) v = 0.5;
+  return 0.28 * (v / 0.5) * (_AMB_TRIM[_ambCurrentId] || 1);
+}
+function _ambElVol(a) { return Math.min(1, _ambTargetVol() * (a._k || 1)); }
 function _ambFadeEl(a, stillValid) {
   var v = 0, fi = setInterval(function() {
     if (!stillValid()) { clearInterval(fi); return; }
@@ -1347,7 +1360,7 @@ var _AMBIENCES = {
       _ambNodes._cityEl = null;
     }
     var a = document.createElement('audio');
-    a.loop = true; a.preload = 'auto'; a.volume = 0; a._k = 0.55; // mp3 plus fort que les autres ambiances
+    a.loop = true; a.preload = 'auto'; a.volume = 0; a._k = 0.18; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
     _ambNodes._cityEl = a;
     var token = {};
@@ -1392,7 +1405,7 @@ var _AMBIENCES = {
     var a = document.createElement('audio');
     a.loop = true;
     a.preload = 'auto';
-    a.volume = 0; a._k = 0.55; // mp3 plus fort que les autres ambiances
+    a.volume = 0; a._k = 0.53; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
     _ambNodes._towerEl = a;
 
@@ -1529,7 +1542,7 @@ var _AMBIENCES = {
     var a = document.createElement('audio');
     a.loop = true;
     a.preload = 'auto';
-    a.volume = 0;
+    a.volume = 0; a._k = 0.25; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
     _ambNodes._dracEl = a;
 
@@ -1812,10 +1825,10 @@ var _audio = {
     this.muted = !this.muted;
     var vol = this.muted ? 0 : (this.volume !== undefined ? this.volume : 0.5);
     // Mute Web Audio API
-    if (_ambGain) _ambGain.gain.value = this.muted ? 0 : 0.28 * (vol / 0.5);
+    if (_ambGain) _ambGain.gain.value = this.muted ? 0 : _ambGainTarget();
     // Mute elements HTML audio (tower + draco)
     ['_towerEl','_dracEl','_cityEl'].forEach(function(k) {
-      if (_ambNodes[k]) _ambNodes[k].volume = this.muted ? 0 : Math.min(0.45, 0.9 * vol) * (_ambNodes[k]._k || 1);
+      if (_ambNodes[k]) _ambNodes[k].volume = this.muted ? 0 : _ambElVol(_ambNodes[k]);
     }.bind(this));
     var btn = document.getElementById('audio-btn');
     if (btn) btn.textContent = this.muted ? '\uD83D\uDD07' : '\uD83D\uDD0A';
@@ -1828,10 +1841,10 @@ var _audio = {
     try { localStorage.setItem('portfolio_volume', val); } catch(e) {}
     if (this.muted) return;
     // Web Audio API
-    if (_ambGain) _ambGain.gain.value = 0.28 * (val / 0.5);
+    if (_ambGain) _ambGain.gain.value = _ambGainTarget();
     // HTML audio elements
     ['_towerEl','_dracEl','_cityEl'].forEach(function(k) {
-      if (_ambNodes[k]) _ambNodes[k].volume = Math.min(0.45, 0.9 * val) * (_ambNodes[k]._k || 1);
+      if (_ambNodes[k]) _ambNodes[k].volume = _ambElVol(_ambNodes[k]);
     });
   },
   playClick: function() {
@@ -2053,7 +2066,7 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
     document.querySelectorAll('.proj-modal-overlay.open,.skill-modal-overlay.open').forEach(function(o){
       var id = o.id ? o.id.replace('pm-','').replace('sm-','') : null;
-      o.classList.remove('open'); document.body.style.overflow='';
+      o.classList.remove('open'); document.body.style.overflow=''; document.body.classList.remove('modal-open');
       stopFx();
       _audio.stopAmbient();
       var btn=document.getElementById('audio-panel');
@@ -2704,7 +2717,7 @@ window.addEventListener('load',function(){
 
   /* ---------- Devouring Priest : cassette VHS / found footage ---------- */
   function startHorror(ov){
-    var layer=el('div','hx-layer',ov), timers=[], t0=Date.now(), modal=ov.querySelector('.proj-modal');
+    var layer=el('div','hx-layer',document.body), timers=[], t0=Date.now(), modal=ov.querySelector('.proj-modal');
     el('div','hx-grain',layer); el('div','hx-scan',layer); el('div','hx-vig',layer); var bar=el('div','hx-bar',layer);
     ['tl','tr','bl','br'].forEach(function(c){ el('i','hx-br hx-p'+c,layer); });
     var hud=el('div','hx-hud',layer); hud.innerHTML='<b></b>REC <span class="hx-tc">00:00:00</span>';
@@ -2733,7 +2746,7 @@ window.addEventListener('load',function(){
 
   /* ---------- Draconium : le grimoire, entre le dragon (or) et l'alchimiste (vert acide) ---------- */
   function startDraco(ov){
-    var hero=ov.querySelector('.proj-modal-hero'), fx=el('div','dx-fx',hero), layer=el('div','dx-layer',ov), dead=false, raf=0, mx=.5, timers=[];
+    var hero=ov.querySelector('.proj-modal-hero'), fx=el('div','dx-fx',hero), layer=el('div','dx-layer',document.body), dead=false, raf=0, mx=.5, timers=[];
     // lumieres de la salle : torche du dragon a gauche, lampe de l'alchimiste a droite, teinte qui vire au vert quand on descend
     el('div','dx-tint',layer); el('div','dx-torch dx-tl',layer); el('div','dx-torch dx-tr',layer); el('div','dx-vig',layer);
     var rail=el('div','dx-rail',layer); var fill=el('i','',rail), tint=layer.querySelector('.dx-tint');
@@ -2794,4 +2807,11 @@ window.addEventListener('load',function(){
   closeProj=function(id){ _close(id); if(cur&&cur.id===id) stop(); };
   // fermeture par Echap ou autre : on surveille l'etat du modal
   setInterval(function(){ if(cur && !cur.ov.classList.contains('open')) stop(); },600);
+})();
+
+/* Fiche ouverte : on masque la barre de defilement de la page derriere (il ne reste que celle de la fiche) */
+(function(){
+  function sync(){ document.documentElement.classList.toggle('has-modal', document.body.classList.contains('modal-open')); }
+  new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
+  sync();
 })();

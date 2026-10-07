@@ -1479,3 +1479,15 @@ html{overflow-x:clip}
   #skills-hint{margin-top:-1rem!important;margin-bottom:1.6rem!important}
   .pr-intro{margin-top:-.6rem}
 }
+
+/* Indication des commandes (clavier / souris / manette) */
+.proj-modal-tags .tag.ctrl{border-color:rgba(255,255,255,.4);color:#fff;background:rgba(255,255,255,.06)}
+/* Les calques d'ambiance couvrent tout l'ecran, barre de defilement comprise */
+.jx-layer,.hx-layer,.dx-layer{inset:auto;top:0;left:0;width:100vw;height:100vh;height:100dvh}
+html.has-modal{overflow:hidden!important;scrollbar-width:none}
+html.has-modal::-webkit-scrollbar{display:none}
+/* barre de defilement de la fiche : fine et discrete */
+.proj-modal-overlay,.skill-modal-overlay{scrollbar-width:thin;scrollbar-color:rgba(200,169,110,.45) rgba(0,0,0,.35)}
+.proj-modal-overlay::-webkit-scrollbar,.skill-modal-overlay::-webkit-scrollbar{width:8px}
+.proj-modal-overlay::-webkit-scrollbar-track,.skill-modal-overlay::-webkit-scrollbar-track{background:rgba(0,0,0,.35)}
+.proj-modal-overlay::-webkit-scrollbar-thumb,.skill-modal-overlay::-webkit-scrollbar-thumb{background:rgba(200,169,110,.45);border-radius:4px}
