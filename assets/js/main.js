@@ -2824,6 +2824,30 @@ window.addEventListener('load',function(){
     };
   }
 
+  /* ---------- Barre de progression a gauche, aux couleurs de chaque projet ---------- */
+  function startRail(ov,id){
+    var layer=el('div','pr-layer',document.body), rail=el('div','pr-rail pr-'+id,layer), zig=(id==='tower'), raf=0, H=0;
+    var fill, mark=el('b','pr-mark',rail), svg=null, zt=null; el('i','',mark);
+    if(zig){
+      rail.insertAdjacentHTML('afterbegin','<svg aria-hidden="true"><path class="pr-zt"/><path class="pr-zf" pathLength="1"/></svg>');
+      svg=rail.querySelector('svg'); zt=rail.querySelector('.pr-zt'); fill=rail.querySelector('.pr-zf');
+    } else { fill=el('i','pr-fill',rail); rail.insertBefore(fill,mark); }
+    function build(){ // zigzag aux dimensions reelles de la barre
+      var pts='M10 0'; for(var k=1;k<=10;k++) pts+=' L'+(k%2?2:18)+' '+(k*H/10).toFixed(1);
+      svg.setAttribute('viewBox','0 0 20 '+H); zt.setAttribute('d',pts); fill.setAttribute('d',pts);
+    }
+    function zx(p){ var u=p*10, k=Math.min(9,Math.floor(u)), f=u-k, x0=k===0?10:(k%2?2:18), x1=(k+1)%2?2:18; return x0+(x1-x0)*f; }
+    var lastH=0;
+    function upd(){
+      raf=0; var m=ov.scrollHeight-ov.clientHeight, p=m>0?Math.min(1,Math.max(0,ov.scrollTop/m)):0; H=rail.clientHeight;
+      if(zig){ if(H!==lastH){ lastH=H; build(); } fill.style.strokeDashoffset=(1-p).toFixed(3); mark.style.transform='translate('+(zx(p)-10).toFixed(1)+'px,'+(p*H).toFixed(1)+'px)'; }
+      else { rail.style.setProperty('--p',p.toFixed(3)); mark.style.transform='translate(0,'+(p*H).toFixed(1)+'px)'; }
+    }
+    function onS(){ if(!raf) raf=requestAnimationFrame(upd); }
+    ov.addEventListener('scroll',onS,{passive:true}); window.addEventListener('resize',onS); upd();
+    return function(){ ov.removeEventListener('scroll',onS); window.removeEventListener('resize',onS); if(raf) cancelAnimationFrame(raf); layer.remove(); };
+  }
+
   /* ---------- Cycle de vie ---------- */
   function stop(){ if(cur){ try{ cur.off(); }catch(e){} cur=null; } }
   var _open=openProj, _close=closeProj;
@@ -2831,9 +2855,12 @@ window.addEventListener('load',function(){
     _open(id); stop();
     var ov=document.getElementById('pm-'+id); if(!ov) return;
     try{
-      if(id==='juiceup') cur={id:id,ov:ov,off:startJuice(ov)};
-      else if(id==='priest') cur={id:id,ov:ov,off:startHorror(ov)};
-      else if(id==='draconium') cur={id:id,ov:ov,off:startDraco(ov)};
+      var offs=[];
+      if(id==='juiceup') offs.push(startJuice(ov));
+      else if(id==='priest') offs.push(startHorror(ov));
+      else if(id==='draconium') offs.push(startDraco(ov));
+      if(id!=='draconium') offs.push(startRail(ov,id));   // Draconium a deja sa propre barre
+      cur={id:id,ov:ov,off:function(){ offs.forEach(function(f){ try{ f(); }catch(e){} }); }};
     }catch(e){ console.warn('page fx',e); }
   };
   closeProj=function(id){ _close(id); if(cur&&cur.id===id) stop(); };
