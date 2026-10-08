@@ -124,12 +124,14 @@
   function stop(){ if(cur){ try{ cur.off(); }catch(e){} cur=null; } }
   var _open=openProj, _close=closeProj;
   openProj=function(id){
+    var opener=document.activeElement;
     _open(id); stop();
     var ov=document.getElementById('pm-'+id);
+    if(ov){ ov.setAttribute('role','dialog'); ov.setAttribute('aria-modal','true'); ov._opener=opener; var cb=ov.querySelector('.proj-modal-close'); if(cb){ try{ cb.focus({preventScroll:true}); }catch(e){} } }
     if(ov) [].forEach.call(ov.querySelectorAll('img[loading="lazy"]'),function(i){ i.loading='eager'; });
     if(!ov||!T[id]) return;
     try{ SMALL=window.innerWidth<700; cur={id:id,ov:ov,off:T[id](ov)}; }catch(e){ console.warn('page theme',e); }
   };
-  closeProj=function(id){ _close(id); if(cur&&cur.id===id) stop(); };
+  closeProj=function(id){ var ov=document.getElementById('pm-'+id), op=ov&&ov._opener; _close(id); if(cur&&cur.id===id) stop(); if(op&&op.focus&&document.contains(op)){ try{ op.focus({preventScroll:true}); }catch(e){} } };
   setInterval(function(){ if(cur && !cur.ov.classList.contains('open')) stop(); },600);
 })();
