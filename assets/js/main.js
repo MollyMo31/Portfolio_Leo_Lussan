@@ -1112,26 +1112,37 @@ function _ambInit() {
   _ambGain.connect(_lim); _lim.connect(_ambCtx.destination);
 }
 
+/* Les musiques en mp3 passent par le graphe Web Audio : sur iPhone, audio.volume est ignore, ce qui rendait
+   ces musiques bien plus fortes que les autres. Avec le graphe, volume, sourdine et niveau sont les memes partout. */
+function _ambViaGraph(a, G) {
+  try {
+    a.crossOrigin = 'anonymous';
+    var s = _ambCtx.createMediaElementSource(a), g = _ambCtx.createGain();
+    g.gain.value = G; s.connect(g); g.connect(_ambGain); a._src = s; a._g = g;
+  } catch(e) { a._g = null; }
+}
+function _ambDropEl(el) { try { if (el && el._g) { el._g.disconnect(); el._src.disconnect(); } } catch(e){} }
+
 function _ambStop() {
   clearTimeout(_ambLoop);
   _ambNodes.forEach(function(n){ try{ if(n && typeof n.stop==='function') n.stop(); }catch(e){} });
   // Arret immediat des elements audio HTML
   if (_ambNodes._dracEl) {
-    var el = _ambNodes._dracEl;
+    var el = _ambNodes._dracEl; _ambDropEl(el);
     try { el.pause(); el.currentTime=0; el.src = ''; } catch(e){}
     try { if(el.parentNode) el.parentNode.removeChild(el); } catch(e){}
     _ambNodes._dracEl = null;
     _ambNodes._dracToken = null;
   }
   if (_ambNodes._cityEl) {
-    var cel = _ambNodes._cityEl;
+    var cel = _ambNodes._cityEl; _ambDropEl(cel);
     try { cel.pause(); cel.currentTime=0; cel.src = ''; } catch(e){}
     try { if(cel.parentNode) cel.parentNode.removeChild(cel); } catch(e){}
     _ambNodes._cityEl = null;
     _ambNodes._cityToken = null;
   }
   if (_ambNodes._towerEl) {
-    var tel = _ambNodes._towerEl;
+    var tel = _ambNodes._towerEl; _ambDropEl(tel);
     try { tel.pause(); tel.currentTime=0; tel.src = ''; } catch(e){}
     try { if(tel.parentNode) tel.parentNode.removeChild(tel); } catch(e){}
     _ambNodes._towerEl = null;
@@ -1234,11 +1245,11 @@ function _ambGainTarget() {
   if (v === undefined || isNaN(v)) v = 0.5;
   return 0.28 * (v / 0.5) * _AMB_MASTER * (_AMB_TRIM[_ambCurrentId] || 1);
 }
-function _ambElVol(a) { return Math.min(1, _ambTargetVol() * (a._k || 1)); }
+function _ambElVol(a) { if (_audio.muted) return 0; return a._g ? 1 : Math.min(1, _ambTargetVol() * (a._k || 1)); }
 function _ambFadeEl(a, stillValid) {
   var v = 0, fi = setInterval(function() {
     if (!stillValid()) { clearInterval(fi); return; }
-    var t = _ambTargetVol() * (a._k || 1);
+    var t = a._g ? (_audio.muted ? 0 : 1) : _ambTargetVol() * (a._k || 1);
     v = Math.min(v + 0.018, t); a.volume = v;
     if (v >= t) clearInterval(fi);
   }, 60);
@@ -1394,7 +1405,7 @@ var _AMBIENCES = {
     var a = document.createElement('audio');
     a.loop = true; a.preload = 'auto'; a.volume = 0; a._k = 0.18; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
-    _ambNodes._cityEl = a;
+    _ambNodes._cityEl = a; _ambViaGraph(a, 0.27);
     var token = {};
     _ambNodes._cityToken = token;
     var urls = [
@@ -1439,7 +1450,7 @@ var _AMBIENCES = {
     a.preload = 'auto';
     a.volume = 0; a._k = 0.53; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
-    _ambNodes._towerEl = a;
+    _ambNodes._towerEl = a; _ambViaGraph(a, 0.90);
 
     // Token de session - invalide les tryPlay anterieurs
     var token = {};
@@ -1576,7 +1587,7 @@ var _AMBIENCES = {
     a.preload = 'auto';
     a.volume = 0; a._k = 0.25; // niveau cale sur les autres ambiances
     document.body.appendChild(a);
-    _ambNodes._dracEl = a;
+    _ambNodes._dracEl = a; _ambViaGraph(a, 0.45);
 
     // Token de session - invalide les tryPlay anterieurs
     var token = {};
@@ -2061,6 +2072,8 @@ function openProj(id){
   document.body.classList.add('modal-open');
   initCar(id);
   _audio.init();
+  // Safari / iPhone : le contexte audio doit etre cree et active pendant le clic, pas apres un delai
+  try{ _ambInit(); if(_ambCtx.state==='suspended') _ambCtx.resume(); }catch(e){}
   _audio.playModalOpen();
   var btn=document.getElementById('audio-panel');
   if(btn) btn.style.display='flex';
@@ -2636,7 +2649,7 @@ window.addEventListener('load',function(){
   function go(i){
     i=Math.max(0,Math.min(ps.length-1,i)); if(i===cur) return; cur=i;
     ns.forEach(function(n,k){ n.classList.toggle('on',k===i); n.setAttribute('aria-current',k===i?'step':'false'); });
-    ps.forEach(function(p,k){ p.hidden=k!==i; });
+    ps.forEach(function(p,k){ p.hidden=k!==i; p.classList.toggle('ps-solo',!p.querySelector('.tl-ex')); });
     card.style.setProperty('--pc',ps[i].style.getPropertyValue('--pc'));
     bar.style.width=((i+1)/ps.length*100)+'%';
     prev.disabled=i===0; next.disabled=i===ps.length-1;
@@ -2831,7 +2844,7 @@ window.addEventListener('load',function(){
   /* Glisser la barre (souris ou doigt) fait defiler la fiche, comme une barre de defilement */
   function makeDraggable(rail,ov){
     var down=false;
-    function go(e){ var r=rail.getBoundingClientRect(), p=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height)); ov.scrollTo({top:p*(ov.scrollHeight-ov.clientHeight),behavior:'instant'}); }
+    function go(e){ var r=rail.getBoundingClientRect(), p=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height)); ov.scrollTop=p*(ov.scrollHeight-ov.clientHeight); }
     rail.addEventListener('pointerdown',function(e){ down=true; rail.classList.add('drag'); try{ rail.setPointerCapture(e.pointerId); }catch(err){} go(e); e.preventDefault(); });
     rail.addEventListener('pointermove',function(e){ if(down) go(e); });
     function up(e){ down=false; rail.classList.remove('drag'); try{ rail.releasePointerCapture(e.pointerId); }catch(err){} if(!rail.matches(':hover')) document.body.classList.remove('ch-hover'); }
@@ -2908,7 +2921,8 @@ window.addEventListener('load',function(){
     if (saved === null) return;
     var b = document.body, y = saved; saved = null;
     b.style.position = ''; b.style.top = ''; b.style.left = ''; b.style.right = ''; b.style.width = '';
-    window.scrollTo({top: y, left: 0, behavior: 'instant'});
+    var de = document.documentElement, sb = de.style.scrollBehavior;
+    de.style.scrollBehavior = 'auto'; window.scrollTo(0, y); de.style.scrollBehavior = sb;
   }
   function sync(){
     var open = document.body.classList.contains('modal-open');

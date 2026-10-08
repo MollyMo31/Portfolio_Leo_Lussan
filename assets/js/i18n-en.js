@@ -915,6 +915,7 @@
  "Clavier / souris": "Keyboard / mouse",
  "Clavier ou manette": "Keyboard or controller",
  "Souris": "Mouse",
+ "Aller au contenu": "Skip to content",
  "Avant / Après game feel — à venir": "Before / After game feel — coming soon",
  "VFX de gameplay — à venir": "Gameplay VFX — coming soon",
  "Gameplay complet — à venir": "Full gameplay — coming soon",
