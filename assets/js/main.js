@@ -1148,6 +1148,13 @@ function _ambStop() {
     _ambNodes._towerEl = null;
     _ambNodes._towerToken = null; // invalide tout tryPlay en cours
   }
+  ['_stEl','_stSc'].forEach(function(k){
+    var x = _ambNodes[k]; if (!x) return; _ambDropEl(x);
+    try { x.pause(); x.currentTime=0; x.src = ''; } catch(e){}
+    try { if(x.parentNode) x.parentNode.removeChild(x); } catch(e){}
+    _ambNodes[k] = null;
+  });
+  _ambNodes._stToken = null;
   _ambNodes = [];
   _ambCurrentId = null;
   if (_ambGain && _ambCtx) {
@@ -1238,7 +1245,7 @@ function _ambTargetVol() {
 /* Egalisation : chaque ambiance est calee sur le meme niveau percu (mesure ponderee K, cible -32 dB)
    pour un reglage de volume identique. Valeurs = multiplicateurs du gain de base (0.28). */
 var _AMB_MASTER = 0.7; // niveau general des ambiances (environ -3 dB)
-var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6};
+var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6, indicium:1.5};
 function _ambGainTarget() {
   var v = _audio.volume;
   if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
@@ -1688,6 +1695,21 @@ _AMBIENCES.mira = function() {
     }
     playNote();
   };
+/* Stage Indicium : boucle de fond de la fiche, et cri du screamer declenche par la video (voir plus bas) */
+_AMBIENCES.indicium = function() {
+  var token = {}; _ambNodes._stToken = token;
+  function mk(src, G, loop) {
+    var a = document.createElement('audio');
+    a.loop = !!loop; a.preload = 'auto'; a.volume = 0; a._k = 0.18; a.setAttribute('playsinline','');
+    document.body.appendChild(a); _ambViaGraph(a, G); a.src = src; return a;
+  }
+  var loop = mk('assets/audio/stage-loop.mp3', 0.87, true);
+  var sc = mk('assets/audio/stage-screamer.mp3', 0.87, false);
+  _ambNodes._stEl = loop; _ambNodes._stSc = sc;
+  var p = loop.play();
+  function ok() { if (_ambNodes._stToken !== token) { loop.pause(); return; } _ambFadeEl(loop, function(){ return _ambNodes._stToken === token; }); }
+  if (p && p.then) p.then(ok).catch(function(){}); else ok();
+};
 /* Entretien d'embauche : valse de cirque en la mineur, orgue de barbarie un peu faux */
 _AMBIENCES.entretien = function() {
   var ctx=_ambCtx, out=_ambGain, bpm=138, beat=60/bpm, n=0, next=ctx.currentTime+0.2;
@@ -2123,7 +2145,7 @@ document.addEventListener('keydown',function(e){
 /* == AUDIO FEEDBACK ON INTERACTIONS == */
 (function(){
   // Hover feedback sur les project rows
-  document.querySelectorAll('.project-row,.sel-item,.sel-go').forEach(function(el){
+  document.querySelectorAll('.project-row,.sel-item,.sel-go,.st-card').forEach(function(el){
     el.addEventListener('mouseenter',function(){ _audio.playHover(); });
     el.addEventListener('click',function(){ _audio.playClick(); });
   });
@@ -2931,4 +2953,30 @@ window.addEventListener('load',function(){
   }
   new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
   sync();
+})();
+
+
+/* == STAGES : lecteur de la cinematique Indicium, avec le cri synchronise sur l'image du screamer == */
+(function(){
+  var box=document.getElementById('st-video'), v=document.getElementById('st-vid'), btn=document.getElementById('st-play'), fill=document.getElementById('st-vfill'), ov=document.getElementById('pm-indicium');
+  if(!box||!v||!btn||!ov) return;
+  var SCREAM=11.58, fired=false, raf=0;
+  function sc(){ return (typeof _ambNodes!=='undefined' && _ambNodes) ? _ambNodes._stSc : null; }
+  function scream(){ var a=sc(); if(!a||(typeof _audio!=='undefined'&&_audio.muted)) return; try{ a.currentTime=0; var p=a.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }
+  function hush(){ var a=sc(); if(a){ try{ a.pause(); a.currentTime=0; }catch(e){} } }
+  function unlock(){ var a=sc(); if(!a) return; try{ a.muted=true; var p=a.play(); if(p&&p.then) p.then(function(){ a.pause(); a.currentTime=0; a.muted=false; }).catch(function(){ a.muted=false; }); else a.muted=false; }catch(e){} }
+  function tick(){
+    raf=0; if(v.paused||v.ended) return;
+    var t=v.currentTime; fill.style.width=Math.min(100,t/(v.duration||15)*100)+'%';
+    if(!fired && t>=SCREAM-0.02 && t<SCREAM+0.7){ fired=true; scream(); } else if(t<SCREAM-0.5){ fired=false; }
+    raf=requestAnimationFrame(tick);
+  }
+  function play(){ unlock(); if(v.ended) v.currentTime=0; var p=v.play(); if(p&&p.catch) p.catch(function(){ box.classList.remove('playing'); }); box.classList.add('playing'); }
+  function pause(){ v.pause(); box.classList.remove('playing'); hush(); }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); play(); });
+  box.addEventListener('click',function(){ if(box.classList.contains('playing')) pause(); });
+  v.addEventListener('play',function(){ if(!raf) raf=requestAnimationFrame(tick); });
+  v.addEventListener('seeked',function(){ if(v.currentTime<SCREAM-0.5) fired=false; });
+  v.addEventListener('ended',function(){ box.classList.remove('playing'); fired=false; fill.style.width='0'; });
+  new MutationObserver(function(){ if(!ov.classList.contains('open')){ v.pause(); try{ v.currentTime=0; }catch(e){} box.classList.remove('playing'); fired=false; fill.style.width='0'; hush(); } }).observe(ov,{attributes:true,attributeFilter:['class']});
 })();
