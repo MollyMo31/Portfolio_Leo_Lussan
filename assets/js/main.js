@@ -1723,11 +1723,11 @@ function _stMusic(src, G, token, k) {
 /* la video d'Indicium coupe le fond sonore (musique et effets) tant qu'elle se lit */
 function _stDuck(on) {
   _ambNodes._stDucked = !!on;
-  var a = _ambNodes._stEl;
-  if (a && !a._g) { a.muted = !!on; }
+  var a = _ambNodes._stEl, F = 0.35;   // pendant la video, la musique baisse sans disparaitre
+  if (a && !a._g) { try { a.volume = Math.min(1, _ambTargetVol() * (a._k || 1) * (on ? F : 1)); } catch(e) {} }
   if (a && a._g && _ambCtx) { try {
     var g = a._g.gain, t = _ambCtx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t);
-    g.linearRampToValueAtTime(on ? 0.0001 : a._G, t + (on ? 0.35 : 1.2));
+    g.linearRampToValueAtTime(on ? a._G * F : a._G, t + (on ? 0.5 : 1.2));
   } catch(e) {} }
 }
 _AMBIENCES.indicium = function() {
@@ -1745,12 +1745,6 @@ _AMBIENCES.indicium = function() {
 _AMBIENCES.wetland = function() {
   var token = {}; _ambNodes._stToken = token;
   _stMusic('assets/audio/wetland-bgm.mp3', 0.09, token, 0.2);
-  function alive() { return _ambNodes._stToken === token; }
-  function frog() { if (!alive()) return; var n = 2 + Math.floor(Math.random() * 3), f = 520 + Math.random() * 260;
-    for (var i = 0; i < n; i++) (function(i){ var t = setTimeout(function(){ if (alive()) _stBlip(f, f * 0.7, 0.16, 0.05, 'square', f); }, i * 190); (_ambNodes._tm = _ambNodes._tm || []).push(t); })(i);
-    _stT(frog, 7000, 16000); }
-  function drop() { if (!alive()) return; _stBlip(1100 + Math.random() * 500, 320, 0.14, 0.05, 'sine'); _stT(drop, 3000, 8000); }
-  _stT(frog, 3000, 7000); _stT(drop, 1500, 4000);
 };
 /* Entretien d'embauche : valse de cirque en la mineur, orgue de barbarie un peu faux */
 _AMBIENCES.entretien = function() {
