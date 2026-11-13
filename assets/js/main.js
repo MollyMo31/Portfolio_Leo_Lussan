@@ -1148,6 +1148,7 @@ function _ambStop() {
     _ambNodes._towerEl = null;
     _ambNodes._towerToken = null; // invalide tout tryPlay en cours
   }
+  (_ambNodes._tm||[]).forEach(function(t){ clearTimeout(t); });
   ['_stEl','_stSc'].forEach(function(k){
     var x = _ambNodes[k]; if (!x) return; _ambDropEl(x);
     try { x.pause(); x.currentTime=0; x.src = ''; } catch(e){}
@@ -1245,7 +1246,7 @@ function _ambTargetVol() {
 /* Egalisation : chaque ambiance est calee sur le meme niveau percu (mesure ponderee K, cible -32 dB)
    pour un reglage de volume identique. Valeurs = multiplicateurs du gain de base (0.28). */
 var _AMB_MASTER = 0.7; // niveau general des ambiances (environ -3 dB)
-var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6, indicium:1.5};
+var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6, indicium:1.5, wetland:5.0};
 function _ambGainTarget() {
   var v = _audio.volume;
   if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
@@ -1709,6 +1710,52 @@ _AMBIENCES.indicium = function() {
   var p = loop.play();
   function ok() { if (_ambNodes._stToken !== token) { loop.pause(); return; } _ambFadeEl(loop, function(){ return _ambNodes._stToken === token; }); }
   if (p && p.then) p.then(ok).catch(function(){}); else ok();
+  _stEffects(token);
+};
+/* Stages : petits effets sonores synthetises par-dessus la musique (marais pour Wetland, theatre pour Indicium) */
+function _stT(fn, a, b) { var t = setTimeout(fn, a + Math.random() * (b - a)); (_ambNodes._tm = _ambNodes._tm || []).push(t); }
+function _stNoiseBuf(sec) { var b = _ambCtx.createBuffer(1, _ambCtx.sampleRate * sec, _ambCtx.sampleRate), d = b.getChannelData(0); for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; return b; }
+function _stBlip(f0, f1, dur, peak, type, filt) {
+  var c = _ambCtx, t = c.currentTime, o = c.createOscillator(), g = c.createGain(), n = filt ? c.createBiquadFilter() : null;
+  o.type = type || 'sine'; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + dur * 0.15); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  if (n) { n.type = 'bandpass'; n.frequency.value = filt; n.Q.value = 1.2; o.connect(n); n.connect(g); } else o.connect(g);
+  g.connect(_ambGain); o.start(t); o.stop(t + dur + 0.05);
+}
+function _stEffects(token) {
+  function alive() { return _ambNodes._stToken === token; }
+  function creak() { if (!alive()) return; _stBlip(95 + Math.random() * 40, 52, 0.9 + Math.random() * 0.6, 0.05, 'sawtooth', 320); _stT(creak, 5000, 11000); }
+  function thump() { if (!alive()) return; _stBlip(62, 34, 1.1, 0.16, 'sine'); _stT(thump, 9000, 20000); }
+  _stT(creak, 2500, 6000); _stT(thump, 6000, 12000);
+}
+_AMBIENCES.wetland = function() {
+  var c = _ambCtx, out = _ambGain, id = 'wetland';
+  var nb = _stNoiseBuf(4);
+  function bed(type, freq, q, gain, lfoHz, lfoAmt) {
+    var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(), l = c.createOscillator(), lg = c.createGain();
+    s.buffer = nb; s.loop = true; f.type = type; f.frequency.value = freq; f.Q.value = q; g.gain.value = gain;
+    l.frequency.value = lfoHz; lg.gain.value = lfoAmt; l.connect(lg); lg.connect(g.gain);
+    s.connect(f); f.connect(g); g.connect(out); s.start(); l.start(); _ambNodes.push(s, l);
+  }
+  bed('lowpass', 380, 0.7, 0.07, 0.11, 0.035);      // eau
+  bed('bandpass', 900, 0.8, 0.012, 0.07, 0.008);    // vent dans les roseaux
+  var chords = [[146.8, 174.6, 220], [116.5, 146.8, 174.6], [130.8, 155.6, 196], [110, 130.8, 164.8]], ci = 0;
+  function pad() {
+    if (_ambCurrentId !== id) return;
+    var t = c.currentTime;
+    chords[ci++ % chords.length].forEach(function(fr, k) {
+      var o = c.createOscillator(), g = c.createGain(), fl = c.createBiquadFilter();
+      o.type = k ? 'triangle' : 'sine'; o.frequency.value = fr; fl.type = 'lowpass'; fl.frequency.value = 700;
+      g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.02, t + 3.2); g.gain.linearRampToValueAtTime(0.0001, t + 8);
+      o.connect(fl); fl.connect(g); g.connect(out); o.start(t); o.stop(t + 8.2);
+    });
+    _stT(pad, 6200, 6800);
+  }
+  function frog() { if (_ambCurrentId !== id) return; var n = 2 + Math.floor(Math.random() * 3), f = 520 + Math.random() * 260;
+    for (var i = 0; i < n; i++) (function(i){ var t = setTimeout(function(){ if (_ambCurrentId === id) _stBlip(f, f * 0.7, 0.16, 0.05, 'square', f); }, i * 190); (_ambNodes._tm = _ambNodes._tm || []).push(t); })(i);
+    _stT(frog, 6000, 15000); }
+  function drop() { if (_ambCurrentId !== id) return; _stBlip(1100 + Math.random() * 500, 320, 0.14, 0.05, 'sine'); _stT(drop, 2500, 7000); }
+  pad(); _stT(frog, 3000, 7000); _stT(drop, 1500, 4000);
 };
 /* Entretien d'embauche : valse de cirque en la mineur, orgue de barbarie un peu faux */
 _AMBIENCES.entretien = function() {
