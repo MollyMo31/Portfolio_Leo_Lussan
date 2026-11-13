@@ -3007,7 +3007,7 @@ window.addEventListener('load',function(){
 (function(){
   var box=document.getElementById('st-video'), v=document.getElementById('st-vid'), btn=document.getElementById('st-play'), fill=document.getElementById('st-vfill'), ov=document.getElementById('pm-indicium');
   if(!box||!v||!btn||!ov) return;
-  var SCREAM=11.58, fired=false, raf=0;
+  var SCREAM=9.58, fired=false, raf=0;
   function sc(){ return (typeof _ambNodes!=='undefined' && _ambNodes) ? _ambNodes._stSc : null; }
   function scream(){ var a=sc(); if(!a||(typeof _audio!=='undefined'&&_audio.muted)) return; try{ a.currentTime=0; var p=a.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }
   function hush(){ var a=sc(); if(a){ try{ a.pause(); a.currentTime=0; }catch(e){} } }

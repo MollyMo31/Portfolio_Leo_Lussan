@@ -998,7 +998,7 @@
  "Superviser une cinématique": "Supervising a cinematic",
  "Schématiser avant de produire aligne toute l'équipe sur le même résultat.": "Mapping out before production aligns the whole team on the same result.",
  "→ Voir Indicium sur Steam": "→ See Indicium on Steam",
- "Cinématique · 15 s · Unreal Engine": "Cinematic · 15 s · Unreal Engine",
+ "Cinématique · 11 s · Unreal Engine": "Cinematic · 11 s · Unreal Engine",
  "// Stage 02 — Sirene Games · Novembre 2026": "// Internship 02 — Sirene Games · November 2026",
  "<span class=\"tag accent\">Game Design</span><span class=\"tag\">Dialogues</span><span class=\"tag\">Cinématique</span><span class=\"tag\">Unreal Engine</span>": "<span class=\"tag accent\">Game Design</span><span class=\"tag\">Dialogues</span><span class=\"tag\">Cinematic</span><span class=\"tag\">Unreal Engine</span>",
  "INDICIUM<br><span>Stage</span>": "INDICIUM<br><span>Internship</span>",
