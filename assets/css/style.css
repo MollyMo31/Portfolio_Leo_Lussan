@@ -1763,3 +1763,13 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible,summary:focus-visi
 .st-card-art::after{background:linear-gradient(180deg,rgba(0,0,0,0) 55%,var(--c0))}
 .st-card-body{margin-top:-1.6rem;padding:0 2rem 1.8rem;z-index:1}
 @media (max-width:600px){.st-card-body{padding:0 1.3rem 1.4rem}}
+
+/* bannieres affichees a leur taille d'origine (nettes), sur un fond flou de la meme image */
+.st-card-art{height:196px;aspect-ratio:auto;background:var(--c0)}
+.st-card-art .st-bg{position:absolute;left:-24px;top:-24px;width:calc(100% + 48px);height:calc(100% + 48px);object-fit:cover;filter:blur(20px) brightness(.5) saturate(1.25);transform:none!important}
+.st-card-art .st-fg{position:relative;display:block;width:auto;height:auto;max-width:100%;max-height:100%;margin:3px auto 0;object-fit:contain;box-shadow:0 8px 30px rgba(0,0,0,.45);transform:none!important}
+.st-card:hover .st-card-art .st-fg{filter:brightness(1.08)}
+.st-card-art::after{background:linear-gradient(180deg,rgba(0,0,0,0) 80%,var(--c0))}
+.st-card-body{margin-top:.3rem;padding-top:.6rem}
+.st-hero-img{height:auto;width:426px;max-width:62%;top:50%;transform:translateY(-50%);right:2.5rem;opacity:.95;-webkit-mask-image:none;mask-image:none;box-shadow:0 10px 40px rgba(0,0,0,.5);border-radius:2px}
+@media (max-width:900px){.st-hero-img{right:50%;transform:translate(50%,-50%);opacity:.28;max-width:90%}}

@@ -1706,10 +1706,15 @@ function _stBlip(f0, f1, dur, peak, type, filt) {
   g.connect(_ambGain); o.start(t); o.stop(t + dur + 0.05);
 }
 /* musique en boucle via le graphe Web Audio (meme niveau et meme volume que les autres fiches) */
-function _stMusic(src, G, token) {
+/* en ouverture directe du fichier (file://), le graphe Web Audio reste muet : on retombe sur le volume de l'element */
+function _stViaGraph(a, G, k) {
+  if (location.protocol === 'file:') { a._g = null; a._k = k; return; }
+  _ambViaGraph(a, G); if (!a._g) a._k = k;
+}
+function _stMusic(src, G, token, k) {
   var a = document.createElement('audio');
   a.loop = true; a.preload = 'auto'; a.volume = 0; a._k = 0.18; a.setAttribute('playsinline', '');
-  document.body.appendChild(a); _ambViaGraph(a, G); a._G = G; a.src = src;
+  document.body.appendChild(a); _stViaGraph(a, G, k); a._G = G; a.src = src;
   _ambNodes._stEl = a;
   var p = a.play();
   function ok() { if (_ambNodes._stToken !== token) { a.pause(); return; } _ambFadeEl(a, function(){ return _ambNodes._stToken === token; }); }
@@ -1719,6 +1724,7 @@ function _stMusic(src, G, token) {
 function _stDuck(on) {
   _ambNodes._stDucked = !!on;
   var a = _ambNodes._stEl;
+  if (a && !a._g) { a.muted = !!on; }
   if (a && a._g && _ambCtx) { try {
     var g = a._g.gain, t = _ambCtx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t);
     g.linearRampToValueAtTime(on ? 0.0001 : a._G, t + (on ? 0.35 : 1.2));
@@ -1727,10 +1733,10 @@ function _stDuck(on) {
 _AMBIENCES.indicium = function() {
   var token = {}; _ambNodes._stToken = token;
   var sc = document.createElement('audio');
-  sc.preload = 'auto'; sc.volume = 0; sc.setAttribute('playsinline', '');
-  document.body.appendChild(sc); _ambViaGraph(sc, 0.87); sc.src = 'assets/audio/stage-screamer.mp3';
+  sc.preload = 'auto'; sc.volume = 1; sc.setAttribute('playsinline', '');
+  document.body.appendChild(sc); _stViaGraph(sc, 0.87, 0.6); sc.src = 'assets/audio/stage-screamer.mp3';
   _ambNodes._stSc = sc;
-  _stMusic('assets/audio/indicium-bgm.mp3', 0.78, token);
+  _stMusic('assets/audio/indicium-bgm.mp3', 0.78, token, 0.5);
   function alive() { return _ambNodes._stToken === token; }
   function creak() { if (!alive()) return; if (!_ambNodes._stDucked) _stBlip(95 + Math.random() * 40, 52, 0.9 + Math.random() * 0.6, 0.05, 'sawtooth', 320); _stT(creak, 5000, 11000); }
   function thump() { if (!alive()) return; if (!_ambNodes._stDucked) _stBlip(62, 34, 1.1, 0.16, 'sine'); _stT(thump, 9000, 20000); }
@@ -1738,7 +1744,7 @@ _AMBIENCES.indicium = function() {
 };
 _AMBIENCES.wetland = function() {
   var token = {}; _ambNodes._stToken = token;
-  _stMusic('assets/audio/wetland-bgm.mp3', 0.09, token);
+  _stMusic('assets/audio/wetland-bgm.mp3', 0.09, token, 0.2);
   function alive() { return _ambNodes._stToken === token; }
   function frog() { if (!alive()) return; var n = 2 + Math.floor(Math.random() * 3), f = 520 + Math.random() * 260;
     for (var i = 0; i < n; i++) (function(i){ var t = setTimeout(function(){ if (alive()) _stBlip(f, f * 0.7, 0.16, 0.05, 'square', f); }, i * 190); (_ambNodes._tm = _ambNodes._tm || []).push(t); })(i);
@@ -2998,7 +3004,7 @@ window.addEventListener('load',function(){
   if(!box||!v||!btn||!ov) return;
   var SCREAM=9.58, fired=false, raf=0;
   function sc(){ return (typeof _ambNodes!=='undefined' && _ambNodes) ? _ambNodes._stSc : null; }
-  function scream(){ var a=sc(); if(!a||(typeof _audio!=='undefined'&&_audio.muted)) return; try{ a.currentTime=0; var p=a.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }
+  function scream(){ var a=sc(); if(!a||(typeof _audio!=='undefined'&&_audio.muted)) return; try{ if(!a._g && typeof _ambTargetVol==='function') a.volume=Math.min(1,_ambTargetVol()*(a._k||1)); a.currentTime=0; var p=a.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }
   function hush(){ var a=sc(); if(a){ try{ a.pause(); a.currentTime=0; }catch(e){} } }
   function unlock(){ var a=sc(); if(!a) return; try{ a.muted=true; var p=a.play(); if(p&&p.then) p.then(function(){ a.pause(); a.currentTime=0; a.muted=false; }).catch(function(){ a.muted=false; }); else a.muted=false; }catch(e){} }
   function tick(){
@@ -3007,7 +3013,7 @@ window.addEventListener('load',function(){
     if(!fired && t>=SCREAM-0.02 && t<SCREAM+0.7){ fired=true; scream(); } else if(t<SCREAM-0.5){ fired=false; }
     raf=requestAnimationFrame(tick);
   }
-  function play(){ unlock(); if(typeof _stDuck==='function') _stDuck(true); if(v.ended) v.currentTime=0; var p=v.play(); if(p&&p.catch) p.catch(function(){ box.classList.remove('playing'); }); box.classList.add('playing'); }
+  function play(){ try{ if(_ambCtx&&_ambCtx.state==='suspended') _ambCtx.resume(); }catch(e){} unlock(); if(typeof _stDuck==='function') _stDuck(true); if(v.ended) v.currentTime=0; var p=v.play(); if(p&&p.catch) p.catch(function(){ box.classList.remove('playing'); }); box.classList.add('playing'); }
   function pause(){ v.pause(); box.classList.remove('playing'); hush(); if(typeof _stDuck==='function') _stDuck(false); }
   btn.addEventListener('click',function(e){ e.stopPropagation(); play(); });
   box.addEventListener('click',function(){ if(box.classList.contains('playing')) pause(); });
