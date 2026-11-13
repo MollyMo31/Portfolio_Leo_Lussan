@@ -1148,6 +1148,14 @@ function _ambStop() {
     _ambNodes._towerEl = null;
     _ambNodes._towerToken = null; // invalide tout tryPlay en cours
   }
+  (_ambNodes._tm||[]).forEach(function(t){ clearTimeout(t); });
+  ['_stEl','_stSc','_stVo'].forEach(function(k){
+    var x = _ambNodes[k]; if (!x) return; _ambDropEl(x);
+    try { x.pause(); x.currentTime=0; x.src = ''; } catch(e){}
+    try { if(x.parentNode) x.parentNode.removeChild(x); } catch(e){}
+    _ambNodes[k] = null;
+  });
+  _ambNodes._stToken = null;
   _ambNodes = [];
   _ambCurrentId = null;
   if (_ambGain && _ambCtx) {
@@ -1238,7 +1246,7 @@ function _ambTargetVol() {
 /* Egalisation : chaque ambiance est calee sur le meme niveau percu (mesure ponderee K, cible -32 dB)
    pour un reglage de volume identique. Valeurs = multiplicateurs du gain de base (0.28). */
 var _AMB_MASTER = 0.7; // niveau general des ambiances (environ -3 dB)
-var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6};
+var _AMB_TRIM = {unjudged:3.9, priest:0.97, silence:1.12, mira:4.8, entretien:2.45, coaching:1.1, streaming:2.26, juiceup:2.3, musiques:1.6, indicium:1.5, wetland:5.0};
 function _ambGainTarget() {
   var v = _audio.volume;
   if (v === undefined) { try { var sv = localStorage.getItem('portfolio_volume'); if (sv !== null) v = parseFloat(sv); } catch(e) {} }
@@ -1688,6 +1696,65 @@ _AMBIENCES.mira = function() {
     }
     playNote();
   };
+/* Stages : musique de fond de chaque fiche (fichiers fournis) et petits effets synthetises par-dessus */
+function _stT(fn, a, b) { var t = setTimeout(fn, a + Math.random() * (b - a)); (_ambNodes._tm = _ambNodes._tm || []).push(t); }
+function _stBlip(f0, f1, dur, peak, type, filt) {
+  var c = _ambCtx, t = c.currentTime, o = c.createOscillator(), g = c.createGain(), n = filt ? c.createBiquadFilter() : null;
+  o.type = type || 'sine'; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + dur * 0.15); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  if (n) { n.type = 'bandpass'; n.frequency.value = filt; n.Q.value = 1.2; o.connect(n); n.connect(g); } else o.connect(g);
+  g.connect(_ambGain); o.start(t); o.stop(t + dur + 0.05);
+}
+/* musique en boucle via le graphe Web Audio (meme niveau et meme volume que les autres fiches) */
+/* en ouverture directe du fichier (file://), le graphe Web Audio reste muet : on retombe sur le volume de l'element */
+function _stViaGraph(a, G, k) {
+  if (location.protocol === 'file:') { a._g = null; a._k = k; return; }
+  _ambViaGraph(a, G); if (!a._g) a._k = k;
+}
+function _stMusic(src, G, token, k) {
+  var a = document.createElement('audio');
+  a.loop = true; a.preload = 'auto'; a.volume = 0; a._k = 0.18; a.setAttribute('playsinline', '');
+  document.body.appendChild(a); _stViaGraph(a, G, k); a._G = G; a.src = src;
+  _ambNodes._stEl = a;
+  var p = a.play();
+  function ok() { if (_ambNodes._stToken !== token) { a.pause(); return; } _ambFadeEl(a, function(){ return _ambNodes._stToken === token; }); }
+  if (p && p.then) p.then(ok).catch(function(){}); else ok();
+}
+/* la video d'Indicium coupe le fond sonore (musique et effets) tant qu'elle se lit */
+function _stDuck(on) {
+  _ambNodes._stDucked = !!on;
+  var a = _ambNodes._stEl, vo = _ambNodes._stVo;
+  /* pendant la video : la musique de la fiche se coupe et la bande son de la video prend le relais */
+  if (a && !a._g) { try { a.volume = on ? 0 : Math.min(1, _ambTargetVol() * (a._k || 1)); } catch(e) {} }
+  if (a && a._g && _ambCtx) { try {
+    var g = a._g.gain, t = _ambCtx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t);
+    g.linearRampToValueAtTime(on ? 0.0001 : a._G, t + (on ? 0.35 : 1.2));
+  } catch(e) {} }
+  if (vo) { try {
+    if (on) { if (!vo._g) vo.volume = Math.min(1, _ambTargetVol() * (vo._k || 1)); vo.currentTime = 0; var p = vo.play(); if (p && p.catch) p.catch(function(){}); }
+    else { vo.pause(); vo.currentTime = 0; }
+  } catch(e) {} }
+}
+_AMBIENCES.indicium = function() {
+  var token = {}; _ambNodes._stToken = token;
+  var sc = document.createElement('audio');
+  sc.preload = 'auto'; sc.volume = 1; sc.setAttribute('playsinline', '');
+  document.body.appendChild(sc); _stViaGraph(sc, 0.87, 0.6); sc.src = 'assets/audio/stage-screamer.mp3';
+  _ambNodes._stSc = sc;
+  var vo = document.createElement('audio');
+  vo.loop = true; vo.preload = 'auto'; vo.volume = 1; vo.setAttribute('playsinline', '');
+  document.body.appendChild(vo); _stViaGraph(vo, 0.87, 0.6); vo.src = 'assets/audio/stage-video.mp3';
+  _ambNodes._stVo = vo;
+  _stMusic('assets/audio/indicium-bgm.mp3', 0.78, token, 0.5);
+  function alive() { return _ambNodes._stToken === token; }
+  function creak() { if (!alive()) return; if (!_ambNodes._stDucked) _stBlip(95 + Math.random() * 40, 52, 0.9 + Math.random() * 0.6, 0.05, 'sawtooth', 320); _stT(creak, 5000, 11000); }
+  function thump() { if (!alive()) return; if (!_ambNodes._stDucked) _stBlip(62, 34, 1.1, 0.16, 'sine'); _stT(thump, 9000, 20000); }
+  _stT(creak, 2500, 6000); _stT(thump, 6000, 12000);
+};
+_AMBIENCES.wetland = function() {
+  var token = {}; _ambNodes._stToken = token;
+  _stMusic('assets/audio/wetland-bgm.mp3', 0.09, token, 0.2);
+};
 /* Entretien d'embauche : valse de cirque en la mineur, orgue de barbarie un peu faux */
 _AMBIENCES.entretien = function() {
   var ctx=_ambCtx, out=_ambGain, bpm=138, beat=60/bpm, n=0, next=ctx.currentTime+0.2;
@@ -2123,7 +2190,7 @@ document.addEventListener('keydown',function(e){
 /* == AUDIO FEEDBACK ON INTERACTIONS == */
 (function(){
   // Hover feedback sur les project rows
-  document.querySelectorAll('.project-row,.sel-item,.sel-go').forEach(function(el){
+  document.querySelectorAll('.project-row,.sel-item,.sel-go,.st-card').forEach(function(el){
     el.addEventListener('mouseenter',function(){ _audio.playHover(); });
     el.addEventListener('click',function(){ _audio.playClick(); });
   });
@@ -2931,4 +2998,30 @@ window.addEventListener('load',function(){
   }
   new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
   sync();
+})();
+
+
+/* == STAGES : lecteur de la cinematique Indicium, avec le cri synchronise sur l'image du screamer == */
+(function(){
+  var box=document.getElementById('st-video'), v=document.getElementById('st-vid'), btn=document.getElementById('st-play'), fill=document.getElementById('st-vfill'), ov=document.getElementById('pm-indicium');
+  if(!box||!v||!btn||!ov) return;
+  var SCREAM=9.58, fired=false, raf=0;
+  function sc(){ return (typeof _ambNodes!=='undefined' && _ambNodes) ? _ambNodes._stSc : null; }
+  function scream(){ var a=sc(); if(!a||(typeof _audio!=='undefined'&&_audio.muted)) return; try{ if(!a._g && typeof _ambTargetVol==='function') a.volume=Math.min(1,_ambTargetVol()*(a._k||1)); a.currentTime=0; var p=a.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }
+  function hush(){ var a=sc(); if(a){ try{ a.pause(); a.currentTime=0; }catch(e){} } }
+  function unlock(){ var a=sc(); if(!a) return; try{ a.muted=true; var p=a.play(); if(p&&p.then) p.then(function(){ a.pause(); a.currentTime=0; a.muted=false; }).catch(function(){ a.muted=false; }); else a.muted=false; }catch(e){} }
+  function tick(){
+    raf=0; if(v.paused||v.ended) return;
+    var t=v.currentTime; fill.style.width=Math.min(100,t/(v.duration||15)*100)+'%';
+    if(!fired && t>=SCREAM-0.02 && t<SCREAM+0.7){ fired=true; scream(); } else if(t<SCREAM-0.5){ fired=false; }
+    raf=requestAnimationFrame(tick);
+  }
+  function play(){ try{ if(_ambCtx&&_ambCtx.state==='suspended') _ambCtx.resume(); }catch(e){} unlock(); if(typeof _stDuck==='function') _stDuck(true); if(v.ended) v.currentTime=0; var p=v.play(); if(p&&p.catch) p.catch(function(){ box.classList.remove('playing'); }); box.classList.add('playing'); }
+  function pause(){ v.pause(); box.classList.remove('playing'); hush(); if(typeof _stDuck==='function') _stDuck(false); }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); play(); });
+  box.addEventListener('click',function(){ if(box.classList.contains('playing')) pause(); });
+  v.addEventListener('play',function(){ if(!raf) raf=requestAnimationFrame(tick); });
+  v.addEventListener('seeked',function(){ if(v.currentTime<SCREAM-0.5) fired=false; });
+  v.addEventListener('ended',function(){ box.classList.remove('playing'); fired=false; fill.style.width='0'; if(typeof _stDuck==='function') _stDuck(false); });
+  new MutationObserver(function(){ if(!ov.classList.contains('open')){ v.pause(); try{ v.currentTime=0; }catch(e){} box.classList.remove('playing'); fired=false; fill.style.width='0'; hush(); } }).observe(ov,{attributes:true,attributeFilter:['class']});
 })();

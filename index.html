@@ -39,7 +39,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cinzel+Decorative:wght@400;700;900&family=Macondo&family=Nosifer&family=Creepster&family=Special+Elite&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Uncial+Antiqua&family=Press+Start+2P&family=Rye&family=Chakra+Petch:wght@500;700&family=Saira+Condensed:wght@500;700&family=Monoton&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/style.css?v=20261017b">
+<link rel="stylesheet" href="assets/css/style.css?v=20261113k">
 </head>
 <body>
 <a class="skip-link" href="#about">Aller au contenu</a>
@@ -57,6 +57,7 @@
     <li><a href="#competences" data-i18n="nav_skills">Compétences</a></li>
     <li><a href="#process" data-i18n="nav_method">Méthode</a></li>
     <li><a href="#projets" data-i18n="nav_projects">Projets</a></li>
+    <li><a href="#stages" data-i18n="nav_stages">Stages</a></li>
     <li><a href="#cv" data-i18n="nav_cv">CV</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
   </ul>
@@ -77,6 +78,7 @@
   <a href="#competences" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Compétences</a>
   <a href="#process" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Méthode</a>
   <a href="#projets" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Projets</a>
+  <a href="#stages" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Stages</a>
   <a href="#cv" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">CV</a>
   <a href="#contact" onclick="closeMenu()" style="font-family:var(--font-mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-light)">Contact</a>
 </div>
@@ -2006,6 +2008,129 @@
   </div>
 </div>
 
+<div class="divider"></div>
+<section id="stages">
+  <div class="section-num"><span data-i18n="label_stages">// 004 — Expérience</span></div>
+  <h2 class="section-title" data-i18n="title_stages">STAGES</h2>
+  <p class="st-intro">Deux projets menés pendant mon stage de troisième année chez Sirene Games, un studio indépendant toulousain : un jeu de déduction multijoueur et un jeu d'horreur et de déduction dans un théâtre hanté. Chaque fiche présente le contexte, mes missions et ce que j'en retiens.</p>
+  <div class="st-cards">
+    <button type="button" class="st-card st-wet" onclick="openProj('wetland')" data-id="wetland">
+      <span class="st-card-art" aria-hidden="true"><img class="st-bg" src="assets/img/stages/wetland.webp" alt="" loading="lazy" decoding="async"/><img class="st-fg" src="assets/img/stages/wetland.webp" alt="" loading="lazy" decoding="async"/></span>
+      <span class="st-card-body">
+        <div class="st-card-num">// Stage 01</div>
+        <div class="st-card-name">WETLAND</div>
+        <div class="st-card-period">16 sept. — 16 nov. 2026</div>
+        <div class="st-card-role">Game Design · Level Design · QA</div>
+        <div class="st-card-desc">Un jeu de déduction et d'horreur dans un marais. Playtest, moodboard de bâtiments, bestiaire en jeu, biomes.</div>
+        <div class="st-card-go">Voir le détail →</div>
+      </span>
+    </button>
+    <button type="button" class="st-card st-ind" onclick="openProj('indicium')" data-id="indicium">
+      <span class="st-card-art" aria-hidden="true"><img class="st-bg" src="assets/img/stages/indicium.webp" alt="" loading="lazy" decoding="async"/><img class="st-fg" src="assets/img/stages/indicium.webp" alt="" loading="lazy" decoding="async"/></span>
+      <span class="st-card-body">
+        <div class="st-card-num">// Stage 02</div>
+        <div class="st-card-name">INDICIUM</div>
+        <div class="st-card-period">Novembre 2026</div>
+        <div class="st-card-role">Game Design · Dialogues · Cinématique</div>
+        <div class="st-card-desc">Un jeu d'horreur et de déduction dans un théâtre hanté. Mini-jeux de fin, dialogues, cinématique.</div>
+        <div class="st-card-go">Voir le détail →</div>
+      </span>
+    </button>
+  </div>
+</section>
+
+<!-- STAGES MODALS -->
+<div id="pm-wetland" class="proj-modal-overlay theme-wetland" onclick="if(event.target===this)closeProj('wetland')">
+  <div class="proj-modal-backdrop" onclick="closeProj('wetland')"></div>
+  <div class="proj-modal">
+    <div class="proj-modal-hero">
+      <img class="st-hero-img" src="assets/img/stages/wetland.webp" alt="" decoding="async"/>
+      <div class="proj-modal-num">// Stage 01 — Sirene Games · 16 sept. — 16 nov. 2026</div>
+      <div class="proj-modal-title">WETLAND<br/><span>Stage</span></div>
+      <button class="proj-modal-close" onclick="closeProj('wetland')">✕ Fermer</button>
+      <div class="proj-modal-tags"><span class="tag accent">Game Design</span><span class="tag">QA</span><span class="tag">Level Design</span><span class="tag">Unreal Engine</span><span class="tag">Télétravail</span></div>
+    </div>
+    <div class="proj-modal-body">
+<p class="st-lead">Wetland est un jeu 3D à la première personne de déduction, de coopération et de confrontation. Des pêcheuses entrent dans un marais pour retrouver un laboratoire caché, alors que des Impostrices se dissimulent parmi elles. Le tout nourrit la paranoïa, les accusations et le roleplay entre les joueuses.</p>
+<div class="pm-section-title">Contexte</div>
+<div class="st-facts"><div class="st-fact"><div class="st-k">Entreprise</div><div class="st-v">Sirene Games, studio indépendant près de Toulouse</div></div><div class="st-fact"><div class="st-k">Période</div><div class="st-v">16 septembre — 16 novembre 2026</div></div><div class="st-fact"><div class="st-k">Poste</div><div class="st-v">Game Designer et QA Tester</div></div><div class="st-fact"><div class="st-k">Tutrice</div><div class="st-v">Amélyne, Game Director</div></div><div class="st-fact"><div class="st-k">Organisation</div><div class="st-v">Télétravail complet, sans réunion : un point écrit à midi et un le soir sur Discord</div></div><div class="st-fact"><div class="st-k">Moteur</div><div class="st-v">Unreal Engine</div></div></div>
+<p class="st-note">Sirene Games développe et édite Wetland, son premier jeu, présenté au public à la vitrine du jeu vidéo toulousain de Toulouse Game Dev. Mon travail suivait toujours le même chemin : une proposition dans un document ou un tableur, présentée à Amélyne pour la vision, puis validée avec Mathis pour la faisabilité.</p>
+<div class="st-team"><div class="st-member"><div class="st-mn">Amélyne</div><div class="st-mr">Game Director, art 2D/3D</div></div><div class="st-member"><div class="st-mn">Mathis</div><div class="st-mr">Programmation</div></div><div class="st-member"><div class="st-mn">Ludivine</div><div class="st-mr">Character design, environment art</div></div><div class="st-member"><div class="st-mn">Loïs</div><div class="st-mr">Sound design</div></div><div class="st-member"><div class="st-mn">Joao</div><div class="st-mr">Stagiaire : 3D</div></div><div class="st-member"><div class="st-mn">Matias</div><div class="st-mr">Stagiaire : programmation</div></div><div class="st-member"><div class="st-mn">Léo</div><div class="st-mr">Game Design, Level Design, QA</div></div></div>
+<div class="pm-section-title">Missions</div>
+<div class="st-grid st-g2"><div class="st-box"><div class="st-bt">Phase 1 · Playtest et QA</div><div class="st-bb">Préparer la récolte des avis des joueurs : questionnaire, tableaux de suivi, tri des retours et des bugs.</div></div><div class="st-box"><div class="st-bt">Phase 2 · Game Design et Level Design</div><div class="st-bb">Les sessions de test étant rares, rendre le niveau lisible, favoriser la communication entre les joueuses et rapprocher le jeu de la vision de la direction.</div></div></div>
+<div class="pm-section-title">Réalisations</div>
+<p class="st-lead">Un fil rouge relie mes travaux : rendre le jeu compréhensible et donner aux joueuses de quoi se parler.</p>
+<div class="pm-label">Le dispositif de playtest</div>
+<div class="st-stats"><div class="st-stat"><div class="st-big">28</div><div class="st-sk">questions dans le questionnaire</div></div><div class="st-stat"><div class="st-big">7</div><div class="st-sk">testeurs ont répondu</div></div><div class="st-stat"><div class="st-big">4</div><div class="st-sk">tableaux de suivi</div></div></div>
+<p class="st-note">J'ai séparé volontairement le ressenti, les bugs et les retours de conception, parce qu'ils n'ont ni la même urgence ni le même destinataire : un bug va vers la programmation, un retour de design vers la direction. Un constat revenait à chaque test : on se perdait dans le niveau.</p>
+<div class="pm-label">Des repères dans le niveau : le moodboard des bâtiments</div>
+<p class="st-note">Le niveau est généré de façon procédurale et tous les endroits se ressemblaient. J'ai conçu cinq bâtiments reconnaissables, chacun avec son histoire et son loot, pour casser les lignes de vue en jeu et servir de repères au joueur. Pour chacun : une fiche de détail, un schéma à l'échelle et un moodboard avec sa palette.</p>
+<div class="st-grid st-g5"><div class="st-box"><div class="st-bt">L'ancien campement d'expédition</div><div class="st-bb">Un camp abandonné par les premiers groupes venus étudier le marais.</div></div><div class="st-box"><div class="st-bt">L'infirmerie du camp</div><div class="st-bb">Abandonnée en pleine activité, on y trouve surtout du matériel médical.</div></div><div class="st-box"><div class="st-bt">La station de prélèvement</div><div class="st-bb">Un ancien site de scientifiques, avec un objet de quête à y retrouver.</div></div><div class="st-box"><div class="st-bt">Le cimetière de bateaux</div><div class="st-bb">Un labyrinthe d'épaves où l'on peut se cacher et contourner.</div></div><div class="st-box"><div class="st-bt">L'arbre creux</div><div class="st-bb">Un arbre immense dans lequel on entre, sur trois niveaux de plateformes.</div></div></div>
+<div class="pm-label">Le bestiaire, un journal intégré au jeu</div>
+<p class="st-note">Un endroit où retrouver ce qu'on sait et ce qu'on doit faire, sans interrompre la partie. Je l'ai conçu, codé dans Unreal Engine avec Mathis, et j'ai mis en forme chaque page. Il compte quatre pages : le personnage et ses capacités, les quêtes, les cartes (dont une seule est vraie) et les découvertes, cachées derrière des points d'interrogation tant qu'elles ne sont pas trouvées.</p>
+<div class="pm-label">Biomes, objets et addiction</div>
+<p class="st-note">Chaque biome fait agir différemment : les eaux libres montrent les mouvements mais n'offrent aucune couverture, les roselières cassent les lignes de vue, la forêt marécageuse cache des plantes médicinales et du gaz toxique. J'ai aussi travaillé sur les objets (harpon, balise, seringue, carnet de terrain), sur les compétences des personnages et sur un système d'addiction qui donne une raison d'être au loot et de quoi se parler aux joueuses.</p>
+<div class="st-chips"><div class="st-chip">Eaux libres</div><div class="st-chip">Roselières</div><div class="st-chip">Forêt marécageuse</div><div class="st-chip">Îles flottantes</div><div class="st-chip">Prairies humides</div><div class="st-chip">Tourbières</div></div>
+<div class="pm-label">Technique</div>
+<p class="st-note">À partir du tableur de suivi, j'ai refait toutes les collisions du projet. Avec Matias et Mathis, j'ai contribué à améliorer les performances du jeu et j'ai optimisé tous les systèmes Niagara.</p>
+<div class="pm-section-title">Outils</div>
+<div class="st-chips"><div class="st-chip">Unreal Engine</div><div class="st-chip">Niagara</div><div class="st-chip">Google Docs</div><div class="st-chip">Google Sheets</div><div class="st-chip">Jotform</div><div class="st-chip">Miro</div><div class="st-chip">Discord</div></div>
+<div class="pm-section-title">Ce que j'en retiens</div>
+<div class="st-grid st-g3"><div class="st-box"><div class="st-bt">Level Design procédural</div><div class="st-bb">On ne dessine pas une carte : on place des repères qui fonctionnent quoi qu'il arrive. Un élément qui fait deux choses vaut mieux que deux éléments.</div></div><div class="st-box"><div class="st-bt">QA et documentation</div><div class="st-bb">Un bon rapport de bug permet de le reproduire, et il faut distinguer un bug d'un problème de conception. Mes documents doivent se lire sans moi.</div></div><div class="st-box"><div class="st-bt">Travailler à distance</div><div class="st-bb">Sans réunion, tout passe par l'écrit : des points courts, un discours adapté à la personne.</div></div><div class="st-box"><div class="st-bt">Recevoir une critique</div><div class="st-bb">Ma liste de passifs a plu, puis ne convenait plus. Je l'ai refaite et la direction a choisi : ne pas la prendre pour un échec.</div></div><div class="st-box"><div class="st-bt">Ne pas se disperser</div><div class="st-bb">J'ai appris à reconnaître ce qui est de mon rôle et à passer la main au bon moment.</div></div><div class="st-box"><div class="st-bt">Ce que ça confirme</div><div class="st-bb">J'aime concevoir des systèmes qui guident le joueur sans qu'il s'en rende compte. Mon domaine de prédilection reste le Level Design.</div></div></div>
+<a class="modal-link" href="https://store.steampowered.com/app/4067630/Wetland/" target="_blank" rel="noopener noreferrer">→ Voir Wetland sur Steam</a>
+    </div>
+  </div>
+</div>
+
+<div id="pm-indicium" class="proj-modal-overlay theme-indicium" onclick="if(event.target===this)closeProj('indicium')">
+  <div class="proj-modal-backdrop" onclick="closeProj('indicium')"></div>
+  <div class="proj-modal">
+    <div class="proj-modal-hero">
+      <img class="st-hero-img" src="assets/img/stages/indicium.webp" alt="" decoding="async"/>
+      <div class="proj-modal-num">// Stage 02 — Sirene Games · Novembre 2026</div>
+      <div class="proj-modal-title">INDICIUM<br/><span>Stage</span></div>
+      <button class="proj-modal-close" onclick="closeProj('indicium')">✕ Fermer</button>
+      <div class="proj-modal-tags"><span class="tag accent">Game Design</span><span class="tag">Dialogues</span><span class="tag">Cinématique</span><span class="tag">Unreal Engine</span></div>
+    </div>
+    <div class="proj-modal-body">
+<p class="st-lead">Indicium est un jeu d'horreur d'observation et de déduction : le joueur incarne un Mimic déguisé en policier et enquête dans un théâtre hanté, repère les anomalies et identifie le type d'entité responsable parmi quatre. Les quatre races de « coupables » (les Oculophobes, les Abysmogènes, les Mimétiformes et les Incessants) se cachent derrière leurs défauts : pour leur parler, le joueur doit d'abord survivre à un parcours piégé qui raconte qui ils sont. J'ai conçu les mini-jeux de fin, écrit les dialogues et supervisé toute la partie cinématique, que j'ai schématisée.</p>
+<div class="pm-section-title">Contexte</div>
+<div class="st-facts"><div class="st-fact"><div class="st-k">Studio</div><div class="st-v">Sirene Games, le même studio que Wetland</div></div><div class="st-fact"><div class="st-k">Genre</div><div class="st-v">Horreur d'observation et de déduction, jeu solo</div></div><div class="st-fact"><div class="st-k">Période</div><div class="st-v">Novembre 2026</div></div><div class="st-fact"><div class="st-k">Poste</div><div class="st-v">Game Designer, dialogues et supervision de la cinématique</div></div><div class="st-fact"><div class="st-k">Équipe</div><div class="st-v">L'équipe de Sirene Games : Amélyne pour la direction et les assets 2D, Loïs pour le son</div></div><div class="st-fact"><div class="st-k">Moteur</div><div class="st-v">Unreal Engine 5.4</div></div><div class="st-fact"><div class="st-k">Langues</div><div class="st-v">Texte écrit en français et en anglais</div></div></div>
+<div class="pm-section-title">Missions</div>
+<div class="st-grid st-g3"><div class="st-box"><div class="st-bt">Mini-jeux de fin</div><div class="st-bb">Un parcours piégé commun et une série de pièges par race de coupable.</div></div><div class="st-box"><div class="st-bt">Dialogues</div><div class="st-bb">Les répliques de chaque coupable, en français et en anglais, avec un ton propre à chaque race.</div></div><div class="st-box"><div class="st-bt">Cinématique</div><div class="st-bb">Superviser et schématiser toute la partie cinématique, de l'entrée du théâtre au fondu d'ouverture.</div></div></div>
+<div class="pm-section-title">Réalisations</div>
+<div class="pm-label">Une cinématique sous Unreal Engine</div>
+<div class="st-video" id="st-video">
+  <video id="st-vid" src="assets/video/indicium-cinematique.mp4" poster="assets/video/indicium-cinematique.webp" preload="none" playsinline muted disablepictureinpicture controlslist="nodownload noremoteplayback" aria-label="Cinématique sous Unreal Engine : une scène de théâtre dans la pénombre, puis un screamer"></video>
+  <button type="button" class="st-play" id="st-play" aria-label="Lancer la cinématique"><i aria-hidden="true"></i></button>
+  <div class="st-vbar" aria-hidden="true"><div class="st-vfill" id="st-vfill"></div></div>
+  <div class="st-vcap">Cinématique · 11 s · Unreal Engine</div>
+</div>
+<p class="st-note">Une scène de théâtre en noir et blanc, deux projecteurs, les entités immobiles dans la pénombre, puis un screamer. Le son de fond baisse quand la vidéo se lance, et le cri se déclenche sur l'image du screamer.</p>
+<div class="pm-label">Les mini-jeux de fin : un piège par race</div>
+<p class="st-note">Le joueur arrive dans une salle blanche, voit le coupable au loin et traverse un parcours piégé avant de lui parler. Le couloir est le même pour toutes les races, seuls les pièges changent, et chacun naît de la nature de la race : le joueur comprend le coupable en jouant, avant qu'il ne dise un mot.</p>
+<div class="st-grid st-g2"><div class="st-box"><div class="st-bt">Oculophobes</div><div class="st-bb">Un pont invisible qui se désagrège la nuit, avec une alternance jour et nuit.</div></div><div class="st-box"><div class="st-bt">Abysmogènes</div><div class="st-bb">Une boue qui ralentit et des trous qui s'ouvrent sous les pas.</div></div><div class="st-box"><div class="st-bt">Mimétiformes</div><div class="st-bb">Des silhouettes qui surgissent quand le son d'ambiance se coupe.</div></div><div class="st-box"><div class="st-bt">Incessants</div><div class="st-bb">Un brouillard où l'on se repère au son, comme avec un radar, sans se laisser tromper par des leurres.</div></div></div>
+<div class="pm-label">Les dialogues : le coupable se trahit à mesure qu'on avance</div>
+<p class="st-note">Les répliques sont liées à la distance : loin, le coupable reste dans son personnage ; à mi-parcours, il commence à se trahir ; proche, les regrets sortent ; devant lui, c'est la dernière réplique, celle des excuses. Chaque race a son niveau de langage : enfantin chez les Oculophobes, familier chez les Abysmogènes, soutenu et passif-agressif chez les Mimétiformes, hésitant chez les Incessants. J'ai aussi écrit les indications de mise en scène sonore pour l'équipe, séparées du texte affiché.</p>
+<div class="pm-label">La cinématique d'entrée en cinq temps</div>
+<p class="st-note">La cinématique ouvre le jeu sur la façade du théâtre, puis la caméra traverse le couloir d'entrée en un seul plan continu. Le joueur ne contrôle rien : tout ce qu'il voit doit lui dire où il est, ce qui l'attend et quel est le ton du jeu.</p>
+<div class="st-beats" role="img" aria-label="Découpage de la cinématique en cinq temps : Light, Door, Dialog, Slow, Fade in">
+  <div class="st-beat" style="--w:3"><div class="st-bn">Light</div></div>
+  <div class="st-beat" style="--w:5"><div class="st-bn">Door</div></div>
+  <div class="st-beat" style="--w:12"><div class="st-bn">Dialog</div></div>
+  <div class="st-beat" style="--w:9"><div class="st-bn">Slow</div></div>
+  <div class="st-beat" style="--w:3"><div class="st-bn">Fade in</div></div>
+</div>
+<div class="st-grid st-g5"><div class="st-box"><div class="st-bt">Light</div><div class="st-bb">Plan fixe sur la façade, presque dans le noir : une lumière chaude filtre entre les battants.</div></div><div class="st-box"><div class="st-bt">Door</div><div class="st-bb">Les battants s'ouvrent seuls et la caméra passe le seuil à hauteur d'yeux.</div></div><div class="st-box"><div class="st-bt">Dialog</div><div class="st-bb">La caméra s'arrête pour l'échange d'accueil, stable pour laisser lire.</div></div><div class="st-box"><div class="st-bt">Slow</div><div class="st-bb">Ralenti au milieu de la salle, entre les tables rondes et les lustres.</div></div><div class="st-box"><div class="st-bt">Fade in</div><div class="st-bb">L'image sort du noir et le joueur prend la main.</div></div></div>
+<div class="pm-section-title">Outils</div>
+<div class="st-chips"><div class="st-chip">Unreal Engine 5.4</div><div class="st-chip">Google Docs</div><div class="st-chip">Google Sheets</div><div class="st-chip">FR / EN</div></div>
+<div class="pm-section-title">Ce que j'en retiens</div>
+<div class="st-grid st-g3"><div class="st-box"><div class="st-bt">Un piège qui raconte</div><div class="st-bb">Quand chaque piège vient de la nature de la race, le mini-jeu fait déjà le portrait du personnage avant qu'il ne parle.</div></div><div class="st-box"><div class="st-bt">Écrire pour la voix</div><div class="st-bb">Un dialogue de jeu s'écrit pour des acteurs, un moteur et une équipe son : un ton par race, des indications séparées du texte affiché.</div></div><div class="st-box"><div class="st-bt">Superviser une cinématique</div><div class="st-bb">Schématiser avant de produire aligne toute l'équipe sur le même résultat et permet de régler le rythme et le son à l'avance.</div></div></div>
+<a class="modal-link" href="https://store.steampowered.com/app/5548150/Indicium/" target="_blank" rel="noopener noreferrer">→ Voir Indicium sur Steam</a>
+    </div>
+  </div>
+</div>
+
 <!-- CV -->
 <section id="cv" style="background:rgba(17,17,19,.55)">
   <div class="section-num fade-in" data-i18n="label_cv">//&nbsp;005 — Curriculum Vitae</div>
@@ -2228,11 +2353,11 @@
   </div>
 </footer>
 
-<script src="assets/js/i18n.js?v=20261017b" defer></script>
-<script src="assets/js/i18n-en.js?v=20261017b" defer></script>
+<script src="assets/js/i18n.js?v=20261113k" defer></script>
+<script src="assets/js/i18n-en.js?v=20261113k" defer></script>
 
-<script src="assets/js/main.js?v=20261017b" defer></script>
-<script src="assets/js/page-themes.js?v=20261017b" defer></script>
+<script src="assets/js/main.js?v=20261113k" defer></script>
+<script src="assets/js/page-themes.js?v=20261113k" defer></script>
 
 <!-- THREE.JS 3D BACKGROUND -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
