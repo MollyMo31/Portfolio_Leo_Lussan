@@ -1149,7 +1149,7 @@ function _ambStop() {
     _ambNodes._towerToken = null; // invalide tout tryPlay en cours
   }
   (_ambNodes._tm||[]).forEach(function(t){ clearTimeout(t); });
-  ['_stEl','_stSc'].forEach(function(k){
+  ['_stEl','_stSc','_stVo'].forEach(function(k){
     var x = _ambNodes[k]; if (!x) return; _ambDropEl(x);
     try { x.pause(); x.currentTime=0; x.src = ''; } catch(e){}
     try { if(x.parentNode) x.parentNode.removeChild(x); } catch(e){}
@@ -1723,11 +1723,16 @@ function _stMusic(src, G, token, k) {
 /* la video d'Indicium coupe le fond sonore (musique et effets) tant qu'elle se lit */
 function _stDuck(on) {
   _ambNodes._stDucked = !!on;
-  var a = _ambNodes._stEl, F = 0.35;   // pendant la video, la musique baisse sans disparaitre
-  if (a && !a._g) { try { a.volume = Math.min(1, _ambTargetVol() * (a._k || 1) * (on ? F : 1)); } catch(e) {} }
+  var a = _ambNodes._stEl, vo = _ambNodes._stVo;
+  /* pendant la video : la musique de la fiche se coupe et la bande son de la video prend le relais */
+  if (a && !a._g) { try { a.volume = on ? 0 : Math.min(1, _ambTargetVol() * (a._k || 1)); } catch(e) {} }
   if (a && a._g && _ambCtx) { try {
     var g = a._g.gain, t = _ambCtx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t);
-    g.linearRampToValueAtTime(on ? a._G * F : a._G, t + (on ? 0.5 : 1.2));
+    g.linearRampToValueAtTime(on ? 0.0001 : a._G, t + (on ? 0.35 : 1.2));
+  } catch(e) {} }
+  if (vo) { try {
+    if (on) { if (!vo._g) vo.volume = Math.min(1, _ambTargetVol() * (vo._k || 1)); vo.currentTime = 0; var p = vo.play(); if (p && p.catch) p.catch(function(){}); }
+    else { vo.pause(); vo.currentTime = 0; }
   } catch(e) {} }
 }
 _AMBIENCES.indicium = function() {
@@ -1736,6 +1741,10 @@ _AMBIENCES.indicium = function() {
   sc.preload = 'auto'; sc.volume = 1; sc.setAttribute('playsinline', '');
   document.body.appendChild(sc); _stViaGraph(sc, 0.87, 0.6); sc.src = 'assets/audio/stage-screamer.mp3';
   _ambNodes._stSc = sc;
+  var vo = document.createElement('audio');
+  vo.loop = true; vo.preload = 'auto'; vo.volume = 1; vo.setAttribute('playsinline', '');
+  document.body.appendChild(vo); _stViaGraph(vo, 0.87, 0.6); vo.src = 'assets/audio/stage-video.mp3';
+  _ambNodes._stVo = vo;
   _stMusic('assets/audio/indicium-bgm.mp3', 0.78, token, 0.5);
   function alive() { return _ambNodes._stToken === token; }
   function creak() { if (!alive()) return; if (!_ambNodes._stDucked) _stBlip(95 + Math.random() * 40, 52, 0.9 + Math.random() * 0.6, 0.05, 'sawtooth', 320); _stT(creak, 5000, 11000); }

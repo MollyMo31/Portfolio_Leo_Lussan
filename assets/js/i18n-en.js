@@ -946,7 +946,6 @@
  "Sound design": "Sound design",
  "Stagiaire : 3D": "Intern: 3D",
  "Stagiaire : programmation": "Intern: programming",
- "Stagiaire : communication": "Intern: communication",
  "Game Design, Level Design, QA": "Game Design, Level Design, QA",
  "Missions": "Missions",
  "Phase 1 · Playtest et QA": "Phase 1 · Playtest and QA",
